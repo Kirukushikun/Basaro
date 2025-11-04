@@ -4,11 +4,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap');
+        :root {
+            --primary-color: #F4C300;
+            --text-color: #FFFFFF;
+            --light-text-color: #ADADAD;
+            --body-color: #242529;
+            --card-color: #31343A;
+
+            /* --text-color: #000000;
+            --light-text-color: #555555;
+            --body-color: #F4F4F4;
+            --card-color: #FFFFFF; */
+        }
+
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Nunito";
+            transition: 0.3s ease;
+            color: var(--text-color);
+        }
+
+        body {
+            padding: 0 20%;
+            height: 100vh;
+            background-color: var(--body-color);
+        }
+
+        nav {
+            font-weight: 500;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 40px 0;
+        }
+
+        .logo {
+            width: 200px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: white;
+            font-size: 1.3rem;
+            text-decoration: none;
+            padding: 15px 0;
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Interactivity */
+        .nav-links a.active {
+            font-weight: 600;
+            color: var(--primary-color);
+            border-bottom: solid 4px var(--primary-color);
+        }
+
+        /* Collapsible behavior */
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: #333;
+                padding: 10px 0;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+        }
+    </style>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    
+    <nav>
+        <img class="logo" src="../Img/logo-light.png" alt="">
+        <button class="menu-btn" id="menu-btn">☰</button>
+        <div class="nav-links" id="nav-links">
+            <a href="#" class="active">Dashboard</a>
+            <a href="#">Lessons</a>
+            <a href="#">Achievements</a>
+            <a href="#">Profile</a>
+        </div>
+    </nav>
+    <main>
+        <h1>Welcome!</h1>
+        <p>This is your main content area.</p>
+    </main>
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const navLinks = document.getElementById('nav-links');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+    </script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>
 </html>
