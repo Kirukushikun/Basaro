@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap');
+:root {
+    --primary-color: #F4C300;
+    --text-color: #FFFFFF;
+    --light-text-color: #ADADAD;
+    --body-color: #242529;
+    --card-color: #31343A;
+
+    /* --text-color: #000000;
+    --light-text-color: #555555;
+    --body-color: #F4F4F4;
+    --card-color: #FFFFFF; */
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Nunito";
+    transition: 0.3s ease;
+    color: var(--text-color);
+}
+
+body {
+    display: flex;
+    gap: 50px;
+    padding: 40px 30px;
+    height: 100vh;
+    background-color: var(--body-color);
+}
+
+@media (max-width: 1023px) {
+    body {
+        height: auto;
+    }
+}
+
+/* SIDEBAR */
+nav {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: solid 1px var(--card-color);
+    padding-bottom: 20px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+}
+
+.sidebar i {
+    background-color: transparent;
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    gap: 10px;
+    padding: 10px 15px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.sidebar a p {
+    color: var(--light-text-color);
+    font-weight: 600;
+}
+.sidebar a span {
+    padding: 7px 9px;
+    border-radius: 12px;
+    background-color: var(--card-color);
+}
+.sidebar a span i {
+    color: var(--primary-color);
+}
+
+.sidebar a.active {
+    font-weight: 700;
+    background-color: var(--card-color);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    margin-bottom: 5px;
+}
+.sidebar a.active p {
+    color: var(--text-color);
+    font-weight: 700;
+}
+.sidebar a.active span {
+    background-color: var(--primary-color);
+}
+.sidebar a.active span i {
+    color: white;
+}
+
+.sidebar a:hover {
+    /* background-color: #20c997; */
+    transform: scale(1.1);
+}
+
+/* COLLAPSED STATE */
+nav.collapsed {
+    width: 80px;
+}
+
+nav.collapsed .sidebar a p {
+    display: none;
+}
+
+nav.collapsed .sidebar a span {
+    margin: 0;
+}
+
+nav.collapsed .sidebar a i {
+    font-size: 18px;
+}
+
+nav.collapsed .sidebar a span + * {
+    display: none;
+}
+nav.collapsed .logo {
+    display: flex;
+    justify-content: center;
+}
+nav.collapsed .logo p {
+    display: none;
+}
+
+nav.collapsed .logo button {
+    left: 20px;
+}
+
+.card {
+    color: #2d3748;
+    padding: 25px;
+    border-radius: 20px;
+    background-color: var(--card-color);
+    /* box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px; */
+}
+/* .card:hover {
+    box-shadow: 0 0 10px rgba(151, 165, 161, 0.3);
+} */
+
+.main-cards {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: calc(35% - 10px) calc(65% - 10px);
+    height: 100%;
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Global CSS -->
+     <link rel="stylesheet" href="../global.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="../Img/logo-light.png" style="width: 200px;" alt="">
+            <!-- <button id="toggle-btn" class="text-lg hover:scale-125"><i class="fa-solid fa-bars"></i></button> -->
+        </div>
+
+        <aside class="sidebar">
+            <a href="/dashboard.html" class="active"
+                ><span><i class="fa-solid fa-house-chimney"></i></span>
+                <p>Dashboard</p></a
+            >
+            <a href="/asset-management.html"
+                ><span><i class="fa-solid fa-graduation-cap"></i></span>
+                <p>Student Management</p></a
+            >
+            <a href="/employees.html"
+                ><span><i class="fa-solid fa-user-tie"></i></span>
+                <p>Teacher Management</p></a
+            >
+            <a href="/system-records.html"
+                ><span><i class="fa-solid fa-file"></i></span>
+                <p>Performance Report</p></a
+            >
+            <a href="settings.html"
+                ><span><i class="fa-solid fa-gear"></i></span>
+                <p>Settings</p></a
+            >
+        </aside>
+    </nav>
+
+    <!-- Subject to tailwind -->
+    <main class="size-full flex flex-col">
+        <header class="flex justify-between">
+            <div>
+                <div class="text-sm text-gray-400">Pages / <span>Header</span></div>
+                <div class="font-bold">Dashboard</div>
+            </div>
+
+            <div>Hi, <span class="font-semibold">Iverson</span></div>
+        </header>
+
+        <br>
+
+        <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
+            <div class="px-6 py-5 rounded-xl bg-[#31343A] shadow-sm flex justify-between items-center hover:-translate-y-2 hover:shadow-lg">
+                <div class="card-label">
+                    <p class="text-sm text-gray-400">Total Students</p>
+                    <h1 class="text-lg font-bold">137</h1>
+                </div>
+                <div class="card-icon p-2 rounded-xl bg-[#F4C300] text-xl">
+                    <i class="fa-solid fa-graduation-cap text-white"></i>
+                </div>
+            </div>
+            <div class="px-5 py-5 rounded-xl bg-[#31343A] shadow-sm flex justify-between items-center hover:-translate-y-2 hover:shadow-lg">
+                <div class="card-label">
+                    <p class="text-sm text-gray-400">Overall Performance</p>
+                    <h1 class="text-lg font-bold">85.04%</h1>
+                </div>
+                <div class="card-icon p-2 rounded-xl bg-[#F4C300] text-xl">
+                    <i class="fa-solid fa-chart-pie text-white"></i>
+                </div>
+            </div>
+            <div class="px-5 py-5 rounded-xl bg-[#31343A] shadow-sm flex justify-between items-center hover:-translate-y-2 hover:shadow-lg">
+                <div class="card-label">
+                    <p class="text-sm text-gray-400">Total Lessons</p>
+                    <h1 class="text-lg font-bold">22</h1>
+                </div>
+                <div class="card-icon p-2 rounded-xl bg-[#F4C300] text-xl">
+                    <i class="fa-solid fa-clipboard-list text-white"></i>
+                </div>
+            </div>
+            <div class="px-5 py-5 rounded-xl bg-[#31343A] shadow-sm flex justify-between items-center hover:-translate-y-2 hover:shadow-lg">
+                <div class="card-label">
+                    <p class="text-sm text-gray-400">Active This Week</p>
+                    <h1 class="text-lg font-bold">37</h1>
+                </div>
+                <div class="card-icon p-2 rounded-xl bg-[#F4C300] text-xl">
+                    <i class="fa-solid fa-eye text-white"></i>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Alpine JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</body>
+</html>
