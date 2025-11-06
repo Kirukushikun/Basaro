@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap');
+        :root {
+            --primary-color: #F4C300;
+            --text-color: #FFFFFF;
+            --light-text-color: #ADADAD;
+            --body-color: #242529;
+            --card-color: #31343A;
+
+            /* --text-color: #000000;
+            --light-text-color: #555555;
+            --body-color: #F4F4F4;
+            --card-color: #FFFFFF; */
+        }
+
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Nunito";
+            transition: 0.3s ease;
+            color: var(--text-color);
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            padding: 0 20%;
+            height: 100vh;
+            background-color: var(--body-color);
+        }
+
+        nav {
+            font-weight: 500;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 30px 0;
+        }
+
+        .logo {
+            width: 200px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Interactivity */
+        .nav-links a.active {
+            font-weight: 600;
+            color: var(--primary-color);
+            border-bottom: solid 4px var(--primary-color);
+        }
+
+        .card{
+            background-color: var(--card-color);
+            padding: 40px;
+            border-radius: 15px;
+        }   
+
+        button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 2px 8px rgba(244, 195, 0, 0.4);
+        }
+
+        /* Scrollbar Styling */
+        .grid-cols-3::-webkit-scrollbar {
+            height: 15px;
+            width: 15px;
+        }
+        .grid-cols-3::-webkit-scrollbar-track {
+            background: var(--card-color);
+            border-radius: 7px;
+        }
+        .grid-cols-3::-webkit-scrollbar-thumb {
+            background: var(--light-text-color);
+            border-radius: 7px;
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <nav>
+        <img class="logo" src="../Img/logo-light.png" alt="">
+        <div class="nav-links" id="nav-links">
+            <a href="../Student/1 - Dashboard.html" class="text-lg ">Dashboard</a>
+            <a href="../Student/2 - Lessons.html" class="text-lg active">Lessons</a>
+            <a href="#" class="text-lg">Achievements</a>
+            <a href="#" class="text-lg">Profile</a>
+        </div>
+    </nav>
+    <main class="flex-1 overflow-hidden pb-[40px]">
+        <div class="grid grid-cols-3 pr-5 gap-7 h-full overflow-y-auto">
+            <div class="card relative">
+                <!-- <div class="absolute inset-0 w-full h-full rounded-2xl bg-black/50 flex items-center justify-center">
+                    <i class="fa-solid fa-lock text-white text-5xl"></i>
+                </div> -->
+
+                <div class="flex items-center justify-between mb-4">
+                    <h1 class="text-xl font-bold">Reading Excercise</h1>
+                    <h2 class="text-sm w-fit px-3 py-1 border border-2 border-green-600 bg-green-900 rounded-md">Level 1</h2>
+                </div>
+
+                <p class="mb-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis impedit quas aliquam recusandae numquam quos.</p>
+
+                <div class="flex items-center justify-between">
+                    <button class="w-fit px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold">
+                        Restart Lesson
+                    </button>
+
+                    <p>10/10</p>
+                </div>
+            </div>
+            
+            <div class="card relative">
+                <!-- <div class="absolute inset-0 w-full h-full rounded-2xl bg-black/50 flex items-center justify-center">
+                    <i class="fa-solid fa-lock text-white text-5xl"></i>
+                </div> -->
+
+                <div class="flex items-center justify-between mb-4">
+                    <h1 class="text-xl font-bold">Reading Excercise</h1>
+                    <h2 class="text-sm w-fit px-3 py-1 border border-2 border-green-600 bg-green-900 rounded-md">Level 2</h2>
+                </div>
+
+                <p class="mb-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis impedit quas aliquam recusandae numquam quos.</p>
+
+                <div class="flex items-center justify-between">
+                    <button class="w-fit px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold">
+                        Start Lesson
+                    </button>
+
+                    <p>0/10</p>
+                </div>
+            </div> 
+
+            <div class="card relative">
+                <div class="absolute inset-0 w-full h-full rounded-2xl bg-black/50 flex items-center justify-center">
+                    <i class="fa-solid fa-lock text-white text-5xl"></i>
+                </div>
+
+                <div class="flex items-center justify-between mb-4">
+                    <h1 class="text-xl font-bold">Reading Excercise</h1>
+                    <h2 class="text-sm w-fit px-3 py-1 border border-2 border-green-600 bg-green-900 rounded-md">Level 3</h2>
+                </div>
+
+                <p class="mb-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis impedit quas aliquam recusandae numquam quos.</p>
+
+                <div class="flex items-center justify-between">
+                    <button class="w-fit px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold">
+                        Start Lesson
+                    </button>
+
+                    <p>0/10</p>
+                </div>
+            </div>
+
+            <div class="card relative">
+                <div class="absolute inset-0 w-full h-full rounded-2xl bg-black/50 flex items-center justify-center">
+                    <i class="fa-solid fa-lock text-white text-5xl"></i>
+                </div>
+
+                <div class="flex items-center justify-between mb-4">
+                    <h1 class="text-xl font-bold">Reading Excercise</h1>
+                    <h2 class="text-sm w-fit px-3 py-1 border border-2 border-green-600 bg-green-900 rounded-md">Level 3</h2>
+                </div>
+
+                <p class="mb-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis impedit quas aliquam recusandae numquam quos.</p>
+
+                <div class="flex items-center justify-between">
+                    <button class="w-fit px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold">
+                        Start Lesson
+                    </button>
+
+                    <p>0/10</p>
+                </div>
+            </div>
+
+            <div class="card relative">
+                <div class="absolute inset-0 w-full h-full rounded-2xl bg-black/50 flex items-center justify-center">
+                    <i class="fa-solid fa-lock text-white text-5xl"></i>
+                </div>
+
+                <div class="flex items-center justify-between mb-4">
+                    <h1 class="text-xl font-bold">Reading Excercise</h1>
+                    <h2 class="text-sm w-fit px-3 py-1 border border-2 border-green-600 bg-green-900 rounded-md">Level 3</h2>
+                </div>
+
+                <p class="mb-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis impedit quas aliquam recusandae numquam quos.</p>
+
+                <div class="flex items-center justify-between">
+                    <button class="w-fit px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold">
+                        Start Lesson
+                    </button>
+
+                    <p>0/10</p>
+                </div>
+            </div>
+
+            <div class="card relative">
+                <div class="absolute inset-0 w-full h-full rounded-2xl bg-black/50 flex items-center justify-center">
+                    <i class="fa-solid fa-lock text-white text-5xl"></i>
+                </div>
+
+                <div class="flex items-center justify-between mb-4">
+                    <h1 class="text-xl font-bold">Reading Excercise</h1>
+                    <h2 class="text-sm w-fit px-3 py-1 border border-2 border-green-600 bg-green-900 rounded-md">Level 3</h2>
+                </div>
+
+                <p class="mb-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis impedit quas aliquam recusandae numquam quos.</p>
+
+                <div class="flex items-center justify-between">
+                    <button class="w-fit px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold">
+                        Start Lesson
+                    </button>
+
+                    <p>0/10</p>
+                </div>
+            </div>
+
+            <div class="card relative">
+                <div class="absolute inset-0 w-full h-full rounded-2xl bg-black/50 flex items-center justify-center">
+                    <i class="fa-solid fa-lock text-white text-5xl"></i>
+                </div>
+
+                <div class="flex items-center justify-between mb-4">
+                    <h1 class="text-xl font-bold">Reading Excercise</h1>
+                    <h2 class="text-sm w-fit px-3 py-1 border border-2 border-green-600 bg-green-900 rounded-md">Level 3</h2>
+                </div>
+
+                <p class="mb-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis impedit quas aliquam recusandae numquam quos.</p>
+
+                <div class="flex items-center justify-between">
+                    <button class="w-fit px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold">
+                        Start Lesson
+                    </button>
+
+                    <p>0/10</p>
+                </div>
+            </div>
+
+            <div class="card relative">
+                <div class="absolute inset-0 w-full h-full rounded-2xl bg-black/50 flex items-center justify-center">
+                    <i class="fa-solid fa-lock text-white text-5xl"></i>
+                </div>
+
+                <div class="flex items-center justify-between mb-4">
+                    <h1 class="text-xl font-bold">Reading Excercise</h1>
+                    <h2 class="text-sm w-fit px-3 py-1 border border-2 border-green-600 bg-green-900 rounded-md">Level 3</h2>
+                </div>
+
+                <p class="mb-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis impedit quas aliquam recusandae numquam quos.</p>
+
+                <div class="flex items-center justify-between">
+                    <button class="w-fit px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold">
+                        Start Lesson
+                    </button>
+
+                    <p>0/10</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</body>
+</html>
