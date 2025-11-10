@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito:wght@200..1000&display=swap');
 :root {
     --primary-color: #F4C300;
     --text-color: #FFFFFF;
@@ -13,9 +13,6 @@
 }
 
 *{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
     font-family: "Nunito";
     transition: 0.3s ease;
     color: var(--text-color);
@@ -23,134 +20,88 @@
 
 body {
     display: flex;
-    gap: 50px;
-    padding: 40px 30px;
+    flex-direction: column;
+    padding: 0 20%;
     height: 100vh;
     background-color: var(--body-color);
 }
 
-@media (max-width: 1023px) {
+@media(max-width: 1440px){
     body {
-        height: auto;
-    }
+        padding: 0 15%;
+    } 
 }
 
-/* SIDEBAR */
-nav {
-    width: 280px;
+@media(max-width: 1024px){
+    body {
+        padding: 0 10%;
+    } 
+}
+
+.nav {
+    font-weight: 500;
+    color: white;
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 0;
+}
+
+.nav-broken{
+    display: none;
 }
 
 .logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom: solid 1px var(--card-color);
-    padding-bottom: 20px;
+    width: 200px;
 }
 
-.sidebar {
+.nav-links {
     display: flex;
-    flex-direction: column;
-    font-size: 14px;
+    gap: 40px;
 }
 
-.sidebar i {
-    background-color: transparent;
-}
-
-.sidebar a {
-    display: flex;
-    align-items: center;
-    border-radius: 15px;
-    gap: 10px;
-    padding: 10px 15px;
+.nav-links a {
+    color: white;
     text-decoration: none;
-    white-space: nowrap;
+    padding: 15px 0;
 }
-.sidebar a p {
-    color: var(--light-text-color);
-    font-weight: 600;
-}
-.sidebar a span {
-    padding: 7px 9px;
-    border-radius: 12px;
-    background-color: var(--card-color);
-}
-.sidebar a span i {
+
+.nav-links a:hover {
     color: var(--primary-color);
 }
 
-.sidebar a.active {
-    font-weight: 700;
+/* Interactivity */
+.nav-links a.active {
+    font-weight: 600;
+    color: var(--primary-color);
+    border-bottom: solid 4px var(--primary-color);
+}
+
+@media(max-width: 900px){
+    .nav{
+        display: none;
+    }
+
+    .nav-broken{
+        margin: 30px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.card{
     background-color: var(--card-color);
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
-    margin-bottom: 5px;
-}
-.sidebar a.active p {
-    color: var(--text-color);
-    font-weight: 700;
-}
-.sidebar a.active span {
-    background-color: var(--primary-color);
-}
-.sidebar a.active span i {
-    color: white;
+    padding: 40px;
+    border-radius: 15px;
 }
 
-.sidebar a:hover {
-    /* background-color: #20c997; */
-    transform: scale(1.1);
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* COLLAPSED STATE */
-nav.collapsed {
-    width: 80px;
-}
-
-nav.collapsed .sidebar a p {
-    display: none;
-}
-
-nav.collapsed .sidebar a span {
-    margin: 0;
-}
-
-nav.collapsed .sidebar a i {
-    font-size: 18px;
-}
-
-nav.collapsed .sidebar a span + * {
-    display: none;
-}
-nav.collapsed .logo {
-    display: flex;
-    justify-content: center;
-}
-nav.collapsed .logo p {
-    display: none;
-}
-
-nav.collapsed .logo button {
-    left: 20px;
-}
-
-.card {
-    color: #2d3748;
-    padding: 25px;
-    border-radius: 20px;
-    background-color: var(--card-color);
-    /* box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px; */
-}
-/* .card:hover {
-    box-shadow: 0 0 10px rgba(151, 165, 161, 0.3);
-} */
-
-.main-cards {
-    display: grid;
-    gap: 30px;
-    grid-template-columns: calc(35% - 10px) calc(65% - 10px);
-    height: 100%;
+button:hover {
+    transform: scale(1.02);
+    box-shadow: 0 2px 8px rgba(244, 195, 0, 0.4);
 }

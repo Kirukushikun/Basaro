@@ -5,112 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap');
-        :root {
-            --primary-color: #F4C300;
-            --text-color: #FFFFFF;
-            --light-text-color: #ADADAD;
-            --body-color: #242529;
-            --card-color: #31343A;
-
-            /* --text-color: #000000;
-            --light-text-color: #555555;
-            --body-color: #F4F4F4;
-            --card-color: #FFFFFF; */
-        }
-
-        *{
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-            font-family: "Nunito";
-            transition: 0.3s ease;
-            color: var(--text-color);
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-            padding: 0 20%;
-            height: 100vh;
-            background-color: var(--body-color);
-        }
-
-        @media(max-width: 1440px){
-            body {
-                padding: 0 15%;
-            } 
-        }
-
-        @media(max-width: 1024px){
-            body {
-                padding: 0 10%;
-            } 
-        }
-
-        .nav {
-            font-weight: 500;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 30px 0;
-        }
-
-        .nav-broken{
-            display: none;
-        }
-
-        .logo {
-            width: 200px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            padding: 15px 0;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        /* Interactivity */
-        .nav-links a.active {
-            font-weight: 600;
-            color: var(--primary-color);
-            border-bottom: solid 4px var(--primary-color);
-        }
-
-        @media(max-width: 900px){
-            .nav{
-                display: none;
-            }
-
-            .nav-broken{
-                margin: 30px 0;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-            }
-        }
-
-        .card{
-            background-color: var(--card-color);
-            padding: 40px;
-            border-radius: 15px;
-        }   
-
-        button:hover {
-            transform: scale(1.02);
-            box-shadow: 0 2px 8px rgba(244, 195, 0, 0.4);
-        }
-
         /* Scrollbar Styling */
         .grid-cols-3::-webkit-scrollbar {
             height: 15px;
@@ -126,10 +20,12 @@
             cursor: pointer;
         }
     </style>
+    <link rel="stylesheet" href="../global.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    <!-- Navbar -->
     <nav class="nav">
         <img class="logo" src="../Img/logo-light.png" alt="">
         <div class="nav-links" id="nav-links">
@@ -144,6 +40,8 @@
         <img class="logo-broken" width="60" src="../Img/logo-light-broken.png" alt="">
         <i class="fa-solid fa-bars text-2xl cursor-pointer"></i>
     </nav>
+
+    <!-- Main Content -->
     <main class="flex-1 overflow-hidden pb-[40px]">
         <div class="grid grid-cols-3 pr-5 gap-7 h-full overflow-y-auto" 
             x-data="{
@@ -185,7 +83,7 @@
                 <p class="mb-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis impedit quas aliquam recusandae numquam quos.</p>
 
                 <div class="flex items-center justify-between">
-                    <button class="w-fit px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold" onclick="window.location.href='../Student/3 - Lesson_view.html'">
+                    <button class="w-fit px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold" onclick="window.location.href='../Student/3 - fSlide.html'">
                         Start Lesson
                     </button>
 
