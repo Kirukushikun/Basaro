@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito:wght@200..1000&display=swap');
+:root {
+    --primary-color: #F4C300;
+    --text-color: #FFFFFF;
+    --light-text-color: #ADADAD;
+    --body-color: #242529;
+    --card-color: #31343A;
+
+    /* --text-color: #000000;
+    --light-text-color: #555555;
+    --body-color: #F4F4F4;
+    --card-color: #FFFFFF; */
+}
+
+*{
+    font-family: "Nunito";
+    transition: 0.3s ease;
+    color: var(--text-color);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20%;
+    height: 100vh;
+    background-color: var(--body-color);
+}
+
+@media(max-width: 1440px){
+    body {
+        padding: 0 15%;
+    } 
+}
+
+@media(max-width: 1024px){
+    body {
+        padding: 0 10%;
+    } 
+}
+
+.nav {
+    font-weight: 500;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 0;
+}
+
+.nav-broken{
+    display: none;
+}
+
+.logo {
+    width: 200px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 0;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Interactivity */
+.nav-links a.active {
+    font-weight: 600;
+    color: var(--primary-color);
+    border-bottom: solid 4px var(--primary-color);
+}
+
+@media(max-width: 900px){
+    .nav{
+        display: none;
+    }
+
+    .nav-broken{
+        margin: 30px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.card{
+    background-color: var(--card-color);
+    padding: 40px;
+    border-radius: 15px;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+button{
+    cursor: pointer;
+}
+button:hover {
+    transform: scale(1.02);
+    box-shadow: 0 2px 8px rgba(244, 195, 0, 0.4);
+}
+
+
+/* Scrollbar Styling */
+.lessons::-webkit-scrollbar {
+    height: 15px;
+    width: 15px;
+}
+.lessons::-webkit-scrollbar-track {
+    background: var(--card-color);
+    border-radius: 7px;
+}
+.lessons::-webkit-scrollbar-thumb {
+    background: var(--light-text-color);
+    border-radius: 7px;
+    cursor: pointer;
+}
