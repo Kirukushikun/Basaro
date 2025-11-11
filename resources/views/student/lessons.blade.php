@@ -42,7 +42,7 @@
             <p class="mb-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis impedit quas aliquam recusandae numquam quos.</p>
 
             <div class="flex items-center justify-between">
-                <button class="w-fit px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold" onclick="window.location.href='../Student/3 - fSlide.html'">
+                <button class="w-fit px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold" onclick="window.location.href='/lesson-view/first-slide'">
                     Start Lesson
                 </button>
 

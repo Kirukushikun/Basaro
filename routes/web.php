@@ -9,3 +9,7 @@ Route::get('/dashboard', function () {
 Route::get('/lessons', function () {
     return view('student.lessons');
 });
+
+Route::get('/lesson-view/{slide}', function ($slide) {
+    return view('student.lesson-view', compact('slide'));
+});

@@ -123,3 +123,41 @@ button:hover {
     border-radius: 7px;
     cursor: pointer;
 }
+
+/* Scrollbar Styling */
+.scrolling::-webkit-scrollbar {
+    height: 15px;
+    width: 15px;
+}
+.scrolling::-webkit-scrollbar-track {
+    background: var(--card-color);
+    border-radius: 7px;
+}
+.scrolling::-webkit-scrollbar-thumb {
+    background: var(--light-text-color);
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+
+/* Figure Styling */
+.layunin-figure{
+    position: absolute;
+    bottom: 20px;
+    left: 50px;
+    z-index: 1;
+    width: 530px;
+}
+
+@media(max-width: 1440px){
+    .layunin-figure{
+        left: 30px;
+        width: 230px;
+    } 
+}
+
+@media(max-width: 768px){  b 
+    .layunin-figure{
+        display: none;
+    } 
+}
