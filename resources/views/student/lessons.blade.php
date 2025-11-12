@@ -66,7 +66,7 @@
                     <div class="flex items-start justify-between mb-4">
                         <h1 class="text-xl font-bold" x-text="lesson"></h1>
                         <h2 class="text-sm whitespace-nowrap px-3 py-1 border border-2 border-green-600 bg-green-900 rounded-md"
-                            x-text="'Level ' + (index + 1)">
+                            x-text="'Level ' + (index + 2)">
                         </h2>
                     </div>
 
