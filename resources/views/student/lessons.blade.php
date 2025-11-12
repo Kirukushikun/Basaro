@@ -45,7 +45,7 @@
 
 
             <div class="flex items-center justify-between">
-                <button class="w-fit px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson=1&slide=first-slide'">
+                <button class="w-fit px-4 py-2 bg-[#F4C300] !text-black rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson=1&slide=first-slide'">
                     Start Lesson
                 </button>
 
@@ -77,7 +77,7 @@
 
 
                 <div class="flex items-center justify-between">
-                    <button class="w-fit px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold">
+                    <button class="w-fit px-4 py-2 bg-[#F4C300] !text-black rounded-md font-bold">
                         Start Lesson
                     </button>
                     <p>0/10</p>

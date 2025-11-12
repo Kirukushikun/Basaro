@@ -8,7 +8,7 @@
                 <!-- Title Section -->
                 <div x-show="page === 1" class="absolute -top-6 left-1/2 -translate-x-1/2">
                     <div class="relative inline-block">
-                        <h1 class="relative z-10 bg-[#F4C300] px-20 py-1 text-black text-xl font-bold rounded-md border-2 border-[#31343A]">
+                        <h1 class="relative z-10 bg-[#F4C300] px-20 py-1 !text-black text-xl font-bold rounded-md border-2 border-[#31343A]">
                             PAUNANG SALITA
                         </h1>
                         
@@ -40,7 +40,7 @@
             <!-- Title Section -->
             <div x-show="page === 2" class="absolute -top-6 left-1/2 -translate-x-1/2">
                 <div class="relative inline-block">
-                    <h1 class="relative z-10 bg-[#F4C300] px-20 py-1 text-black text-xl font-bold rounded-md border-2 border-[#31343A]">
+                    <h1 class="relative z-10 bg-[#F4C300] px-20 py-1 !text-black text-xl font-bold rounded-md border-2 border-[#31343A]">
                         LAYUNIN NG ARALIN
                     </h1>
                     
@@ -63,32 +63,32 @@
                 @if($lesson == 1)
                     <button
                         @click="page === 1 ? window.location.href = '/lessons' : page--"
-                        class="px-4 py-2 bg-[#F4C300] rounded-md text-black font-bold">
-                        <i class="fa-solid fa-arrow-left text-black"></i> Balik
+                        class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold">
+                        <i class="fa-solid fa-arrow-left !text-black"></i> Balik
                     </button>
 
                     <button x-show="page == 1" @click="page++"
                         :class="{ 'opacity-30 pointer-events-none': page === 2 }"
-                        class="px-4 py-2 bg-[#F4C300] rounded-md text-black font-bold">
-                        Susunod <i class="fa-solid fa-arrow-right text-black"></i>
+                        class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold">
+                        Susunod <i class="fa-solid fa-arrow-right !text-black"></i>
                     </button>
 
                     <button x-show="page === 2" onclick="window.location.href='/lesson-view?lesson={{$lesson}}&slide=second-slide'"
-                        class="px-4 py-2 bg-[#F4C300] rounded-md text-black font-bold">
+                        class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold">
                         Magpatuloy
-                        <i class="fa-solid fa-arrow-right text-black"></i>
+                        <i class="fa-solid fa-arrow-right !text-black"></i>
                     </button>
                 @else 
                     <button
                         @click="window.location.href = '/lessons'"
-                        class="px-4 py-2 bg-[#F4C300] rounded-md text-black font-bold">
-                        <i class="fa-solid fa-arrow-left text-black"></i> Balik
+                        class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold">
+                        <i class="fa-solid fa-arrow-left !text-black"></i> Balik
                     </button>
 
                     <button onclick="window.location.href='/lesson-view?lesson={{$lesson}}&slide=second-slide'"
-                        class="px-4 py-2 bg-[#F4C300] rounded-md text-black font-bold">
+                        class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold">
                         Magpatuloy
-                        <i class="fa-solid fa-arrow-right text-black"></i>
+                        <i class="fa-solid fa-arrow-right !text-black"></i>
                     </button>
                 @endif
 

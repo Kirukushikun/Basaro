@@ -24,7 +24,7 @@
                 <div class="w-[0%] bg-[#F4C300] h-full rounded-md"></div>
             </div>
 
-            <button class="w-fit px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold">
+            <button class="w-fit !text-black px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold">
                 Start Lesson
             </button>
         </div>
