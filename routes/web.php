@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
@@ -10,6 +11,8 @@ Route::get('/lessons', function () {
     return view('student.lessons');
 });
 
-Route::get('/lesson-view/{slide}', function ($slide) {
-    return view('student.lesson-view', compact('slide'));
+Route::get('/lesson-view', function (Request $request) {
+    $lesson = $request->lesson;
+    $slide = $request->slide;
+    return view('student.lesson-view', compact('lesson', 'slide'));
 });

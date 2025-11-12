@@ -2,8 +2,8 @@
 
 @section('content')
     @if($slide == 'first-slide')
-        <livewire:first-slide />
+        <livewire:first-slide :lesson="$lesson"/>
     @else
-        <livewire:second-slide />
+        <livewire:second-slide :lesson="$lesson" />
     @endif
 @endsection

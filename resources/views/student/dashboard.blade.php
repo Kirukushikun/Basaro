@@ -6,7 +6,7 @@
     <div class="card flex flex-col gap-6">
         <div class="header">
             <p class="text-lg text-gray-400">Current Lesson:</p>
-            <h1 class="text-2xl font-bold">Lesson 1: Reading Exercise</h1>
+            <h1 class="text-2xl font-bold">Lesson 1: Ang Apabetong Filipino</h1>
             <h2 class="text-sm w-fit mt-2 px-2 py-1 border border-2 border-green-600 bg-green-900 rounded-md">Level 1 - Beginner</h2>
         </div>
 
@@ -17,15 +17,15 @@
         <div class="footer flex flex-col gap-4">
             <div class="flex justify-between">
                 <p class="text-gray-400">Your progress:</p>
-                <p class="text-gray-400">80%</p>
+                <p class="text-gray-400">0%</p>
             </div>
 
             <div class="bg-gray-600 h-2 rounded-md">
-                <div class="w-[40%] bg-[#F4C300] h-full rounded-md"></div>
+                <div class="w-[0%] bg-[#F4C300] h-full rounded-md"></div>
             </div>
 
             <button class="w-fit px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold">
-                Continue Lesson
+                Start Lesson
             </button>
         </div>
     </div>
