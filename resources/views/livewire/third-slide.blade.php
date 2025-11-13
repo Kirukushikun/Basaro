@@ -15,60 +15,215 @@
                     <img class="absolute z-0 -right-7 top-0 rotate-180" width="55" src="../Img/ribbon.png" alt="">
                 </div>
             </div>
+
             <!-- Scrollable Content Area -->
-            <div x-show="page === 1" class="flex-1 flex flex-col items-center gap-10">
-                <h1 class="alphabet mt-10 !text-[#F4C300]">
-                    "M"   
-                </h1>
+            <div x-show="page === 1" 
+                class="flex-1 flex flex-col items-center gap-10"
+                x-data="{ recording: false, showMessage: false }">
 
-                <p class="w-96 text-lg text-center">Basahin nang malinaw ang titik na nasa itaas. Subukang bigkasin ito nang tama at dahan-dahan.</p>
-                
-                <div class="bg-gray-500 px-3 py-2 rounded-full cursor-pointer hover:scale-110">
-                    <i class="fa-solid fa-microphone"></i>
+                <h1 class="alphabet mt-10 !text-[#F4C300]">"M"</h1>
+
+                <p class="w-96 text-lg text-center">
+                    Basahin nang malinaw ang titik na nasa itaas. Subukang bigkasin ito nang tama at dahan-dahan.
+                </p>
+
+                <div 
+                    @mousedown="recording = true" 
+                    @mouseup="
+                        recording = false; 
+                        setTimeout(() => { 
+                            showMessage = true; 
+                        }, 1500)
+                    "
+                    @mouseleave="recording = false"
+                    class="relative bg-gray-500 px-3 py-2 rounded-full cursor-pointer transition-transform hover:scale-110"
+                    :class="{ 'scale-125 ring-4 ring-red-500 animate-pulse': recording }"
+                >
+                    <i class="fa-solid fa-microphone text-white text-xl"></i>
+
+                    <!-- glowing ripple effect -->
+                    <div x-show="recording"
+                        class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
+                    </div>
+                </div>
+
+                <!-- success message -->
+                <div x-show="showMessage"
+                    x-transition
+                    class="mt-4 px-4 py-2 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold">
+                    ✅ Tama!
                 </div>
             </div>
 
-            <div x-show="page === 2" class="flex-1 flex flex-col items-center gap-10">
-                <h1 class="alphabet mt-10 !text-[#F4C300]">
-                    "S"   
-                </h1>
+            <div x-show="page === 2" 
+                class="flex-1 flex flex-col items-center gap-10"
+                x-data="{ recording: false, showMessage: false }">
 
-                <p class="w-96 text-lg text-center">Basahin nang malinaw ang titik na nasa itaas. Subukang bigkasin ito nang tama at dahan-dahan.</p>
-                
-                <div class="bg-gray-500 px-3 py-2 rounded-full cursor-pointer hover:scale-110">
-                    <i class="fa-solid fa-microphone"></i>
+                <h1 class="alphabet mt-10 !text-[#F4C300]">"S"</h1>
+
+                <p class="w-96 text-lg text-center">
+                    Basahin nang malinaw ang titik na nasa itaas. Subukang bigkasin ito nang tama at dahan-dahan.
+                </p>
+
+                <div 
+                    @mousedown="recording = true" 
+                    @mouseup="
+                        recording = false; 
+                        setTimeout(() => { 
+                            showMessage = true; 
+                        }, 1500)
+                    "
+                    @mouseleave="recording = false"
+                    class="relative bg-gray-500 px-3 py-2 rounded-full cursor-pointer transition-transform hover:scale-110"
+                    :class="{ 'scale-125 ring-4 ring-red-500 animate-pulse': recording }"
+                >
+                    <i class="fa-solid fa-microphone text-white text-xl"></i>
+
+                    <!-- glowing ripple effect -->
+                    <div x-show="recording"
+                        class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
+                    </div>
+                </div>
+
+                <!-- success message -->
+                <div x-show="showMessage"
+                    x-transition
+                    class="mt-4 px-4 py-2 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold">
+                    ✅ Tama!
                 </div>
             </div>
 
-            <div x-show="page === 3" class="flex-1 flex flex-col items-center gap-10">
-                <h1 class="alphabet mt-10 !text-[#F4C300]">
-                    "A"   
-                </h1>
+            <div x-show="page === 3" 
+                class="flex-1 flex flex-col items-center gap-10"
+                x-data="{ recording: false, showMessage: false }">
 
-                <p class="w-96 text-lg text-center">Basahin nang malinaw ang titik na nasa itaas. Subukang bigkasin ito nang tama at dahan-dahan.</p>
-                
-                <div class="bg-gray-500 px-3 py-2 rounded-full cursor-pointer hover:scale-110">
-                    <i class="fa-solid fa-microphone"></i>
+                <h1 class="alphabet mt-10 !text-[#F4C300]">"A"</h1>
+
+                <p class="w-96 text-lg text-center">
+                    Basahin nang malinaw ang titik na nasa itaas. Subukang bigkasin ito nang tama at dahan-dahan.
+                </p>
+
+                <div 
+                    @mousedown="recording = true" 
+                    @mouseup="
+                        recording = false; 
+                        setTimeout(() => { 
+                            showMessage = true; 
+                        }, 1500)
+                    "
+                    @mouseleave="recording = false"
+                    class="relative bg-gray-500 px-3 py-2 rounded-full cursor-pointer transition-transform hover:scale-110"
+                    :class="{ 'scale-125 ring-4 ring-red-500 animate-pulse': recording }"
+                >
+                    <i class="fa-solid fa-microphone text-white text-xl"></i>
+
+                    <!-- glowing ripple effect -->
+                    <div x-show="recording"
+                        class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
+                    </div>
+                </div>
+
+                <!-- success message -->
+                <div x-show="showMessage"
+                    x-transition
+                    class="mt-4 px-4 py-2 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold">
+                    ✅ Tama!
                 </div>
             </div>
 
-            <div x-show="page === 4" class="flex-1 flex flex-col items-center gap-5">
+            <div x-show="page === 4" 
+                class="flex-1 flex flex-col items-center gap-10"
+                x-data="{ recording: false, showMessage: false }">
+
+                <h1 class="alphabet mt-10 !text-[#F4C300]">"I"</h1>
+
+                <p class="w-96 text-lg text-center">
+                    Basahin nang malinaw ang titik na nasa itaas. Subukang bigkasin ito nang tama at dahan-dahan.
+                </p>
+
+                <div 
+                    @mousedown="recording = true" 
+                    @mouseup="
+                        recording = false; 
+                        setTimeout(() => { 
+                            showMessage = true; 
+                        }, 1500)
+                    "
+                    @mouseleave="recording = false"
+                    class="relative bg-gray-500 px-3 py-2 rounded-full cursor-pointer transition-transform hover:scale-110"
+                    :class="{ 'scale-125 ring-4 ring-red-500 animate-pulse': recording }"
+                >
+                    <i class="fa-solid fa-microphone text-white text-xl"></i>
+
+                    <!-- glowing ripple effect -->
+                    <div x-show="recording"
+                        class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
+                    </div>
+                </div>
+
+                <!-- success message -->
+                <div x-show="showMessage"
+                    x-transition
+                    class="mt-4 px-4 py-2 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold">
+                    ✅ Tama!
+                </div>
+            </div>
+
+            <div x-show="page === 5" 
+                class="flex-1 flex flex-col items-center gap-10"
+                x-data="{ recording: false, showMessage: false }">
+
+                <h1 class="alphabet mt-10 !text-[#F4C300]">"0"</h1>
+
+                <p class="w-96 text-lg text-center">
+                    Basahin nang malinaw ang titik na nasa itaas. Subukang bigkasin ito nang tama at dahan-dahan.
+                </p>
+
+                <div 
+                    @mousedown="recording = true" 
+                    @mouseup="
+                        recording = false; 
+                        setTimeout(() => { 
+                            showMessage = true; 
+                        }, 1500)
+                    "
+                    @mouseleave="recording = false"
+                    class="relative bg-gray-500 px-3 py-2 rounded-full cursor-pointer transition-transform hover:scale-110"
+                    :class="{ 'scale-125 ring-4 ring-red-500 animate-pulse': recording }"
+                >
+                    <i class="fa-solid fa-microphone text-white text-xl"></i>
+
+                    <!-- glowing ripple effect -->
+                    <div x-show="recording"
+                        class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
+                    </div>
+                </div>
+
+                <!-- success message -->
+                <div x-show="showMessage"
+                    x-transition
+                    class="mt-4 px-4 py-2 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold">
+                    ✅ Tama!
+                </div>
+            </div>
+
+            <div x-show="page === 6" class="flex-1 flex flex-col items-center gap-5">
                 <img src="../Img/Badge.png" width="200" alt="">
                 <h1 class="text-2xl font-bold">CONGRATULATIONS!</h1>
 
-                <h2 class="score !text-[#F4C300]">92%</h2>
+                <h2 class="score !text-[#F4C300]">100%</h2>
 
-                <p class="w-96 text-lg text-center">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium aut dolor ullam fugit? Reprehenderit, molestiae!</p>
+                <p class="w-96 text-lg text-center">Mahusay! Natapos mo ang araling ito nang may buong sigasig at pagsisikap. Ipagpatuloy lamang ang iyong pagkatuto!</p>
                 
                 <button
-                    class="px-4 py-2 bg-[#F4C300] rounded-md text-black font-bold">
+                    class="px-4 py-2 bg-[#F4C300] rounded-md text-black font-bold" onclick="window.location.href='/lessons'">
                     Next Lesson
                 </button>
             </div>
             
             <!-- Action Button -->
-            <div class="absolute -bottom-[70px] flex items-center justify-between w-full">
-                <p>1/35</p>
+            <div x-show="page < 6"  class="absolute -bottom-[70px] flex items-center justify-between w-full">
+                <p><span x-text="page"></span>/5</p>
 
                 <div class="flex gap-5">
                     <!-- Previous -->
@@ -81,18 +236,9 @@
 
                     <!-- Next -->
                     <button 
-                        x-show="page < 4" 
                         @click="page++" 
                         class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold">
                         Susunod <i class="fa-solid fa-arrow-right !text-black"></i>
-                    </button>
-
-                    <!-- Continue -->
-                    <button 
-                        x-show="page === 4" 
-                        @click="window.location.href='../Student/4 - sSlide.html'"
-                        class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold">
-                        Magpatuloy <i class="fa-solid fa-arrow-right !text-black"></i>
                     </button>
                 </div>
             </div>

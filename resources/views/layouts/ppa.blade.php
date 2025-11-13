@@ -47,7 +47,19 @@
                <header class="flex justify-between">
                     <div>
                          <div class="text-sm text-gray-400">Pages / <span>Header</span></div>
-                         <div class="font-bold">Dashboard</div>
+                         <div class="font-bold">
+                              @if(request()->is('teacher/dashboard*'))
+                                   Dashboard
+                              @elseif(request()->is('teacher/studentmanagement*'))
+                                   Student Management
+                              @elseif(request()->is('teacher/teachermanagement*'))
+                                   Teacher Management
+                              @elseif(request()->is('teacher/performancereport*'))
+                                   Performance Report
+                              @elseif(request()->is('teacher/settings*'))
+                                   Settings
+                              @endif
+                         </div>
                     </div>
 
                     <div>Hi, <span class="font-semibold">Iverson</span></div>
