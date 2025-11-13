@@ -1,5 +1,6 @@
 const toggleBtn = document.getElementById("toggle-btn");
 const nav = document.querySelector("nav");
+const logo = document.querySelector(".img-logo");
 
 // Load saved state on page load
 const isCollapsed = localStorage.getItem("nav-collapsed") === "true";
@@ -8,6 +9,7 @@ if (isCollapsed) nav.classList.add("collapsed");
 // Handle toggle click
 toggleBtn.addEventListener("click", () => {
     nav.classList.toggle("collapsed");
+    logo.classList.toggle("hidden");
 
     // Save the state in localStorage
     localStorage.setItem("nav-collapsed", nav.classList.contains("collapsed"));

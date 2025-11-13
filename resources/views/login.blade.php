@@ -11,10 +11,11 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            
+            font-family:"Nunito";
         }
 
         body {
-            font-family:"Nunito";
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -109,7 +110,7 @@
 
         .right-panel h2 {
             font-size: 2rem;
-            font-weight: 800;
+            font-weight: 900;
             margin-bottom: 30px;
             color: #333;
         }
@@ -143,6 +144,8 @@
             font-size: 1rem;
             cursor: pointer;
             transition: background 0.3s;
+            font-family: "Nunito" ;
+            font-weight: 600;
         }
 
         .submit-btn:hover {
@@ -193,25 +196,7 @@
     <div class="container">
         <!-- Left Panel -->
         <div class="left-panel">
-            <!-- <h1>Hello World.</h1>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipiscing elit.
-                Nulla fugit voluptas explicabo cupiditate repellat neque
-                illum possimus mollitia! Quis, quos.
-            </p>
-            <div class="social-login">
-                <p>Login con redes sociales</p>
-                <div class="social-buttons">
-                    <button class="social-btn facebook-btn">
-                        <span>📘</span> Facebook
-                    </button>
-                    <button class="social-btn twitter-btn">
-                        <span>🐦</span> Twitter
-                    </button>
-                </div>
-            </div> -->
             <img src="{{asset('img/logo-light.png')}}" alt="">
-            <!-- <p>Basahin. Pakinggan. Matuto.</p> -->
         </div>
 
         <!-- Right Panel -->
@@ -223,7 +208,7 @@
             <div class="input-group">
                 <input type="password" placeholder="Password">
             </div>
-            <button class="submit-btn">Sign In</button>
+            <button class="submit-btn" onclick="window.location.href='/dashboard'">Sign In</button>
             <p class="register-link">
                 Don't have an account? <a href="#">Sign Up</a>
             </p>

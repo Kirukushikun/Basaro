@@ -14,28 +14,28 @@
     <body>
           <nav>
                <div class="logo">
-                    <img src="../Img/logo-light.png" style="width: 200px;" alt="">
+                    <img class="img-logo" src="../Img/logo-light.png" style="width: 130px;" alt="">
                     <button id="toggle-btn" class="text-lg hover:scale-125"><i class="fa-solid fa-bars"></i></button>
                </div>
 
                <aside class="sidebar">
-                    <a href="/dashboard.html" class="active"
+                    <a href="/teacher/dashboard" class="{{ request()->is('teacher/dashboard*') ? 'active' : '' }}"
                          ><span><i class="fa-solid fa-house-chimney"></i></span>
                          <p>Dashboard</p></a
                     >
-                    <a href="/asset-management.html"
+                    <a href="/teacher/studentmanagement" class="{{ request()->is('teacher/studentmanagement*') ? 'active' : '' }}"
                          ><span><i class="fa-solid fa-graduation-cap"></i></span>
                          <p>Student Management</p></a
                     >
-                    <a href="/employees.html"
+                    <a href="/teacher/teachermanagement" class="{{ request()->is('teacher/teachermanagement*') ? 'active' : '' }}"
                          ><span><i class="fa-solid fa-user-tie"></i></span>
                          <p>Teacher Management</p></a
                     >
-                    <a href="/system-records.html"
+                    <a href="/teacher/performancereport" class="{{ request()->is('teacher/performancereport*') ? 'active' : '' }}"
                          ><span><i class="fa-solid fa-star"></i></span>
                          <p>Performance Report</p></a
                     >
-                    <a href="settings.html"
+                    <a href="/teacher/settings" class="{{ request()->is('teacher/settings*') ? 'active' : '' }}"
                          ><span><i class="fa-solid fa-gear"></i></span>
                          <p>Settings</p></a
                     >

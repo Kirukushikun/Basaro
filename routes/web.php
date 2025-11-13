@@ -32,3 +32,19 @@ Route::get('/profile', function () {
 Route::get('/teacher/dashboard', function () {
     return view('teacher.dashboard');
 });
+
+Route::get('/teacher/studentmanagement', function () {
+    return view('teacher.studentmanagement');
+});
+
+Route::get('/teacher/teachermanagement', function () {
+    return view('teacher.teachermanagement');
+});
+
+Route::get('/teacher/performancereport', function () {
+    return view('teacher.performancereport');
+});
+
+Route::get('/teacher/settings', function () {
+    return view('teacher.settings');
+});
