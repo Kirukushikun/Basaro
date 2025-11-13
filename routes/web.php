@@ -20,3 +20,15 @@ Route::get('/lesson-view', function (Request $request) {
     $slide = $request->slide;
     return view('student.lesson-view', compact('lesson', 'slide'));
 });
+
+Route::get('/achievements', function () {
+    return view('student.achievements');
+});
+
+Route::get('/profile', function () {
+    return view('student.profile');
+});
+
+Route::get('/teacher/dashboard', function () {
+    return view('teacher.dashboard');
+});

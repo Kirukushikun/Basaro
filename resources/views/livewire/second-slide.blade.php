@@ -26,7 +26,7 @@
                 @click="soundEnabled = true; handleAudio();" 
                 class="px-6 py-3 bg-[#F4C300] !text-black font-bold rounded-lg text-lg shadow-lg"
             >
-                🔊 I-enable ang Tunog
+                <i class="fa-solid fa-volume-high !text-black"></i> I-enable ang Tunog
             </button>
         </div>
     </template>

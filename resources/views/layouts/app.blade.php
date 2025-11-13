@@ -18,8 +18,9 @@
             <div class="nav-links" id="nav-links">
                 <a href="/dashboard" class="text-lg {{ request()->is('dashboard*') ? 'active' : '' }}">Dashboard</a>
                 <a href="/lessons" class="text-lg {{ request()->is('lessons*') || request()->is('lesson-view*') ? 'active' : '' }}">Lessons</a>
-                <a href="#" class="text-lg">Achievements</a>
-                <a href="#" class="text-lg">Profile</a>
+                <a href="/achievements" class="text-lg {{ request()->is('achievements*') ? 'active' : '' }}">Achievements</a>
+                <a href="/profile" class="text-lg {{ request()->is('profile*') ? 'active' : '' }}">Profile</a>
+                <a href="/profile" class="text-lg {{ request()->is('profile*') ? 'active' : '' }} absolute right-[50px] hover:scale-125"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
             </div>
         </nav>
 

@@ -3,47 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ config('app.name', 'Laravel') }}</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <title>Login</title>
+    <link rel="icon" href="{{asset('img/icon.ico')}}" type="image/x-icon" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito:wght@200..1000&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family:"Nunito";
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #242529;
+            padding: 20px;
+        }
+
+        .container {
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            max-width: 900px;
+            width: 100%;
+            display: flex;
+        }
+
+        .left-panel {
+            width: 50%;
+            background: #31343A;
+            color: white;
+            padding: 90px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .left-panel h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .left-panel p {
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .social-login {
+            margin-top: auto;
+        }
+
+        .social-login p {
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .facebook-btn {
+            background: #1877f2;
+        }
+
+        .facebook-btn:hover {
+            background: #145dbf;
+        }
+
+        .twitter-btn {
+            background: #1da1f2;
+        }
+
+        .twitter-btn:hover {
+            background: #0d8bd9;
+        }
+
+        .right-panel {
+            width: 50%;
+            padding: 90px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: white;
+        }
+
+        .right-panel h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px 0;
+            border: none;
+            border-bottom: 3px solid #ddd;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus {
+            border-bottom-color: #F4C300;
+        }
+
+        .submit-btn {
+            display: block;
+            margin: 30px auto 0;
+            padding: 12px 50px;
+            background: #F4C300;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #dab10eff;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .register-link a {
+            color: #F4C300;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-panel,
+            .right-panel {
+                width: 100%;
+            }
+
+            .left-panel {
+                padding: 40px 30px;
+            }
+
+            .right-panel {
+                padding: 40px 30px;
+            }
+
+            .left-panel h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
-<body class="flex flex-col items-center justify-center h-screen ">
-    <div class="bg-white p-10 rounded-xl shadow-lg w-full max-w-sm">
-        <!-- Heading -->
-        <h1 class="text-4xl font-bold text-center">Welcome</h1>
-        <p class="text-center text-gray-500 mt-2">We are glad to see you back with us</p>
-
-        <!-- Form -->
-        <form class="mt-6 space-y-4">
-            <!-- Username -->
-            <div>
-                <label class="sr-only" for="username">Username</label>
-                <div class="flex items-center bg-gray-100 rounded-lg px-3 py-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M5.121 17.804A7 7 0 1119 17.804M12 14a4 4 0 100-8 4 4 0 000 8z"/>
-                    </svg>
-                    <input type="text" id="username" placeholder="Username"
-                        class="bg-gray-100 focus:outline-none ml-2 w-full">
+<body>
+    <div class="container">
+        <!-- Left Panel -->
+        <div class="left-panel">
+            <!-- <h1>Hello World.</h1>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipiscing elit.
+                Nulla fugit voluptas explicabo cupiditate repellat neque
+                illum possimus mollitia! Quis, quos.
+            </p>
+            <div class="social-login">
+                <p>Login con redes sociales</p>
+                <div class="social-buttons">
+                    <button class="social-btn facebook-btn">
+                        <span>📘</span> Facebook
+                    </button>
+                    <button class="social-btn twitter-btn">
+                        <span>🐦</span> Twitter
+                    </button>
                 </div>
-            </div>
+            </div> -->
+            <img src="{{asset('img/logo-light.png')}}" alt="">
+            <!-- <p>Basahin. Pakinggan. Matuto.</p> -->
+        </div>
 
-            <!-- Password -->
-            <div>
-                <label class="sr-only" for="password">Password</label>
-                <div class="flex items-center bg-gray-100 rounded-lg px-3 py-2">
-                    <input type="password" id="password" placeholder="Password"
-                        class="bg-gray-100 focus:outline-none ml-2 w-full">
-                </div>
+        <!-- Right Panel -->
+        <div class="right-panel">
+            <h2>Login</h2>
+            <div class="input-group">
+                <input type="text" placeholder="Username">
             </div>
-
-            <!-- Button -->
-            <button type="submit"
-                class="w-full bg-black text-white font-bold py-2 rounded-lg hover:bg-gray-800 transition-colors">
-                SIGN IN
-            </button>
-        </form>
+            <div class="input-group">
+                <input type="password" placeholder="Password">
+            </div>
+            <button class="submit-btn">Sign In</button>
+            <p class="register-link">
+                Don't have an account? <a href="#">Sign Up</a>
+            </p>
+        </div>
     </div>
-    
 </body>
 </html>
