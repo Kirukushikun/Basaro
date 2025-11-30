@@ -24,7 +24,7 @@ Route::middleware('auth.custom')->group(function () {
     })->name('home');
 
     Route::get('/lessons', function () {
-        $lessons = Lesson::orderBy('id', 'asc')->get();
+        $lessons = Lesson::orderBy('id', 'asc')->with('userTrack')->get();
         return view('student.lessons', compact('lessons'));
     });
 

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\UserTrack;
 
 class Lesson extends Model
 {
@@ -14,4 +15,9 @@ class Lesson extends Model
         'order',
         'type',
     ];
+
+    public function userTrack()
+    {
+        return $this->hasOne(UserTrack::class, 'lesson_id')->where('user_id', auth()->id());
+    }
 }

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Lesson;
+use App\Models\UserTrack;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -18,8 +19,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        User::create([
+        $user = User::create([
             'name' => 'Iverson Guno',
+            'role' => 'student',
             'email' => 'iversoncraigg@gmail.com',
             'password' => Hash::make('Brookside2025'),
         ]);
@@ -78,9 +80,17 @@ class DatabaseSeeder extends Seeder
             Lesson::create([
                 'title' => $lesson,
                 'description' => $lessonDescriptions[$lesson],
+                'total_scores' => '35',
                 'order' => $index + 1,
                 'type' => null
             ]);
         }
+
+        UserTrack::create([
+            'user_id' => $user->id,
+            'lesson_id' => 1,
+            'score' => 0,
+            'attempts' => 0,
+        ]);
     }
 }
