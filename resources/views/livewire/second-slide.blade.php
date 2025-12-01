@@ -71,7 +71,7 @@
                 <div class="flex w-full justify-end gap-5 mt-4">
                     <!-- Back -->
                     <button
-                        @click="page === 1 ? window.location.href = '/lesson-view?lesson={{$lesson}}&slide=first-slide' : page--"
+                        @click="page == 1 ? window.location.href = '/lesson-view?lesson={{$lesson}}&slide=first-slide' : page--"
                         class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold"
                     >
                         <i class="fa-solid fa-arrow-left !text-black"></i> Balik

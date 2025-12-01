@@ -12,6 +12,12 @@
     </head>
 
     <body>
+        <!-- Loading Screen -->
+        <div id="page-loader">
+            <div class="loader-spinner"></div>
+            <p class="loader-text">Loading...</p>
+        </div>
+
         <!-- Navbar -->
         <nav class="nav">
             <img class="logo" src="{{asset('img/logo-light.png')}}" alt="">
@@ -30,6 +36,24 @@
         </nav>
 
         @yield('content')
+
+        @livewireScripts
+        
+        <!-- Loading Screen Script -->
+        <script>
+            window.addEventListener('load', function() {
+                const loader = document.getElementById('page-loader');
+                
+                // Small delay to ensure everything is rendered
+                setTimeout(function() {
+                    loader.classList.add('hidden');
+                    
+                    // Remove from DOM after fade out
+                    setTimeout(function() {
+                        loader.remove();
+                    }, 400);
+                }, 150);
+            });
+        </script>
     </body>
-    @livewireScripts
 </html>

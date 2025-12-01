@@ -7,11 +7,11 @@
 
         @foreach($lessons as $lesson)
             <div class="card relative flex flex-col justify-between">
-                @if(!$lesson->userTrack)
+                <!-- @if(!$lesson->userTrack)
                     <div class="absolute inset-0 w-full h-full rounded-2xl bg-black/50 flex items-center justify-center">
                         <i class="fa-solid fa-lock text-white text-5xl"></i>
                     </div>
-                @endif
+                @endif -->
                 
                 <div class="">
                     <div class="flex items-start justify-between mb-4">
