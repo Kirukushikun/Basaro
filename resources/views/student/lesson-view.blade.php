@@ -5,7 +5,9 @@
         <livewire:first-slide :lesson="$lesson"/>
     @elseif($slide == 'second-slide')
         <livewire:second-slide :lesson="$lesson" />
-    @else 
+    @elseif($slide == 'third-slide') 
         <livewire:third-slide :lesson="$lesson" />
+    @elseif($slide == 'fourth-slide')
+        <livewire:fourth-slide :lesson="$lesson" />
     @endif
 @endsection

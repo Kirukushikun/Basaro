@@ -1,4 +1,4 @@
-<main class="flex-1 overflow-hidden mb-10">
+<main class="flex-1 overflow-hidden mb-10" x-data="{ showModal: false, modalTemplate: '' }">
     <div class="lessons flex flex-col gap-7 overflow-y-auto h-full !pr-5 lg:pr-0">
         <div class="card flex flex-col gap-6">
             <div class="header">
@@ -181,24 +181,29 @@
                     <span>
                         <i class="fa-solid fa-note-sticky"></i> Notes
                     </span>
-                    <i class="fa-solid fa-plus cursor-pointer !text-[#F4C300] hover:scale-125"></i>
+                    <i 
+                        class="fa-solid fa-plus cursor-pointer !text-[#F4C300] hover:scale-125"
+                        @click="showModal = true; modalTemplate = 'create-note'"
+                    ></i>
                 </h1>
                 <div class="flex flex-col gap-2">
-                    <div class="flex items-center justify-between">
-                        <p>Note 1</p>
-                        <div class="flex gap-2 items-center">
-                            <i class="fa-solid fa-eye cursor-pointer !text-gray-400 hover:scale-125"></i>
-                            <i class="fa-solid fa-trash-can cursor-pointer !text-red-400 hover:scale-125"></i>
+                    @forelse($notes as $note)
+                        <div class="flex items-center justify-between">
+                            <p>{{ $note->title }}</p>
+                            <div class="flex gap-2 items-center">
+                                <i 
+                                    class="fa-solid fa-eye cursor-pointer !text-gray-400 hover:scale-125"
+                                    @click="showModal = true; modalTemplate = 'view-note'; $wire.set('selectedNoteId', {{ $note->id }})"
+                                ></i>
+                                <i 
+                                    class="fa-solid fa-trash-can cursor-pointer !text-red-400 hover:scale-125"
+                                    @click="showModal = true; modalTemplate = 'delete-note'; $wire.set('selectedNoteId', {{ $note->id }})"
+                                ></i>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="flex items-center justify-between">
-                        <p>Note 2</p>
-                        <div class="flex gap-2 items-center">
-                            <i class="fa-solid fa-eye cursor-pointer !text-gray-400 hover:scale-125"></i>
-                            <i class="fa-solid fa-trash-can cursor-pointer !text-red-400 hover:scale-125"></i>
-                        </div>
-                    </div>
+                    @empty
+                        <p class="!text-gray-400 text-md">No notes yet. Click + to create one.</p>
+                    @endforelse
                 </div>
             </div>
 
@@ -211,6 +216,97 @@
                         <p class="font-bold">- Gng. Beng</p>
                         <p class="!text-gray-400 ">3 Days ago</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+
+    <!-- Backdrop -->
+    <div x-show="showModal" x-transition.opacity class="fixed inset-0 bg-black/30 z-40" @click="showModal = false"></div>
+
+    <!-- Modal Container -->
+    <div
+        x-show="showModal"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="opacity-0 scale-90"
+        x-transition:enter-end="opacity-100 scale-100"
+        x-transition:leave="transition ease-in duration-150"
+        x-transition:leave-start="opacity-100 scale-100"
+        x-transition:leave-end="opacity-0 scale-90"
+        class="fixed inset-0 flex items-center justify-center z-50"
+        @click.self="showModal = false"
+    >
+        <div class="relative bg-[#31343A] p-8 rounded-lg shadow-lg w-[26rem] max-h-[90vh] overflow-y-auto">
+            <button class="absolute right-7 top-7 text-gray-400 hover:text-gray-800" @click="showModal = false">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Create Note Modal -->
+            <div class="flex flex-col gap-5" x-show="modalTemplate === 'create-note'">
+                <h2 class="text-xl font-semibold -mb-2">Create Note</h2>
+
+                <div>
+                    <label class="block mb-1 font-medium">Title</label>
+                    <input 
+                        type="text" 
+                        class="border rounded-lg w-full p-2" 
+                        wire:model="noteTitle"
+                        placeholder="Enter note title"
+                    />
+                    @error('noteTitle') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                </div>
+
+                <div>
+                    <label class="block mb-1 font-medium">Content</label>
+                    <textarea 
+                        class="border rounded-lg w-full p-2 min-h-[120px]" 
+                        wire:model="noteContent"
+                        placeholder="Enter note content"
+                    ></textarea>
+                    @error('noteContent') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                </div>
+
+                <div class="flex justify-end gap-3">
+                    <button @click="showModal = false" class="px-4 py-2 border rounded-lg hover:bg-gray-100">Cancel</button>
+                    <button 
+                        wire:click="createNote" 
+                        @click="showModal = false"
+                        class="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800"
+                    >
+                        Create
+                    </button>
+                </div>
+            </div>
+
+            <!-- View Note Modal -->
+            <div class="flex flex-col gap-5" x-show="modalTemplate === 'view-note'">
+                <h2 class="text-xl font-semibold -mb-2">{{ $selectedNote->title ?? 'Note' }}</h2>
+                
+                <div class="prose max-w-none">
+                    <p class="whitespace-pre-wrap">{{ $selectedNote->content ?? '' }}</p>
+                </div>
+
+                <div class="flex justify-end gap-3">
+                    <button @click="showModal = false" class="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800">Close</button>
+                </div>
+            </div>
+
+            <!-- Delete Note Confirmation -->
+            <div class="flex flex-col gap-5" x-show="modalTemplate === 'delete-note'">
+                <h2 class="text-xl font-semibold -mb-2">Delete Note</h2>
+                <p>Are you sure you want to delete "{{ $selectedNote->title ?? 'this note' }}"? This action cannot be undone.</p>
+
+                <div class="flex justify-end gap-3">
+                    <button @click="showModal = false" class="px-4 py-2 border rounded-lg hover:bg-gray-100">Cancel</button>
+                    <button 
+                        wire:click="deleteNote" 
+                        @click="showModal = false"
+                        class="px-4 py-2 bg-red-700 text-white rounded-lg hover:bg-red-800"
+                    >
+                        Delete
+                    </button>
                 </div>
             </div>
         </div>

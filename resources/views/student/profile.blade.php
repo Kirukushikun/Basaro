@@ -44,7 +44,16 @@
                </div>
 
                <button class="px-5 py-2 bg-[#F4C300] border border-2 border-[#F4C300] rounded-lg !font-bold text-black text-xs w-fit hover:scale-105">SAVE</button>
-          </div>          
+          </div> 
+
+          <form action="{{ route('logout') }}" method="POST">
+               @csrf
+               <button type="submit" class="px-5 py-2 my-5 bg-red-400 border border-2 border-red-400 rounded-lg font-bold text-black text-xs w-fit">
+                    LOG OUT
+               </button>
+          </form>
+                    
+          
      </div>
 
 </main>

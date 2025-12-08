@@ -14,24 +14,30 @@ class AuthController extends Controller
     //     return view('auth.register');
     // }
 
-    public function register(Request $req) {
-        $data = $req->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => ['required', 'confirmed', Password::min(8)],
-        ]);
+    public function register(Request $req)
+    {
+        try {
+            $data = $req->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|unique:users,email',
+                'password' => ['required', 'confirmed', Password::min(8)],
+            ]);
 
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+            $user = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
 
-        // log the user in (store user id in session)
-        session()->regenerate();
-        session(['user_id' => $user->id]);
+            session()->regenerate();
+            session(['user_id' => $user->id]);
 
-        return redirect()->intended(route('home'));
+            return redirect()->intended(route('home'));
+        } catch (\Throwable $e) {
+            return back()
+                ->withErrors(['register' => 'Something went wrong while creating your account.'])
+                ->withInput();
+        }
     }
 
     public function showLogin() {
@@ -40,33 +46,44 @@ class AuthController extends Controller
 
     public function login(Request $req)
     {
-        $data = $req->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-            'remember' => 'nullable|boolean'
-        ]);
+        try {
+            $data = $req->validate([
+                'email' => 'required',
+                'password' => 'required',
+                'remember' => 'nullable|boolean'
+            ]);
 
-        // Try to log in using Laravel Auth
-        if (! Auth::attempt([
-            'email' => $data['email'],
-            'password' => $data['password']
-        ], $data['remember'] ?? false)) {
-            return back()->withErrors(['email' => 'Invalid credentials'])->withInput();
+            if (! Auth::attempt([
+                'email' => $data['email'],
+                'password' => $data['password']
+            ], $data['remember'] ?? false)) {
+                return back()
+                    ->withErrors(['login' => 'Invalid email or password.'])
+                    ->withInput();
+            }
+
+            $req->session()->regenerate();
+            return redirect()->intended('/dashboard');
+
+        } catch (\Throwable $e) {
+            return back()
+                ->withErrors(['login' => 'An unexpected error occurred while logging in.'])
+                ->withInput();
         }
-
-        // Regenerate session for security
-        $req->session()->regenerate();
-
-        return redirect()->intended('/dashboard');
     }
 
     public function logout(Request $req)
     {
-        Auth::logout();                     // log out the user
-        $req->session()->invalidate();      // destroy old session
-        $req->session()->regenerateToken(); // new CSRF token
+        try {
+            Auth::logout();
+            $req->session()->invalidate();
+            $req->session()->regenerateToken();
 
-        return redirect()->route('login');
+            return redirect()->route('login');
+
+        } catch (\Throwable $e) {
+            return back()->withErrors(['logout' => 'Failed to log out properly. Please try again.']);
+        }
     }
 }
 

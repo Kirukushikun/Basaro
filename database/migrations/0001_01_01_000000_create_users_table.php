@@ -14,12 +14,15 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('role', ['student', 'teacher', 'admin'])->default('student');
-            $table->string('current_lesson')->default(1)->nullable();
-            $table->string('current_progress')->default(0)->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+
+            $table->string('current_lesson')->default(1)->nullable();
+            $table->string('current_progress')->default(0)->nullable();
+            $table->string('grade_level')->nullable();
+            $table->unsignedBigInteger('teacher_id')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
         });
