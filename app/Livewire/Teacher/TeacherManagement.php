@@ -4,11 +4,14 @@ namespace App\Livewire\Teacher;
 
 use Livewire\Component;
 use App\Models\Teacher;
+use Exception;
+use Illuminate\Support\Facades\Hash;
 
 class TeacherManagement extends Component
 {
     public $target;
     public $fullname, $username, $password, $role;
+    public $search = '';
 
     protected $rules = [
         'fullname' => 'required|string|max:255',
@@ -16,6 +19,12 @@ class TeacherManagement extends Component
         'password' => 'required|string|min:6',
         'role' => 'required|in:teacher,admin',
     ];
+
+    // Real-time search
+    public function updatedSearch()
+    {
+        // This will automatically trigger re-render when search changes
+    }
 
     // Load teacher data into form inputs
     public function targetID($id)
@@ -40,7 +49,7 @@ class TeacherManagement extends Component
             Teacher::create([
                 'name' => $this->fullname,
                 'email' => $this->username,
-                'password' => bcrypt($this->password),
+                'password' => Hash::make($this->password),
                 'role' => $this->role,
                 'is_disabled' => false, // Enable by default on creation
             ]);
@@ -91,6 +100,27 @@ class TeacherManagement extends Component
         }
     }
 
+    // Reset teacher password
+    public function resetPassword()
+    {
+        try {
+            $this->validate([
+                'password' => 'required|string|min:6',
+            ]);
+
+            $teacher = Teacher::findOrFail($this->target);
+            $teacher->update([
+                'password' => Hash::make($this->password),
+            ]);
+
+            $this->clear();
+            $this->reloadNotif('success', 'Success!', 'Password reset successfully.');
+            return redirect()->to(request()->header('Referer'));
+        } catch (Exception $e) {
+            $this->noreloadNotif('error', 'Error', 'Failed to reset password. Please try again.');
+        }
+    }
+
     // Delete teacher
     public function delete()
     {
@@ -136,8 +166,20 @@ class TeacherManagement extends Component
 
     public function render()
     {
+        $teachers = Teacher::query()
+            ->when($this->search, function($query) {
+                $query->where(function($q) {
+                    $q->where('name', 'like', '%' . $this->search . '%')
+                      ->orWhere('email', 'like', '%' . $this->search . '%')
+                      ->orWhere('id', 'like', '%' . $this->search . '%')
+                      ->orWhere('role', 'like', '%' . $this->search . '%');
+                });
+            })
+            ->latest()
+            ->get();
+
         return view('livewire.teacher.teacher-management', [
-            'teachers' => Teacher::latest()->get(),
+            'teachers' => $teachers,
         ]);
     }
 

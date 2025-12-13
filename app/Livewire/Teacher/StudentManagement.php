@@ -5,11 +5,13 @@ namespace App\Livewire\Teacher;
 use Livewire\Component;
 use App\Models\User;
 use Exception;
+use Illuminate\Support\Facades\Hash;
 
 class StudentManagement extends Component
 {
     public $target;
     public $fullname, $username, $password, $grade_level, $assigned_teacher;
+    public $search = '';
 
     protected $rules = [
         'fullname' => 'required|string|max:255',
@@ -18,6 +20,12 @@ class StudentManagement extends Component
         'grade_level' => 'required|string|max:50',
         'assigned_teacher' => 'nullable|string|max:255',
     ];
+
+    // Real-time search
+    public function updatedSearch()
+    {
+        // This will automatically trigger re-render when search changes
+    }
 
     // Load student data into form inputs
     public function targetID($id)
@@ -43,7 +51,7 @@ class StudentManagement extends Component
             User::create([
                 'name' => $this->fullname,
                 'email' => $this->username,
-                'password' => bcrypt($this->password),
+                'password' => Hash::make($this->password),
                 'grade_level' => $this->grade_level,
                 'teacher_id' => $this->assigned_teacher,
             ]);
@@ -58,7 +66,8 @@ class StudentManagement extends Component
 
     // Update existing user/student
     public function update()
-    {
+    {   
+        try {
             $student = User::findOrFail($this->target);
             
             // Check if email has changed to determine validation rules
@@ -90,6 +99,30 @@ class StudentManagement extends Component
             $this->clear();
             $this->reloadNotif('success', 'Success!', 'Student updated successfully.');
             return redirect()->to(request()->header('Referer'));
+        } catch (Exception $e) {
+            $this->noreloadNotif('failed', 'Error', 'Failed to update student. Please try again.');
+        }
+    }
+
+    // Reset student password
+    public function resetPassword()
+    {
+        try {
+            $this->validate([
+                'password' => 'required|string|min:6',
+            ]);
+
+            $student = User::findOrFail($this->target);
+            $student->update([
+                'password' => Hash::make($this->password),
+            ]);
+
+            $this->clear();
+            $this->reloadNotif('success', 'Success!', 'Password reset successfully.');
+            return redirect()->to(request()->header('Referer'));
+        } catch (Exception $e) {
+            $this->noreloadNotif('failed', 'Error', 'Failed to reset password. Please try again.');
+        }
     }
 
     // Delete user/student
@@ -120,8 +153,20 @@ class StudentManagement extends Component
 
     public function render()
     {
+        $students = User::query()
+            ->when($this->search, function($query) {
+                $query->where(function($q) {
+                    $q->where('name', 'like', '%' . $this->search . '%')
+                      ->orWhere('email', 'like', '%' . $this->search . '%')
+                      ->orWhere('id', 'like', '%' . $this->search . '%')
+                      ->orWhere('grade_level', 'like', '%' . $this->search . '%');
+                });
+            })
+            ->latest()
+            ->get();
+
         return view('livewire.teacher.student-management', [
-            'students' => User::latest()->get(),
+            'students' => $students,
         ]);
     }
 

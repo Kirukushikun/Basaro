@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('current_progress')->default(0)->nullable();
             $table->string('grade_level')->nullable();
             $table->unsignedBigInteger('teacher_id')->nullable();
+            $table->timestamp('last_login_at')->nullable();
 
             $table->rememberToken();
             $table->timestamps();

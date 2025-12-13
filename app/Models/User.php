@@ -29,6 +29,7 @@ class User extends Authenticatable
         'current_progress',
         'grade_level',
         'teacher_id',
+        'last_login_at',
     ];
 
     /**
@@ -39,6 +40,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+    ];
+
+    protected $casts = [
+        'last_login_at' => 'datetime',
     ];
 
     /**

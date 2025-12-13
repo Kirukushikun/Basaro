@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Teacher extends Model
+class Teacher extends Authenticatable
 {
     protected $table = 'teachers';
 
@@ -14,6 +15,7 @@ class Teacher extends Model
         'name',
         'email',
         'password',
+        'is_disabled',
     ];
 
     protected $hidden = [

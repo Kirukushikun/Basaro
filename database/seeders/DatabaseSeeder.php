@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Teacher;
 use App\Models\Lesson;
 use App\Models\UserTrack;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -21,7 +22,13 @@ class DatabaseSeeder extends Seeder
 
         $user = User::create([
             'name' => 'Iverson Guno',
-            'email' => 'iversoncraigg@gmail.com',
+            'email' => 'i.guno@bfcgroup.org',
+            'password' => Hash::make('Brookside2025'),
+        ]);
+
+        Teacher::create([
+            'name' => 'Iverson Guno',
+            'email' => 'i.guno@bfcgroup.org',
             'password' => Hash::make('Brookside2025'),
         ]);
 
