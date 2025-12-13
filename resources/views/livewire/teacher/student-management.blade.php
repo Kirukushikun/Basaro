@@ -132,11 +132,11 @@
                     <div class="flex justify-end gap-3">
                         <button @click="showModal = false; $wire.clear()" class="px-4 py-2 border border-gray-500 rounded hover:bg-gray-700">Cancel</button>
                         <button
-                            @click="showModal = false; $wire.submit();"
-                            class="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800"
-                        >
-                            Confirm
-                        </button>
+                            @click="$wire.submit();"
+                            :disabled="$wire.isSubmitting"
+                            class="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
+                            x-text="$wire.isSubmitting ? 'Creating...' : 'Confirm'"
+                        ></button>
                     </div>
                 </div>
             </template>
@@ -173,11 +173,11 @@
                     <div class="flex justify-end gap-3">
                         <button @click="showModal = false; $wire.clear()" class="px-4 py-2 border border-gray-500 rounded hover:bg-gray-700">Cancel</button>
                         <button
-                            @click="showModal = false; $wire.update();"
-                            class="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800"
-                        >
-                            Update
-                        </button>
+                            @click="$wire.update();"
+                            :disabled="$wire.isUpdating"
+                            class="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
+                            x-text="$wire.isUpdating ? 'Updating...' : 'Update'"
+                        ></button>
                     </div>
                 </div>
             </template>
@@ -196,7 +196,12 @@
 
                     <div class="flex justify-end gap-3">
                         <button @click="showModal = false; $wire.clear()" class="px-4 py-2 border border-gray-500 rounded hover:bg-gray-700">Cancel</button>
-                        <button @click="showModal = false; $wire.resetPassword()" class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700">Reset Password</button>
+                        <button 
+                            @click="$wire.resetPassword()"
+                            :disabled="$wire.isResetting"
+                            class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                            x-text="$wire.isResetting ? 'Resetting...' : 'Reset Password'"
+                        ></button>
                     </div>
                 </div>
             </template>
@@ -209,7 +214,12 @@
 
                     <div class="flex justify-end gap-3">
                         <button @click="showModal = false" class="px-4 py-2 border border-gray-500 rounded hover:bg-gray-700">Cancel</button>
-                        <button @click="showModal = false; $wire.delete()" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Confirm</button>
+                        <button 
+                            @click="$wire.delete()"
+                            :disabled="$wire.isDeleting"
+                            class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                            x-text="$wire.isDeleting ? 'Deleting...' : 'Confirm'"
+                        ></button>
                     </div>
                 </div>
             </template>

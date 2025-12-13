@@ -12,6 +12,12 @@ class StudentManagement extends Component
     public $target;
     public $fullname, $username, $password, $grade_level, $assigned_teacher;
     public $search = '';
+    
+    // Loading states for double-click prevention
+    public $isSubmitting = false;
+    public $isUpdating = false;
+    public $isDeleting = false;
+    public $isResetting = false;
 
     protected $rules = [
         'fullname' => 'required|string|max:255',
@@ -45,7 +51,13 @@ class StudentManagement extends Component
     // Create new user/student
     public function submit()
     {
+        // Prevent double submission
+        if ($this->isSubmitting) {
+            return;
+        }
+
         try {
+            $this->isSubmitting = true;
             $this->validate();
 
             User::create([
@@ -60,14 +72,21 @@ class StudentManagement extends Component
             $this->reloadNotif('success', 'Success!', 'Student created successfully.');
             return redirect()->to(request()->header('Referer'));
         } catch (Exception $e) {
+            $this->isSubmitting = false;
             $this->noreloadNotif('failed', 'Error', 'Failed to create student. Please check your inputs and try again.');
         }
     }   
 
     // Update existing user/student
     public function update()
-    {   
+    {
+        // Prevent double submission
+        if ($this->isUpdating) {
+            return;
+        }
+
         try {
+            $this->isUpdating = true;
             $student = User::findOrFail($this->target);
             
             // Check if email has changed to determine validation rules
@@ -100,6 +119,7 @@ class StudentManagement extends Component
             $this->reloadNotif('success', 'Success!', 'Student updated successfully.');
             return redirect()->to(request()->header('Referer'));
         } catch (Exception $e) {
+            $this->isUpdating = false;
             $this->noreloadNotif('failed', 'Error', 'Failed to update student. Please try again.');
         }
     }
@@ -107,7 +127,14 @@ class StudentManagement extends Component
     // Reset student password
     public function resetPassword()
     {
+        // Prevent double submission
+        if ($this->isResetting) {
+            return;
+        }
+
         try {
+            $this->isResetting = true;
+            
             $this->validate([
                 'password' => 'required|string|min:6',
             ]);
@@ -121,6 +148,7 @@ class StudentManagement extends Component
             $this->reloadNotif('success', 'Success!', 'Password reset successfully.');
             return redirect()->to(request()->header('Referer'));
         } catch (Exception $e) {
+            $this->isResetting = false;
             $this->noreloadNotif('failed', 'Error', 'Failed to reset password. Please try again.');
         }
     }
@@ -128,10 +156,17 @@ class StudentManagement extends Component
     // Delete user/student
     public function delete()
     {
+        // Prevent double submission
+        if ($this->isDeleting) {
+            return;
+        }
+
         try {
+            $this->isDeleting = true;
             $student = User::find($this->target);
             
             if (!$student) {
+                $this->isDeleting = false;
                 $this->noreloadNotif('failed', 'Error', 'Student not found.');
                 return;
             }
@@ -141,6 +176,7 @@ class StudentManagement extends Component
             $this->reloadNotif('success', 'Success!', 'Student deleted successfully.');
             return redirect()->to(request()->header('Referer'));
         } catch (Exception $e) {
+            $this->isDeleting = false;
             $this->noreloadNotif('failed', 'Error', 'Failed to delete student. Please try again.');
         }
     }
@@ -148,7 +184,7 @@ class StudentManagement extends Component
     // Reset form fields
     public function clear()
     {
-        $this->reset(['fullname', 'username', 'password', 'grade_level', 'assigned_teacher', 'target']);
+        $this->reset(['fullname', 'username', 'password', 'grade_level', 'assigned_teacher', 'target', 'isSubmitting', 'isUpdating', 'isDeleting', 'isResetting']);
     }
 
     public function render()

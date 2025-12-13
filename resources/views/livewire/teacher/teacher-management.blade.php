@@ -38,7 +38,12 @@
                 @forelse($teachers as $teacher)
                 <tr>
                     <td>#{{ $teacher->id }} <i class="fa-regular fa-copy cursor-pointer text-gray-400" onclick="navigator.clipboard.writeText('{{ $teacher->id }}')"></i></td>
-                    <td>{{ $teacher->name }}</td>
+                    <td>
+                        {{ $teacher->name }}
+                        @if($teacher->id === Auth::id())
+                            <span class="text-xs text-gray-400 italic ml-2">(You)</span>
+                        @endif
+                    </td>
                     <td>{{ $teacher->email }}</td>
                     <td>
                         <span class="px-2 py-1 rounded text-xs font-semibold {{ $teacher->role === 'admin' ? 'bg-purple-900 text-purple-200' : 'bg-blue-900 text-blue-200' }}">
@@ -50,20 +55,24 @@
                         {{ $teacher->is_disabled ? 'Disabled' : 'Active' }}
                     </td>
                     <td>
-                        <div class="flex gap-3">
-                            <i class="fa-solid fa-pen-to-square cursor-pointer hover:scale-125 text-blue-400" 
-                               @click="showModal = true; modalTemplate = 'edit'; $wire.targetID({{ $teacher->id }})"
-                               title="Edit Teacher"></i>
-                            <i class="fa-solid fa-key cursor-pointer hover:scale-125 text-yellow-400"
-                               @click="showModal = true; modalTemplate = 'reset'; $wire.targetID({{ $teacher->id }})"
-                               title="Reset Password"></i>
-                            <i class="fa-solid fa-trash-can cursor-pointer hover:scale-125 text-red-400"
-                               @click="showModal = true; modalTemplate = 'delete'; $wire.targetID({{ $teacher->id }})"
-                               title="Delete Teacher"></i>
-                            <i class="fa-solid {{ $teacher->is_disabled ? 'fa-user-check' : 'fa-user-xmark' }} cursor-pointer hover:scale-125 {{ $teacher->is_disabled ? 'text-green-400' : 'text-gray-400' }}"
-                               wire:click="toggleStatus({{ $teacher->id }})"
-                               title="{{ $teacher->is_disabled ? 'Enable Teacher' : 'Disable Teacher' }}"></i>
-                        </div>
+                        @if($teacher->id === Auth::id())
+                            <span class="text-gray-500 text-sm italic">Edit in Profile</span>
+                        @else
+                            <div class="flex gap-3">
+                                <i class="fa-solid fa-pen-to-square cursor-pointer hover:scale-125 text-blue-400" 
+                                   @click="showModal = true; modalTemplate = 'edit'; $wire.targetID({{ $teacher->id }})"
+                                   title="Edit Teacher"></i>
+                                <i class="fa-solid fa-key cursor-pointer hover:scale-125 text-yellow-400"
+                                   @click="showModal = true; modalTemplate = 'reset'; $wire.targetID({{ $teacher->id }})"
+                                   title="Reset Password"></i>
+                                <i class="fa-solid fa-trash-can cursor-pointer hover:scale-125 text-red-400"
+                                   @click="showModal = true; modalTemplate = 'delete'; $wire.targetID({{ $teacher->id }})"
+                                   title="Delete Teacher"></i>
+                                <i class="fa-solid {{ $teacher->is_disabled ? 'fa-user-check' : 'fa-user-xmark' }} cursor-pointer hover:scale-125 {{ $teacher->is_disabled ? 'text-green-400' : 'text-gray-400' }}"
+                                   wire:click="toggleStatus({{ $teacher->id }})"
+                                   title="{{ $teacher->is_disabled ? 'Enable Teacher' : 'Disable Teacher' }}"></i>
+                            </div>
+                        @endif
                     </td>
                 </tr>
                 @empty
@@ -137,11 +146,11 @@
                     <div class="flex justify-end gap-3">
                         <button @click="showModal = false; $wire.clear()" class="px-4 py-2 border border-gray-500 rounded hover:bg-gray-700">Cancel</button>
                         <button
-                            @click="showModal = false; $wire.submit();"
-                            class="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800"
-                        >
-                            Confirm
-                        </button>
+                            @click="$wire.submit()"
+                            :disabled="$wire.isSubmitting"
+                            class="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
+                            x-text="$wire.isSubmitting ? 'Creating...' : 'Confirm'"
+                        ></button>
                     </div>
                 </div>
             </template>
@@ -176,11 +185,11 @@
                     <div class="flex justify-end gap-3">
                         <button @click="showModal = false; $wire.clear()" class="px-4 py-2 border border-gray-500 rounded hover:bg-gray-700">Cancel</button>
                         <button
-                            @click="showModal = false; $wire.update();"
-                            class="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800"
-                        >
-                            Update
-                        </button>
+                            @click="$wire.update()"
+                            :disabled="$wire.isUpdating"
+                            class="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
+                            x-text="$wire.isUpdating ? 'Updating...' : 'Update'"
+                        ></button>
                     </div>
                 </div>
             </template>
@@ -199,7 +208,12 @@
 
                     <div class="flex justify-end gap-3">
                         <button @click="showModal = false; $wire.clear()" class="px-4 py-2 border border-gray-500 rounded hover:bg-gray-700">Cancel</button>
-                        <button @click="showModal = false; $wire.resetPassword()" class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700">Reset Password</button>
+                        <button 
+                            @click="$wire.resetPassword()"
+                            :disabled="$wire.isResetting"
+                            class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                            x-text="$wire.isResetting ? 'Resetting...' : 'Reset Password'"
+                        ></button>
                     </div>
                 </div>
             </template>
@@ -212,7 +226,12 @@
 
                     <div class="flex justify-end gap-3">
                         <button @click="showModal = false" class="px-4 py-2 border border-gray-500 rounded hover:bg-gray-700">Cancel</button>
-                        <button @click="showModal = false; $wire.delete()" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Confirm</button>
+                        <button 
+                            @click="$wire.delete()"
+                            :disabled="$wire.isDeleting"
+                            class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                            x-text="$wire.isDeleting ? 'Deleting...' : 'Confirm'"
+                        ></button>
                     </div>
                 </div>
             </template>
