@@ -4,6 +4,7 @@ namespace App\Livewire\Teacher;
 
 use Livewire\Component;
 use App\Models\User;
+use App\Models\Teacher;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 
@@ -201,8 +202,11 @@ class StudentManagement extends Component
             ->latest()
             ->get();
 
+        $teachers = Teacher::where('is_disabled', false)->get();
+
         return view('livewire.teacher.student-management', [
             'students' => $students,
+            'teachers' => $teachers
         ]);
     }
 

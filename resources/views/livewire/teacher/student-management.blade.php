@@ -119,13 +119,24 @@
 
                     <div class="input-group">
                         <label class="block mb-1">Grade Level:</label>
-                        <input type="text" wire:model="grade_level" class="border rounded w-full p-2 text-black" />
+                        <select name="grade_level" wire:model="grade_level" class="border rounded w-full p-2 text-black">
+                            <option value=""></option>
+                            <option value="7">Grade 7</option>
+                            <option value="8">Grade 8</option>
+                            <option value="9">Grade 9</option>
+                            <option value="10">Grade 10</option>
+                        </select>
                         @error('grade_level') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="input-group">
                         <label class="block mb-1">Assigned Teacher:</label>
-                        <input type="text" wire:model="assigned_teacher" class="border rounded w-full p-2 text-black" />
+                        <select name="assigned_teacher" wire:model="assigned_teacher" class="border rounded w-full p-2 text-black">
+                            <option value=""></option>
+                            @foreach($teachers as $teacher)
+                                <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                            @endforeach
+                        </select>
                         @error('assigned_teacher') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                     </div>
 
