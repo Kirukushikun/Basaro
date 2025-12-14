@@ -6,13 +6,18 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
 Route::middleware('guest')->group(function () {
-    // Route::get('register', [AuthController::class, 'showRegister'])->name('register');
-    Route::post('register', [AuthController::class, 'register']);
-    Route::get('login', [AuthController::class, 'showLogin'])->name('login');
-    Route::post('login', [AuthController::class, 'login']);
+    // Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+
+
+    Route::get('/teacher/login', [AuthController::class, 'showTeacherLogin'])->name('teacher.login');
+    Route::post('/teacher/login', [AuthController::class, 'teacherLogin'])->name('teacher.login.submit');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth.custom');
+Route::post('/logout/teacher', [AuthController::class, 'teacherLogout'])->name('logout.teacher');
 
 Route::middleware('auth.custom')->group(function () {
     Route::get('/', function () {
@@ -41,7 +46,9 @@ Route::middleware('auth.custom')->group(function () {
     Route::get('/profile', function () {
         return view('student.profile');
     });
+});
 
+Route::middleware('auth:teacher')->group(function () {
     Route::get('/teacher/dashboard', function () {
         return view('teacher.dashboard');
     });

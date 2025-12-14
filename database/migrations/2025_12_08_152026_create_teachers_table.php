@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
-            $table->boolean('is_disabled')->default(true);
             $table->enum('role', ['teacher', 'admin'])->default('teacher');
+            $table->boolean('is_disabled')->default(false);
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

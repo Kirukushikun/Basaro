@@ -130,7 +130,13 @@
                          </div>
                     </div>
 
-                    <div>Hi, <span class="font-semibold">Iverson</span></div>
+                    <div>Hi, 
+                         <span class="font-semibold">
+                              @auth('teacher')
+                                   {{ auth('teacher')->user()->name }}
+                              @endauth
+                         </span>
+                    </div>
                </header>
 
                <br>

@@ -4,11 +4,21 @@ namespace App\Livewire\Teacher;
 
 use Livewire\Component;
 use App\Models\Teacher;
+use Exception;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class TeacherManagement extends Component
 {
     public $target;
     public $fullname, $username, $password, $role;
+    public $search = '';
+    
+    // Loading states for double-click prevention
+    public $isSubmitting = false;
+    public $isUpdating = false;
+    public $isDeleting = false;
+    public $isResetting = false;
 
     protected $rules = [
         'fullname' => 'required|string|max:255',
@@ -16,6 +26,12 @@ class TeacherManagement extends Component
         'password' => 'required|string|min:6',
         'role' => 'required|in:teacher,admin',
     ];
+
+    // Real-time search
+    public function updatedSearch()
+    {
+        // This will automatically trigger re-render when search changes
+    }
 
     // Load teacher data into form inputs
     public function targetID($id)
@@ -34,21 +50,28 @@ class TeacherManagement extends Component
     // Create new teacher
     public function submit()
     {
+        // Prevent double submission
+        if ($this->isSubmitting) {
+            return;
+        }
+
         try {
+            $this->isSubmitting = true;
             $this->validate();
 
             Teacher::create([
                 'name' => $this->fullname,
                 'email' => $this->username,
-                'password' => bcrypt($this->password),
+                'password' => Hash::make($this->password),
                 'role' => $this->role,
-                'is_disabled' => false, // Enable by default on creation
+                'is_disabled' => false,
             ]);
 
             $this->clear();
             $this->reloadNotif('success', 'Success!', 'Teacher created successfully.');
             return redirect()->to(request()->header('Referer'));
         } catch (Exception $e) {
+            $this->isSubmitting = false;
             $this->noreloadNotif('error', 'Error', 'Failed to create teacher. Please check your inputs and try again.');
         }
     }   
@@ -56,7 +79,13 @@ class TeacherManagement extends Component
     // Update existing teacher
     public function update()
     {
+        // Prevent double submission
+        if ($this->isUpdating) {
+            return;
+        }
+
         try {
+            $this->isUpdating = true;
             $teacher = Teacher::findOrFail($this->target);
             
             // Check if email has changed to determine validation rules
@@ -87,18 +116,62 @@ class TeacherManagement extends Component
             $this->reloadNotif('success', 'Success!', 'Teacher updated successfully.');
             return redirect()->to(request()->header('Referer'));
         } catch (Exception $e) {
+            $this->isUpdating = false;
             $this->noreloadNotif('error', 'Error', 'Failed to update teacher. Please check your inputs and try again.');
+        }
+    }
+
+    // Reset teacher password
+    public function resetPassword()
+    {
+        // Prevent double submission
+        if ($this->isResetting) {
+            return;
+        }
+
+        try {
+            $this->isResetting = true;
+            
+            $this->validate([
+                'password' => 'required|string|min:6',
+            ]);
+
+            $teacher = Teacher::findOrFail($this->target);
+            $teacher->update([
+                'password' => Hash::make($this->password),
+            ]);
+
+            $this->clear();
+            $this->reloadNotif('success', 'Success!', 'Password reset successfully.');
+            return redirect()->to(request()->header('Referer'));
+        } catch (Exception $e) {
+            $this->isResetting = false;
+            $this->noreloadNotif('error', 'Error', 'Failed to reset password. Please try again.');
         }
     }
 
     // Delete teacher
     public function delete()
     {
+        // Prevent double submission
+        if ($this->isDeleting) {
+            return;
+        }
+
         try {
+            $this->isDeleting = true;
             $teacher = Teacher::find($this->target);
             
             if (!$teacher) {
+                $this->isDeleting = false;
                 $this->noreloadNotif('error', 'Error', 'Teacher not found.');
+                return;
+            }
+
+            // Prevent deleting yourself
+            if ($teacher->id === Auth::id()) {
+                $this->isDeleting = false;
+                $this->noreloadNotif('error', 'Error', 'You cannot delete your own account.');
                 return;
             }
 
@@ -107,6 +180,7 @@ class TeacherManagement extends Component
             $this->reloadNotif('success', 'Success!', 'Teacher deleted successfully.');
             return redirect()->to(request()->header('Referer'));
         } catch (Exception $e) {
+            $this->isDeleting = false;
             $this->noreloadNotif('error', 'Error', 'Failed to delete teacher. Please try again.');
         }
     }
@@ -115,6 +189,12 @@ class TeacherManagement extends Component
     public function toggleStatus($id)
     {
         try {
+            // Prevent toggling your own status
+            if ($id === Auth::id()) {
+                $this->noreloadNotif('error', 'Error', 'You cannot disable your own account.');
+                return;
+            }
+
             $teacher = Teacher::findOrFail($id);
             $teacher->update([
                 'is_disabled' => !$teacher->is_disabled
@@ -131,13 +211,25 @@ class TeacherManagement extends Component
     // Reset form fields
     public function clear()
     {
-        $this->reset(['fullname', 'username', 'password', 'role', 'target']);
+        $this->reset(['fullname', 'username', 'password', 'role', 'target', 'isSubmitting', 'isUpdating', 'isDeleting', 'isResetting']);
     }
 
     public function render()
     {
+        $teachers = Teacher::query()
+            ->when($this->search, function($query) {
+                $query->where(function($q) {
+                    $q->where('name', 'like', '%' . $this->search . '%')
+                      ->orWhere('email', 'like', '%' . $this->search . '%')
+                      ->orWhere('id', 'like', '%' . $this->search . '%')
+                      ->orWhere('role', 'like', '%' . $this->search . '%');
+                });
+            })
+            ->latest()
+            ->get();
+
         return view('livewire.teacher.teacher-management', [
-            'teachers' => Teacher::latest()->get(),
+            'teachers' => $teachers,
         ]);
     }
 

@@ -310,3 +310,18 @@ tbody td:last-child {
 button{
      cursor: pointer;
 }
+
+/* Scrollbar Styling */
+.scrolling::-webkit-scrollbar {
+    height: 15px;
+    width: 15px;
+}
+.scrolling::-webkit-scrollbar-track {
+    background: var(--card-color);
+    border-radius: 7px;
+}
+.scrolling::-webkit-scrollbar-thumb {
+    background: var(--light-text-color);
+    border-radius: 7px;
+    cursor: pointer;
+}
