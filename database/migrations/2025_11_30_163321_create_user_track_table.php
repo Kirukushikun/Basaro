@@ -18,10 +18,11 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('lesson_id');
             $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('cascade');
+            $table->unique(['user_id', 'lesson_id']);
 
-            $table->enum('status', ['not started', 'in progress', 'completed'])->default('not started');
-            $table->string('score')->default('0')->nullable();
-            $table->string('attempts')->default('0')->nullable();
+            $table->enum('status', ['in_progress', 'completed'])->default('in_progress');
+            $table->integer('score')->default(0)->nullable();
+            $table->integer('attempts')->default(0)->nullable();
 
             $table->timestamps();
         });

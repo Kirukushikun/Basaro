@@ -17,6 +17,7 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth.custom');
+Route::post('/logout/teacher', [AuthController::class, 'teacherLogout'])->name('logout.teacher');
 
 Route::middleware('auth.custom')->group(function () {
     Route::get('/', function () {

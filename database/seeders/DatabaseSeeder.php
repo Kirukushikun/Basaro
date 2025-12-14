@@ -82,21 +82,65 @@ class DatabaseSeeder extends Seeder
             'Pag-unawa sa Binasang Dula' => 'Pagkilala sa kilos, tauhan, at tagpo sa isang dula.',
         ];
 
-        foreach($lessonTitles as $index => $lesson){
+        foreach ($lessonTitles as $index => $lesson) {
             Lesson::create([
                 'title' => $lesson,
                 'description' => $lessonDescriptions[$lesson],
-                'total_scores' => '35',
+                'total_scores' => rand(10, 50), // randomized max score
                 'order' => $index + 1,
-                'type' => null
+                'type' => null,
             ]);
         }
 
-        UserTrack::create([
-            'user_id' => $user->id,
-            'lesson_id' => 1,
-            'score' => 0,
-            'attempts' => 0,
-        ]);
+        // Create 10 random users with random lesson progress
+        for ($i = 1; $i <= 10; $i++) {
+
+            $user = User::create([
+                'name' => "Student {$i}",
+                'email' => "student{$i}@test.com",
+                'password' => Hash::make('password'),
+                'grade_level' => rand(7, 10)
+            ]);
+
+            // Random current lesson (1–20)
+            $currentLesson = rand(1, 20);
+
+            // Seed lesson progress for this user
+            $this->seedLessonProgress($user->id, $currentLesson);
+        }
+    }
+
+    public function seedLessonProgress($userId, $currentLesson)
+    {
+        $maxLesson = 22;
+
+        if ($currentLesson > $maxLesson) {
+            $currentLesson = $maxLesson;
+        }
+
+        for ($lessonId = 1; $lessonId <= $currentLesson; $lessonId++) {
+
+            // Prevent duplicate
+            $exists = UserTrack::where('user_id', $userId)
+                ->where('lesson_id', $lessonId)
+                ->exists();
+
+            if ($exists) {
+                continue;
+            }
+
+            $lesson = Lesson::find($lessonId);
+            $maxScore = $lesson?->total_scores ?? 0;
+
+            UserTrack::create([
+                'user_id'   => $userId,
+                'lesson_id' => $lessonId,
+                'score'     => $lessonId < $currentLesson
+                                ? rand(0, $maxScore)
+                                : 0,
+                'attempts'  => $lessonId < $currentLesson ? rand(1, 3) : 0,
+                'status'    => $lessonId < $currentLesson ? 'completed' : 'in_progress',
+            ]);
+        }
     }
 }

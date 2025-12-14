@@ -109,6 +109,13 @@
         </button>
     </div>
 
+    <form action="{{ route('logout.teacher') }}" method="POST">
+        @csrf
+        <button type="submit" class="px-5 py-2 my-5 bg-red-400 border border-2 border-red-400 rounded-lg font-bold text-black text-xs w-fit">
+            LOG OUT
+        </button>
+    </form>
+
     <!-- Backdrop -->
     <div x-show="showModal" x-transition.opacity class="fixed inset-0 bg-black/30 z-40" @click="showModal = false"></div>
 
