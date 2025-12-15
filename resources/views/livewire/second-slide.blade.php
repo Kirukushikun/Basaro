@@ -4,22 +4,28 @@
         page: @entangle('page'),
         audio: null,
         soundEnabled: false,
-        playAudio(src) {
+        audios: @js($audios), // All audios passed from backend
+        
+        playAudio(page) {
             if (!this.soundEnabled) return;
             if (this.audio) this.audio.pause();
-            this.audio = new Audio(src);
-            this.audio.play();
+            
+            const audioFile = this.audios[page];
+            if (audioFile) {
+                this.audio = new Audio('{{ asset('') }}' + audioFile);
+                this.audio.play();
+            }
         },
+        
         handleAudio() {
             if (!this.soundEnabled) return;
-            if (this.page === 1) this.playAudio('{{ asset('audio/L1P1.m4a') }}');
-            if (this.page === 2) this.playAudio('{{ asset('audio/L1P2.m4a') }}');
+            this.playAudio(this.page);
         }
     }"
     x-init="$watch('page', () => handleAudio())"
 >
 
-    <!-- Enable Sound overlay -->
+    <!-- Enable Sound Overlay -->
     <template x-if="!soundEnabled">
         <div class="absolute inset-0 bg-black/90 flex items-center justify-center z-50">
             <button 
@@ -32,23 +38,37 @@
     </template>
 
     <div class="h-full flex items-center justify-center">
+        
         @if ($lesson == 1)
-            <!-- Background figure -->
+            {{-- ========== LESSON 1 CONTENT ========== --}}
+            
+            {{-- Page 1 Background --}}
             <img 
-                x-show="page === 1" class="absolute bottom-[150px] left-[80px] z-[1] w-[730px] pointer-events-none" src="../Img/layunin-figure.png" alt="Layunin Figure"
+                x-show="page === 1" 
+                class="absolute bottom-[150px] left-[80px] z-[1] w-[730px] pointer-events-none" 
+                src="../Img/layunin-figure.png" 
+                alt="Layunin Figure"
             >
+            
+            {{-- Page 2 Background --}}
             <img 
-                x-show="page === 2" class="absolute bottom-[20px] left-[50px] z-[1] w-[730px] pointer-events-none" src="../Img/layunin-figure.png" alt="Layunin Figure"
+                x-show="page === 2" 
+                class="absolute bottom-[20px] left-[50px] z-[1] w-[730px] pointer-events-none" 
+                src="../Img/layunin-figure.png" 
+                alt="Layunin Figure"
             >
 
             <div class="card w-full flex flex-col items-center gap-5 relative text-lg max-h-[80vh]">
+                
+                {{-- ===== PAGE 1 ===== --}}
                 <div x-show="page === 1" class="w-full flex-1 flex flex-col gap-6 px-2">
                     <p class="text-2xl font-bold text-gray-300">
-                        Magandang buhay mabuting tao! Ako si Gng. Beng ang iyong guro sa Basaro. Handa ka na bang matutong magbasa? Tara na at samahan mo ako sa mundo ng Basaro.
+                        Magandang buhay mabuting tao! Ako si Gng. Beng ang iyong guro sa Basaro. 
+                        Handa ka na bang matutong magbasa? Tara na at samahan mo ako sa mundo ng Basaro.
                     </p>
                 </div>
 
-                <!-- Page 2 -->
+                {{-- ===== PAGE 2 ===== --}}
                 <div x-show="page === 2" class="w-full flex-1 flex flex-col gap-6 px-2">
                     <header class="header">
                         <h1 class="text-3xl font-bold">
@@ -62,14 +82,21 @@
 
                     <div class="grid grid-cols-6 gap-5 text-4xl font-bold text-center">
                         @foreach (range('A', 'Z') as $letter)
-                            <p  class="z-[2] cursor-pointer hover:scale-125 hover:!text-[#F4C300]">{{ $letter }}{{ strtolower($letter) }}</p>
+                            <p class="z-[2] cursor-pointer hover:scale-125 hover:!text-[#F4C300]">
+                                {{ $letter }}{{ strtolower($letter) }}
+                            </p>
                         @endforeach
                     </div>
                 </div>
 
-                <!-- Navigation Buttons -->
+                {{-- ===== PAGE 3 (Example) ===== --}}
+                <div x-show="page === 3" class="w-full flex-1 flex flex-col gap-6 px-2">
+                    <h2 class="text-3xl font-bold">Another Page Example</h2>
+                    <p>More content here...</p>
+                </div>
+
+                {{-- Navigation Buttons --}}
                 <div class="flex w-full justify-end gap-5 mt-4">
-                    <!-- Back -->
                     <button
                         @click="page == 1 ? window.location.href = '/lesson-view?lesson={{$lesson}}&slide=first-slide' : page--"
                         class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold"
@@ -77,20 +104,17 @@
                         <i class="fa-solid fa-arrow-left !text-black"></i> Balik
                     </button>
 
-                    <!-- Next -->
                     <button 
-                        x-show="page == 1"
+                        x-show="page < {{ $totalPages }}"
                         @click="page++"
-                        :class="{ 'opacity-30 pointer-events-none': page === 2 }"
                         class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold"
                     >
                         Susunod 
                         <i class="fa-solid fa-arrow-right !text-black"></i>
                     </button>
 
-                    <!-- Continue -->
                     <button 
-                        x-show="page === 2"
+                        x-show="page === {{ $totalPages }}"
                         onclick="window.location.href='/lesson-view?lesson={{ $lesson }}&slide=third-slide'"
                         class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold"
                     >
@@ -99,6 +123,23 @@
                     </button>
                 </div>
             </div>
+
+        @elseif ($lesson == 2)
+            {{-- ========== LESSON 2 CONTENT ========== --}}
+            
+            <div class="card w-full flex flex-col items-center gap-5 relative text-lg max-h-[80vh]">
+                <div x-show="page === 1" class="w-full flex-1 flex flex-col gap-6 px-2">
+                    <h2>Lesson 2 - Page 1</h2>
+                </div>
+                
+                <div x-show="page === 2" class="w-full flex-1 flex flex-col gap-6 px-2">
+                    <h2>Lesson 2 - Page 2</h2>
+                </div>
+                
+                {{-- Same navigation buttons... --}}
+            </div>
+            
         @endif
+        
     </div>
 </main>

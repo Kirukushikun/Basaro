@@ -1,5 +1,10 @@
 <!-- Main Content -->
-<main class="flex-1 overflow-hidden pb-[50px] pt-[50px]" x-data="{ page: @entangle('page') }">
+<main class="flex-1 overflow-hidden pb-[50px] pt-[50px]"     
+    x-data="{
+        page: @entangle('page'),
+        isFirstLesson: {{ $lesson == 1 ? 'true' : 'false' }},
+        maxPage: {{ $lesson == 1 ? 2 : 2 }}
+    }">
     <div class="h-full flex items-center justify-center">
         <div class="card flex flex-col items-center gap-5 relative text-lg max-h-[80vh]">
             
@@ -44,7 +49,7 @@
                 <!-- Title Section -->
                 <div x-show="page === 2" class="absolute -top-6 left-1/2 -translate-x-1/2">
                     <div class="relative inline-block">
-                        <h1 class="relative z-10 bg-[#F4C300] px-20 py-1 !text-black text-xl font-bold rounded-md border-2 border-[#31343A]">
+                        <h1 class="relative z-10 bg-[#F4C300] px-20 py-1 !text-black text-xl font-bold rounded-md border-2 border-[#31343A] whitespace-nowrap">
                             LAYUNIN NG ARALIN
                         </h1>
                         
@@ -64,40 +69,42 @@
 
             
             <!-- Action Button -->
-            <div class="flex justify-between w-full mt-4">
-                @if($lesson == 1)
-                    <button
-                        @click="page === 1 ? window.location.href = '/lessons' : page--"
-                        class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold">
-                        <i class="fa-solid fa-arrow-left !text-black"></i> Balik
-                    </button>
+        <div class="flex justify-between w-full mt-4">
 
-                    <button x-show="page == 1" @click="page++"
-                        :class="{ 'opacity-30 pointer-events-none': page === 2 }"
-                        class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold">
-                        Susunod <i class="fa-solid fa-arrow-right !text-black"></i>
-                    </button>
+            <!-- BACK -->
+            <button
+                @click="
+                    if (page === 1 || !isFirstLesson) {
+                        window.location.href = '/lessons'
+                    } else {
+                        page--
+                    }
+                "
+                class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold"
+            >
+                <i class="fa-solid fa-arrow-left !text-black"></i> Balik
+            </button>
 
-                    <button x-show="page === 2" onclick="window.location.href='/lesson-view?lesson={{$lesson}}&slide=second-slide'"
-                        class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold">
-                        Magpatuloy
-                        <i class="fa-solid fa-arrow-right !text-black"></i>
-                    </button>
-                @else 
-                    <button
-                        @click="window.location.href = '/lessons'"
-                        class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold">
-                        <i class="fa-solid fa-arrow-left !text-black"></i> Balik
-                    </button>
+            <!-- NEXT / CONTINUE -->
+            <template x-if="isFirstLesson">
+                <button
+                    x-show="page < maxPage"
+                    @click="page++"
+                    class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold"
+                >
+                    Susunod <i class="fa-solid fa-arrow-right !text-black"></i>
+                </button>
+            </template>
 
-                    <button onclick="window.location.href='/lesson-view?lesson={{$lesson}}&slide=second-slide'"
-                        class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold">
-                        Magpatuloy
-                        <i class="fa-solid fa-arrow-right !text-black"></i>
-                    </button>
-                @endif
+            <button
+                x-show="(!isFirstLesson) || page === maxPage"
+                @click="window.location.href = '/lesson-view?lesson={{ $lesson }}&slide=second-slide'"
+                class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold"
+            >
+                Magpatuloy <i class="fa-solid fa-arrow-right !text-black"></i>
+            </button>
 
-            </div>
+        </div>
         </div>
     </div>
 </main>
