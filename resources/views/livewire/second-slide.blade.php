@@ -1,5 +1,5 @@
 <main 
-    class="flex-1 overflow-hidden pb-[50px]" 
+    class="flex-1 pb-[50px]" 
     x-data="{ 
         page: @entangle('page'),
         audio: null,
@@ -58,11 +58,11 @@
                 alt="Layunin Figure"
             >
 
-            <div class="card w-full flex flex-col items-center gap-5 relative text-lg max-h-[80vh]">
+            <div class="card w-full max-h-[80vh] flex flex-col items-center gap-5 relative text-lg">
                 
                 {{-- ===== PAGE 1 ===== --}}
                 <div x-show="page === 1" class="w-full flex-1 flex flex-col gap-6 px-2">
-                    <p class="text-2xl font-bold text-gray-300">
+                    <p class="text-2xl font-semibold !text-gray-200">
                         Magandang buhay mabuting tao! Ako si Gng. Beng ang iyong guro sa Basaro. 
                         Handa ka na bang matutong magbasa? Tara na at samahan mo ako sa mundo ng Basaro.
                     </p>
@@ -75,68 +75,79 @@
                             <span class="!text-[#F4C300]">Sesyon 1:</span>
                             Ang Alpabetong Filipino
                         </h1>
-                        <p class="text-2xl font-bold text-gray-300">
+                        <p class="text-2xl font-semibold !text-gray-200">
                             Pagpapakilala ng mga letra at tunog ng mga ito
                         </p>
                     </header>
 
                     <div class="grid grid-cols-6 gap-5 text-4xl font-bold text-center">
                         @foreach (range('A', 'Z') as $letter)
-                            <p class="z-[2] cursor-pointer hover:scale-125 hover:!text-[#F4C300]">
+                            <p class="z-[2] cursor-pointer hover:scale-125 hover:!text-[#F4C300] transition-transform">
                                 {{ $letter }}{{ strtolower($letter) }}
                             </p>
                         @endforeach
                     </div>
                 </div>
 
-                {{-- ===== PAGE 3 (Example) ===== --}}
-                <div x-show="page === 3" class="w-full flex-1 flex flex-col gap-6 px-2">
-                    <h2 class="text-3xl font-bold">Another Page Example</h2>
-                    <p>More content here...</p>
-                </div>
-
                 {{-- Navigation Buttons --}}
-                <div class="flex w-full justify-end gap-5 mt-4">
-                    <button
-                        @click="page == 1 ? window.location.href = '/lesson-view?lesson={{$lesson}}&slide=first-slide' : page--"
-                        class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold"
-                    >
-                        <i class="fa-solid fa-arrow-left !text-black"></i> Balik
-                    </button>
-
-                    <button 
-                        x-show="page < {{ $totalPages }}"
-                        @click="page++"
-                        class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold"
-                    >
-                        Susunod 
-                        <i class="fa-solid fa-arrow-right !text-black"></i>
-                    </button>
-
-                    <button 
-                        x-show="page === {{ $totalPages }}"
-                        onclick="window.location.href='/lesson-view?lesson={{ $lesson }}&slide=third-slide'"
-                        class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold"
-                    >
-                        Magpatuloy
-                        <i class="fa-solid fa-arrow-right !text-black"></i>
-                    </button>
-                </div>
+                @include('partials.lesson-navigation')
             </div>
 
         @elseif ($lesson == 2)
             {{-- ========== LESSON 2 CONTENT ========== --}}
             
-            <div class="card w-full flex flex-col items-center gap-5 relative text-lg max-h-[80vh]">
+            <div class="card w-full h-[70vh] min-h-[50vh] flex flex-col relative text-lg">
+                {{-- ===== PAGE 1 ===== --}}
                 <div x-show="page === 1" class="w-full flex-1 flex flex-col gap-6 px-2">
-                    <h2>Lesson 2 - Page 1</h2>
+                    <header class="header">
+                        <h1 class="text-3xl font-bold">
+                            <span class="!text-[#F4C300]">Sesyon 2:</span>
+                            Ang Mga Patinig
+                        </h1>
+                        <p class="text-2xl font-semibold !text-gray-200">
+                            Ang alpabetong filipino ay binubuo ng <span class="!text-[#F4C300]">28</span> letra, 5 sa mga ito ay tinatawag na patinig. Ang mga ito ay ang sumusunod:
+                        </p>
+                    </header>
+
+                    <div class="grid grid-cols-5 gap-5 text-4xl font-bold text-center p-5">
+                        @foreach (['A', 'E', 'I', 'O', 'U'] as $patinig)
+                            <p class="z-[2] cursor-pointer hover:scale-125 hover:!text-[#F4C300] transition-transform">
+                                {{ $patinig }}
+                            </p>
+                        @endforeach
+                    </div>
                 </div>
                 
-                <div x-show="page === 2" class="w-full flex-1 flex flex-col gap-6 px-2">
-                    <h2>Lesson 2 - Page 2</h2>
+                {{-- ===== PAGE 2 ===== --}}
+                <div x-show="page === 2" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+                    <header class="header flex-shrink-0">
+                        <h1 class="text-3xl font-bold">
+                            Natatandaan mo ba ang kanilang tunog?
+                        </h1>
+                    </header>
+                    
+                    <div class="grid grid-cols-3 gap-5 text-4xl font-bold text-center p-5 overflow-y-auto flex-1">
+                        @foreach ([
+                            'Aso', 'Araw', 'Apoy', 'Atis', 'Ahas', 'Abokado',
+                            'Eroplano', 'Elefante', 'Eskwela', 'Espada', 'Estudyante', 'Elektrisidad',
+                            'Ibon', 'Isda', 'Itlog', 'Ilaw', 'Iglesia', 'Imburnal',
+                            'Oso', 'Ospital', 'Okra', 'Orasan', 'Oras', 'Osmena',
+                            'Ulan', 'Upo', 'Ube', 'Ulap', 'Ugat', 'Upuan',
+                            'Agila', 'Asin', 'Alambre', 'Araro', 'Anghel', 'Asul',
+                            'Estante', 'Entablado', 'Empanada', 'Eksamen', 'Empleyado', 'Ebidensya',
+                            'Imahen', 'Ina', 'Ikaw', 'Inggit', 'Imik', 'Indak',
+                            'Orihinal', 'Opisina', 'Orasyon', 'Operasyon', 'Organisa', 'Ordinaryo',
+                            'Usapan', 'Ugali', 'Umaga', 'Uliran', 'Ugoy', 'Ukit'
+                        ] as $patinig)
+                            <p class="z-[2] cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform">
+                                {{ $patinig }}
+                            </p>
+                        @endforeach
+                    </div>
                 </div>
                 
-                {{-- Same navigation buttons... --}}
+                {{-- Navigation Buttons --}}
+                @include('partials.lesson-navigation')
             </div>
             
         @endif

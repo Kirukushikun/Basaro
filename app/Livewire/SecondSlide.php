@@ -15,7 +15,6 @@ class SecondSlide extends Component
         1 => [ // Lesson 1
             1 => 'audio/L1P1.m4a',
             2 => 'audio/L1P2.m4a',
-            3 => 'audio/L1P3.m4a',
             // Add more pages as needed
         ],
         2 => [ // Lesson 2
