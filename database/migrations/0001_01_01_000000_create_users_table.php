@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
-            $table->string('current_lesson')->default(1)->nullable();
+            $table->integer('current_lesson')->default(1)->nullable();
             $table->string('current_progress')->default(0)->nullable();
             $table->string('grade_level')->nullable();
             $table->unsignedBigInteger('teacher_id')->nullable();
