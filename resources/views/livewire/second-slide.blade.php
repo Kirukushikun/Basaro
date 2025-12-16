@@ -74,6 +74,21 @@
             <!-- ========== LESSON 7 CONTENT ==========  -->
             @include('lessons.lesson7')
             
+        @elseif ($lesson == 8)
+
+            <!-- ========== LESSON 8 CONTENT ==========  -->
+            @include('lessons.lesson8')
+            
+        @elseif ($lesson == 9)
+
+            <!-- ========== LESSON 9 CONTENT ==========  -->
+            @include('lessons.lesson9')
+            
+        @elseif ($lesson == 10)
+
+            <!-- ========== LESSON 10 CONTENT ==========  -->
+            @include('lessons.lesson10')
+            
         @endif
         
     </div>
