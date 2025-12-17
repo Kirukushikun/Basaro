@@ -89,6 +89,56 @@
             <!-- ========== LESSON 10 CONTENT ==========  -->
             @include('lessons.lesson10')
             
+        @elseif ($lesson == 11)
+
+            <!-- ========== LESSON 11 CONTENT ==========  -->
+            @include('lessons.lesson11')
+            
+        @elseif ($lesson == 12)
+
+            <!-- ========== LESSON 12 CONTENT ==========  -->
+            @include('lessons.lesson12')
+            
+        @elseif ($lesson == 13)
+
+            <!-- ========== LESSON 13 CONTENT ==========  -->
+            @include('lessons.lesson13')
+            
+        @elseif ($lesson == 14)
+
+            <!-- ========== LESSON 14 CONTENT ==========  -->
+            @include('lessons.lesson14')
+            
+        @elseif ($lesson == 15)
+
+            <!-- ========== LESSON 15 CONTENT ==========  -->
+            @include('lessons.lesson15')
+            
+        @elseif ($lesson == 16)
+
+            <!-- ========== LESSON 16 CONTENT ==========  -->
+            @include('lessons.lesson16')
+            
+        @elseif ($lesson == 17)
+
+            <!-- ========== LESSON 17 CONTENT ==========  -->
+            @include('lessons.lesson17')
+            
+        @elseif ($lesson == 18)
+
+            <!-- ========== LESSON 18 CONTENT ==========  -->
+            @include('lessons.lesson18')
+            
+        @elseif ($lesson == 19)
+
+            <!-- ========== LESSON 19 CONTENT ==========  -->
+            @include('lessons.lesson19')
+            
+        @elseif ($lesson == 20)
+
+            <!-- ========== LESSON 20 CONTENT ==========  -->
+            @include('lessons.lesson20')
+            
         @endif
         
     </div>
