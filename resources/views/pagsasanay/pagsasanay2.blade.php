@@ -1,3 +1,4 @@
+<!-- Pagsasanay 2 -->
 <div class="relative" x-data="{
     page: 1,
     selected: null,
@@ -39,17 +40,6 @@
         this.page = 1
         this.score = 0
         this.reset()
-    },
-
-    toggleRecording() {
-        this.isRecording = !this.isRecording
-        if (this.isRecording) {
-            console.log('Recording started...')
-            setTimeout(() => {
-                this.isRecording = false
-                console.log('Recording stopped')
-            }, 3000)
-        }
     }
 }">
 
@@ -93,21 +83,22 @@
                         </template>
                     </div>
 
-                    <!-- Microphone Button -->
-                    <button
-                        @click="toggleRecording"
-                        :class="isRecording ? 'bg-red-500 animate-pulse' : 'bg-[#F4C300]'"
-                        class="px-6 py-3 rounded-full !text-black font-bold transition-all flex items-center gap-2">
-                        <i class="fa-solid fa-microphone !text-black text-xl"></i>
-                        <span x-text="isRecording ? 'Nagrerekord...' : 'Pindutin upang magsalita'"></span>
-                    </button>
+                    <!-- Microphone Button (Hold to Record) -->
+                    <div
+                        @mousedown="isRecording = true"
+                        @mouseup="
+                            isRecording = false;
+                            setTimeout(() => confirmed = true, 1500)
+                        "
+                        @mouseleave="isRecording = false"
+                        class="relative bg-gray-500 px-4 py-3 rounded-full cursor-pointer transition-transform hover:scale-110"
+                        :class="{ 'ring-4 ring-red-500 animate-pulse scale-110': isRecording }">
+                        <i class="fa-solid fa-microphone text-white text-xl"></i>
+                        <div x-show="isRecording"
+                             class="absolute inset-0 bg-red-500 opacity-30 rounded-full animate-ping"></div>
+                    </div>
 
-                    <p class="text-sm text-gray-400 italic">(Voice recording feature - coming soon)</p>
-
-                    <!-- Temporary Skip Button -->
-                    <button @click="confirmed = true" class="px-4 py-2 bg-gray-600 text-white rounded-lg font-bold hover:bg-gray-700">
-                        Tapos na ako (Temporary Skip)
-                    </button>
+                    <p class="text-sm text-gray-400 italic">(Hold to record)</p>
                 </div>
             </template>
 
@@ -133,13 +124,16 @@
                     <!-- Pronunciation Button (after correct answer) -->
                     <div x-show="showFeedback && selected === current.answer" class="flex flex-col items-center gap-3">
                         <p class="text-sm text-gray-300">Bigkasin ang salita:</p>
-                        <button
-                            @click="toggleRecording"
-                            :class="isRecording ? 'bg-red-500 animate-pulse' : 'bg-[#F4C300]'"
-                            class="px-4 py-2 rounded-full !text-black font-bold transition-all flex items-center gap-2">
-                            <i class="fa-solid fa-microphone !text-black"></i>
-                            <span x-text="isRecording ? 'Nagrerekord...' : 'Basahin'"></span>
-                        </button>
+                        <div
+                            @mousedown="isRecording = true"
+                            @mouseup="isRecording = false"
+                            @mouseleave="isRecording = false"
+                            class="relative bg-gray-500 px-4 py-2 rounded-full cursor-pointer transition-transform hover:scale-110"
+                            :class="{ 'ring-4 ring-red-500 animate-pulse scale-110': isRecording }">
+                            <i class="fa-solid fa-microphone text-white"></i>
+                            <div x-show="isRecording"
+                                 class="absolute inset-0 bg-red-500 opacity-30 rounded-full animate-ping"></div>
+                        </div>
                     </div>
                 </div>
             </template>

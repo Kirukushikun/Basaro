@@ -1,3 +1,4 @@
+<!-- Pagsasanay navigation -->
 <div x-show="page <= questions.length" class="absolute -bottom-[110px] flex items-center justify-between w-full">
     <p><span x-text="page"></span>/<span x-text="questions.length"></span></p>
     <div class="flex gap-5">

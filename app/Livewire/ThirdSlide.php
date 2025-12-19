@@ -8,10 +8,6 @@ class ThirdSlide extends Component
 {
     public $lesson;
 
-    /**
-     * Question bank per lesson
-     * This mirrors how Slide 2 stores audio per page
-     */
     protected $questions = [
         1 => [
             [
@@ -36,6 +32,7 @@ class ThirdSlide extends Component
                 'answer' => 'M',
             ],
         ],
+
         2 => [
             [
                 'type' => 'image_group_audio',
@@ -87,8 +84,6 @@ class ThirdSlide extends Component
                     ['src' => 'illustrations/ube.png', 'label' => 'ube'],
                 ],
             ],
-
-            // ===== PART 2: Fill in the blank =====
             [
                 'type' => 'fill_blank_audio',
                 'word' => '_bas',
@@ -149,7 +144,79 @@ class ThirdSlide extends Component
                 'answer' => 'A',
                 'image' => 'illustrations/atis.png',
             ],
-        ]
+        ],
+
+        3 => [
+            ['kataga' => 'si'],
+            ['kataga' => 'ang'],
+            ['kataga' => 'kay'],
+            ['kataga' => 'ay'],
+            ['kataga' => 'mga'],
+            ['kataga' => 'ng'],
+            ['kataga' => 'mo'],
+            ['kataga' => 'mas'],
+            ['kataga' => 'at'],
+            ['kataga' => 'na'],
+            ['kataga' => 'may'],
+            ['kataga' => 'sila'],
+            ['kataga' => 'ni'],
+            ['kataga' => 'kina'],
+            ['kataga' => 'sina'],
+        ],
+
+        4 => [
+            [
+                'syllables' => ['A', 'sa'],
+                'answer' => 'asa',
+            ],
+            [
+                'syllables' => ['Ma', 'sa'],
+                'answer' => 'masa',
+            ],
+            [
+                'syllables' => ['A', 'a', 'sa'],
+                'answer' => 'aasa',
+            ],
+            [
+                'syllables' => ['Sa', 'ma'],
+                'answer' => 'sama',
+            ],
+            [
+                'syllables' => ['Ma', 'ma'],
+                'answer' => 'mama',
+            ],
+            [
+                'syllables' => ['Sa', 'sa', 'ma'],
+                'answer' => 'sasama',
+            ],
+            [
+                'syllables' => ['Ma', 'sa', 'ma'],
+                'answer' => 'masama',
+            ],
+        ],
+
+        5 => [
+            ['type' => 'read_phrase', 'kataga' => 'Sama-sama'],
+            ['type' => 'read_phrase', 'kataga' => 'sasama'],
+            ['type' => 'read_phrase', 'kataga' => 'aasa ang Mama'],
+            ['type' => 'read_phrase', 'kataga' => 'ang mga mama'],
+            ['type' => 'read_phrase', 'kataga' => 'Ang Mama'],
+            ['type' => 'read_phrase', 'kataga' => 'sa ama'],
+            ['type' => 'read_phrase', 'kataga' => 'ang sama'],
+            ['type' => 'read_phrase', 'kataga' => 'kay ama'],
+            ['type' => 'read_phrase', 'kataga' => 'ng mama'],
+            ['type' => 'read_sentence', 'text' => 'Sama-sama ang mga mama.'],
+            ['type' => 'read_sentence', 'text' => 'Sasama si Mama kay ama.'],
+            ['type' => 'read_sentence', 'text' => 'Aasa ang mama sa ama.'],
+            ['type' => 'read_sentence', 'text' => 'Masama ang mama.'],
+            ['type' => 'read_sentence', 'text' => 'Masasama kay ama ang mama.'],
+            ['type' => 'comprehension', 'question' => 'Sino ang sama-sama?', 'answer' => 'ang mga mama'],
+            ['type' => 'comprehension', 'question' => 'Sino ang sasama kay ama?', 'answer' => 'si Mama'],
+            ['type' => 'comprehension', 'question' => 'Kanino aasa ang mama?', 'answer' => 'sa ama'],
+            ['type' => 'comprehension', 'question' => 'Sino ang masama?', 'answer' => 'ang mama'],
+            ['type' => 'comprehension', 'question' => 'Sino ang masasama kay ama?', 'answer' => 'ang mama'],
+        ],
+
     ];
 
     public function mount($lesson)

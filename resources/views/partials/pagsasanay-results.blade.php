@@ -1,3 +1,4 @@
+<!-- Pagsasanay result -->
 <div x-show="page > questions.length" class="flex-1 flex flex-col items-center gap-5">
     <img src="../Img/Badge.png" width="200" alt="">
     <h1 class="text-2xl font-bold">CONGRATULATIONS!</h1>

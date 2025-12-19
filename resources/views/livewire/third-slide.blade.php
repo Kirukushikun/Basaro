@@ -14,12 +14,16 @@
             </div>
 
             <!-- Dynamic Lesson Content -->
-            @if($lesson == 2)
+            @if($lesson == 1)
+                @include('pagsasanay.pagsasanay1', ['questions' => $this->lessonQuestions])
+            @elseif($lesson == 2)
                 @include('pagsasanay.pagsasanay2', ['questions' => $this->lessonQuestions])
             @elseif($lesson == 3)
                 @include('pagsasanay.pagsasanay3', ['questions' => $this->lessonQuestions])
-            @else 
-                @include('pagsasanay.pagsasanay1', ['questions' => $this->lessonQuestions])
+            @elseif($lesson == 4)
+                @include('pagsasanay.pagsasanay4', ['questions' => $this->lessonQuestions])
+            @elseif($lesson == 5)
+                @include('pagsasanay.pagsasanay3', ['questions' => $this->lessonQuestions])
             @endif
 
         </div>
