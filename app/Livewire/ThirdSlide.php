@@ -661,35 +661,359 @@ class ThirdSlide extends Component
 
         13 => [
             [
-                'word' => '_ _aka',
+                'type' => 'fill_syllable',
+                'word' => '__aka',
                 'full_word' => 'plaka',
                 'answer' => 'pl',
                 'image' => 'illustrations/plaka.png',
             ],
             [
-                'word' => '_ _oke',
+                'type' => 'fill_syllable',
+                'word' => '__oke',
                 'full_word' => 'bloke',
                 'answer' => 'bl',
                 'image' => 'illustrations/bloke.png',
             ],
             [
-                'word' => '_ _otsa',
+                'type' => 'fill_syllable',
+                'word' => '__otsa',
                 'full_word' => 'brotsa',
                 'answer' => 'br',
                 'image' => 'illustrations/brotsa.png',
             ],
             [
-                'word' => 'Ero_ _ano',
+                'type' => 'fill_syllable',
+                'word' => 'Ero__ano',
                 'full_word' => 'eroplano',
                 'answer' => 'pl',
                 'image' => 'illustrations/eroplano.png',
             ],
             [
-                'word' => '_ _en',
+                'type' => 'fill_syllable',
+                'word' => '__en',
                 'full_word' => 'tren',
                 'answer' => 'tr',
                 'image' => 'illustrations/tren.png',
             ],
+        ],
+
+        14 => [
+            [
+                'type' => 'fill_syllable',
+                'word' => '__bango',
+                'full_word' => 'mabango',
+                'answer' => 'ma',
+                'image' => 'illustrations/mabango.png',
+            ],
+            [
+                'type' => 'fill_syllable',
+                'word' => '__taas',
+                'full_word' => 'mataas',
+                'answer' => 'ma',
+                'image' => 'illustrations/mataas.png',
+            ],
+            [
+                'type' => 'fill_syllable',
+                'word' => '__dapa',
+                'full_word' => 'nadapa',
+                'answer' => 'na',
+                'image' => 'illustrations/nadapa.png',
+            ],
+            [
+                'type' => 'fill_syllable',
+                'word' => '__sipag',
+                'full_word' => 'masipag',
+                'answer' => 'ma',
+                'image' => 'illustrations/masipag.png',
+            ],
+            [
+                'type' => 'fill_syllable',
+                'word' => '__tiyaga',
+                'full_word' => 'matiyaga',
+                'answer' => 'ma',
+                'image' => 'illustrations/matiyaga.png',
+            ],
+        ],
+
+        15 => [
+            // Part A: Classify proverbs
+            [
+                'type' => 'classify',
+                'text' => 'Butas ang bulsa',
+                'question' => 'Anong uri ng karunungang bayan ito?',
+                'answer' => 'kasabihan',
+                'choices' => ['kasabihan', 'salawikain', 'sawikain'],
+            ],
+            [
+                'type' => 'classify',
+                'text' => 'Ilaw ng tahanan',
+                'question' => 'Anong uri ng karunungang bayan ito?',
+                'answer' => 'salawikain',
+                'choices' => ['kasabihan', 'salawikain', 'sawikain'],
+            ],
+            [
+                'type' => 'classify',
+                'text' => 'Kapag may tiyaga, may nilaga',
+                'question' => 'Anong uri ng karunungang bayan ito?',
+                'answer' => 'kasabihan',
+                'choices' => ['kasabihan', 'salawikain', 'sawikain'],
+            ],
+            [
+                'type' => 'classify',
+                'text' => 'Ang anak na magalang, kayaman ng magulang.',
+                'question' => 'Anong uri ng karunungang bayan ito?',
+                'answer' => 'kasabihan',
+                'choices' => ['kasabihan', 'salawikain', 'sawikain'],
+            ],
+            [
+                'type' => 'classify',
+                'text' => 'Malayo sa bituka',
+                'question' => 'Anong uri ng karunungang bayan ito?',
+                'answer' => 'salawikain',
+                'choices' => ['kasabihan', 'salawikain', 'sawikain'],
+            ],
+            
+            // Part B: Answer riddles
+            [
+                'type' => 'riddle',
+                'text' => 'Dalawang bolang malalim, Malayo ang nararating.',
+                'question' => 'Ano ito?',
+                'answer' => 'mata',
+            ],
+            [
+                'type' => 'riddle',
+                'text' => 'Isang prinsesa, Nakaupo sa tasa.',
+                'question' => 'Ano ito?',
+                'answer' => 'tsa',
+            ],
+        ],
+
+        16 => [
+            // Part A: Vocabulary Matching
+            [
+                'type' => 'vocabulary',
+                'word' => 'maningning',
+                'question' => 'maningning',
+                'answer' => 'a',
+                'choices' => ['a. makislap', 'b. malabo', 'c. matigas'],
+            ],
+            [
+                'type' => 'vocabulary',
+                'word' => 'tumatanglaw',
+                'question' => 'tumatanglaw',
+                'answer' => 'b',
+                'choices' => ['a. nagdidilim', 'b. nagbibigay-liwanag', 'c. nagbibigay'],
+            ],
+            [
+                'type' => 'vocabulary',
+                'word' => 'ampaw',
+                'question' => 'ampaw',
+                'answer' => 'b',
+                'choices' => ['a. malaman', 'b. walang alam/laman', 'c. di-totoo'],
+            ],
+            [
+                'type' => 'vocabulary',
+                'word' => 'kamusmusan',
+                'question' => 'kamusmusan',
+                'answer' => 'a',
+                'choices' => ['a. kabataan', 'b. katandaan', 'c. kawalan'],
+            ],
+            [
+                'type' => 'vocabulary',
+                'word' => 'pagkalinga',
+                'question' => 'pagkalinga',
+                'answer' => 'c',
+                'choices' => ['a. pag-iisa', 'b. pagtulak', 'c. pag-aalaga'],
+            ],
+            [
+                'type' => 'vocabulary',
+                'word' => 'pumanaw',
+                'question' => 'pumanaw',
+                'answer' => 'b',
+                'choices' => ['a. bumuhay', 'b. Nawala', 'c. umasa'],
+            ],
+            [
+                'type' => 'vocabulary',
+                'word' => 'karimlan',
+                'question' => 'karimlan',
+                'answer' => 'c',
+                'choices' => ['a. kaliwanagan', 'b. ilawan', 'c. kadiliman'],
+            ],
+            
+            // Part B: Comprehension
+            [
+                'type' => 'comprehension',
+                'question' => 'Sino ang tinutukoy na maningning na ilaw sa tula?',
+                'answer' => 'c',
+                'choices' => ['a. tatay', 'b. literal na ilaw', 'c. nanay'],
+            ],
+            [
+                'type' => 'comprehension',
+                'question' => 'Ayon sa tula, ano ang hindi nawawala sa ginagawa ng isang ina?',
+                'answer' => 'a',
+                'choices' => ['a. pagkalinga', 'b. ampaw', 'c. ilaw'],
+            ],
+            [
+                'type' => 'comprehension',
+                'question' => 'Sino kaya ang nagsasalita sa tula?',
+                'answer' => 'c',
+                'choices' => ['a. nanay', 'b. tatay', 'c. anak'],
+            ],
+        ],
+
+        17 => [
+            // Part A: Vocabulary Matching (synonyms)
+            [
+                'type' => 'vocabulary_match',
+                'word' => 'bumulong',
+                'answer' => 'sumigaw',
+                'choices' => ['umusal', 'sumigaw', 'bumati'],
+            ],
+            [
+                'type' => 'vocabulary_match',
+                'word' => 'itinakas',
+                'answer' => 'ibinigay',
+                'choices' => ['ipinagkaloob', 'ibinigay', 'isinalin'],
+            ],
+            [
+                'type' => 'vocabulary_match',
+                'word' => 'mahaba',
+                'answer' => 'malaki',
+                'choices' => ['munti', 'maiksi', 'malaki'],
+            ],
+            [
+                'type' => 'vocabulary_match',
+                'word' => 'sala',
+                'answer' => 'hugasan',
+                'choices' => ['batalan', 'hardin', 'hugasan'],
+            ],
+            [
+                'type' => 'vocabulary_match',
+                'word' => 'palibot',
+                'answer' => 'papunta',
+                'choices' => ['patungo', 'palabas', 'papunta'],
+            ],
+            
+            // Part B: Comprehension (text input)
+            [
+                'type' => 'comprehension',
+                'question' => 'Sino ang batang gumaganap sa kuwento?',
+                'answer' => 'si Maria',
+            ],
+            [
+                'type' => 'comprehension',
+                'question' => 'Ano ang ginawa niya pagkagising sa umaga?',
+                'answer' => 'bumangon at naglingkod',
+            ],
+            [
+                'type' => 'comprehension',
+                'question' => 'Saan siya dumiretso upang maghilamos at magsipilyo?',
+                'answer' => 'sa ilog',
+            ],
+            [
+                'type' => 'comprehension',
+                'question' => 'Sino ang kaniyang nakasalubong at binati matapos maghilamos?',
+                'answer' => 'ang lola niya',
+            ],
+            [
+                'type' => 'comprehension',
+                'question' => 'Ano ang kanilang hanapbuhay?',
+                'answer' => 'mamimili ng prutas',
+            ],
+        ],
+
+        18 => [
+            // Part A: Comprehension (text input)
+            [
+                'type' => 'comprehension',
+                'question' => 'Saan nakapagtapos ng Master of Arts in Education ang tinutukoy sa balita?',
+                'answer' => 'sa Benguet State University',
+            ],
+            [
+                'type' => 'comprehension',
+                'question' => 'Sino ang ibinabalitang guro sa binasang balita?',
+                'answer' => 'si Maria Santos',
+            ],
+            [
+                'type' => 'comprehension',
+                'question' => 'Ano ang hindi niya ikinahiya noong siya ay kumuha ng 18 units sa Filipino undergraduate?',
+                'answer' => 'ang kanyang background',
+            ],
+            [
+                'type' => 'comprehension',
+                'question' => 'Anong taon siya nakapagtapos sa nasabing unibersidad?',
+                'answer' => '2015',
+            ],
+            [
+                'type' => 'comprehension',
+                'question' => 'Ano sa kasalukuyan ang kaniyang posisyon?',
+                'answer' => 'Master Teacher',
+            ],
+            [
+                'type' => 'comprehension',
+                'question' => 'Saang paaralan siya naglilingkod ngayon?',
+                'answer' => 'sa Benguet High School',
+            ],
+            
+            // Part B: Vocabulary/Acronym Matching
+            [
+                'type' => 'vocabulary_match',
+                'word' => 'umangat',
+                'answer' => 'tumaas',
+                'choices' => ['bumaba', 'tumaas', 'umasa'],
+            ],
+            [
+                'type' => 'vocabulary_match',
+                'word' => 'nagsikap',
+                'answer' => 'nagtiyaga',
+                'choices' => ['nagtamad', 'nagtiyaga', 'nagpabaya'],
+            ],
+            [
+                'type' => 'vocabulary_match',
+                'word' => 'ganap',
+                'answer' => 'tunay',
+                'choices' => ['tunay', 'di-totoo', 'wala'],
+            ],
+            [
+                'type' => 'vocabulary_match',
+                'word' => 'MT',
+                'answer' => 'Master Teacher',
+                'choices' => ['Math Teacher', 'Music Teacher', 'Master Teacher'],
+            ],
+            [
+                'type' => 'vocabulary_match',
+                'word' => 'ECF',
+                'answer' => 'Education Call Form',
+                'choices' => ['Education Call Form', 'Edd Corp Filipino', 'Eduardo Cojuanco Foundation'],
+            ],
+        ],
+
+        19 => [
+            // Part A: Vocabulary Matching
+            ['type' => 'vocabulary_match', 'word' => 'tuso', 'answer' => 'Ibigay', 'choices' => ['Ibigay', 'Itakas']],
+            ['type' => 'vocabulary_match', 'word' => 'sumibol', 'answer' => 'mababawasan', 'choices' => ['mababawasan', 'mapupunan']],
+            ['type' => 'vocabulary_match', 'word' => 'lingid', 'answer' => 'nasasakupan', 'choices' => ['nasasakupan', 'naaprubahan']],
+            
+            // Part B: Comprehension (MC)
+            ['type' => 'comprehension', 'question' => 'Magkano ang naaprubahang badyet sa taong 2025?', 'answer' => 'P793. 74 bilyon', 'choices' => ['P793. 74 bilyon', 'P973. 74 bilyon']],
+            ['type' => 'comprehension', 'question' => 'Ilang porsyento ang itinaas nito kumpara sa nakaraang taon?', 'answer' => '3.93%', 'choices' => ['3.99%', '3.93%']],
+            ['type' => 'comprehension', 'question' => 'Sino ang senador na nanguna sa naturang badyet ng DepEd?', 'answer' => 'Pia Cayetano', 'choices' => ['Mia Cayetano', 'Pia Cayetano']],
+        ],
+
+        20 => [
+            // Part A: Vocabulary Matching (2 choices)
+            ['type' => 'vocabulary_match', 'word' => 'tuso', 'answer' => 'impostor', 'choices' => ['matalino', 'impostor']],
+            ['type' => 'vocabulary_match', 'word' => 'sumibol', 'answer' => 'lumitaw', 'choices' => ['lumitaw', 'nawala']],
+            ['type' => 'vocabulary_match', 'word' => 'lingid', 'answer' => 'lihim', 'choices' => ['malinaw', 'lihim']],
+            ['type' => 'vocabulary_match', 'word' => 'pangamba', 'answer' => 'takot', 'choices' => ['saya', 'takot']],
+            ['type' => 'vocabulary_match', 'word' => 'humihipak', 'answer' => 'umiihip', 'choices' => ['umiihip', 'tumitingin']],
+            
+            // Part B: Comprehension (MC)
+            ['type' => 'comprehension', 'question' => 'Ano ang inilalarawan na kinaaadikan nina Totoy at ng kaniyang Tiyo?', 'answer' => 'Vape', 'choices' => ['Tape', 'Vape']],
+            ['type' => 'comprehension', 'question' => 'Ano ang ibig sabihin ng akronim na WHO?', 'answer' => 'World Health Organization', 'choices' => ['World Health Office', 'World Health Organization']],
+            ['type' => 'comprehension', 'question' => 'Ayon sa WHO, ilan ang gumagamit ng vape sa buong mundo?', 'answer' => '100 million', 'choices' => ['100 million', '200 million']],
+            ['type' => 'comprehension', 'question' => 'Bakit madalas umanong mag-vape ang mga kabataan?', 'answer' => 'Dahil sa kuryosidad', 'choices' => ['Dahil sa kuryosidad', 'dahil walang magawa']],
+            ['type' => 'comprehension', 'question' => 'Bakit hindi mabuti ang mag-vape?', 'answer' => 'Nagdudulot ng sakit', 'choices' => ['Nagdudulot ng sakit', 'nagpapalakas ng loob']],
         ],
     ];
 

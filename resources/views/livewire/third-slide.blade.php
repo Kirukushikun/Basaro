@@ -87,6 +87,20 @@
                 @include('pagsasanay.pagsasanay10', ['questions' => $this->lessonQuestions])
             @elseif($lesson == 13)
                 @include('pagsasanay.pagsasanay10', ['questions' => $this->lessonQuestions])
+            @elseif($lesson == 14)
+                @include('pagsasanay.pagsasanay10', ['questions' => $this->lessonQuestions])
+            @elseif($lesson == 15)
+                @include('pagsasanay.pagsasanay15', ['questions' => $this->lessonQuestions])
+            @elseif($lesson == 16)
+                @include('pagsasanay.pagsasanay16', ['questions' => $this->lessonQuestions])
+            @elseif($lesson == 17)
+                @include('pagsasanay.pagsasanay17', ['questions' => $this->lessonQuestions])
+            @elseif($lesson == 18)
+                @include('pagsasanay.pagsasanay17', ['questions' => $this->lessonQuestions])    
+            @elseif($lesson == 19)
+                @include('pagsasanay.pagsasanay19', ['questions' => $this->lessonQuestions])
+            @elseif($lesson == 20)
+                @include('pagsasanay.pagsasanay20', ['questions' => $this->lessonQuestions])
             @endif
 
         </div>
