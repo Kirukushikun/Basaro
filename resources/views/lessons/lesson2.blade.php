@@ -7,7 +7,7 @@
                 Ang Mga Patinig
             </h1>
             <p class="text-2xl font-semibold !text-gray-200">
-                Ang alpabetong filipino ay binubuo ng <span class="!text-[#F4C300]">28</span> letra, 5 sa mga ito ay tinatawag na patinig. Ang mga ito ay ang sumusunod:
+                Ang alpabetong filipino ay binubuo ng <span class="!text-[#F4C300]">28</span> letra, <span class="!text-[#F4C300]">5</span> sa mga ito ay tinatawag na patinig. Ang mga ito ay ang sumusunod:
             </p>
         </header>
 
@@ -55,7 +55,7 @@
                 <span class="!text-[#F4C300]">Aa</span>
             </h1>
             <p class="text-2xl font-semibold !text-gray-200">
-                Ang mga salitang <b>a</b>so, <b>a</b>raw, <b>a</b>poy, <b>a</b>tis, <b>a</b>has at <b>a</b>bokado ay nagsisimula sa letrang Aa kung kaya naman ang naririnig mong unang tunog ay tunog /a/. 
+                Ang mga salitang <b>a</b>so, <b>a</b>raw, <b>a</b>poy, <b>a</b>tis, <b>a</b>has at <b>a</b>bokado ay nagsisimula sa letrang <span class="!text-[#F4C300]">Aa</span> kung kaya naman ang naririnig mong unang tunog ay tunog /a/. 
             </p>
         </header>
         
@@ -77,7 +77,7 @@
                 Ano nga ba ang tunog ng letrang Aa?
             </p>
             <p class="text-xl !text-gray-300 mt-2">
-                Pindutin mo ang microphone button at bigkasin mo ito.
+                Basahin at bigkasin mo ang tunog ng letra.
             </p>
         </header>
 
@@ -114,7 +114,7 @@
                 <span class="!text-[#F4C300]">Ee</span>
             </h1>
             <p class="text-2xl font-semibold !text-gray-200">
-                Ang mga salitang tulad ng <b>e</b>lisi, <b>e</b>lepante, <b>e</b>kis, <b>e</b>spada at <b>e</b>roplano ay nagsisimula sa letrang Ee. Hindi nakapagtataka kung bakit ang naririnig mong unang tunog ng mga ito ay tunog /e/.
+                Ang mga salitang tulad ng <b>e</b>lisi, <b>e</b>lepante, <b>e</b>kis, <b>e</b>spada at <b>e</b>roplano ay nagsisimula sa letrang <span class="!text-[#F4C300]">Ee</span>. Hindi nakapagtataka kung bakit ang naririnig mong unang tunog ng mga ito ay tunog /e/.
             </p>
         </header>
         
@@ -136,7 +136,7 @@
                 Ano nga ba ang tunog ng letrang Ee?
             </p>
             <p class="text-xl !text-gray-300 mt-2">
-                Pindutin mo ang microphone button at bigkasin mo ito.
+                Basahin at bigkasin mo ang tunog ng letra.
             </p>
         </header>
 
@@ -173,7 +173,7 @@
                 <span class="!text-[#F4C300]">Ii</span>
             </h1>
             <p class="text-2xl font-semibold !text-gray-200">
-                Nagsisimula sa letrang Ii ang mga salitang <b>i</b>bon, <b>i</b>sda, <b>i</b>tlog, <b>i</b>law at <b>i</b>long kung kaya naman ang naririnig nating unang tunog ng mga salitang ito ay tunog /i/.
+                Nagsisimula sa letrang <span class="!text-[#F4C300]">Ii</span> ang mga salitang <b>i</b>bon, <b>i</b>sda, <b>i</b>tlog, <b>i</b>law at <b>i</b>long kung kaya naman ang naririnig nating unang tunog ng mga salitang ito ay tunog /i/.
             </p>
         </header>
         
@@ -195,7 +195,7 @@
                 Ano nga ba ang tunog ng letrang Ii?
             </p>
             <p class="text-xl !text-gray-300 mt-2">
-                Pindutin mo ang microphone button at bigkasin mo ito.
+                Basahin at bigkasin mo ang tunog ng letra.
             </p>
         </header>
 
@@ -232,7 +232,7 @@
                 <span class="!text-[#F4C300]">Oo</span>
             </h1>
             <p class="text-2xl font-semibold !text-gray-200">
-                Ang mga binasa nating salita kanina na <b>o</b>so, <b>o</b>kra, <b>o</b>rasan, <b>o</b>spital at <b>o</b>regano ay pawang nagsisimula sa letrang Oo. Ang unang tunog ng mga salitang ito ay tunog /o/.
+                Ang mga binasa nating salita kanina na <b>o</b>so, <b>o</b>kra, <b>o</b>rasan, <b>o</b>spital at <b>o</b>regano ay pawang nagsisimula sa letrang <span class="!text-[#F4C300]">Oo</span>. Ang unang tunog ng mga salitang ito ay tunog /o/.
             </p>
         </header>
         
@@ -254,7 +254,7 @@
                 Ano nga ba ang tunog ng letrang Oo?
             </p>
             <p class="text-xl !text-gray-300 mt-2">
-                Pindutin mo ang microphone button at bigkasin mo ito.
+                Basahin at bigkasin mo ang tunog ng letra.
             </p>
         </header>
 
@@ -291,7 +291,7 @@
                 <span class="!text-[#F4C300]">Uu</span>
             </h1>
             <p class="text-2xl font-semibold !text-gray-200">
-                Narinig natin ang tunog na /u/ sa mga salitang <b>u</b>bas, <b>u</b>nan, <b>u</b>lan, <b>u</b>sa at <b>u</b>be dahil ang mga salitang ito ay nagsisimula sa letrang Uu.
+                Narinig natin ang tunog na /u/ sa mga salitang <b>u</b>bas, <b>u</b>nan, <b>u</b>lan, <b>u</b>sa at <b>u</b>be dahil ang mga salitang ito ay nagsisimula sa letrang <span class="!text-[#F4C300]">Uu</span>.
             </p>
         </header>
         
@@ -313,7 +313,7 @@
                 Ano nga ba ang tunog ng letrang Uu?
             </p>
             <p class="text-xl !text-gray-300 mt-2">
-                Pindutin mo ang microphone button at bigkasin mo ito.
+                Basahin at bigkasin mo ang tunog ng letra.
             </p>
         </header>
 

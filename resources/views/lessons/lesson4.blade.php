@@ -192,9 +192,9 @@
 
         <div class="grid grid-cols-3 gap-6 text-4xl font-bold text-center p-5 overflow-y-auto flex-1">
             @foreach ([
-                'a+ma', 'ma+ma', 'a+sa',
-                'sa+ma', 'sa+sa+ma', 'a+a+sa',
-                'ma+sa+ma', 'ma+sa', 'ma+sa+sa+ma'
+                'a + ma', 'ma + ma', 'a + sa',
+                'sa + ma', 'sa + sa + ma', 'a + a + sa',
+                'ma + sa + ma', 'ma + sa', 'ma + sa + sa + ma'
             ] as $combination)
                 <p class="z-[2] cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform">
                     {{ $combination }}

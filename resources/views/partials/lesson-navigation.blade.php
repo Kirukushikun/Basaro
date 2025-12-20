@@ -47,20 +47,30 @@
             </button>
 
             <div class="flex flex-col gap-5">
-                <h2 class="text-xl font-semibold -mb-2">Magpatuloy </h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, hic?</p>
+                <h2 class="text-xl font-semibold -mb-2">Pagsasanay</h2>
+
+                <p>
+                    Handa ka na bang magsimula sa pagsasanay?
+                </p>
 
                 <div class="flex justify-end gap-3">
-                    <button @click="showModal = false" class="px-4 py-2 border rounded-lg hover:bg-gray-100">Cancel</button>
+                    <button 
+                        @click="showModal = false"
+                        class="px-4 py-2 border rounded-lg hover:bg-gray-100"
+                    >
+                        Kanselahin
+                    </button>
+
                     <button 
                         onclick="window.location.href='/lesson-view?lesson={{ $lesson }}&slide=third-slide'"
                         @click="showModal = false"
                         class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold"
                     >
-                        Magpatuloy
+                        Simulan
                     </button>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
