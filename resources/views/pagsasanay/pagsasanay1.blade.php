@@ -1,80 +1,87 @@
-<!-- Pagsasanay 1 -->
-<div class="relative" x-data="{
-    page: 1,
-    selected: null,
-    confirmed: false,
-    showFeedback: false,
-    score: 0,
-    questions: @js($questions),
+<!-- Pagsasanay 3 -->
+<div class="relative flex flex-col items-center"
+     x-data="{
+        page: 1,
+        confirmed: false,
+        recording: false,
+        score: 0,
+        questions: @js($questions),
 
-    get current() {
-        return this.page <= this.questions.length ? this.questions[this.page - 1] : null
-    },
+        get current() {
+            return this.page <= this.questions.length
+                ? this.questions[this.page - 1]
+                : null
+        },
 
-    confirm() {
-        this.confirmed = true
-    },
+        next() {
+            if (!this.confirmed) {
+                this.confirmed = true
+                // Score for read_phrase and read_sentence auto-pass
+                if (['read_phrase', 'read_sentence'].includes(this.current.type)) {
+                    this.score++
+                }
+                // Score for comprehension if correct
+                if (this.current.type === 'comprehension' && this.userInput.toLowerCase().trim() === this.current.answer.toLowerCase().trim()) {
+                    this.score++
+                }
+            } else {
+                this.page++
+                this.reset()
+            }
+        },
 
-    next() {
-        if (!this.showFeedback) {
-            this.showFeedback = true
-            if (this.selected === this.current.answer) this.score++
-        } else {
-            this.page++
+        confirm() {
+            this.confirmed = true
+        },
+
+        reset() {
+            this.confirmed = false
+            this.recording = false
+        },
+
+        replay() {
+            this.page = 1
+            this.score = 0
             this.reset()
         }
-    },
+     }">
 
-    reset() {
-        this.selected = null
-        this.confirmed = false
-        this.showFeedback = false
-    },
-
-    replay() {
-        this.page = 1
-        this.score = 0
-        this.reset()
-    }
-}">
-    
-    <!-- Question Content -->
     <template x-if="current">
-        <div class="flex-1 flex flex-col items-center gap-10 mt-10 w-full">
+        <div class="flex-1 flex flex-col items-center gap-10">
 
-            <!-- Audio Icon -->
-            <i class="fa-solid fa-ear-listen !text-[#F4C300] alphabet"></i>
+            <!-- alpabeto -->
+            <h1 class="alphabet mt-10 !text-[#F4C300]"
+                x-text="current.alpabeto"></h1>
 
-            <!-- Letter Choices -->
-            <div class="grid grid-cols-5 gap-4">
-                <template x-for="choice in current.choices" :key="choice">
-                    <button
-                        @click="selected = choice; confirmed = false; showFeedback = false"
-                        :class="{ 'bg-[#F4C300] !text-black': selected === choice }"
-                        class="choice font-extrabold px-4 py-2 text-xl !text-[#F4C300] border-2 !border-[#F4C300] rounded-lg hover:bg-[#F4C300] hover:!text-black transition-all">
-                        <span x-text="choice"></span>
-                    </button>
-                </template>
+            <!-- Success -->
+            <div x-show="confirmed"
+                 x-transition
+                 class=" px-4 py-2 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold">
+                ✅ Tama!
             </div>
 
-            <!-- Prompt -->
-            <p class="w-96 text-lg text-center" x-text="current.prompt"></p>
+            <!-- Instruction -->
+            <p class="w-96 text-lg text-center">
+                Basahin nang malinaw ang alpabetong nasa itaas.
+                Subukang bigkasin ito nang tama at dahan-dahan.
+            </p>
 
-            <!-- Confirm Button -->
-            <button x-show="selected && !confirmed"
-                @click="confirm"
-                class="px-6 py-2 bg-[#F4C300] text-black font-bold rounded-lg">
-                Kumpirmahin
-            </button>
+            <!-- Microphone -->
+            <div
+                @mousedown="recording = true"
+                @mouseup="
+                    recording = false;
+                    setTimeout(() => confirm(), 1500)
+                "
+                @mouseleave="recording = false"
+                class="relative bg-gray-500 px-3 py-2 rounded-full cursor-pointer transition-transform hover:scale-110"
+                :class="{ 'scale-125 ring-4 ring-red-500 animate-pulse': recording }">
 
-            <!-- Feedback -->
-            <div x-show="showFeedback"
-                class="mt-4 px-4 py-2 rounded-lg text-lg font-semibold"
-                :class="selected === current.answer ? 'bg-green-500 text-white' : 'bg-red-500 text-white'">
-                <span x-show="selected === current.answer">✅ Tama!</span>
-                <span x-show="selected !== current.answer">
-                    ❌ Mali. Ang tamang sagot ay <b x-text="current.answer"></b>
-                </span>
+                <i class="fa-solid fa-microphone text-white text-xl"></i>
+
+                <div x-show="recording"
+                     class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
+                </div>
             </div>
 
         </div>

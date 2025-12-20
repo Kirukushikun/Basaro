@@ -14,6 +14,14 @@
     alt="Layunin Figure"
 >
 
+{{-- Page 3 Background --}}
+<img 
+    x-show="page === 3" 
+    class="absolute bottom-[40px] left-[70px] z-[1] w-[730px] pointer-events-none" 
+    src="../Img/layunin-figure.png" 
+    alt="Layunin Figure"
+>
+
 <div class="card w-full max-h-[80vh] flex flex-col items-center gap-5 relative text-lg">
     
     {{-- ===== PAGE 1 ===== --}}
@@ -43,6 +51,14 @@
                 </p>
             @endforeach
         </div>
+    </div>
+
+    {{-- ===== PAGE 3 ===== --}}
+    <div x-show="page === 3" class="w-full flex-1 flex flex-col gap-6 px-2">
+        <p class="text-2xl font-semibold !text-gray-200">
+            Ngayon naman ay subukan mong dumako sa mga pagsasanay, tayo ng mag-Basaro! Magbasa at maglaro. Sa bawat tamang sagot ay makakakuha ka ng ribbon. 
+            Para sa <span class="!text-[#F4C300]">Pagsasanay A</span> ano ang tunog ng sumusunod na letra? Pindutin mo lamang ang microphone button <i class="fa-solid fa-microphone"></i> para sa pagbigkas mo ng tunog ng letra. Huwag kang mag alala gagabayan ka ng iyong guro.
+        </p>
     </div>
 
     {{-- Navigation Buttons --}}

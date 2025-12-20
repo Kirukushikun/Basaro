@@ -13,9 +13,9 @@ class SecondSlide extends Component
     // Audio configuration - easy to manage!
     private $audioMap = [
         1 => [ // Lesson 1
-            1 => 'audio/L1P1.m4a',
-            2 => 'audio/L1P2.m4a',
-            // Add more pages as needed
+            1 => 'audio/lesson1/L1P1.m4a',
+            2 => 'audio/lesson1/L1P2.m4a',
+            3 => 'audio/lesson1/L1P3.m4a',
         ],
         2 => [ // Lesson 2
             1 => 'audio/L2P1.m4a',
@@ -312,6 +312,15 @@ class SecondSlide extends Component
     public function getAudioForCurrentPage()
     {
         return $this->audioMap[$this->lesson][$this->page] ?? null;
+    }
+
+    // Simple page navigation
+    public function nextPage()
+    {
+        if ($this->page < $this->totalPages) {
+            $this->page++;
+            $this->updateUserProgress(); // Just update current_progress, NOT UserTrack
+        }
     }
 
     public function getAllAudios()
