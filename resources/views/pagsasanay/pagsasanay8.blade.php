@@ -1,5 +1,5 @@
 <!-- Pagsasanay 8: Story Reading + Multiple Choice Questions -->
-<div class="relative"
+<div class="relative flex flex-col items-center"
      x-data="{
         page: 1,
         selected: null,

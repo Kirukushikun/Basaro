@@ -1,5 +1,5 @@
 <!-- Pagsasanay 6: Syllable Building + Reading Comprehension -->
-<div class="relative"
+<div class="relative flex flex-col items-center"
      x-data="{
         page: 1,
         confirmed: false,

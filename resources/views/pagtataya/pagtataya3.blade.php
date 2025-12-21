@@ -1,4 +1,4 @@
-<!-- Pagsasanay 3 -->
+<!-- Pagtataya 3 -->
 <div class="relative flex flex-col items-center"
      x-data="{
         page: 1,
@@ -96,9 +96,9 @@
     </template>
 
     <!-- Results Page -->
-    @include('partials.pagsasanay-results')
+    @include('partials.pagtataya-results')
 
     <!-- Navigation Buttons -->
-    @include('partials.pagsasanay-navigation')
+    @include('partials.pagtataya-navigation')
 
 </div>

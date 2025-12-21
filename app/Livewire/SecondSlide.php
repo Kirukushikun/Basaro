@@ -40,10 +40,10 @@ class SecondSlide extends Component
             18 => 'audio/lesson2/L2P18.m4a',
         ],
         3 => [ // Lesson 3
-            1 => 'audio/L3P1.m4a',
-            2 => 'audio/L3P2.m4a',
-            3 => 'audio/L3P3.m4a',
-            4 => 'audio/L3P4.m4a',
+            1 => 'audio/lesson3/L3P1.m4a',
+            2 => 'audio/lesson3/L3P2.m4a',
+            3 => 'audio/lesson3/L3P3.m4a',
+            4 => 'audio/lesson3/L3P4.m4a',
         ],
         4 => [ // Lesson 4
             1 => 'audio/L4P1.m4a',

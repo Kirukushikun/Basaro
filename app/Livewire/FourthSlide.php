@@ -170,7 +170,20 @@ class FourthSlide extends Component
                 'image' => 'illustrations/oso.png',
                 'answer' => 'O',
             ],
-        ]
+        ],
+
+        3 => [
+            ['kataga' => 'Ang'],
+            ['kataga' => 'Si'],
+            ['kataga' => 'Ay'],
+            ['kataga' => 'Ng'],
+            ['kataga' => 'Mga'],
+            ['kataga' => 'At'],
+            ['kataga' => 'Na'],
+            ['kataga' => 'Kay'],
+            ['kataga' => 'Ni'],
+            ['kataga' => 'Mas'],
+        ],
     ];
 
     public function mount($lesson)

@@ -3,17 +3,16 @@
 <div class="card w-full h-[70vh] min-h-[50vh] flex flex-col relative text-lg">
     {{-- ===== PAGE 1 ===== --}}
     <div x-show="page === 1" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header flex flex-col gap-2">
+        <header class="header flex flex-col gap-3">
             <h1 class="text-3xl font-bold">
                 <span class="!text-[#F4C300]">Sesyon 3:</span>
                 Mga Pantulong na Kataga
             </h1>
             <p class="text-2xl font-semibold !text-gray-200">
-                Pagpapakilala ng ilan sa mga pantulong na kataga. Ang mga katagang ito ay madalas na ginagamit sa pagbuo at pagbasa ng mga parirala at pangungusap. Mahalagang matutuhan mong basahin ang mga ito upang hindi ka mahirapan sa iyong pagbasa sa mga parirala at pangungusap.
+                Maligayang pagdating sa sesyon <span class="!text-[#F4C300]">3</span>! Mga pantulong na kataga, ngayon ay ipapakilala sayo ang ilan sa mga pantulong na kataga.  
             </p>
-            <p class="text-2xl font-semibold !text-gray-200">
-                Babasahin ko ang mga halimbawa. Makinig kang mabuti upang masundan mo sa iyong isip at mga mata ang aking mga binabasa.
-            </p>
+            <p class="text-2xl font-semibold !text-gray-200">Ano ang gamit ng mga katagang ito? Ang mga ito ay madalas na ginagamit sa pagbuo at pagbasa ng mga parirala at pangungusap.</p>
+            <p class="text-2xl font-semibold !text-gray-200">Mahalagang matutuhan mong basahin ang mga ito upang hindi ka mahirapan sa iyong pagbasa sa mga parirala at pangungusap.</p>
         </header>
     </div>
 
@@ -21,7 +20,7 @@
     <div x-show="page === 2" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
         <header class="header flex-shrink-0">
             <p class="text-2xl font-semibold !text-gray-200">
-                Mga Pantulong na kataga.
+                Babasahin ko ang mga halimbawa. Makinig kang mabuti upang masundan mo sa iyong isip at mga mata ang aking mga binabasa.
             </p>
         </header>
         
@@ -41,7 +40,7 @@
     <div x-show="page === 3" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
         <header class="header flex-shrink-0">
             <p class="text-2xl font-semibold !text-gray-200">
-                Ngayon naman ay magbabasa ka pagkatapos ko.
+                Ngayon naman ay ikaw na ang magbabasa pagkatapos ko.
             </p>
         </header>
         

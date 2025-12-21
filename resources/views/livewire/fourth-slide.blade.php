@@ -18,6 +18,8 @@
                 @include('pagtataya.pagtataya1', ['questions' => $this->lessonQuestions])
             @elseif($lesson == 2)
                 @include('pagtataya.pagtataya2', ['questions' => $this->lessonQuestions])
+            @elseif($lesson == 3)
+                @include('pagtataya.pagtataya3', ['questions' => $this->lessonQuestions])
             @endif
 
         </div>

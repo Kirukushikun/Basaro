@@ -43,22 +43,22 @@
                     {{-- Current lesson is completed, move to next --}}
                     @if ($lesson->order < 20)
                         <button class="w-fit !text-black px-4 py-2 bg-green-500 text-white rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson={{$lesson->order + 1}}&slide=first-slide'">
-                            ✅ Susunod na Aralin
+                            <i class="fa-solid !text-black fa-check"></i> Susunod na Aralin
                         </button>
                     @else
                         <span class="w-fit px-4 py-2 bg-green-500 text-white rounded-md font-bold">
-                            🎉 Natapos na ang lahat ng Aralin!
+                            <i class="fa-solid !text-black fa-champagne-glasses"></i> Natapos na ang lahat ng Aralin!
                         </span>
                     @endif
                 @elseif ($user->current_lesson > $lesson->order)
                     {{-- This lesson was already completed (user is on a later lesson) --}}
                     <button class="w-fit !text-black px-4 py-2 bg-blue-500 text-white rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson={{$lesson->order}}&slide=first-slide'">
-                        🔄 Balikan ang Aralin
+                        <i class="fa-solid !text-black fa-repeat"></i> Balikan ang Aralin
                     </button>
                 @elseif ($user->current_lesson < $lesson->order)
                     {{-- This lesson is locked (user hasn't reached it yet) --}}
                     <button class="w-fit px-4 py-2 bg-gray-400 text-gray-700 rounded-md font-bold cursor-not-allowed" disabled>
-                        🔒 Nakalock pa
+                        <i class="fa-solid !text-black fa-lock"></i> Nakalock pa
                     </button>
                 @else
                     {{-- Start fresh lesson (progress == 0 or just starting) --}}
