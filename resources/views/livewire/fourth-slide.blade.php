@@ -16,6 +16,8 @@
             <!-- Dynamic Lesson Content -->
             @if($lesson == 1)
                 @include('pagtataya.pagtataya1', ['questions' => $this->lessonQuestions])
+            @elseif($lesson == 2)
+                @include('pagtataya.pagtataya2', ['questions' => $this->lessonQuestions])
             @endif
 
         </div>

@@ -117,6 +117,60 @@ class FourthSlide extends Component
                 'answer' => 'N',
             ],
         ],
+
+        2 => [
+            [
+                'type' => 'patinig_identification',
+                'patinig' => 'A',
+                'answer' => 'Ah',
+            ],
+            [
+                'type' => 'patinig_identification',
+                'patinig' => 'E',
+                'answer' => 'Eh',
+            ],
+            [
+                'type' => 'patinig_identification',
+                'patinig' => 'I',
+                'answer' => 'Ih',
+            ],
+            [
+                'type' => 'patinig_identification',
+                'patinig' => 'O',
+                'answer' => 'Oh',
+            ],
+            [
+                'type' => 'patinig_identification',
+                'patinig' => 'U',
+                'answer' => 'Uh',
+            ],
+
+            [
+                'type' => 'image_identification',
+                'image' => 'illustrations/aso.png',
+                'answer' => 'A',
+            ],
+            [
+                'type' => 'image_identification',
+                'image' => 'illustrations/usa.png',
+                'answer' => 'U',
+            ],
+            [
+                'type' => 'image_identification',
+                'image' => 'illustrations/elesi.png',
+                'answer' => 'E',
+            ],
+            [
+                'type' => 'image_identification',
+                'image' => 'illustrations/ilong.png',
+                'answer' => 'I',
+            ],
+            [
+                'type' => 'image_identification',
+                'image' => 'illustrations/oso.png',
+                'answer' => 'O',
+            ],
+        ]
     ];
 
     public function mount($lesson)

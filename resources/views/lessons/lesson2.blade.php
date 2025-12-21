@@ -1,4 +1,4 @@
-<div class="card w-full h-[70vh] min-h-[50vh] flex flex-col relative text-lg">
+<div class="card w-full max-h-[80vh] flex flex-col items-center gap-5 relative text-lg">
     {{-- ===== PAGE 1 ===== --}}
     <div x-show="page === 1" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
@@ -38,13 +38,19 @@
         
         <div class="grid grid-cols-3 gap-5 text-4xl font-bold text-center p-5 overflow-y-auto flex-1">
             @foreach ([
-                'Aso', 'Araw', 'Apoy', 'Atis', 'Ahas', 'Abokado',
+                'aso', 'araw', 'apoy', 'atis', 'ahas', 'abokado',
             ] as $patinig)
-                <p class="z-[2] cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform">
-                    {{ $patinig }}
-                </p>
+                <div class="z-[2] p-2 cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform capitalize">
+                    <img 
+                        src="{{ asset('illustrations/' . $patinig . '.png') }}" 
+                        alt="{{ $patinig }}"
+                        class="mx-auto mb-3 w-32 h-32 object-cover rounded-md"
+                    >
+                    <p>{{ $patinig }}</p>
+                </div>
             @endforeach
         </div>
+
     </div>
 
     {{-- ===== PAGE 4 ===== --}}
@@ -61,11 +67,16 @@
         
         <div class="grid grid-cols-3 gap-5 text-4xl font-bold text-center p-5 overflow-y-auto flex-1">
             @foreach ([
-                'Aso', 'Araw', 'Apoy', 'Atis', 'Ahas', 'Abokado',
-            ] as $patinig)
-                <p class="z-[2] cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform">
-                    {{ $patinig }}
-                </p>
+                'aso', 'araw', 'apoy', 'atis', 'ahas', 'abokado',
+            ] as $word)
+                <div class="z-[2] p-2 cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform capitalize">
+                    <img 
+                        src="{{ asset('illustrations/' . $word . '.png') }}" 
+                        alt="{{ $word }}"
+                        class="mx-auto mb-3 w-32 h-32 object-cover rounded-md"
+                    >
+                    <p>{{ $word }}</p>
+                </div>
             @endforeach
         </div>
     </div>
@@ -97,11 +108,16 @@
         
         <div class="grid grid-cols-3 gap-5 text-4xl font-bold text-center p-5 overflow-y-auto flex-1">
             @foreach ([
-                'Elisi', 'Elepante', 'Ekis', 'Espada', 'Eroplano',
+                'elesi', 'elepante', 'ekis', 'espada', 'eroplano',
             ] as $word)
-                <p class="z-[2] cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform">
-                    {{ $word }}
-                </p>
+                <div class="z-[2] p-2 cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform capitalize">
+                    <img 
+                        src="{{ asset('illustrations/' . $word . '.png') }}" 
+                        alt="{{ $word }}"
+                        class="mx-auto mb-3 w-32 h-32 object-cover rounded-md"
+                    >
+                    <p>{{ $word }}</p>
+                </div>
             @endforeach
         </div>
     </div>
@@ -120,11 +136,16 @@
         
         <div class="grid grid-cols-3 gap-5 text-4xl font-bold text-center p-5 overflow-y-auto flex-1">
             @foreach ([
-                'Elisi', 'Elepante', 'Ekis', 'Espada', 'Eroplano',
+                'elesi', 'elepante', 'ekis', 'espada', 'eroplano',
             ] as $word)
-                <p class="z-[2] cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform">
-                    {{ $word }}
-                </p>
+                <div class="z-[2] p-2 cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform capitalize">
+                    <img 
+                        src="{{ asset('illustrations/' . $word . '.png') }}" 
+                        alt="{{ $word }}"
+                        class="mx-auto mb-3 w-32 h-32 object-cover rounded-md"
+                    >
+                    <p>{{ $word }}</p>
+                </div>
             @endforeach
         </div>
     </div>
@@ -156,11 +177,16 @@
         
         <div class="grid grid-cols-3 gap-5 text-4xl font-bold text-center p-5 overflow-y-auto flex-1">
             @foreach ([
-                'Ibon', 'Isda', 'Itlog', 'Ilaw', 'Ilong',
+                'ibon', 'isda', 'itlog', 'ilaw', 'ilong',
             ] as $word)
-                <p class="z-[2] cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform">
-                    {{ $word }}
-                </p>
+                <div class="z-[2] p-2 cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform capitalize">
+                    <img 
+                        src="{{ asset('illustrations/' . $word . '.png') }}" 
+                        alt="{{ $word }}"
+                        class="mx-auto mb-3 w-32 h-32 object-cover rounded-md"
+                    >
+                    <p>{{ $word }}</p>
+                </div>
             @endforeach
         </div>
     </div>
@@ -179,11 +205,16 @@
         
         <div class="grid grid-cols-3 gap-5 text-4xl font-bold text-center p-5 overflow-y-auto flex-1">
             @foreach ([
-                'Ibon', 'Isda', 'Itlog', 'Ilaw', 'Ilong',
+                'ibon', 'isda', 'itlog', 'ilaw', 'ilong',
             ] as $word)
-                <p class="z-[2] cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform">
-                    {{ $word }}
-                </p>
+                <div class="z-[2] p-2 cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform capitalize">
+                    <img 
+                        src="{{ asset('illustrations/' . $word . '.png') }}" 
+                        alt="{{ $word }}"
+                        class="mx-auto mb-3 w-32 h-32 object-cover rounded-md"
+                    >
+                    <p>{{ $word }}</p>
+                </div>
             @endforeach
         </div>
     </div>
@@ -215,11 +246,16 @@
         
         <div class="grid grid-cols-3 gap-5 text-4xl font-bold text-center p-5 overflow-y-auto flex-1">
             @foreach ([
-                'Oso', 'Okra', 'Orasan', 'Ospital', 'Oregano',
+                'oso', 'okra', 'orasan', 'ospital', 'oregano',
             ] as $word)
-                <p class="z-[2] cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform">
-                    {{ $word }}
-                </p>
+                <div class="z-[2] p-2 cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform capitalize">
+                    <img 
+                        src="{{ asset('illustrations/' . $word . '.png') }}" 
+                        alt="{{ $word }}"
+                        class="mx-auto mb-3 w-32 h-32 object-cover rounded-md"
+                    >
+                    <p>{{ $word }}</p>
+                </div>
             @endforeach
         </div>
     </div>
@@ -238,11 +274,16 @@
         
         <div class="grid grid-cols-3 gap-5 text-4xl font-bold text-center p-5 overflow-y-auto flex-1">
             @foreach ([
-                'Oso', 'Okra', 'Orasan', 'Ospital', 'Oregano',
+                'oso', 'okra', 'orasan', 'ospital', 'oregano',
             ] as $word)
-                <p class="z-[2] cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform">
-                    {{ $word }}
-                </p>
+                <div class="z-[2] p-2 cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform capitalize">
+                    <img 
+                        src="{{ asset('illustrations/' . $word . '.png') }}" 
+                        alt="{{ $word }}"
+                        class="mx-auto mb-3 w-32 h-32 object-cover rounded-md"
+                    >
+                    <p>{{ $word }}</p>
+                </div>
             @endforeach
         </div>
     </div>
@@ -274,11 +315,16 @@
         
         <div class="grid grid-cols-3 gap-5 text-4xl font-bold text-center p-5 overflow-y-auto flex-1">
             @foreach ([
-                'Ubas', 'Unan', 'Ulan', 'Usa', 'Ube',
+                'ubas', 'unan', 'ulan', 'usa', 'ube',
             ] as $word)
-                <p class="z-[2] cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform">
-                    {{ $word }}
-                </p>
+                <div class="z-[2] p-2 cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform capitalize">
+                    <img 
+                        src="{{ asset('illustrations/' . $word . '.png') }}" 
+                        alt="{{ $word }}"
+                        class="mx-auto mb-3 w-32 h-32 object-cover rounded-md"
+                    >
+                    <p>{{ $word }}</p>
+                </div>
             @endforeach
         </div>
     </div>
@@ -297,11 +343,16 @@
         
         <div class="grid grid-cols-3 gap-5 text-4xl font-bold text-center p-5 overflow-y-auto flex-1">
             @foreach ([
-                'Ubas', 'Unan', 'Ulan', 'Usa', 'Ube',
+                'ubas', 'unan', 'ulan', 'usa', 'ube',
             ] as $word)
-                <p class="z-[2] cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform">
-                    {{ $word }}
-                </p>
+                <div class="z-[2] p-2 cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform capitalize">
+                    <img 
+                        src="{{ asset('illustrations/' . $word . '.png') }}" 
+                        alt="{{ $word }}"
+                        class="mx-auto mb-3 w-32 h-32 object-cover rounded-md"
+                    >
+                    <p>{{ $word }}</p>
+                </div>
             @endforeach
         </div>
     </div>
@@ -320,6 +371,13 @@
         <div class="flex-1 flex items-center justify-center">
             <p class="text-9xl font-bold !text-[#F4C300]">U</p>
         </div>
+    </div>
+
+    {{-- ===== PAGE 18 ===== --}}
+    <div x-show="page === 18" class="w-full flex-1 flex flex-col gap-6 px-2">
+        <p class="text-2xl font-semibold !text-gray-200">
+            Para sa iyong pagsasanay, tayo ng mag-Basaro! Magbasa at maglaro.
+        </p>
     </div>
 
     {{-- Navigation Buttons --}}

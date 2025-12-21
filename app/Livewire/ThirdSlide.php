@@ -31,17 +31,15 @@ class ThirdSlide extends Component
         2 => [
             [
                 'type' => 'image_group_audio',
-                'prompt' => 'Tukuyin mo ang sumusunod na larawan.',
                 'answer' => 'A',
                 'images' => [
-                    ['src' => 'illustrations/aso.jpg', 'label' => 'aso'],
-                    ['src' => 'illustrations/araw.jpg', 'label' => 'araw'],
-                    ['src' => 'illustrations/ahas.jpg', 'label' => 'ahas'],
+                    ['src' => 'illustrations/aso.png', 'label' => 'aso'],
+                    ['src' => 'illustrations/araw.png', 'label' => 'araw'],
+                    ['src' => 'illustrations/ahas.png', 'label' => 'ahas'],
                 ],
             ],
             [
                 'type' => 'image_group_audio',
-                'prompt' => 'Tukuyin mo ang sumusunod na larawan.',
                 'answer' => 'E',
                 'images' => [
                     ['src' => 'illustrations/ekis.png', 'label' => 'ekis'],
@@ -51,7 +49,6 @@ class ThirdSlide extends Component
             ],
             [
                 'type' => 'image_group_audio',
-                'prompt' => 'Tukuyin mo ang sumusunod na larawan.',
                 'answer' => 'I',
                 'images' => [
                     ['src' => 'illustrations/itlog.png', 'label' => 'itlog'],
@@ -61,7 +58,6 @@ class ThirdSlide extends Component
             ],
             [
                 'type' => 'image_group_audio',
-                'prompt' => 'Tukuyin mo ang sumusunod na larawan.',
                 'answer' => 'O',
                 'images' => [
                     ['src' => 'illustrations/oso.png', 'label' => 'oso'],
@@ -71,7 +67,6 @@ class ThirdSlide extends Component
             ],
             [
                 'type' => 'image_group_audio',
-                'prompt' => 'Tukuyin mo ang sumusunod na larawan.',
                 'answer' => 'U',
                 'images' => [
                     ['src' => 'illustrations/unan.png', 'label' => 'unan'],
@@ -119,7 +114,7 @@ class ThirdSlide extends Component
                 'type' => 'fill_blank_audio',
                 'word' => '_po',
                 'answer' => 'U',
-                'image' => 'illustrations/upong.png',
+                'image' => 'illustrations/upo.png',
             ],
             [
                 'type' => 'fill_blank_audio',
