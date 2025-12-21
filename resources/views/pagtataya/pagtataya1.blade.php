@@ -1,4 +1,3 @@
-<!-- Pagsasanay 1 -->
 <div class="relative flex flex-col items-center" x-data="{
     page: 1,
     selected: null,
@@ -8,21 +7,18 @@
     questions: @js($questions),
 
     get current() {
-        return this.page <= this.questions.length ? this.questions[this.page - 1] : null
+        return this.questions[this.page - 1] || null
     },
 
     confirm() {
         this.confirmed = true
+        this.showFeedback = true
+        if (this.selected === this.current.answer) this.score++
     },
 
     next() {
-        if (!this.showFeedback) {
-            this.showFeedback = true
-            if (this.selected === this.current.answer) this.score++
-        } else {
-            this.page++
-            this.reset()
-        }
+        this.page++
+        this.reset()
     },
 
     reset() {
@@ -38,7 +34,6 @@
     }
 }">
     
-    <!-- Question Content -->
     <template x-if="current">
         <div class="flex-1 flex flex-col items-center gap-10 mt-10 w-full">
 
@@ -49,12 +44,28 @@
             <div class="grid grid-cols-5 gap-4">
                 <template x-for="choice in current.choices" :key="choice">
                     <button
-                        @click="selected = choice; confirmed = false; showFeedback = false"
-                        :class="{ 'bg-[#F4C300] !text-black': selected === choice }"
-                        class="choice font-extrabold px-4 py-2 text-xl !text-[#F4C300] border-2 !border-[#F4C300] rounded-lg hover:bg-[#F4C300] hover:!text-black transition-all">
+                        @click="!confirmed && (selected = choice)"
+                        :disabled="confirmed"
+                        :class="{ 
+                            'bg-[#F4C300] !text-black': selected === choice,
+                            'opacity-50 cursor-not-allowed': confirmed && selected !== choice
+                        }"
+                        class="choice font-extrabold px-4 py-2 text-xl !text-[#F4C300] border-2 !border-[#F4C300] rounded-lg hover:bg-[#F4C300] hover:!text-black transition-all disabled:hover:bg-transparent disabled:hover:!text-[#F4C300]">
                         <span x-text="choice"></span>
                     </button>
                 </template>
+            </div>
+
+            <div x-data="{ hover: false }" 
+                @mouseenter="hover = true" 
+                @mouseleave="hover = false"
+                class="flex gap-2 items-center relative bg-gray-500 px-4 py-3 rounded-full cursor-pointer transition-transform hover:scale-110">
+                <i class="fa-solid fa-volume-high"></i>
+                
+                <!-- Tooltip -->
+                <div x-show="hover" x-transition class="absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-sm px-3 py-1 rounded whitespace-nowrap">
+                    Pakinggan ulit
+                </div>
             </div>
 
             <!-- Prompt -->
@@ -63,7 +74,7 @@
             <!-- Confirm Button -->
             <button x-show="selected && !confirmed"
                 @click="confirm"
-                class="px-6 py-2 bg-[#F4C300] text-black font-bold rounded-lg">
+                class="px-6 py-2 bg-[#F4C300] text-black font-bold rounded-lg hover:bg-yellow-500 transition-colors">
                 Kumpirmahin
             </button>
 
@@ -86,4 +97,4 @@
     <!-- Navigation Buttons -->
     @include('partials.pagtataya-navigation')
 
-</div>
+</div>  

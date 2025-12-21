@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'google' => [
+        'project_id' => env('GOOGLE_CLOUD_PROJECT_ID'),
+        'credentials' => storage_path('app/google/basaro-project-029b7ec40dfb.json'),
+    ],
+
 ];
