@@ -52,6 +52,13 @@
         </div>
     </div>
 
+    {{-- ===== PAGE 3 ===== --}}
+    <div x-show="page === 3" class="w-full flex-1 flex flex-col gap-6 px-2">
+        <p class="text-2xl font-semibold !text-gray-200">
+            Dumako kana sa pagsasanay, Tayo ng mag-Basaro! Magbasa at maglaro. Sa bawat tamang sagot ay makakakuha ka ng ribbon. Para sa panuto subukan mong basahin ang sumusunod na parirala.
+        </p>
+    </div>
+
     {{-- Navigation Buttons --}}
     @include('partials.lesson-navigation')
 </div>

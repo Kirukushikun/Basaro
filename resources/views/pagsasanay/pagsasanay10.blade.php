@@ -91,8 +91,8 @@
                     <div :class="userInput.toLowerCase().trim() === current.answer.toLowerCase() ? 'bg-green-500' : 'bg-red-500'"
                          x-transition
                          class="px-4 py-2 text-white rounded-lg shadow-md text-lg font-semibold">
-                        <span x-show="userInput.toLowerCase().trim() === current.answer.toLowerCase()">✅ Tama!</span>
-                        <span x-show="userInput.toLowerCase().trim() !== current.answer.toLowerCase()">❌ Mali</span>
+                        <span x-show="userInput.toLowerCase().trim() === current.answer.toLowerCase()"><i class="fa-solid fa-check"></i> Tama!</span>
+                        <span x-show="userInput.toLowerCase().trim() !== current.answer.toLowerCase()"><i class="fa-solid fa-x"></i> Mali</span>
                     </div>
 
                     <!-- Full Word Display -->
@@ -126,7 +126,7 @@
                     <div x-show="confirmed"
                          x-transition
                          class="px-4 py-2 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold">
-                        ✅ Naitala!
+                        <i class="fa-solid fa-check"></i> Naitala!
                     </div>
 
                 </div>

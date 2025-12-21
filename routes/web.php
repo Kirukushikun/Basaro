@@ -17,7 +17,7 @@ Route::middleware('guest')->group(function () {
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth.custom');
 Route::post('/logout/teacher', [AuthController::class, 'teacherLogout'])->name('logout.teacher');
 
-// ✅ MOVE THIS OUTSIDE - But still require auth
+// <i class="fa-solid fa-check"></i> MOVE THIS OUTSIDE - But still require auth
 Route::middleware('auth.custom')->post('/api/speech-to-text', [SpeechController::class, 'transcribe'])
     ->name('speech.transcribe');
 

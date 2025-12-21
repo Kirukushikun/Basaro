@@ -63,7 +63,7 @@
                     
                     console.log('🎤 Recording started...');
                 } catch (error) {
-                    console.error('❌ Error accessing microphone:', error);
+                    console.error('<i class="fa-solid fa-x"></i> Error accessing microphone:', error);
                     alert('Hindi ma-access ang microphone. Please allow microphone access.');
                 }
             },
@@ -115,12 +115,12 @@
                             console.log('🗣️ You said:', this.transcription);
                             this.checkAnswer();
                         } else {
-                            console.error('❌ API Error:', data.error);
+                            console.error('<i class="fa-solid fa-x"></i> API Error:', data.error);
                             alert('May error sa pag-process ng audio: ' + data.error);
                             this.processing = false;
                         }
                     } catch (error) {
-                        console.error('❌ Fetch Error:', error);
+                        console.error('<i class="fa-solid fa-x"></i> Fetch Error:', error);
                         alert('May error sa pag-send ng audio. Check console for details.');
                         this.processing = false;
                     }
@@ -133,9 +133,9 @@
                 
                 if (this.isCorrect) {
                     this.score++;
-                    console.log('✅ Correct! Score:', this.score);
+                    console.log('<i class="fa-solid fa-check"></i> Correct! Score:', this.score);
                 } else {
-                    console.log('❌ Wrong answer');
+                    console.log('<i class="fa-solid fa-x"></i> Wrong answer');
                     console.log('Expected:', this.current.answer);
                     console.log('Got:', this.transcription);
                 }

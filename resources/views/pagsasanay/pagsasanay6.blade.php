@@ -165,19 +165,19 @@
                 
                 <!-- Reading Types (Auto-pass) -->
                 <template x-if="['read_phrase', 'read_sentence'].includes(current.type)">
-                    <span>✅ Tama!</span>
+                    <span><i class="fa-solid fa-check"></i> Tama!</span>
                 </template>
 
                 <!-- Syllable Build Feedback -->
                 <template x-if="current.type === 'syllable_build'">
-                    <span x-show="userInput.toLowerCase().trim() === current.answer.toLowerCase().trim()">✅ Tama!</span>
-                    <span x-show="userInput.toLowerCase().trim() !== current.answer.toLowerCase().trim()">❌ Mali. Ang tamang sagot ay <b x-text="current.answer"></b></span>
+                    <span x-show="userInput.toLowerCase().trim() === current.answer.toLowerCase().trim()"><i class="fa-solid fa-check"></i> Tama!</span>
+                    <span x-show="userInput.toLowerCase().trim() !== current.answer.toLowerCase().trim()"><i class="fa-solid fa-x"></i> Mali. Ang tamang sagot ay <b x-text="current.answer"></b></span>
                 </template>
 
                 <!-- Comprehension Feedback -->
                 <template x-if="current.type === 'comprehension'">
-                    <span x-show="userInput.toLowerCase().trim() === current.answer.toLowerCase().trim()">✅ Tama!</span>
-                    <span x-show="userInput.toLowerCase().trim() !== current.answer.toLowerCase().trim()">❌ Mali. Ang tamang sagot ay <b x-text="current.answer"></b></span>
+                    <span x-show="userInput.toLowerCase().trim() === current.answer.toLowerCase().trim()"><i class="fa-solid fa-check"></i> Tama!</span>
+                    <span x-show="userInput.toLowerCase().trim() !== current.answer.toLowerCase().trim()"><i class="fa-solid fa-x"></i> Mali. Ang tamang sagot ay <b x-text="current.answer"></b></span>
                 </template>
             </div>
 

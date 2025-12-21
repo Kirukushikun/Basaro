@@ -67,7 +67,7 @@
                     <div x-show="confirmed"
                         x-transition
                         class="px-4 py-2 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold">
-                        ✅ Tama!
+                        <i class="fa-solid fa-check"></i> Tama!
                     </div>
 
                     <p class="w-96 text-lg text-center font-semibold">Tukuyin ang patinig ng mga sumusunod na larawan. Subukang bigkasin ito nang tama at dahan-dahan</p>

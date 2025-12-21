@@ -184,6 +184,47 @@ class FourthSlide extends Component
             ['kataga' => 'Ni'],
             ['kataga' => 'Mas'],
         ],
+
+        4 => [
+            ['kataga' => 'Am'],
+            ['kataga' => 'A'],
+            ['kataga' => 'As'],
+            ['kataga' => 'Mas'],
+            ['kataga' => 'Sa'],
+            ['kataga' => 'Ma'],
+            ['kataga' => 'Sam'],
+
+            ['kataga' => 'Masa'],
+            ['kataga' => 'Ama'],
+            ['kataga' => 'Asa'],
+            ['kataga' => 'Mama'],
+            ['kataga' => 'Aama'],
+            ['kataga' => 'Sasama'],
+            ['kataga' => 'Aasa'],
+            ['kataga' => 'Masama'],
+        ],
+
+        5 => [
+            ['type' => 'read_phrase', 'parirala' => 'sama-sama'],
+            ['type' => 'read_phrase', 'parirala' => 'sasama'],
+            ['type' => 'read_phrase', 'parirala' => 'aasa ang Mama'],
+            ['type' => 'read_phrase', 'parirala' => 'ang mga mama'],
+            ['type' => 'read_phrase', 'parirala' => 'ang Mama'],
+            ['type' => 'read_phrase', 'parirala' => 'sa Ama'],
+            ['type' => 'read_phrase', 'parirala' => 'ang sama'],
+            ['type' => 'read_phrase', 'parirala' => 'kay Ama'],
+            ['type' => 'read_phrase', 'parirala' => 'ng Mama'],
+            ['type' => 'read_sentence', 'pangungusap' => 'Sama-sama ang mga mama.'],
+            ['type' => 'comprehension', 'tanong' => 'Sino ang sama-sama?', 'answer' => 'ang mga mama'],
+            ['type' => 'read_sentence', 'pangungusap' => 'Sasama si Mama kay Ama.'],
+            ['type' => 'comprehension', 'tanong' => 'Sino ang sasama kay Ama?', 'answer' => 'si Mama'],
+            ['type' => 'read_sentence', 'pangungusap' => 'Aasa ang Mama sa Ama.'],
+            ['type' => 'comprehension', 'tanong' => 'Kanino aasa ang Mama?', 'answer' => 'sa Ama'],
+            ['type' => 'read_sentence', 'pangungusap' => 'Masama ang mama.'],
+            ['type' => 'comprehension', 'tanong' => 'Sino ang masama?', 'answer' => 'ang mama'],
+            ['type' => 'read_sentence', 'pangungusap' => 'Masasama kay Ama ang mama.'],
+            ['type' => 'comprehension', 'tanong' => 'Sino ang masasama kay Ama?', 'answer' => 'ang mama'],
+        ],
     ];
 
     public function mount($lesson)

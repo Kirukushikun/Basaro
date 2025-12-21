@@ -45,7 +45,7 @@
 
     <!-- Question Container -->
     <template x-if="current">
-        <div class="flex-1 flex flex-col items-center gap-10 mt-10">
+        <div class="flex-1 flex flex-col items-center gap-8 mt-10">
 
             <!-- Syllables with + sign -->
             <div class="flex gap-2 items-center">
@@ -54,41 +54,51 @@
                         <div class="items-center justify-center alphabet">
                             <span x-text="s"></span>
                         </div>
-                        <span x-show="index < current.syllables.length - 1" class="text-4xl font-bold !text-[#F4C300]">+</span>
+                        <span x-show="index < current.syllables.length - 1" class="text-3xl font-bold !text-[#F4C300]">+</span>
                     </div>
                 </template>
             </div>
 
-            <!-- Instruction -->
-            <p class="w-96 text-center text-lg">
-                Basahin ang mga titik sa itaas at subukang bigkasin ang buong salita nang malinaw.
-            </p>
-
             <!-- Formed Word -->
-            <p class="text-4xl font-extrabold !text-[#F4C300]" x-text="word"></p>
-
-            <!-- Microphone Button -->
-            <div
-                @mousedown="recording = true"
-                @mouseup="
-                    recording = false;
-                    setTimeout(() => confirm(), 1500)
-                "
-                @mouseleave="recording = false"
-                class="relative bg-gray-500 px-4 py-3 rounded-full cursor-pointer transition-transform hover:scale-110"
-                :class="{ 'ring-4 ring-red-500 animate-pulse scale-110': recording }"
-            >
-                <i class="fa-solid fa-microphone text-white text-xl"></i>
-
-                <div x-show="recording"
-                     class="absolute inset-0 bg-red-500 opacity-30 rounded-full animate-ping"></div>
-            </div>
+            <p x-show="confirmed" x-transition class="text-3xl font-extrabold !text-[#F4C300]" x-text="word"></p>
 
             <!-- Success Message -->
             <div x-show="confirmed"
                  x-transition
-                 class="mt-4 bg-green-500 text-white px-6 py-2 rounded-lg font-bold text-lg shadow-md">
-                ✅ Tama!
+                 class="bg-green-500 text-white px-6 py-2 rounded-lg font-bold text-lg shadow-md">
+                <i class="fa-solid fa-check"></i> Tama!
+            </div>
+
+            <!-- Instruction -->
+            <p class="w-96 text-center text-lg">
+                Pagdugtungin ang mga pantig upang makabuo ng salita. Pagkatapos ay subukan mo itong basahin.
+            </p>
+
+
+            <!-- Microphone -->
+            <div class="flex flex-col items-center gap-4">
+                <div
+                    @mousedown="recording = true"
+                    @mouseup="
+                        recording = false;
+                        setTimeout(() => confirm(), 1500)
+                    "
+                    @mouseleave="recording = false"
+                    class="relative bg-gray-500 px-3 py-2 rounded-full cursor-pointer transition-transform hover:scale-110"
+                    :class="{ 'scale-125 ring-4 ring-red-500 animate-pulse': recording }">
+
+                    <i class="fa-solid fa-microphone text-white text-xl"></i>
+
+                    <div x-show="recording"
+                        class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <p class="!text-gray-400 text-xs">
+                        Pindutin at hawakan ang mikropono habang nagbibigkas
+                    </p>
+                </div>             
             </div>
 
         </div>

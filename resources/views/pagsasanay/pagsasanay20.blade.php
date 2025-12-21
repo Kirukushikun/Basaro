@@ -118,9 +118,9 @@
             <div x-show="showFeedback"
                 class="mt-4 px-6 py-3 rounded-lg text-lg font-semibold"
                 :class="selected === current.answer ? 'bg-green-500 text-white' : 'bg-red-500 text-white'">
-                <span x-show="selected === current.answer">✅ Tama!</span>
+                <span x-show="selected === current.answer"><i class="fa-solid fa-check"></i> Tama!</span>
                 <span x-show="selected !== current.answer">
-                    ❌ Mali. Ang tamang sagot ay <b x-text="current.answer"></b>
+                    <i class="fa-solid fa-x"></i> Mali. Ang tamang sagot ay <b x-text="current.answer"></b>
                 </span>
             </div>
 

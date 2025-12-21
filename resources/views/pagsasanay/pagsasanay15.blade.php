@@ -112,12 +112,12 @@
                 class="mt-4 px-6 py-3 rounded-lg text-lg font-semibold"
                 :class="(current.type === 'classify' && selected === current.answer) || (current.type === 'riddle' && userInput.toLowerCase().trim() === current.answer.toLowerCase().trim()) ? 'bg-green-500 text-white' : 'bg-red-500 text-white'">
                 <template x-if="current.type === 'classify'">
-                    <span x-show="selected === current.answer">✅ Tama!</span>
-                    <span x-show="selected !== current.answer">❌ Mali. Ang tamang sagot ay <b x-text="current.answer"></b></span>
+                    <span x-show="selected === current.answer"><i class="fa-solid fa-check"></i> Tama!</span>
+                    <span x-show="selected !== current.answer"><i class="fa-solid fa-x"></i> Mali. Ang tamang sagot ay <b x-text="current.answer"></b></span>
                 </template>
                 <template x-if="current.type === 'riddle'">
-                    <span x-show="userInput.toLowerCase().trim() === current.answer.toLowerCase().trim()">✅ Tama!</span>
-                    <span x-show="userInput.toLowerCase().trim() !== current.answer.toLowerCase().trim()">❌ Mali. Ang tamang sagot ay <b x-text="current.answer"></b></span>
+                    <span x-show="userInput.toLowerCase().trim() === current.answer.toLowerCase().trim()"><i class="fa-solid fa-check"></i> Tama!</span>
+                    <span x-show="userInput.toLowerCase().trim() !== current.answer.toLowerCase().trim()"><i class="fa-solid fa-x"></i> Mali. Ang tamang sagot ay <b x-text="current.answer"></b></span>
                 </template>
             </div>
 
