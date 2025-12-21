@@ -19,6 +19,7 @@
 
     <button 
         x-show="page === {{ $totalPages }}"
+        x-effect="if (page === {{ $totalPages }}) { $wire.completeLesson() }"
         @click="showModal = true"
         class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold"
     >
@@ -32,6 +33,7 @@
     <!-- Modal Container -->
     <div
         x-show="showModal"
+        
         x-transition:enter="transition ease-out duration-200"
         x-transition:enter-start="opacity-0 scale-90"
         x-transition:enter-end="opacity-100 scale-100"

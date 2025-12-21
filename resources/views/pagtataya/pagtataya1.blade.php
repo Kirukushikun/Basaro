@@ -81,9 +81,9 @@
     </template>
 
     <!-- Results Page -->
-    @include('partials.pagsasanay-results')
+    @include('partials.pagtataya-results')
 
     <!-- Navigation Buttons -->
-    @include('partials.pagsasanay-navigation')
+    @include('partials.pagtataya-navigation')
 
 </div>

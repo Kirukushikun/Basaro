@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class FourthSlide extends Component
 {   
@@ -135,6 +136,20 @@ class FourthSlide extends Component
         ];
 
         return $stories[$this->lesson] ?? '';
+    }
+
+    public function completePagtataya()
+    {
+        $user = Auth::user();
+        
+        if ($user) {
+            // Only update if this is forward progress
+            if ($user->current_progress < 100) {
+                $user->update([
+                    'current_progress' => 100, // Completed discussion slide
+                ]);
+            }
+        }
     }
     
     public function render()

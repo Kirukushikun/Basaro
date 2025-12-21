@@ -18,12 +18,54 @@
                 </div>
 
                 <div class="bg-gray-600 h-2 rounded-md">
-                    <div class="w-[0%] bg-[#F4C300] h-full rounded-md"></div>
+                    <div class="bg-[#F4C300] h-full rounded-md" style="width: {{Auth::user()->current_progress}}%"></div>
                 </div>
 
-                <button class="w-fit !text-black px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson={{$lesson->order}}&slide=first-slide'">
-                    Start Lesson
-                </button>
+                @php
+                    $user = Auth::user();
+                    $isCurrentLesson = $user->current_lesson == $lesson->order;
+                    $progress = $user->current_progress;
+                @endphp
+
+                @if ($isCurrentLesson && $progress == 25)
+                    <button class="w-fit !text-black px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson={{$lesson->order}}&slide=second-slide'">
+                        Magpatuloy sa Talakayan
+                    </button>
+                @elseif ($isCurrentLesson && $progress == 50)
+                    <button class="w-fit !text-black px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson={{$lesson->order}}&slide=third-slide'">
+                        Magpatuloy sa Pagsasanay
+                    </button>
+                @elseif ($isCurrentLesson && $progress == 75)
+                    <button class="w-fit !text-black px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson={{$lesson->order}}&slide=fourth-slide'">
+                        Magpatuloy sa Pagtataya
+                    </button>
+                @elseif ($isCurrentLesson && $progress == 100)
+                    {{-- Current lesson is completed, move to next --}}
+                    @if ($lesson->order < 20)
+                        <button class="w-fit !text-black px-4 py-2 bg-green-500 text-white rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson={{$lesson->order + 1}}&slide=first-slide'">
+                            ✅ Susunod na Aralin
+                        </button>
+                    @else
+                        <span class="w-fit px-4 py-2 bg-green-500 text-white rounded-md font-bold">
+                            🎉 Natapos na ang lahat ng Aralin!
+                        </span>
+                    @endif
+                @elseif ($user->current_lesson > $lesson->order)
+                    {{-- This lesson was already completed (user is on a later lesson) --}}
+                    <button class="w-fit !text-black px-4 py-2 bg-blue-500 text-white rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson={{$lesson->order}}&slide=first-slide'">
+                        🔄 Balikan ang Aralin
+                    </button>
+                @elseif ($user->current_lesson < $lesson->order)
+                    {{-- This lesson is locked (user hasn't reached it yet) --}}
+                    <button class="w-fit px-4 py-2 bg-gray-400 text-gray-700 rounded-md font-bold cursor-not-allowed" disabled>
+                        🔒 Nakalock pa
+                    </button>
+                @else
+                    {{-- Start fresh lesson (progress == 0 or just starting) --}}
+                    <button class="w-fit !text-black px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson={{$lesson->order}}&slide=first-slide'">
+                        Magsimula
+                    </button>
+                @endif
             </div>
         </div>
         <div class="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-7">

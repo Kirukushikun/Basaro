@@ -1,9 +1,9 @@
-<!-- Pagsasanay result -->
+<!-- Pagtataya result -->
 <div 
     class="flex-1 flex flex-col items-center gap-5"
     x-data="{ showModal: false }"
     x-show="page > questions.length"  
-    x-effect="if (page > questions.length) { $wire.completePagsasanay() }"
+    x-effect="if (page > questions.length) { $wire.completePagtataya() }"
 >
     <img src="../Img/Badge.png" width="200" alt="">
     <h1 class="text-2xl font-bold">CONGRATULATIONS!</h1>

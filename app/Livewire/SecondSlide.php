@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class SecondSlide extends Component
 {
@@ -307,6 +308,32 @@ class SecondSlide extends Component
     {
         $this->lesson = $lesson;
         $this->totalPages = count($this->audioMap[$lesson] ?? []);
+
+        $user = Auth::user();
+        
+        if ($user) {
+            // Only update if this is NEW progress (greater than current)
+            if ($user->current_lesson != $lesson || $user->current_progress < 25) {
+                $user->update([
+                    'current_lesson' => $lesson,
+                    'current_progress' => 25, // Entered discussion slide
+                ]);
+            }
+        }
+    }
+
+    public function completeLesson()
+    {
+        $user = Auth::user();
+        
+        if ($user) {
+            // Only update if this is forward progress
+            if ($user->current_progress < 50) {
+                $user->update([
+                    'current_progress' => 50, // Completed discussion slide
+                ]);
+            }
+        }
     }
 
     public function getAudioForCurrentPage()
@@ -314,14 +341,6 @@ class SecondSlide extends Component
         return $this->audioMap[$this->lesson][$this->page] ?? null;
     }
 
-    // Simple page navigation
-    public function nextPage()
-    {
-        if ($this->page < $this->totalPages) {
-            $this->page++;
-            $this->updateUserProgress(); // Just update current_progress, NOT UserTrack
-        }
-    }
 
     public function getAllAudios()
     {

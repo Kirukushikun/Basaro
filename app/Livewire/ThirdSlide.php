@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class ThirdSlide extends Component
 {
@@ -935,6 +936,20 @@ class ThirdSlide extends Component
     public function getLessonQuestionsProperty()
     {
         return $this->questions[$this->lesson] ?? [];
+    }
+
+    public function completePagsasanay()
+    {
+        $user = Auth::user();
+        
+        if ($user) {
+            // Only update if this is forward progress
+            if ($user->current_progress < 75) {
+                $user->update([
+                    'current_progress' => 75, // Completed discussion slide
+                ]);
+            }
+        }
     }
 
     // Pagsasanay 8
