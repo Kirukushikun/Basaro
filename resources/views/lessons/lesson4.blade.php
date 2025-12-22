@@ -75,7 +75,7 @@
 
         <div class="flex-1 flex flex-col items-center justify-center gap-6">
             <p class="text-6xl font-bold">
-                <span class="!text-[#F4C300]">m</span> + <span class="!text-[#F4C300]">a</span> = <span class="text-7xl">ma</span>
+                m + a = ma
             </p>
             <div class="flex gap-8 text-5xl font-bold">
                 <p>ma</p>
@@ -95,7 +95,7 @@
 
         <div class="flex-1 flex flex-col items-center justify-center gap-6">
             <p class="text-6xl font-bold">
-                <span class="!text-[#F4C300]">s</span> + <span class="!text-[#F4C300]">a</span> = <span class="text-7xl">sa</span>
+                s + a = sa
             </p>
             <div class="flex gap-8 text-5xl font-bold">
                 <p>sa</p>
@@ -115,7 +115,7 @@
 
         <div class="flex-1 flex flex-col items-center justify-center gap-6">
             <p class="text-6xl font-bold">
-                <span class="!text-[#F4C300]">a</span> + <span class="!text-[#F4C300]">m</span> = <span class="text-7xl">am</span>
+                a + m = am
             </p>
             <div class="flex gap-8 text-5xl font-bold">
                 <p>am</p>
@@ -135,7 +135,7 @@
 
         <div class="flex-1 flex flex-col items-center justify-center gap-6">
             <p class="text-6xl font-bold">
-                <span class="!text-[#F4C300]">a</span> + <span class="!text-[#F4C300]">s</span> = <span class="text-7xl">as</span>
+                a + s = as
             </p>
             <div class="flex gap-8 text-5xl font-bold">
                 <p>as</p>

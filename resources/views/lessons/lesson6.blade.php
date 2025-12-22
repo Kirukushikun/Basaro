@@ -34,6 +34,9 @@
                 'Ii',
                 'Oo',
                 'Bb',
+                'Mm',
+                'Ss',
+                'Aa',
             ] as $phrase)
                 <p class="cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform">
                     {{ $phrase }}
@@ -63,43 +66,15 @@
     <div x-show="page === 4" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                Basahin mo ngang muli:
-            </p>
-        </header>
-
-        <div class="flex-1 flex items-center justify-center gap-10">
-            @foreach (['Bi', 'Bo', 'Ib', 'Ob'] as $syllable)
-                <p class="text-7xl font-bold cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform">
-                    {{ $syllable }}
-                </p>
-            @endforeach
-        </div>
-    </div>
-
-    {{-- ===== PAGE 5 ===== --}}
-    <div x-show="page === 5" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header">
-            <p class="text-2xl font-semibold !text-gray-200">
-                Kapag pinagsama-sama natin ang mga pantig na ito ay makakabuo tayo ng salita. Halimbawa
-            </p>
-        </header>
-
-        <div class="flex-1 flex flex-col items-center justify-center gap-6">
-            <p class="text-6xl font-bold">
-                <span class="!text-[#F4C300]">bi</span> + <span class="!text-[#F4C300]">bo</span> = <span class="text-7xl">bibo</span>
-            </p>
-        </div>
-    </div>
-
-    {{-- ===== PAGE 6 ===== --}}
-    <div x-show="page === 6" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header">
-            <p class="text-2xl font-semibold !text-gray-200">
-                Kapag pinagsama-sama natin ang mga pantig na bi, bo, ib at ob sa mga tunog ng m, s at a ay makakabuo tayo ng maraming salita.
+                Kapag pinagsama-sama natin ang mga pantig na ito ay makakabuo tayo ng salita. Halimbawa:
+                <span class="text-2xl font-bold !text-[#F4C300]">
+                    bi + bo = bibo
+                </span>.
+                Kapag pinagsama-sama natin ang mga pantig na <span class="!text-[#F4C300]">bi</span>, <span class="!text-[#F4C300]">bo</span>, <span class="!text-[#F4C300]">ib</span> at <span class="!text-[#F4C300]">ob</span> sa mga tunog ng <span class="!text-[#F4C300]">m</span>, <span class="!text-[#F4C300]">s</span> at <span class="!text-[#F4C300]">a</span> ay makakabuo tayo ng maraming salita.
             </p>
             <p class="text-xl !text-gray-300 mt-4">
                 Narito ang mabubuo nating mga pantig:
-            </p>
+            </p>            
         </header>
 
         <div class="flex-1 flex items-center justify-center">
@@ -113,8 +88,8 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 7 ===== --}}
-    <div x-show="page === 7" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 5 ===== --}}
+    <div x-show="page === 5" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
                 Ikaw nga ang magbasa.
@@ -132,21 +107,21 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 8 ===== --}}
-    <div x-show="page === 8" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+    {{-- ===== PAGE 6 ===== --}}
+    <div x-show="page === 6" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
         <header class="header flex-shrink-0">
             <p class="text-2xl font-semibold !text-gray-200">
-                Narito ang mga halimbawa ng mga salita kapag ibinagsamasama natin ang mga panting na ito:
+                Narito ang mga halimbawa ng mga salitang mabubuo natin kapag ibinagsamasama natin ang mga panting na ito:
             </p>
         </header>
 
         <div class="flex-1 flex flex-col items-center justify-center gap-8 overflow-y-auto p-5">
             @foreach ([
-                'i+ba = iba',
-                'a+ba = aba',
-                'ba+o = bao',
-                'o+so = oso',
-                'mi+sa = misa'
+                'i + ba = iba',
+                'a + ba = aba',
+                'ba + o = bao',
+                'o + so = oso',
+                'mi + sa = misa'
             ] as $example)
                 <p class="text-5xl font-bold">
                     {{ $example }}
@@ -155,8 +130,8 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 9 ===== --}}
-    <div x-show="page === 9" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+    {{-- ===== PAGE 7 ===== --}}
+    <div x-show="page === 7" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
         <header class="header flex-shrink-0">
             <p class="text-2xl font-semibold !text-gray-200">
                 Ikaw naman muli ang magbasa:
@@ -165,11 +140,11 @@
 
         <div class="flex-1 flex flex-col items-center justify-center gap-8 overflow-y-auto p-5">
             @foreach ([
-                'i+ba = iba',
-                'a+ba = aba',
-                'ba+o = bao',
-                'o+so = oso',
-                'mi+sa = misa'
+                'i + ba = iba',
+                'a + ba = aba',
+                'ba + o = bao',
+                'o + so = oso',
+                'mi + sa = misa'
             ] as $example)
                 <p class="text-5xl font-bold">
                     {{ $example }}
@@ -178,28 +153,11 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 10 ===== --}}
-    <div x-show="page === 10" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header">
-            <p class="text-2xl font-semibold !text-gray-200">
-                Ikaw naman ang magbasa:
-            </p>
-        </header>
 
-        <div class="flex-1 flex items-center justify-center gap-10">
-            @foreach (['iba', 'aba', 'bao', 'oso', 'misa'] as $word)
-                <p class="text-6xl font-bold cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform">
-                    {{ $word }}
-                </p>
-            @endforeach
-        </div>
-    </div>
-
-    {{-- ===== PAGE 11 ===== --}}
-    <div x-show="page === 11" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 8 ===== --}}
+    <div x-show="page === 8" class="w-full flex-1 flex flex-col gap-6 px-2">
         <p class="text-2xl font-semibold !text-gray-200">
-            Ngayon naman ay subukan mong dumako sa mga pagsasanay, tayo ng mag-Basaro! Magbasa at maglaro. Sa bawat tamang sagot ay makakakuha ka ng ribbon. 
-            Para sa <span class="!text-[#F4C300]">Pagsasanay A</span> ano ang tunog ng sumusunod na letra? Pindutin mo lamang ang microphone button <i class="fa-solid fa-microphone"></i> para sa pagbigkas mo ng tunog ng letra. Huwag kang mag alala gagabayan ka ng iyong guro.
+            Pagsasanay, tayo na uling magbasaro! Magbasa at maglaro.
         </p>
     </div>
 

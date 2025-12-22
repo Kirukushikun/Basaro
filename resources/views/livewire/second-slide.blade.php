@@ -2,34 +2,82 @@
     class="flex-1 pb-[50px]" 
     x-data="{ 
         page: @entangle('page'),
-        audio: null,
+        currentAudio: null,
+        currentAudioIndex: 0,
+        audioQueue: [],
         soundEnabled: false,
-        audios: @js($audios), // All audios passed from backend
+        audios: @js($audios),
         
-        playAudio(page) {
-            if (!this.soundEnabled) return;
-            if (this.audio) this.audio.pause();
+        // Prepare audio queue for current page
+        prepareAudioQueue(page) {
+            const audioData = this.audios[page];
             
-            const audioFile = this.audios[page];
-            if (audioFile) {
-                this.audio = new Audio('{{ asset('') }}' + audioFile);
-                this.audio.play();
+            // If it's an array, use it as is
+            if (Array.isArray(audioData)) {
+                this.audioQueue = audioData;
+            } 
+            // If it's a string, wrap it in an array
+            else if (audioData) {
+                this.audioQueue = [audioData];
+            } 
+            // No audio for this page
+            else {
+                this.audioQueue = [];
+            }
+            
+            this.currentAudioIndex = 0;
+        },
+        
+        // Play audio from queue
+        playNextAudio() {
+            if (!this.soundEnabled || this.audioQueue.length === 0) return;
+            
+            // Stop current audio if playing
+            if (this.currentAudio) {
+                this.currentAudio.pause();
+                this.currentAudio = null;
+            }
+            
+            // Check if there are more audios to play
+            if (this.currentAudioIndex < this.audioQueue.length) {
+                const audioFile = this.audioQueue[this.currentAudioIndex];
+                this.currentAudio = new Audio('{{ asset('') }}' + audioFile);
+                
+                // When audio ends, play next one automatically
+                this.currentAudio.addEventListener('ended', () => {
+                    this.currentAudioIndex++;
+                    this.playNextAudio();
+                });
+                
+                this.currentAudio.play().catch(err => {
+                    console.error('Audio play error:', err);
+                });
             }
         },
         
-        handleAudio() {
+        // Handle page change
+        handlePageChange() {
             if (!this.soundEnabled) return;
-            this.playAudio(this.page);
+            
+            // Stop any current audio
+            if (this.currentAudio) {
+                this.currentAudio.pause();
+                this.currentAudio = null;
+            }
+            
+            // Prepare and play new page audio
+            this.prepareAudioQueue(this.page);
+            this.playNextAudio();
         }
     }"
-    x-init="$watch('page', () => handleAudio())"
+    x-init="$watch('page', () => handlePageChange())"
 >
 
     <!-- Enable Sound Overlay -->
     <template x-if="!soundEnabled">
         <div class="absolute inset-0 bg-black/90 flex items-center justify-center z-50">
             <button 
-                @click="soundEnabled = true; handleAudio();" 
+                @click="soundEnabled = true; handlePageChange();" 
                 class="px-6 py-3 bg-[#F4C300] !text-black font-bold rounded-lg text-lg shadow-lg"
             >
                 <i class="fa-solid fa-volume-high !text-black"></i> I-enable ang Tunog
