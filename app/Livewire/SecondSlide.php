@@ -75,15 +75,7 @@ class SecondSlide extends Component
             8 => 'audio/L6P8.m4a',
             9 => 'audio/L6P9.m4a',
             10 => 'audio/L6P10.m4a',
-
             11 => 'audio/L6P1.m4a',
-            12 => 'audio/L6P2.m4a',
-            13 => 'audio/L6P3.m4a',
-            14 => 'audio/L6P4.m4a',
-            15 => 'audio/L6P5.m4a',
-            16 => 'audio/L6P6.m4a',
-            17 => 'audio/L6P7.m4a',
-            18 => 'audio/L6P7.m4a',
         ],
         7 => [ // Lesson 7
             1 => 'audio/L7P1.m4a',
