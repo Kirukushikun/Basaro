@@ -103,7 +103,7 @@
         <div class="flex-1 flex flex-col items-center gap-10">
 
             <!-- Parirala -->
-            <h1 class="text-5xl font-bold mt-10 !text-[#F4C300]"
+            <h1 class="text-7xl font-bold mt-10 !text-[#F4C300]"
                 x-text="current.parirala"></h1>
                 
             <!-- Success -->

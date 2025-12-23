@@ -21,8 +21,8 @@
         next() {
             if (!this.confirmed) {
                 this.confirmed = true
-                // Score for syllable_build - user must match answer
-                if (this.current.type === 'syllable_build' && this.userInput.toLowerCase().trim() === this.current.answer.toLowerCase().trim()) {
+                // Score for syllable_build - auto-pass (microphone interaction)
+                if (this.current.type === 'syllable_build') {
                     this.score++
                 }
                 // Score for read_phrase and read_sentence auto-pass
@@ -57,18 +57,17 @@
      }">
 
     <template x-if="current">
-        <div class="flex-1 flex flex-col items-center gap-10 mt-10 w-full">
+        <div class="flex-1 flex flex-col items-center gap-10 w-full">
 
             <!-- TYPE: SYLLABLE BUILD -->
             <template x-if="current.type === 'syllable_build'">
-                <div class="flex flex-col items-center gap-8 w-full">
-                    <p class="text-lg text-center">Ayusin ang mga tunog upang makabuo ng salita.</p>
+                <div class="flex-1 flex flex-col items-center gap-8 mt-10">
 
-                    <!-- Syllables Display -->
-                    <div class="flex gap-2 items-center flex-wrap justify-center">
+                    <!-- Syllables with + sign -->
+                    <div class="flex gap-2 items-center">
                         <template x-for="(s, index) in current.syllables" :key="index">
                             <div class="flex items-center gap-2">
-                                <div class="px-6 py-3 bg-[#F4C300] text-black font-bold text-lg rounded-lg">
+                                <div class="items-center justify-center alphabet !text-8xl">
                                     <span x-text="s"></span>
                                 </div>
                                 <span x-show="index < current.syllables.length - 1" class="text-4xl font-bold !text-[#F4C300]">+</span>
@@ -76,110 +75,198 @@
                         </template>
                     </div>
 
-                    <!-- Formed Word Display -->
-                    <p class="text-4xl font-extrabold !text-[#F4C300]" x-text="word"></p>
+                    <!-- Formed Word -->
+                    <p x-show="confirmed" x-transition class="text-3xl font-extrabold !text-[#F4C300]" x-text="word"></p>
 
-                    <!-- Text Input for Answer -->
-                    <input
-                        type="text"
-                        x-model="userInput"
-                        placeholder="I-type ang salita dito"
-                        @keyup.enter="confirm"
-                        class="px-4 py-2 border-2 border-[#F4C300] rounded-lg text-center text-lg font-bold focus:outline-none max-w-md">
+                    <!-- Success Message -->
+                    <div x-show="confirmed"
+                        x-transition
+                        class="bg-green-500 text-white px-6 py-2 rounded-lg font-bold text-lg shadow-md">
+                        <i class="fa-solid fa-check"></i> Tama!
+                    </div>
+
+                    <!-- Instruction -->
+                    <p class="w-96 text-center text-lg">
+                        Pagdugtungin ang mga pantig upang makabuo ng salita. Pagkatapos ay subukan mo itong basahin.
+                    </p>
+
+                    <!-- Microphone -->
+                    <div class="flex flex-col items-center gap-4">
+                        <div
+                            @mousedown="recording = true"
+                            @mouseup="
+                                recording = false;
+                                setTimeout(() => confirm(), 1500)
+                            "
+                            @mouseleave="recording = false"
+                            class="relative bg-gray-500 px-3 py-2 rounded-full cursor-pointer transition-transform hover:scale-110"
+                            :class="{ 'scale-125 ring-4 ring-red-500 animate-pulse': recording }">
+
+                            <i class="fa-solid fa-microphone text-white text-xl"></i>
+
+                            <div x-show="recording"
+                                class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <p class="!text-gray-400 text-xs">
+                                Pindutin at hawakan ang mikropono habang nagbibigkas
+                            </p>
+                        </div>             
+                    </div>
+
                 </div>
             </template>
 
             <!-- TYPE: READ PHRASE -->
             <template x-if="current.type === 'read_phrase'">
-                <div class="flex flex-col items-center gap-6 w-full">
-                    <h1 class="alphabet !text-[#F4C300]" x-text="current.text"></h1>
-                    <p class="w-96 text-lg text-center">Basahin nang malinaw ang katagang nasa itaas. Subukang bigkasin ito nang tama at dahan-dahan.</p>
+                <div class="flex-1 flex flex-col items-center gap-10">
 
-                    <!-- Microphone Button (Hold to Record) -->
-                    <div
-                        @mousedown="recording = true"
-                        @mouseup="
-                            recording = false;
-                            setTimeout(() => confirm(), 1500)
-                        "
-                        @mouseleave="recording = false"
-                        class="relative bg-gray-500 px-3 py-2 rounded-full cursor-pointer transition-transform hover:scale-110"
-                        :class="{ 'scale-125 ring-4 ring-red-500 animate-pulse': recording }">
-                        <i class="fa-solid fa-microphone text-white text-xl"></i>
-                        <div x-show="recording"
-                             class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping"></div>
+                    <!-- Parirala -->
+                    <h1 class="text-7xl font-bold mt-10 !text-[#F4C300]"
+                        x-text="current.parirala"></h1>
+                        
+                    <!-- Success -->
+                    <div x-show="confirmed"
+                        x-transition
+                        class="px-4 py-2 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold">
+                        <i class="fa-solid fa-check"></i> Tama!
                     </div>
+
+                    <!-- Instruction -->
+                    <p class="w-96 text-lg text-center">
+                        Basahin nang malinaw ang pariralang nasa itaas.
+                        Subukang bigkasin ito nang tama at dahan-dahan.
+                    </p>
+
+                    <!-- Microphone -->
+                    <div class="flex flex-col items-center gap-4">
+                        <div
+                            @mousedown="recording = true"
+                            @mouseup="
+                                recording = false;
+                                setTimeout(() => confirm(), 1500)
+                            "
+                            @mouseleave="recording = false"
+                            class="relative bg-gray-500 px-3 py-2 rounded-full cursor-pointer transition-transform hover:scale-110"
+                            :class="{ 'scale-125 ring-4 ring-red-500 animate-pulse': recording }">
+
+                            <i class="fa-solid fa-microphone text-white text-xl"></i>
+
+                            <div x-show="recording"
+                                class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <p class="!text-gray-400 text-xs">
+                                Pindutin at hawakan ang mikropono habang nagbibigkas
+                            </p>
+                        </div>             
+                    </div>
+
                 </div>
             </template>
 
             <!-- TYPE: READ SENTENCE -->
             <template x-if="current.type === 'read_sentence'">
-                <div class="flex flex-col items-center gap-6 w-full">
-                    <p class="text-2xl font-semibold text-center max-w-2xl" x-text="current.text"></p>
-                    <p class="w-96 text-lg text-center">Basahin nang malinaw ang pangungusap.</p>
+                <div class="flex-1 flex flex-col items-center gap-10">
 
-                    <!-- Microphone Button (Hold to Record) -->
-                    <div
-                        @mousedown="recording = true"
-                        @mouseup="
-                            recording = false;
-                            setTimeout(() => confirm(), 1500)
-                        "
-                        @mouseleave="recording = false"
-                        class="relative bg-gray-500 px-3 py-2 rounded-full cursor-pointer transition-transform hover:scale-110"
-                        :class="{ 'scale-125 ring-4 ring-red-500 animate-pulse': recording }">
-                        <i class="fa-solid fa-microphone text-white text-xl"></i>
-                        <div x-show="recording"
-                             class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping"></div>
+                    <!-- Pangungusap -->
+                    <h1 class="text-5xl font-bold mt-10 !text-[#F4C300] text-center px-4"
+                        x-text="current.pangungusap"></h1>
+                        
+                    <!-- Success -->
+                    <div x-show="confirmed"
+                        x-transition
+                        class="px-4 py-2 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold">
+                        <i class="fa-solid fa-check"></i> Tama!
                     </div>
+
+                    <!-- Instruction -->
+                    <p class="w-96 text-lg text-center">
+                        Basahin nang malinaw ang pangungusap na nasa itaas.
+                        Subukang bigkasin ito nang tama at dahan-dahan.
+                    </p>
+
+                    <!-- Microphone -->
+                    <div class="flex flex-col items-center gap-4">
+                        <div
+                            @mousedown="recording = true"
+                            @mouseup="
+                                recording = false;
+                                setTimeout(() => confirm(), 1500)
+                            "
+                            @mouseleave="recording = false"
+                            class="relative bg-gray-500 px-3 py-2 rounded-full cursor-pointer transition-transform hover:scale-110"
+                            :class="{ 'scale-125 ring-4 ring-red-500 animate-pulse': recording }">
+
+                            <i class="fa-solid fa-microphone text-white text-xl"></i>
+
+                            <div x-show="recording"
+                                class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <p class="!text-gray-400 text-xs">
+                                Pindutin at hawakan ang mikropono habang nagbibigkas
+                            </p>
+                        </div>             
+                    </div>
+
                 </div>
             </template>
 
             <!-- TYPE: COMPREHENSION -->
             <template x-if="current.type === 'comprehension'">
-                <div class="flex flex-col items-center gap-6 w-full">
-                    <p class="text-lg font-semibold text-center" x-text="current.question"></p>
-                    <input
-                        type="text"
-                        x-model="userInput"
-                        placeholder="Sagutin dito..."
-                        @keyup.enter="confirm"
-                        class="px-4 py-2 border-2 border-[#F4C300] rounded-lg text-center text-lg focus:outline-none max-w-md">
+                <div class="flex-1 flex flex-col items-center gap-10">
+
+                    <!-- Question -->
+                    <div class="mt-10 max-w-2xl px-4">
+                        <h2 class="text-5xl font-bold !text-[#F4C300] mb-6 text-center"
+                            x-text="current.tanong"></h2>
+                    </div>
+                        
+                    <!-- Success/Error -->
+                    <div x-show="confirmed"
+                        x-transition>
+                        <div x-show="userInput.toLowerCase().trim() === current.answer.toLowerCase().trim()"
+                            class="px-4 py-2 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold">
+                            <i class="fa-solid fa-check"></i> Tama!
+                        </div>
+                        <div x-show="userInput.toLowerCase().trim() !== current.answer.toLowerCase().trim()"
+                            class="px-4 py-2 bg-red-500 text-white rounded-lg shadow-md text-lg font-semibold">
+                            <i class="fa-solid fa-x"></i> Mali. Ang tamang sagot ay: <span x-text="current.answer"></span>
+                        </div>
+                    </div>
+
+                    <!-- Instruction -->
+                    <p class="w-96 text-lg text-center">
+                        Sagutin ang tanong sa pamamagitan ng pagsulat ng iyong sagot sa ibaba.
+                    </p>
+
+                    <!-- Input Field -->
+                    <div class="w-96">
+                        <input 
+                            type="text"
+                            x-model="userInput"
+                            :disabled="confirmed"
+                            placeholder="Isulat ang iyong sagot dito..."
+                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-lg focus:outline-none focus:border-[#F4C300] disabled:border-gray-100"
+                            @keyup.enter="!confirmed && confirm()">
+                    </div>
+
+                    <!-- Confirm Button -->
+                    <button x-show="userInput && !confirmed"
+                            @click="confirm"
+                            class="px-6 py-2 bg-[#F4C300] text-black font-bold rounded-lg hover:bg-yellow-500 transition">
+                        Kumpirmahin
+                    </button>
+
                 </div>
             </template>
-
-            <!-- Confirm Button (for syllable_build & comprehension) -->
-            <button x-show="(current.type === 'syllable_build' || current.type === 'comprehension') && userInput && !confirmed"
-                    @click="confirm"
-                    class="px-6 py-2 bg-[#F4C300] text-black font-bold rounded-lg">
-                Kumpirmahin
-            </button>
-
-            <!-- Feedback - All Types -->
-            <div x-show="confirmed"
-                 x-transition
-                 class="mt-4 px-4 py-2 rounded-lg text-lg font-semibold"
-                 :class="((['read_phrase', 'read_sentence'].includes(current.type)) || 
-                          (current.type === 'syllable_build' && userInput.toLowerCase().trim() === current.answer.toLowerCase().trim()) ||
-                          (current.type === 'comprehension' && userInput.toLowerCase().trim() === current.answer.toLowerCase().trim())) ? 'bg-green-500 text-white' : 'bg-red-500 text-white'">
-                
-                <!-- Reading Types (Auto-pass) -->
-                <template x-if="['read_phrase', 'read_sentence'].includes(current.type)">
-                    <span><i class="fa-solid fa-check"></i> Tama!</span>
-                </template>
-
-                <!-- Syllable Build Feedback -->
-                <template x-if="current.type === 'syllable_build'">
-                    <span x-show="userInput.toLowerCase().trim() === current.answer.toLowerCase().trim()"><i class="fa-solid fa-check"></i> Tama!</span>
-                    <span x-show="userInput.toLowerCase().trim() !== current.answer.toLowerCase().trim()"><i class="fa-solid fa-x"></i> Mali. Ang tamang sagot ay <b x-text="current.answer"></b></span>
-                </template>
-
-                <!-- Comprehension Feedback -->
-                <template x-if="current.type === 'comprehension'">
-                    <span x-show="userInput.toLowerCase().trim() === current.answer.toLowerCase().trim()"><i class="fa-solid fa-check"></i> Tama!</span>
-                    <span x-show="userInput.toLowerCase().trim() !== current.answer.toLowerCase().trim()"><i class="fa-solid fa-x"></i> Mali. Ang tamang sagot ay <b x-text="current.answer"></b></span>
-                </template>
-            </div>
 
         </div>
     </template>

@@ -219,10 +219,10 @@
     <div x-show="page === 9" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                Alam mo ba? Hindi lang <span class="text-[#F4C300]">ta</span> ang pantig na mabubuo natin kapag isinama natin ang tunog /t/ sa iba pang patinig na atin ng napag-aralan. Aralin natin.
+                Alam mo ba? Hindi lang <span class="!text-[#F4C300]">ta</span> ang pantig na mabubuo natin kapag isinama natin ang tunog <span class="!text-[#F4C300]">t</span> sa iba pang patinig na atin ng napag-aralan. Aralin natin.
             </p>
             <p class="text-xl !text-gray-300 mt-4">
-                Kapag pinagsama ang tunog na /t/ sa tunog na /e/ ay mabubuo natin ang pantig na /te/.
+                Kapag pinagsama ang tunog na <span class="!text-[#F4C300]">t</span> sa tunog na <span class="!text-[#F4C300]">e</span> ay mabubuo natin ang pantig na <span class="!text-[#F4C300]">te</span>.
             </p>
         </header>
     </div>
@@ -279,10 +279,10 @@
     <div x-show="page === 12" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                /to/ naman ang pantig na mabubuo kapag pinagsama natin ang /t/ at /o/.
+                <span class="!text-[#F4C300]">to</span> naman ang pantig na mabubuo kapag pinagsama natin ang <span class="!text-[#F4C300]">t</span> at <span class="!text-[#F4C300]">o</span>.
             </p>
             <p class="text-xl !text-gray-300 mt-4">
-                Narito ang mga halimbawa ng mga salita na ginamit ang pantig na /to/ at iba pang pantig.
+                Narito ang mga halimbawa ng mga salita na ginamit ang pantig na <span class="!text-[#F4C300]">to</span> at iba pang pantig.
             </p>
         </header>
 
@@ -304,7 +304,7 @@
     <div x-show="page === 13" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                /tu/- Ito ang pantig na mabubuo sa pinagsamang /t/ at /u/.
+                <span class="!text-[#F4C300]">tu</span> - Ito ang pantig na mabubuo sa pinagsamang <span class="!text-[#F4C300]">t</span> at <span class="!text-[#F4C300]">u</span>.
             </p>
             <p class="text-xl !text-gray-300 mt-4">
                 Isama natin ito sa iba pang pantig. Ano-ano kayang mga salita ang ating mabubuo?
@@ -329,23 +329,23 @@
     <div x-show="page === 14" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                Ang pantig na /ka/ ay pinagsamang tunog ng mga letrang Kk at Aa. 
+                Ang pantig na <span class="!text-[#F4C300]">ka</span> ay pinagsamang tunog ng mga letrang <span class="!text-[#F4C300]">Kk</span> at <span class="!text-[#F4C300]"></span>Aa. 
                 <span class="text-2xl font-bold !text-[#F4C300]">
                     k + a = ka
                 </span>.
             </p>
             <p class="text-xl !text-gray-300 mt-4">
-                Ano-ano kaya ang mga salitang mabubuo natin kapag pinagsama natin ang pantig na /ka/ sa iba pang pantig na ating natalakay na?
+                Ano-ano kaya ang mga salitang mabubuo natin kapag pinagsama natin ang pantig na <span class="!text-[#F4C300]">ka</span> sa iba pang pantig na ating natalakay na?
             </p> 
         </header>
 
         <div class="flex-1 flex items-center justify-center">
             <div class="grid grid-cols-2 gap-8 text-5xl font-bold">
                 @foreach ([
-                    'Ka+ba = kaba',
-                    'ka+ma = kama',
-                    'ka+si = kasi',
-                    'ka+ka+i+ba = kakaiba'
+                    'Ka + ba = kaba',
+                    'ka + ma = kama',
+                    'ka + si = kasi',
+                    'ka + ka + i + ba = kakaiba'
                 ] as $example)
                     <p>{{ $example }}</p>
                 @endforeach
@@ -353,33 +353,12 @@
         </div>
     </div>
 
+
     {{-- ===== PAGE 15 ===== --}}
-    <div x-show="page === 15" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
-        <header class="header flex-shrink-0">
-            <p class="text-2xl font-semibold !text-gray-200">
-                Subukan mong basahin ang mga pantig upang makabuo ka ng mga salita.
-            </p>
-        </header>
-
-        <div class="flex-1 flex flex-col justify-center gap-6 overflow-y-auto p-5">
-            @foreach ([
-                'i ba = ___________',
-                'ma ka ka sa ma = ___________________',
-                'ba ka = __________',
-                'ka ba ba ta = ______________',
-                'ka ta ka ta ka = _______________',
-                'ka so = _________'
-            ] as $exercise)
-                <p class="text-3xl font-bold">{{ $exercise }}</p>
-            @endforeach
-        </div>
-    </div>
-
-    {{-- ===== PAGE 16 ===== --}}
-    <div x-show="page === 16" class="w-full flex-1 flex flex-col gap-6 px-2">
+    <div x-show="page === 15" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                Kapag isinama natin ang tunog na /k/ sa iba pang patinig ay ganito ang mangyayari.
+                Kapag isinama natin ang tunog na <span class="!text-[#F4C300]">k</span> sa iba pang patinig ay ganito ang mangyayari.
             </p>
         </header>
 
@@ -393,19 +372,8 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 17 ===== --}}
-    <div x-show="page === 17" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <div class="flex-1 flex items-center justify-center gap-10">
-            @foreach (['Ke', 'Ki', 'Ko', 'Ku'] as $syllable)
-                <p class="text-8xl font-bold cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform">
-                    {{ $syllable }}
-                </p>
-            @endforeach
-        </div>
-    </div>
-
-    {{-- ===== PAGE 18 ===== --}}
-    <div x-show="page === 18" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 16 ===== --}}
+    <div x-show="page === 16" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
                 Kapag ibinaligtad natin ay ganito naman ang kalalabasan:
@@ -419,10 +387,7 @@
                 </p>
             @endforeach
         </div>
-    </div>
 
-    {{-- ===== PAGE 19 ===== --}}
-    <div x-show="page === 19" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
                 Paghahalu-haluin natin para mataya natin ang iyong kaalaman.
@@ -441,8 +406,8 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 20 ===== --}}
-    <div x-show="page === 20" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 17 ===== --}}
+    <div x-show="page === 17" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
                 Kapag pinagsama-sama natin ang mga ito sa iba pang pantig, ano-ano ang mga salitang mabubuo natin.
@@ -464,42 +429,21 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 21 ===== --}}
-    <div x-show="page === 21" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
-        <header class="header flex-shrink-0">
-            <p class="text-2xl font-semibold !text-gray-200">
-                Basahin mo ang sumusunod na salita:
-            </p>
-        </header>
-
-        <div class="flex-1 grid grid-cols-3 gap-6 text-4xl font-bold text-center overflow-y-auto p-5">
-            @foreach ([
-                'Makikita', 'kusa', 'bulsa',
-                'Bakit', 'sumakit', 'kabute',
-                'Takam', 'bantas', 'tumakas'
-            ] as $word)
-                <p class="cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform">
-                    {{ $word }}
-                </p>
-            @endforeach
-        </div>
-    </div>
-
-    {{-- ===== PAGE 32 ===== --}}
-    <div x-show="page === 32" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 18 ===== --}}
+    <div x-show="page === 18" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                /la/- ito naman ang pantig na mabubuo kapag pinagsama ang tunog ng Ll at Aa. Tunog /l/ at /a/ ay /la/
+                Ang pantig na <span class="!text-[#F4C300]">la</span> ito naman ang pantig na mabubuo kapag pinagsama ang tunog ng <span class="!text-[#F4C300]">Ll</span> at <span class="!text-[#F4C300]">Aa</span>. Tunog <span class="!text-[#F4C300]">l</span> at <span class="!text-[#F4C300]">a</span> ay <span class="!text-[#F4C300]">la</span>
             </p>
         </header>
 
         <div class="flex-1 flex items-center justify-center">
             <div class="grid grid-cols-2 gap-8 text-5xl font-bold">
                 @foreach ([
-                    'la+so = laso',
-                    'la+kas = lakas',
-                    'si+la',
-                    'la+me+sa = lamesa'
+                    'la + so = laso',
+                    'la + kas = lakas',
+                    'si + la = sila',
+                    'la + me + sa = lamesa'
                 ] as $example)
                     <p>{{ $example }}</p>
                 @endforeach
@@ -507,20 +451,20 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 33 ===== --}}
-    <div x-show="page === 33" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 19 ===== --}}
+    <div x-show="page === 19" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                Tunog /l/ at /e/ = le
+                Ang tunog <span class="!text-[#F4C300]">l</span> at <span class="!text-[#F4C300]">e</span> = <span class="!text-[#F4C300]">le</span>
             </p>
         </header>
 
         <div class="flex-1 flex items-center justify-center">
-            <div class="grid grid-cols-3 gap-8 text-5xl font-bold">
+            <div class="grid grid-cols-1 gap-8 text-5xl font-bold">
                 @foreach ([
-                    'Le+o = Leo',
-                    'a+le = ale',
-                    'ka+le+sa = kalesa'
+                    'Le + o = Leo',
+                    'a + le = ale',
+                    'ka + le + sa = kalesa'
                 ] as $example)
                     <p>{{ $example }}</p>
                 @endforeach
@@ -528,20 +472,20 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 34 ===== --}}
-    <div x-show="page === 34" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 20 ===== --}}
+    <div x-show="page === 20" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                Tunog /l/ at /i/ = li
+                kapag ipinag sama ang tunog <span class="!text-[#F4C300]">l</span> at <span class="!text-[#F4C300]">i</span> = <span class="!text-[#F4C300]">li</span>
             </p>
         </header>
 
         <div class="flex-1 flex items-center justify-center">
-            <div class="grid grid-cols-3 gap-8 text-5xl font-bold">
+            <div class="grid grid-cols-1 gap-8 text-5xl font-bold">
                 @foreach ([
-                    'li+ma = lima',
-                    'li+sa = lisa',
-                    'a+li+la = alila'
+                    'li + ma = lima',
+                    'li + sa = lisa',
+                    'a + li + la = alila'
                 ] as $example)
                     <p>{{ $example }}</p>
                 @endforeach
@@ -549,20 +493,20 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 35 ===== --}}
-    <div x-show="page === 35" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 21 ===== --}}
+    <div x-show="page === 21" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                Tunog /l/ at /o/ = lo
+                kapag ipinag sama naman ang tunog <span class="!text-[#F4C300]">l</span> at <span class="!text-[#F4C300]">o</span> = <span class="!text-[#F4C300]">lo</span>
             </p>
         </header>
 
         <div class="flex-1 flex items-center justify-center">
-            <div class="grid grid-cols-3 gap-8 text-5xl font-bold">
+            <div class="grid grid-cols-1 gap-8 text-5xl font-bold">
                 @foreach ([
-                    'lo+lo = lolo',
-                    'bo+lo = bolo',
-                    'lo+bo = lobo'
+                    'lo + lo = lolo',
+                    'bo + lo = bolo',
+                    'lo + bo = lobo'
                 ] as $example)
                     <p>{{ $example }}</p>
                 @endforeach
@@ -570,20 +514,20 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 36 ===== --}}
-    <div x-show="page === 36" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 22 ===== --}}
+    <div x-show="page === 22" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                Tunog /l/ at /u/ = lu
+                Kapag ipinag sama naman ang tunog <span class="!text-[#F4C300]">l</span> at <span class="!text-[#F4C300]">u</span> = <span class="!text-[#F4C300]">lu</span>
             </p>
         </header>
 
         <div class="flex-1 flex items-center justify-center">
-            <div class="grid grid-cols-3 gap-8 text-5xl font-bold">
+            <div class="grid grid-cols-1 gap-8 text-5xl font-bold">
                 @foreach ([
-                    'lu+ma = luma',
-                    'lu+to = luto',
-                    'lu+pa = lupa'
+                    'lu + ma = luma',
+                    'lu + to = luto',
+                    'lu + pa = lupa'
                     ] as $example)
                     <p>{{ $example }}</p>
                 @endforeach
@@ -591,138 +535,117 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 37 ===== --}}
-    <div x-show="page === 37" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+    {{-- ===== PAGE 23 ===== --}}
+    <div x-show="page === 23" class="w-full flex-1 flex flex-col gap-6 px-2">
+        <header class="header">
+            <p class="text-2xl font-semibold !text-gray-200">
+                Ang pantig na <span class="!text-[#F4C300]">na</span>. Ito ang nabubuo kapag pinagsama ang tunog na <span class="!text-[#F4C300]">n</span> at <span class="!text-[#F4C300]">a</span>.
+            </p>
+        </header>
+
+        <div class="flex-1 flex items-center justify-center">
+            <div class="grid grid-cols-1 gap-8 text-5xl font-bold">
+                @foreach ([
+                    'na + ba + sa = nabasa',
+                    'na + ki + ta = nakita',
+                    'na + tum + ba = natumba'
+                ] as $example)
+                    <p>{{ $example }}</p>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+
+    {{-- ===== PAGE 24 ===== --}}
+    <div x-show="page === 24" class="w-full flex-1 flex flex-col gap-6 px-2">
+        <header class="header">
+            <p class="text-2xl font-semibold !text-gray-200">
+                kapag inihalo natin ang tunog na <span class="!text-[#F4C300]">n</span> sa iba pang mga patinig ganito ang mang yayari. <span class="!text-[#F4C300]">N</span> + <span class="!text-[#F4C300]">e</span> = <span class="!text-[#F4C300]">ne</span>, halika basahin natin ang mga halimbawa:
+            </p>
+        </header>
+
+        <div class="flex-1 flex items-center justify-center">
+            <div class="grid grid-cols-1 gap-8 text-5xl font-bold">
+                @foreach ([
+                    'Ne + ne = Nene',
+                    'Ne + mo = Nemo',
+                    'Ne + na = Nena'
+                ] as $example)
+                    <p>{{ $example }}</p>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+    {{-- ===== PAGE 25 ===== --}}
+    <div x-show="page === 25" class="w-full flex-1 flex flex-col gap-6 px-2">
+        <header class="header">
+            <p class="text-2xl font-semibold !text-gray-200">
+                Tunog <span class="!text-[#F4C300]">n</span> + <span class="!text-[#F4C300]">i</span> = <span class="!text-[#F4C300]">ni</span>. Mga halimbawa:
+            </p>
+        </header>
+
+        <div class="flex-1 flex items-center justify-center">
+            <div class="grid grid-cols-1 gap-8 text-5xl font-bold">
+                @foreach ([
+                    'ni + la = nila',
+                    'Ka + ni + na = kanina',
+                    'ma + ni = mani'
+                ] as $example)
+                    <p>{{ $example }}</p>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+    {{-- ===== PAGE 26 ===== --}}
+    <div x-show="page === 26" class="w-full flex-1 flex flex-col gap-6 px-2">
+        <header class="header">
+            <p class="text-2xl font-semibold !text-gray-200">
+                <span class="!text-[#F4C300]">n</span> + <span class="!text-[#F4C300]">o</span> = <span class="!text-[#F4C300]">no</span>
+            </p>
+        </header>
+
+        <div class="flex-1 flex items-center justify-center">
+            <div class="grid grid-cols-1 gap-8 text-5xl font-bold">
+                @foreach ([
+                    'no + o = noo',
+                    'ta + li + no = talino',
+                    'a + ni + no'
+                ] as $example)
+                    <p>{{ $example }}</p>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+    {{-- ===== PAGE 27 ===== --}}
+    <div x-show="page === 27" class="w-full flex-1 flex flex-col gap-6 px-2">
+        <header class="header">
+            <p class="text-2xl font-semibold !text-gray-200">
+                <span class="!text-[#F4C300]">n</span> + <span class="!text-[#F4C300]">u</span> = <span class="!text-[#F4C300]">nu</span>
+            </p>
+        </header>
+
+        <div class="flex-1 flex items-center justify-center">
+            <div class="grid grid-cols-1 gap-8 text-5xl font-bold">
+                @foreach ([
+                    'nu + no = nuno',
+                    'nu + nal = nunal',
+                    'nu + nu + kal = nunukal'
+                ] as $example)
+                    <p>{{ $example }}</p>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+    {{-- ===== PAGE 28 ===== --}}
+    <div x-show="page === 28" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
         <header class="header flex-shrink-0">
             <p class="text-2xl font-semibold !text-gray-200">
-                Basahin ang sumusunod na salita.
-            </p>
-        </header>
-
-        <div class="flex-1 flex flex-col justify-center gap-6 overflow-y-auto p-5">
-            @foreach ([
-                'Ku lam bo ___________',
-                'sa li ta ____________',
-                'ma lu lu ma _______________',
-                'Ba li ta ____________',
-                'ka le sa ____________',
-                'ma si si lo _________________'
-            ] as $exercise)
-                <p class="text-3xl font-bold">{{ $exercise }}</p>
-            @endforeach
-        </div>
-    </div>
-
-    {{-- ===== PAGE 38 ===== --}}
-    <div x-show="page === 38" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header">
-            <p class="text-2xl font-semibold !text-gray-200">
-                Pantig na /na/. Ito ang nabubuo kapag pinagsama ang tunog na /n/ at /a/.
-            </p>
-        </header>
-
-        <div class="flex-1 flex items-center justify-center">
-            <div class="grid grid-cols-3 gap-8 text-5xl font-bold">
-                @foreach ([
-                    'na+ba+sa = nabasa',
-                    'na+ki+ta = nakita',
-                    'na+tum+ba = natumba'
-                ] as $example)
-                    <p>{{ $example }}</p>
-                @endforeach
-            </div>
-        </div>
-    </div>
-
-    {{-- ===== PAGE 39 ===== --}}
-    <div x-show="page === 39" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header">
-            <p class="text-2xl font-semibold !text-gray-200">
-                /n/ + /e/ = ne
-            </p>
-        </header>
-
-        <div class="flex-1 flex items-center justify-center">
-            <div class="grid grid-cols-3 gap-8 text-5xl font-bold">
-                @foreach ([
-                    'Ne=ne = Nene',
-                    'Ne+mo = Nemo',
-                    'Ne+na = Nena'
-                ] as $example)
-                    <p>{{ $example }}</p>
-                @endforeach
-            </div>
-        </div>
-    </div>
-
-    {{-- ===== PAGE 40 ===== --}}
-    <div x-show="page === 40" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header">
-            <p class="text-2xl font-semibold !text-gray-200">
-                /n/ + /i/ = ni
-            </p>
-        </header>
-
-        <div class="flex-1 flex items-center justify-center">
-            <div class="grid grid-cols-3 gap-8 text-5xl font-bold">
-                @foreach ([
-                    'ni+la = nila',
-                    'Ka+ni+na = kanina',
-                    'ma+ni = mani'
-                ] as $example)
-                    <p>{{ $example }}</p>
-                @endforeach
-            </div>
-        </div>
-    </div>
-
-    {{-- ===== PAGE 41 ===== --}}
-    <div x-show="page === 41" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header">
-            <p class="text-2xl font-semibold !text-gray-200">
-                /n/ + /o/ = no
-            </p>
-        </header>
-
-        <div class="flex-1 flex items-center justify-center">
-            <div class="grid grid-cols-3 gap-8 text-5xl font-bold">
-                @foreach ([
-                    'no+o = noo',
-                    'ta+li+no = talino',
-                    'a+ni+no'
-                ] as $example)
-                    <p>{{ $example }}</p>
-                @endforeach
-            </div>
-        </div>
-    </div>
-
-    {{-- ===== PAGE 42 ===== --}}
-    <div x-show="page === 42" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header">
-            <p class="text-2xl font-semibold !text-gray-200">
-                /n/ + /u/ = nu
-            </p>
-        </header>
-
-        <div class="flex-1 flex items-center justify-center">
-            <div class="grid grid-cols-3 gap-8 text-5xl font-bold">
-                @foreach ([
-                    'nu+no = nuno',
-                    'nu+nal = nunal',
-                    'nu+nu+kal = nunukal'
-                ] as $example)
-                    <p>{{ $example }}</p>
-                @endforeach
-            </div>
-        </div>
-    </div>
-
-    {{-- ===== PAGE 43 ===== --}}
-    <div x-show="page === 43" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
-        <header class="header flex-shrink-0">
-            <p class="text-2xl font-semibold !text-gray-200">
-                Basahin ang mga salitang nabuo gamit ang mga panting na /na/, /ne/, /ni/, /no/ at /nu/ at ang mga pantig na napag-aralan mo na.
+                Basahin ang mga salitang nabuo gamit ang mga panting na <span class="!text-[#F4C300]">na</span>, <span class="!text-[#F4C300]">ne</span>, <span class="!text-[#F4C300]">ni</span>, <span class="!text-[#F4C300]">no</span> at <span class="!text-[#F4C300]">nu</span> at ang mga pantig na napag-aralan mo na.
             </p>
         </header>
 
@@ -740,20 +663,20 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 44 ===== --}}
-    <div x-show="page === 44" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 29 ===== --}}
+    <div x-show="page === 29" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                /ya/- pinagsamang tunog na /y/ at /a/ ay ya
+                Ang pantig na <span class="!text-[#F4C300]">ya</span> - ito'y pinagsamang tunog na <span class="!text-[#F4C300]">y</span> at <span class="!text-[#F4C300]">a</span>. Halika basahin natin ang mga halimbawa:
             </p>
         </header>
 
         <div class="flex-1 flex items-center justify-center">
-            <div class="grid grid-cols-3 gap-8 text-5xl font-bold">
+            <div class="grid grid-cols-1 gap-8 text-5xl font-bold">
                 @foreach ([
-                    'ya+ya',
-                    'ka+ya = kaya',
-                    'sa+ya = saya'
+                    'ya + ya = yaya',
+                    'ka + ya = kaya',
+                    'sa + ya = saya'
                 ] as $example)
                     <p>{{ $example }}</p>
                 @endforeach
@@ -761,20 +684,20 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 45 ===== --}}
-    <div x-show="page === 45" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 30 ===== --}}
+    <div x-show="page === 30" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                /ye/
+                <span class="!text-[#F4C300]">ye</span> pinagsamang tunog na<span class="!text-[#F4C300]">y</span> at <span class="!text-[#F4C300]">e</span>. Halimbawa:
             </p>
         </header>
 
         <div class="flex-1 flex items-center justify-center">
-            <div class="grid grid-cols-3 gap-8 text-5xl font-bold">
+            <div class="grid grid-cols-1 gap-8 text-5xl font-bold">
                 @foreach ([
-                    'ye+so = yeso',
-                    'ye+lo = yelo',
-                    'ye+ma = yema'
+                    'ye + so = yeso',
+                    'ye + lo = yelo',
+                    'ye + ma = yema'
                 ] as $example)
                     <p>{{ $example }}</p>
                 @endforeach
@@ -782,20 +705,20 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 46 ===== --}}
-    <div x-show="page === 46" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 31 ===== --}}
+    <div x-show="page === 31" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                /yi/
+                <span class="!text-[#F4C300]">ye</span> pinagsamang tunog na<span class="!text-[#F4C300]">y</span> at <span class="!text-[#F4C300]">i</span>. Halimbawa:
             </p>
         </header>
 
         <div class="flex-1 flex items-center justify-center">
-            <div class="grid grid-cols-3 gap-8 text-5xl font-bold">
+            <div class="grid grid-cols-1 gap-8 text-5xl font-bold">
                 @foreach ([
-                    'bay+ba+yin = baybayin',
-                    'sa+na+yin = sanayin',
-                    'bu+la+yin = bulayin'
+                    'bay + ba + yin = baybayin',
+                    'sa + na + yin = sanayin',
+                    'bu + la + yin = bulayin'
                 ] as $example)
                     <p>{{ $example }}</p>
                 @endforeach
@@ -803,20 +726,20 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 47 ===== --}}
-    <div x-show="page === 47" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 32 ===== --}}
+    <div x-show="page === 32" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                /yo/
+                <span class="!text-[#F4C300]">yo</span> - pinagsamang tunog ng <span class="!text-[#F4C300]">y</span> + <span class="!text-[#F4C300]">o</span> = <span class="!text-[#F4C300]">yo</span>. Halimbawa:
             </p>
         </header>
 
         <div class="flex-1 flex items-center justify-center">
-            <div class="grid grid-cols-3 gap-8 text-5xl font-bold">
+            <div class="grid grid-cols-1 gap-8 text-5xl font-bold">
                 @foreach ([
-                    'yo+yo = yoyo',
-                    'ka+ba+yo = kabayo',
-                    'i+ba+yo = ibayo'
+                    'yo + yo = yoyo',
+                    'ka + ba + yo = kabayo',
+                    'i + ba + yo = ibayo'
                 ] as $example)
                     <p>{{ $example }}</p>
                 @endforeach
@@ -824,20 +747,20 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 48 ===== --}}
-    <div x-show="page === 48" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 33 ===== --}}
+    <div x-show="page === 33" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                /yu/
+                <span class="!text-[#F4C300]">yu</span> - pinagsamang tunog ng <span class="!text-[#F4C300]">y</span> + <span class="!text-[#F4C300]">u</span> = <span class="!text-[#F4C300]">yu</span>. Basahin natin ang mga halimbawa:
             </p>
         </header>
 
         <div class="flex-1 flex items-center justify-center">
-            <div class="grid grid-cols-3 gap-8 text-5xl font-bold">
+            <div class="grid grid-cols-1 gap-8 text-5xl font-bold">
                 @foreach ([
-                    'yu+ko = yuko',
-                    'an+yu+an = anyuan',
-                    'ma+yu+mi = mayumi'
+                    'yu + ko = yuko',
+                    'an + yu + an = anyuan',
+                    'ma + yu + mi = mayumi'
                 ] as $example)
                     <p>{{ $example }}</p>
                 @endforeach
@@ -845,8 +768,8 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 49 ===== --}}
-    <div x-show="page === 49" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+    {{-- ===== PAGE 34 ===== --}}
+    <div x-show="page === 34" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
         <header class="header flex-shrink-0">
             <p class="text-2xl font-semibold !text-gray-200">
                 Basahin ang sumusunod na pantig upang mabuo ang salita:

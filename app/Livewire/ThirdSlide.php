@@ -211,38 +211,33 @@ class ThirdSlide extends Component
             // Part 1: Syllable Building
             ['type' => 'syllable_build', 'syllables' => ['Ba', 'so'], 'answer' => 'baso'],
             ['type' => 'syllable_build', 'syllables' => ['ba', 'sa'], 'answer' => 'basa'],
-            // ... more syllables ...
             
             // Part 2: Read Phrases
-            ['type' => 'read_phrase', 'text' => 'iba ang abo'],
-            ['type' => 'read_phrase', 'text' => 'ang mga baso'],
-            // ... more phrases ...
+            ['type' => 'read_phrase', 'parirala' => 'iba ang abo'],
+            ['type' => 'read_phrase', 'parirala' => 'ang mga baso'],
             
-            // Part 3: Read Sentences
-            ['type' => 'read_sentence', 'text' => 'Ang mga bao ay basa.'],
-            ['type' => 'read_sentence', 'text' => 'Bababa si Sam.'],
-            // ... more sentences ...
-            
-            // Part 4: Comprehension
-            ['type' => 'comprehension', 'question' => 'Sino ang bababa?', 'answer' => 'si Sam'],
-            ['type' => 'comprehension', 'question' => 'Ano ang mga masisiba?', 'answer' => 'ang mga oso'],
-            // ... more questions ...
+            // Part 3: Read Sentences & Comprehension
+            ['type' => 'read_sentence', 'pangungusap' => 'Ang mga bao ay basa.'],
+            ['type' => 'comprehension', 'tanong' => 'Ano ang basa?', 'answer' => 'ang mga bao'],
+
+            ['type' => 'read_sentence', 'pangungusap' => 'Bababa si Sam.'],
+            ['type' => 'comprehension', 'tanong' => 'Sino ang bababa?', 'answer' => 'si Sam'],
         ],
 
         7 => [
-            ['type' => 'read_phrase', 'kataga' => 'Kalaro'],
-            ['type' => 'read_phrase', 'kataga' => 'Masaya'],
-            ['type' => 'read_phrase', 'kataga' => 'Kalabasa'],
-            ['type' => 'read_phrase', 'kataga' => 'katutubo'],
-            ['type' => 'read_phrase', 'kataga' => 'ninuno'],
-            ['type' => 'read_phrase', 'kataga' => 'mata ng ibon'],
-            ['type' => 'read_phrase', 'kataga' => 'yoyo sa tabo'],
-            ['type' => 'read_phrase', 'kataga' => 'bola sa ilalim ng kama'],
-            ['type' => 'read_phrase', 'kataga' => 'ang mga ubas'],
-            ['type' => 'read_phrase', 'kataga' => 'lobo sa mesa'],
-            ['type' => 'read_phrase', 'kataga' => 'luya ni yaya'],
-            ['type' => 'read_phrase', 'kataga' => 'butas na bota'],
-            ['type' => 'read_phrase', 'kataga' => 'yema ng bata'],
+            ['type' => 'read_phrase', 'parirala' => 'Kalaro'],
+            ['type' => 'read_phrase', 'parirala' => 'Masaya'],
+            ['type' => 'read_phrase', 'parirala' => 'Kalabasa'],
+            ['type' => 'read_phrase', 'parirala' => 'katutubo'],
+            ['type' => 'read_phrase', 'parirala' => 'ninuno'],
+            ['type' => 'read_phrase', 'parirala' => 'mata ng ibon'],
+            ['type' => 'read_phrase', 'parirala' => 'yoyo sa tabo'],
+            ['type' => 'read_phrase', 'parirala' => 'bola sa ilalim ng kama'],
+            ['type' => 'read_phrase', 'parirala' => 'ang mga ubas'],
+            ['type' => 'read_phrase', 'parirala' => 'lobo sa mesa'],
+            ['type' => 'read_phrase', 'parirala' => 'luya ni yaya'],
+            ['type' => 'read_phrase', 'parirala' => 'butas na bota'],
+            ['type' => 'read_phrase', 'parirala' => 'yema ng bata'],
         ], 
         
         8 => [
@@ -278,22 +273,31 @@ class ThirdSlide extends Component
             ['type' => 'syllable_build', 'syllables' => ['Ha', 'ba', 'gat'], 'answer' => 'habagat'],
             
             // Part 2: Read Phrases (8 questions)
-            ['type' => 'read_phrase', 'text' => 'Ang sinigang'],
-            ['type' => 'read_phrase', 'text' => 'Dahil mabaho'],
-            ['type' => 'read_phrase', 'text' => 'Walang pera'],
-            ['type' => 'read_phrase', 'text' => 'ang kalabaw at palaka'],
-            ['type' => 'read_phrase', 'text' => 'sawali at ipa'],
-            ['type' => 'read_phrase', 'text' => 'sagana at mapayapa'],
-            ['type' => 'read_phrase', 'text' => 'Si Lino'],
-            ['type' => 'read_phrase', 'text' => 'Ang masiba'],
+            ['type' => 'read_phrase', 'parirala' => 'Ang sinigang'],
+            ['type' => 'read_phrase', 'parirala' => 'Dahil mabaho'],
+            ['type' => 'read_phrase', 'parirala' => 'Walang pera'],
+            ['type' => 'read_phrase', 'parirala' => 'ang kalabaw at palaka'],
+            ['type' => 'read_phrase', 'parirala' => 'sawali at ipa'],
+            ['type' => 'read_phrase', 'parirala' => 'sagana at mapayapa'],
+            ['type' => 'read_phrase', 'parirala' => 'Si Lino'],
+            ['type' => 'read_phrase', 'parirala' => 'Ang masiba'],
         ],  
 
         10 => [
             ['type' => 'fill_syllable', 'word' => 'Kale__', 'answer' => 'sa', 'image' => 'illustrations/kalesa.png', 'full_word' => 'Kalesa'],
+            ['type' => 'read_word', 'full_word' => 'Kalesa'],
+            
             ['type' => 'fill_syllable', 'word' => 'Ye__', 'answer' => 'ma', 'image' => 'illustrations/yema.png', 'full_word' => 'Yema'],
+            ['type' => 'read_word', 'full_word' => 'Yema'],
+            
             ['type' => 'fill_syllable', 'word' => 'Gi__ra', 'answer' => 'ta', 'image' => 'illustrations/gitara.png', 'full_word' => 'Gitara'],
+            ['type' => 'read_word', 'full_word' => 'Gitara'],
+            
             ['type' => 'fill_syllable', 'word' => 'Si__', 'answer' => 'li', 'image' => 'illustrations/sili.png', 'full_word' => 'Sili'],
+            ['type' => 'read_word', 'full_word' => 'Sili'],
+            
             ['type' => 'fill_syllable', 'word' => '__nika', 'answer' => 'ma', 'image' => 'illustrations/manika.png', 'full_word' => 'Manika'],
+            ['type' => 'read_word', 'full_word' => 'Manika'],
         ],
 
         11 => [

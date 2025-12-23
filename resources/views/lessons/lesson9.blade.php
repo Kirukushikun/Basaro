@@ -120,7 +120,7 @@
     <div x-show="page === 11" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                Bumuo tayo ng mga salitang gamit ang pantig na ga, ge, gi, go at gu kasama ang iba pang pantig na ating natalakay. Halimbawa:
+                Bumuo tayo ng mga salitang gamit ang pantig na <span class="!text-[#F4C300]">ga</span>, <span class="!text-[#F4C300]">ge</span>, <span class="!text-[#F4C300]">gi</span>, <span class="!text-[#F4C300]">go</span> at <span class="!text-[#F4C300]">gu</span> kasama ang iba pang pantig na ating natalakay. Halimbawa:
             </p>
         </header>
 
@@ -152,7 +152,7 @@
     <div x-show="page === 12" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                Ang pantig na <span class="!text-[#F4C300]">nga</span> pinagsamang tunog ng <span class="!text-[#F4C300]">ng</span> at <span class="!text-[#F4C300]">a</span>. Hindi lang ang pantig na <span class="!text-[#F4C300]">nga</span> ang mabubuo natin kung pagsasamahin natin ang iba pang mga tunog ng patinig sa letrang ng na may tunog na <span class="!text-[#F4C300]">ng</span>.
+                Ang pantig na <span class="!text-[#F4C300]">nga</span> pinagsamang tunog ng <span class="!text-[#F4C300]">ng</span> at <span class="!text-[#F4C300]">a</span>. Hindi lang ang pantig na <span class="!text-[#F4C300]">nga</span> ang mabubuo natin kung pagsasamahin natin ang iba pang mga tunog ng patinig sa letrang <span class="!text-[#F4C300]">ng</span> na may tunog na <span class="!text-[#F4C300]">ng</span>.
             </p>
         </header>
 
@@ -171,21 +171,21 @@
     <div x-show="page === 13" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                Bumuo tayo ng mga salitang gamit ang pantig na nga, nge, ngi, ngo at ngu kasama ang iba pang pantig na ating natalakay. Halimbawa:
+                Halika bumuo tayo ng mga salitang gamit ang pantig na <span class="!text-[#F4C300]">nga</span>, <span class="!text-[#F4C300]">nge</span>, <span class="!text-[#F4C300]">ngi</span>, <span class="!text-[#F4C300]">ngo</span> at <span class="!text-[#F4C300]">ngu</span> kasama ang iba pang pantig na ating natalakay. Halimbawa:
             </p>
         </header>
         <div class="flex-1 grid grid-cols-3 gap-6 text-3xl font-bold text-center overflow-y-auto p-5">
             @foreach ([
-                'Nga+nga = nganga',
-                'ngi+ti = ngiti',
-                'bu+nga = bunga',
-                'ngu+so = nguso',
-                'bu+ngo = bungo',
-                'Ba+nga = banga',
-                'ngi+pin = ngipin',
-                'ngo+ngo = ngongo',
-                'sa+nga = sanga',
-                'la+ngo = lango'
+                'Nga + nga = nganga',
+                'ngi + ti = ngiti',
+                'bu + nga = bunga',
+                'ngu + so = nguso',
+                'bu + ngo = bungo',
+                'Ba + nga = banga',
+                'ngi + pin = ngipin',
+                'ngo + ngo = ngongo',
+                'sa + nga = sanga',
+                'la + ngo = lango'
             ] as $example)
                 <p class="cursor-pointer hover:scale-105 hover:!text-[#F4C300] transition-transform">
                     {{ $example }}
@@ -198,7 +198,7 @@
     <div x-show="page === 14" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                /pa/ pinagsamang tunog ng /p/ at /a/. Hindi lang ang pantig na /pa/ ang mabubuo natin kung pagsasamahin natin ang iba pang mga tunog ng patinig sa letrang p na may tunog na /p/.
+                Ang pantig na <span class="!text-[#F4C300]">pa</span> pinagsamang tunog ng <span class="!text-[#F4C300]">p</span> at <span class="!text-[#F4C300]">a</span>. Hindi lang ang pantig na <span class="!text-[#F4C300]">pa</span> ang mabubuo natin kung pagsasamahin natin ang iba pang mga tunog ng patinig sa letrang <span class="!text-[#F4C300]">p</span> na may tunog na <span class="!text-[#F4C300]">p</span>.
             </p>
         </header>
 
@@ -217,26 +217,26 @@
     <div x-show="page === 15" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                Bumuo tayo ng mga salitang gamit ang pantig na pa, pe, pi, po at pu kasama ang iba pang pantig na ating natalakay. Halimbawa:
+                Bumuo tayo ng mga salitang gamit ang pantig na <span class="!text-[#F4C300]">pa</span>, <span class="!text-[#F4C300]">pe</span>, <span class="!text-[#F4C300]">pi</span>, <span class="!text-[#F4C300]">po</span> at <span class="!text-[#F4C300]">pu</span> kasama ang iba pang pantig na ating natalakay. Halimbawa:
             </p>
         </header>
         <div class="flex-1 grid grid-cols-3 gap-6 text-3xl font-bold text-center overflow-y-auto p-5">
             @foreach ([
-                'pu+sa = pusa',
-                'a+pu+la = apula',
-                'pi+to = pito',
-                'pa+lo = palo',
-                'pi+ta+ka = pitaka',
-                'pu+no = puno',
-                'pi+so = piso',
-                'pe+li+ku+la = pelikula',
-                'pa+ta+tas = patatas',
-                'pu+ti = puti',
-                'pu+gi+ta = pugita',
-                'ma+pu+la = mapula',
-                'sa+pi+an = sapian',
-                'Pe+li+ta = Pelita',
-                'pi+ko = piko'
+                'pu + sa = pusa',
+                'a + pu + la = apula',
+                'pi + to = pito',
+                'pa + lo = palo',
+                'pi + ta + ka = pitaka',
+                'pu + no = puno',
+                'pi + so = piso',
+                'pe + li + ku + la = pelikula',
+                'pa + ta + tas = patatas',
+                'pu + ti = puti',
+                'pu + gi + ta = pugita',
+                'ma + pu + la = mapula',
+                'sa + pi + an = sapian',
+                'Pe + li + ta = Pelita',
+                'pi + ko = piko'
             ] as $example)
                 <p class="cursor-pointer hover:scale-105 hover:!text-[#F4C300] transition-transform">
                     {{ $example }}
@@ -249,7 +249,7 @@
     <div x-show="page === 16" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                /ra/ pinagsamang tunog ng /r/ at /a/. Hindi lang ang pantig na /ra/ ang mabubuo natin kung pagsasamahin natin ang iba pang mga tunog ng patinig sa letrang r na may tunog na /r/.
+                Ang panting na <span class="!text-[#F4C300]">ra</span> pinagsamang tunog ng <span class="!text-[#F4C300]">r</span> at <span class="!text-[#F4C300]">a</span>. Hindi lang ang pantig na <span class="!text-[#F4C300]">ra</span> ang mabubuo natin kung pagsasamahin natin ang iba pang mga tunog ng patinig sa letrang <span class="!text-[#F4C300]">r</span> na may tunog na <span class="!text-[#F4C300]">r</span>.
             </p>
         </header>
         <div class="flex-1 flex flex-col items-center justify-center gap-8">
@@ -267,26 +267,26 @@
     <div x-show="page === 17" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                Bumuo tayo ng mga salitang gamit ang pantig na ra, re, ri, ro at ru kasama ang iba pang pantig na ating natalakay. Halimbawa:
+                Bumuo tayo ng mga salitang gamit ang pantig na <span class="!text-[#F4C300]">ra</span>, <span class="!text-[#F4C300]">re</span>, <span class="!text-[#F4C300]">ri</span>, <span class="!text-[#F4C300]">ro</span> at <span class="!text-[#F4C300]">ru</span> kasama ang iba pang pantig na ating natalakay. Halimbawa:
             </p>
         </header>
         <div class="flex-1 grid grid-cols-3 gap-6 text-3xl font-bold text-center overflow-y-auto p-5">
             @foreach ([
-                'Pe+ra = pera',
-                'ra+ke+ta = raketa',
-                're+ti+ro = retiro',
-                'ro+on = roon',
-                'ri+les = riles',
-                'Re+lo = relo',
-                'u+ri = uri',
-                'a+ra+ro = araro',
-                'A+ra = Ara',
-                'Ri+ta = Rita',
-                'Gi+ta+ra = gitara',
-                'pa+ri = pari',
-                'pa+ra = para',
-                'ru+ler = ruler',
-                'ma+ru+mi = marumi'
+                'pe + ra = pera',
+                'ra + ke + ta = raketa',
+                're + ti + ro = retiro',
+                'ro + on = roon',
+                'ri + les = riles',
+                'Re + lo = relo',
+                'u + ri = uri',
+                'a + ra + ro = araro',
+                'a + ra = ara',
+                'ri + ta = rita',
+                'gi + ta + ra = gitara',
+                'pa + ri = pari',
+                'pa + ra = para',
+                'ru + ler = ruler',
+                'ma + ru + mi = marumi'
             ] as $example)
                 <p class="cursor-pointer hover:scale-105 hover:!text-[#F4C300] transition-transform">
                     {{ $example }}
@@ -299,7 +299,7 @@
     <div x-show="page === 18" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                /da/ pinagsamang tunog ng /d/ at /a/. Hindi lang ang pantig na /da/ ang mabubuo natin kung pagsasamahin natin ang iba pang mga tunog ng patinig sa letrang d na may tunog na /d/.
+                Ang pantig na <span class="!text-[#F4C300]">da</span> pinagsamang tunog ng <span class="!text-[#F4C300]">d</span> at <span class="!text-[#F4C300]">a</span>. Hindi lang ang pantig na <span class="!text-[#F4C300]">da</span> ang mabubuo natin kung pagsasamahin natin ang iba pang mga tunog ng patinig sa letrang <span class="!text-[#F4C300]">d</span> na may tunog na <span class="!text-[#F4C300]">d</span>.
             </p>
         </header>
         <div class="flex-1 flex flex-col items-center justify-center gap-8">
@@ -317,23 +317,23 @@
     <div x-show="page === 19" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                Bumuo tayo ng mga salitang gamit ang pantig na da, de, di, do at du kasama ang iba pang pantig na ating natalakay. Halimbawa:
+                Bumuo tayo ng mga salitang gamit ang pantig na <span class="!text-[#F4C300]">da</span>, <span class="!text-[#F4C300]">de</span>, <span class="!text-[#F4C300]">di</span>, <span class="!text-[#F4C300]">do</span> at <span class="!text-[#F4C300]">du</span> kasama ang iba pang pantig na ating natalakay. Halimbawa:
             </p>
         </header>
         <div class="flex-1 grid grid-cols-3 gap-6 text-3xl font-bold text-center overflow-y-auto p-5">
             @foreach ([
-                'Da+ga = daga',
-                'da+ya = daya',
-                'du+go = dugo',
-                'di+la = dila',
-                'Da+gok = dagok',
-                'di+ko = diko',
-                'de+lub+yo = delubyo',
-                'do+se = dose',
-                'Pan+da+kot = pandakot',
-                'du+da = duda',
-                'da+mo = damo',
-                'du+la = dula'
+                'da + ga = daga',
+                'da + ya = daya',
+                'du + go = dugo',
+                'di + la = dila',
+                'da + gok = dagok',
+                'di + ko = diko',
+                'de + lub + yo = delubyo',
+                'do + se = dose',
+                'pan + da + kot = pandakot',
+                'du + da = duda',
+                'da + mo = damo',
+                'du + la = dula'
             ] as $example)
                 <p class="cursor-pointer hover:scale-105 hover:!text-[#F4C300] transition-transform">
                     {{ $example }}
@@ -346,7 +346,7 @@
     <div x-show="page === 20" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                /ha/ pinagsamang tunog ng /h/ at /a/. Hindi lang ang pantig na /ha/ ang mabubuo natin kung pagsasamahin natin ang iba pang mga tunog ng patinig sa letrang h na may tunog na /h/.
+                Ang pantig na <span class="!text-[#F4C300]">ha</span> ay pinagsamang tunog ng <span class="!text-[#F4C300]">h</span> at <span class="!text-[#F4C300]">a</span>. Hindi lang ang pantig na <span class="!text-[#F4C300]">ha</span> ang mabubuo natin kung pagsasamahin natin ang iba pang mga tunog ng patinig sa letrang <span class="!text-[#F4C300]">h</span> na may tunog na <span class="!text-[#F4C300]">h</span>.
             </p>
         </header>
         <div class="flex-1 flex flex-col items-center justify-center gap-8">
@@ -364,23 +364,23 @@
     <div x-show="page === 21" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                Bumuo tayo ng mga salitang gamit ang pantig na ha, he, hi, ho at hu kasama ang iba pang pantig na ating natalakay. Halimbawa:
+                Narito ang mga salitang nabuo natin gamit ang pantig na <span class="!text-[#F4C300]">ha</span>, <span class="!text-[#F4C300]">ha</span>, <span class="!text-[#F4C300]">hi</span>, <span class="!text-[#F4C300]">ho</span> at <span class="!text-[#F4C300]">hu</span> kasama ang iba pang pantig na ating natalakay. Halimbawa:
             </p>
         </header>
         <div class="flex-1 grid grid-cols-3 gap-6 text-3xl font-bold text-center overflow-y-auto p-5">
             @foreach ([
-                'Ha+la+man = halaman',
-                'hu+la = hula',
-                'hi+ta = hita',
-                'ho+len = holen',
-                'Hi+ga = higa',
-                'hu+gas = hugas',
-                'i+ha+in = ihain',
-                'i+ho = iho',
-                'Hi+ni+hi+ka = hinihika',
-                'ha+ba = haba',
-                'na+hi+ya = nahiya',
-                'ha+li+gi = haligi'
+                'ha + la + man = halaman',
+                'hu + la = hula',
+                'hi + ta = hita',
+                'ho + len = holen',
+                'Hi + ga = higa',
+                'hu + gas = hugas',
+                'i + ha + in = ihain',
+                'i + ho = iho',
+                'hi + ni + hi + ka = hinihika',
+                'ha + ba = haba',
+                'na + hi + ya = nahiya',
+                'ha + li + gi = haligi'
             ] as $example)
                 <p class="cursor-pointer hover:scale-105 hover:!text-[#F4C300] transition-transform">
                     {{ $example }}
@@ -393,7 +393,7 @@
     <div x-show="page === 22" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                /wa/ pinagsamang tunog ng /w/ at /a/. Hindi lang ang pantig na /wa/ ang mabubuo natin kung pagsasamahin natin ang iba pang mga tunog ng patinig sa letrang w na may tunog na /w/.
+                Ang pantig na <span class="!text-[#F4C300]">wa</span> pinagsamang tunog ng <span class="!text-[#F4C300]">w</span> at <span class="!text-[#F4C300]">a</span>. Hindi lang ang pantig na <span class="!text-[#F4C300]">wa</span> ang mabubuo natin kung pagsasamahin natin ang iba pang mga tunog ng patinig sa letrang <span class="!text-[#F4C300]">w</span> na may tunog na <span class="!text-[#F4C300]">wa</span>.
             </p>
         </header>
         <div class="flex-1 flex flex-col items-center justify-center gap-8">
@@ -411,19 +411,19 @@
     <div x-show="page === 23" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                Bumuo tayo ng mga salitang gamit ang pantig na wa, we, wi, wo at wu kasama ang iba pang pantig na ating natalakay. Halimbawa:
+                Narito ang mga salitang nabuo natin gamit ang mga pantig na <span class="!text-[#F4C300]">wa</span>, <span class="!text-[#F4C300]">we</span>, <span class="!text-[#F4C300]">wi</span>, <span class="!text-[#F4C300]">wo</span> at <span class="!text-[#F4C300]">wu</span> kasama ang iba pang pantig na ating natalakay. Halimbawa:
             </p>
         </header>
         <div class="flex-1 grid grid-cols-3 gap-6 text-3xl font-bold text-center overflow-y-auto p-5">
             @foreach ([
-                'Wi+ka = wika',
-                'wa+la = wala',
-                'tu+ma+wa = tumawa',
-                'u+wi+an = uwian',
-                'Wa+gi = wagi',
-                'bu+wa+ya = buwaya',
-                'wi+sik = wisik',
-                'su+wel+do = suweldo'
+                'wi + ka = wika',
+                'wa + la = wala',
+                'tu + ma + wa = tumawa',
+                'u + wi + an = uwian',
+                'wa + gi = wagi',
+                'bu + wa + ya = buwaya',
+                'wi + sik = wisik',
+                'su + wel + do = suweldo'
             ] as $example)
                 <p class="cursor-pointer hover:scale-105 hover:!text-[#F4C300] transition-transform">
                     {{ $example }}

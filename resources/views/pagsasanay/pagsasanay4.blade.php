@@ -51,10 +51,10 @@
             <div class="flex gap-2 items-center">
                 <template x-for="(s, index) in current.syllables" :key="index">
                     <div class="flex items-center gap-2">
-                        <div class="items-center justify-center alphabet">
+                        <div class="items-center justify-center alphabet !text-8xl">
                             <span x-text="s"></span>
                         </div>
-                        <span x-show="index < current.syllables.length - 1" class="text-3xl font-bold !text-[#F4C300]">+</span>
+                        <span x-show="index < current.syllables.length - 1" class="text-4xl font-bold !text-[#F4C300]">+</span>
                     </div>
                 </template>
             </div>
