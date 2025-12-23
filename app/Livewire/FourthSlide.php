@@ -225,6 +225,76 @@ class FourthSlide extends Component
             ['type' => 'read_sentence', 'pangungusap' => 'Masasama kay Ama ang mama.'],
             ['type' => 'comprehension', 'tanong' => 'Sino ang masasama kay Ama?', 'answer' => 'ang mama'],
         ],
+        6 => [
+            ['type' => 'read_phrase', 'parirala' => 'masiba'],
+            ['type' => 'read_phrase', 'parirala' => 'mabisa'],
+            ['type' => 'read_phrase', 'parirala' => 'bomba'],
+            ['type' => 'read_phrase', 'parirala' => 'ibaba'],
+            ['type' => 'read_phrase', 'parirala' => 'abo'],
+            ['type' => 'read_phrase', 'parirala' => 'sa iba'],
+            ['type' => 'read_phrase', 'parirala' => 'may misa'],
+            ['type' => 'read_phrase', 'parirala' => 'abo sa baso'],
+            ['type' => 'read_sentence', 'pangungusap' => 'Ang baba ni Sam ay basa.'],
+            ['type' => 'comprehension', 'tanong' => 'Ano ang basa kay Sam?', 'answer' => 'Ang baba'],
+            ['type' => 'read_sentence', 'pangungusap' => 'Bibo si Bombi.'],
+            ['type' => 'comprehension', 'tanong' => 'Sino ang bibo?', 'answer' => 'si Bombi'],
+        ],
+    
+        7 => [
+            ['type' => 'read_sentence', 'pangungusap' => 'Ang aso ay tumatahol.'],
+            ['type' => 'multiple_choice', 'tanong' => 'Ano ang ginagawa ng aso?', 'choices' => ['Tumatahol', 'Tumatagal', 'Tumakbo', 'Kumakain'], 'answer' => 'Tumatahol'],
+            
+            ['type' => 'read_sentence', 'pangungusap' => 'Si Maria ay bumili ng saging.'],
+            ['type' => 'multiple_choice', 'tanong' => 'Ano ang binili ni Maria?', 'choices' => ['Mansanas', 'Saging', 'Dalandan', 'Ubas'], 'answer' => 'Saging'],
+            
+            ['type' => 'read_sentence', 'pangungusap' => 'Masaya ang mga bata sa palaruan.'],
+            ['type' => 'multiple_choice', 'tanong' => 'Saan masaya ang mga bata?', 'choices' => ['Sa bahay', 'Sa paaralan', 'Sa palaruan', 'Sa tindahan'], 'answer' => 'Sa palaruan'],
+            
+            ['type' => 'read_sentence', 'pangungusap' => 'Kumakain ng gulay si Juan.'],
+            ['type' => 'multiple_choice', 'tanong' => 'Ano ang kinakain ni Juan?', 'choices' => ['Prutas', 'Gulay', 'Karne', 'Tinapay'], 'answer' => 'Gulay'],
+            
+            ['type' => 'read_sentence', 'pangungusap' => 'Ang bulaklak ay mabango at maganda.'],
+            ['type' => 'multiple_choice', 'tanong' => 'Paano inilarawan ang bulaklak?', 'choices' => ['Malaki at maliit', 'Mabango at maganda', 'Masarap at matamis', 'Malamig at mainit'], 'answer' => 'Mabango at maganda'],
+        ],
+
+        8 => [
+            ['tanong' => 'Sino-sino ang sama-sama?', 'answer' => 'lea leo at bea'],
+            ['tanong' => 'Nasaan sila?', 'answer' => 'kusina'],
+            ['tanong' => 'Sa ano abala si Bea?', 'answer' => 'sayote'],
+            ['tanong' => 'Kailan sila kakain nang masaya?', 'answer' => 'mamaya'],
+        ],
+
+        9 => [
+            ['type' => 'read_sentence', 'pangungusap' => 'Ang mga kalabaw ay kay Bino.'],
+            ['type' => 'comprehension', 'tanong' => 'Kanino ang mga kalabaw?', 'answer' => 'bino'],
+
+            ['type' => 'read_sentence', 'pangungusap' => 'Masiba ang tigre na namamaga ang mata.'],
+            ['type' => 'comprehension', 'tanong' => 'Ano ang masiba?', 'answer' => 'tigre'],
+            ['type' => 'comprehension', 'tanong' => 'Ano ang namamaga sa tigre?', 'answer' => 'mata'],
+
+            ['type' => 'read_sentence', 'pangungusap' => 'Sagana sila sa mga prutas at gulay.'],
+            ['type' => 'comprehension', 'tanong' => 'Sa ano sila sagana?', 'answer' => 'gulay'],
+
+            ['type' => 'read_sentence', 'pangungusap' => 'Nakangiti ang dalaga sa mga tao.'],
+            ['type' => 'comprehension', 'tanong' => 'Sino ang nakangiti sa mga tao?', 'answer' => 'dalaga'],
+            
+            ['type' => 'read_sentence', 'pangungusap' => 'Kawawa ang kabayo na nadapa.'],
+            ['type' => 'comprehension', 'tanong' => 'Napano ang kabayo?', 'answer' => 'nadapa'],
+        ],
+
+        10 => [
+            ['kataga' => 'Haligi'],
+            ['kataga' => 'Lahi'],
+            ['kataga' => 'Guro'],
+            ['kataga' => 'Sakuna'],
+            ['kataga' => 'Ligaya'],
+            ['kataga' => 'Diwa'],
+            ['kataga' => 'Pera'],
+
+            ['kataga' => 'Malayo'],
+            ['kataga' => 'Banga'],
+            ['kataga' => 'Maya'],
+        ],
     ];
 
     public function mount($lesson)
@@ -240,7 +310,7 @@ class FourthSlide extends Component
     public function getStoryProperty()
     {
         $stories = [
-            8 => 'May mga luya sa lamesa. Kay Tiya Sela ang mga luya. Isasama niya ang mga ito sa tinola. Tinola ang uulamin nila mamaya.',
+            8 => 'Sama-sama sa kusina sina Lea, Leo at Bea. Iluluto nila ang manok. Ititinola nila ito. Binabalatan nina Leo at Lea ang luya. Samantala, si Bea ay abala naman sa mga sayote. Mamaya ay kakain sila nang masaya.',
         ];
 
         return $stories[$this->lesson] ?? '';

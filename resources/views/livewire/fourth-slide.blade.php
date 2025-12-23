@@ -3,7 +3,7 @@
         <div class="card flex flex-col items-center gap-5 relative text-lg">
             
             <!-- Title Section (Shared across all lessons) -->
-            <div class="absolute -top-6 left-1/2 -translate-x-1/2">
+            <div class="absolute -top-7 left-1/2 -translate-x-1/2">
                 <div class="relative inline-block">
                     <h1 class="relative z-10 bg-[#F4C300] px-20 py-1 !text-black text-xl font-bold rounded-md border-2 border-[#31343A]">
                         PAGTATAYA
@@ -24,6 +24,16 @@
                 @include('pagtataya.pagtataya3', ['questions' => $this->lessonQuestions])
             @elseif($lesson == 5)
                 @include('pagtataya.pagtataya5', ['questions' => $this->lessonQuestions])
+            @elseif($lesson == 6)
+                @include('pagtataya.pagtataya5', ['questions' => $this->lessonQuestions])
+            @elseif($lesson == 7)
+                @include('pagtataya.pagtataya7', ['questions' => $this->lessonQuestions])
+            @elseif($lesson == 8)
+                @include('pagtataya.pagtataya8', ['questions' => $this->lessonQuestions])
+            @elseif($lesson == 9)
+                @include('pagtataya.pagtataya5', ['questions' => $this->lessonQuestions])
+            @elseif($lesson == 10)
+                @include('pagtataya.pagtataya3', ['questions' => $this->lessonQuestions])
             @endif
 
         </div>
