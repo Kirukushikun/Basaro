@@ -14,7 +14,7 @@ class ThirdSlidePanuto extends Component
     // Audio configuration - matching SecondSlide structure
     private $audioMap = [
         1 => [ // Lesson 1
-            1 => 'audio/lesson1/L1P3.m4a',
+            1 => 'audio/lesson1/L1P1.m4a',
         ],
         2 => [ // Lesson 2
             1 => 'audio/lesson2/L2P1.m4a',
