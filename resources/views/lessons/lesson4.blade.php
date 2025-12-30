@@ -3,18 +3,12 @@
 <div class="card w-full h-[70vh] min-h-[50vh] flex flex-col relative text-lg">
     {{-- ===== PAGE 1 ===== --}}
     <div x-show="page === 1" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header flex flex-col gap-3">
-            <h1 class="text-3xl font-bold">
-                <span class="!text-[#F4C300]">Sesyon 4:</span>
+        <div class="flex-1 flex items-center justify-center">
+            <h1 class="text-4xl font-bold text-center">
+                <span class="!text-[#F4C300]">Sesyon 4:</span><br>
                 Pagsasama-sama ng mga tunog (Mm, Ss at Aa)
             </h1>
-            <p class="text-2xl font-semibold !text-gray-200">
-                Mainit na pagbati! Ngayon naman ay na unlock mo ang sesyon <span class="!text-[#F4C300]">4</span>! Pagsasama-sama ng mga tunog ang letrang Mm, Ss at Aa
-            </p>
-            <p class="text-2xl font-semibold !text-gray-200">
-                Ngayon naman ay pagsasama-samahin natin ang mga tunog upang makalikha tayo ng pantig at nang sa gayon ay makabuo tayo ng isang makabuluhang salita gamit ang mga letrang Mm, Ss at Aa.
-            </p>
-        </header>
+        </div>
     </div>
 
     {{-- ===== PAGE 2 ===== --}}
@@ -66,10 +60,7 @@
     <div x-show="page === 5" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                Letrang M, S at A pagdurugtungin natin ang mga tunog ng mga letrang ito. 
-            </p>
-            <p class="text-2xl font-semibold !text-gray-200">
-                Tignan mo kung paano, <span class="!text-[#F4C300]">mmm</span> at <span class="!text-[#F4C300]">aaa</span>. Ang nabuo nating pantig nang pagsamahin natin ang tunog na <span class="!text-[#F4C300]">mmm</span> at <span class="!text-[#F4C300]">aaa</span>
+                Letrang <span class="!text-[#F4C300]">M</span>, <span class="!text-[#F4C300]">S</span> at <span class="!text-[#F4C300]">A</span> na ito ay mga tunog ng mga letrang MM, S at A pagdurugtungin natin ang mga tunog ng mga letrang ito. 
             </p>
         </header>
 
@@ -184,11 +175,11 @@
     </div>
 
     {{-- ===== PAGE 11 ===== --}}
-    <div x-show="page === 11" class="w-full flex-1 flex flex-col gap-6 px-2">
+    <!-- <div x-show="page === 11" class="w-full flex-1 flex flex-col gap-6 px-2">
         <p class="text-2xl font-semibold !text-gray-200">
             Halikana't magsanay, Tayo na muling mag-basaro! Magbasa at maglaro. Sa bawat tamang sagot ay makakakuha ka ng 1 ribbon. Pagdugtungin ang mga pantig upang makabuo ng salita. Pagkatapos ay subukan mo itong basahin. 
         </p>
-    </div>
+    </div> -->
 
     {{-- Navigation Buttons --}}
     @include('partials.lesson-navigation')

@@ -16,7 +16,6 @@ class SecondSlide extends Component
         1 => [ // Lesson 1
             1 => 'audio/lesson1/L1P1.m4a',
             2 => 'audio/lesson1/L1P2.m4a',
-            3 => 'audio/lesson1/L1P3.m4a',
         ],
         2 => [ // Lesson 2
             1 => 'audio/lesson2/L2P1.m4a',
@@ -149,30 +148,23 @@ class SecondSlide extends Component
             
         ],
         11 => [ // Lesson 11
-            1 => 'audio/L11P1.m4a',
+            1 => ['audio/lesson11/L11P1.m4a', 'audio/lesson11/L11P2.m4a', 'audio/lesson11/L11P3.m4a'],
             2 => 'audio/L11P2.m4a',
             3 => 'audio/L11P3.m4a',
-            4 => 'audio/L11P5.m4a',
-            5 => 'audio/L11P5.m4a',
             
         ],
         12 => [ // Lesson 12
             1 => 'audio/L12P1.m4a',
             2 => 'audio/L12P2.m4a',
-            3 => 'audio/L12P3.m4a',
         ],
         13 => [ // Lesson 13
             1 => 'audio/L13P1.m4a',
             2 => 'audio/L13P2.m4a',
-            3 => 'audio/L13P3.m4a',
-            4 => 'audio/L13P4.m4a',
         ],
         14 => [ // Lesson 14
             1 => 'audio/L14P1.m4a',
             2 => 'audio/L14P2.m4a',
             3 => 'audio/L14P3.m4a',
-            4 => 'audio/L14P4.m4a',
-            5 => 'audio/L14P5.m4a',
         ],
         15 => [ // Lesson 15
             1 => 'audio/L15P1.m4a',
@@ -190,17 +182,6 @@ class SecondSlide extends Component
             12 => 'audio/L15P12.m4a',
             13 => 'audio/L15P13.m4a',
             14 => 'audio/L15P14.m4a',
-            15 => 'audio/L15P15.m4a',
-            16 => 'audio/L15P16.m4a',
-            17 => 'audio/L15P17.m4a',
-            18 => 'audio/L15P18.m4a',
-            19 => 'audio/L15P19.m4a',
-            20 => 'audio/L15P20.m4a',
-
-            21 => 'audio/L15P21.m4a',
-            22 => 'audio/L15P22.m4a',
-            23 => 'audio/L15P23.m4a',
-            24 => 'audio/L15P24.m4a',
         ],
         16 => [ // Lesson 16
             1 => 'audio/L16P1.m4a',
@@ -211,11 +192,6 @@ class SecondSlide extends Component
             6 => 'audio/L16P6.m4a',
             7 => 'audio/L16P7.m4a',
             8 => 'audio/L16P8.m4a',
-            9 => 'audio/L16P9.m4a',
-            10 => 'audio/L16P10.m4a',
-
-            11 => 'audio/L16P11.m4a',
-            12 => 'audio/L16P12.m4a',
         ],
         17 => [ // Lesson 17
             1 => 'audio/L17P1.m4a',
@@ -250,6 +226,48 @@ class SecondSlide extends Component
             11 => 'audio/L18P11.m4a',
             12 => 'audio/L18P12.m4a',
             13 => 'audio/L18P13.m4a',
+        ],
+
+        19 => [ // Lesson 19
+            1 => 'audio/L19P1.m4a',
+            2 => 'audio/L19P2.m4a',
+            3 => 'audio/L19P3.m4a',
+            4 => 'audio/L19P4.m4a',
+            5 => 'audio/L19P5.m4a',
+            6 => 'audio/L19P6.m4a',
+            7 => 'audio/L19P7.m4a',
+            8 => 'audio/L19P8.m4a',
+            9 => 'audio/L19P9.m4a',
+            10 => 'audio/L19P10.m4a',
+
+            11 => 'audio/L19P11.m4a',
+            12 => 'audio/L19P12.m4a',
+            13 => 'audio/L19P13.m4a',
+            14 => 'audio/L19P14.m4a',
+            15 => 'audio/L19P15.m4a',
+            16 => 'audio/L19P16.m4a',
+            17 => 'audio/L19P17.m4a',
+        ],
+
+        20 => [ // Lesson 20
+            1 => 'audio/L20P1.m4a',
+            2 => 'audio/L20P2.m4a',
+            3 => 'audio/L20P3.m4a',
+            4 => 'audio/L20P4.m4a',
+            5 => 'audio/L20P5.m4a',
+            6 => 'audio/L20P6.m4a',
+            7 => 'audio/L20P7.m4a',
+            8 => 'audio/L20P8.m4a',
+            9 => 'audio/L20P9.m4a',
+            10 => 'audio/L20P10.m4a',
+
+            11 => 'audio/L20P11.m4a',
+            12 => 'audio/L20P12.m4a',
+            13 => 'audio/L20P13.m4a',
+            14 => 'audio/L20P14.m4a',
+            15 => 'audio/L20P15.m4a',
+            16 => 'audio/L20P16.m4a',
+            17 => 'audio/L20P17.m4a',
         ],
     ];
 

@@ -8,18 +8,6 @@
                 <span class="!text-[#F4C300]">Sesyon 11:</span>
                 Pagpapalawak ng Talasalitaan o Bokabularyo sa Filipino
             </h1>
-            <p class="text-2xl font-semibold !text-gray-200">
-                Narito ang mga halimbawa ng magkakasingkahulugang salita na magpapalawak ng iyong pag-alam o pag-unawa sa mga salita.
-            </p>
-        </header>
-    </div>
-
-    {{-- ===== PAGE 2 ===== --}}
-    <div x-show="page === 2" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
-        <header class="header flex-shrink-0">
-            <h1 class="text-3xl font-bold !text-[#F4C300]">
-                Magkakasingkahulugang Salita
-            </h1>
         </header>
 
         <div class="flex-1 grid grid-cols-2 gap-x-16 gap-y-6 text-2xl overflow-y-auto p-5">
@@ -46,8 +34,8 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 3 ===== --}}
-    <div x-show="page === 3" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+    {{-- ===== PAGE 2 ===== --}}
+    <div x-show="page === 2" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
         <header class="header flex-shrink-0">
             <h1 class="text-3xl font-bold !text-[#F4C300]">
                 Magkakasingkahulugang Salita
@@ -78,17 +66,8 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 4 ===== --}}
-    <div x-show="page === 4" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header">
-            <p class="text-2xl font-semibold !text-gray-200">
-                Narito naman ang mga salitang magkakasalungat ang kahulugan.
-            </p>
-        </header>
-    </div>
-
-    {{-- ===== PAGE 5 ===== --}}
-    <div x-show="page === 5" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+    {{-- ===== PAGE 3 ===== --}}
+    <div x-show="page === 3" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
         <header class="header flex-shrink-0">
             <h1 class="text-3xl font-bold !text-[#F4C300]">
                 Magkakasalungat na Salita

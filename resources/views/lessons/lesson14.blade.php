@@ -12,24 +12,6 @@
                 Puntahan naman natin ang mga salitang may panlapi.
             </p>
         </header>
-    </div>
-
-    {{-- ===== PAGE 2 ===== --}}
-    <div x-show="page === 2" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header">
-            <p class="text-2xl font-semibold !text-gray-200">
-                Ang panlapi ay maaaring <span class="!text-[#F4C300]">unlapi</span> na matatagpuan sa unahan, <span class="!text-[#F4C300]">gitlapi</span> na matatagpuan sa gitna at <span class="!text-[#F4C300]">hulapi</span> kung matatagpuan sa hulihan ng salita.
-            </p>
-        </header>
-    </div>
-
-    {{-- ===== PAGE 3 ===== --}}
-    <div x-show="page === 3" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header">
-            <p class="text-2xl font-semibold !text-gray-200">
-                Halimbawa: <span class="!text-[#F4C300] text-4xl font-bold">matakaw</span>
-            </p>
-        </header>
 
         <div class="flex-1 flex flex-col items-center justify-center gap-8">
             <div class="text-3xl font-semibold text-center">
@@ -39,8 +21,8 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 4 ===== --}}
-    <div x-show="page === 4" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 2 ===== --}}
+    <div x-show="page === 2" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
                 Isa pang halimbawa:
@@ -55,8 +37,8 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 5 ===== --}}
-    <div x-show="page === 5" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+    {{-- ===== PAGE 3 ===== --}}
+    <div x-show="page === 3" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
         <header class="header flex-shrink-0">
             <p class="text-2xl font-semibold !text-gray-200">
                 Mga halimbawa ng salitang may panlapi:

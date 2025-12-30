@@ -12,24 +12,6 @@
                 Tunghayan na natin ang aralin tungkol sa kambal katinig.
             </p>
         </header>
-    </div>
-
-    {{-- ===== PAGE 2 ===== --}}
-    <div x-show="page === 2" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header">
-            <p class="text-2xl font-semibold !text-gray-200">
-                Kambal-katinig o klaster ang tawag sa dalawang magkakabit na katinig na matatagpuan sa isang pantig.
-            </p>
-        </header>
-    </div>
-
-    {{-- ===== PAGE 3 ===== --}}
-    <div x-show="page === 3" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
-        <header class="header flex-shrink-0">
-            <p class="text-2xl font-semibold !text-gray-200">
-                Mga halimbawa:
-            </p>
-        </header>
 
         <div class="flex-1 grid grid-cols-3 gap-6 text-4xl font-bold text-center overflow-y-auto p-5">
             @foreach ([
@@ -45,8 +27,8 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 4 ===== --}}
-    <div x-show="page === 4" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 2 ===== --}}
+    <div x-show="page === 2" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
                 Ang mga magkasunod na letrang ito ang tinatawag na kambal-katinig:

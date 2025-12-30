@@ -12,15 +12,6 @@
                 Ang pinagsamang patinig at malapatinig na w at y ay nakabubuo ng diptonggo. Diptonggo ang tawag sa mga titik na ay, aw, iw, oy, uy at ey sa isang pantig.
             </p>
         </header>
-    </div>
-
-    {{-- ===== PAGE 2 ===== --}}
-    <div x-show="page === 2" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header">
-            <p class="text-2xl font-semibold !text-gray-200">
-                Mga halimbawa ng Diptonggo:
-            </p>
-        </header>
 
         <div class="flex-1 flex items-center justify-center">
             <div class="grid grid-cols-3 gap-8 text-5xl font-bold">
@@ -35,8 +26,8 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 3 ===== --}}
-    <div x-show="page === 3" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+    {{-- ===== PAGE 2 ===== --}}
+    <div x-show="page === 2" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
         <header class="header flex-shrink-0">
             <p class="text-2xl font-semibold !text-gray-200">
                 Mga halimbawa ng salitang may Diptonggo:

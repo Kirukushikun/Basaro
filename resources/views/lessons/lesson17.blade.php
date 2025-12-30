@@ -1,14 +1,15 @@
 {{-- ===== LESSON 17: PAG-UNAWA SA BINASANG MAIKLING KUWENTO ===== --}}
 
 <div class="card w-full h-[70vh] min-h-[50vh] flex flex-col relative text-lg">
-    {{-- ===== PAGE 1 ===== --}}
+
+    {{-- ===== PAGE 1: TITLE ===== --}}
     <div x-show="page === 1" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header">
-            <h1 class="text-3xl font-bold">
-                <span class="!text-[#F4C300]">Sesyon 17:</span>
+        <div class="flex-1 flex items-center justify-center">
+            <h1 class="text-4xl font-bold text-center">
+                <span class="!text-[#F4C300]">Sesyon 17:</span><br>
                 Pag-unawa sa Binasang Maikling Kuwento
             </h1>
-        </header>
+        </div>
     </div>
 
     {{-- ===== PAGE 2 ===== --}}

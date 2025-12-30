@@ -1,4 +1,4 @@
-<div class="card w-full max-h-[80vh] flex flex-col items-center gap-5 relative text-lg">
+<div class="card w-full h-[70vh] min-h-[50vh] flex flex-col relative text-lg">
     {{-- ===== PAGE 1 ===== --}}
     <div x-show="page === 1" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
