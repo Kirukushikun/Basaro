@@ -6,9 +6,6 @@
                 <span class="!text-[#F4C300]">Sesyon 8:</span>
                 Pang-unawa sa Binasang Talata
 
-                <p class="text-2xl font-semibold !text-gray-200">
-                    Subukan nating magbasa ng isang talata upang mahasa ang iyong kasanayan at maunawaan ang iyong binabasa.
-                </p>
             </h1>
             <h1 class="text-2xl font-bold mt-4">
                 Alam mo ba kung ano ang <span class="!text-[#F4C300]">Talata</span>?

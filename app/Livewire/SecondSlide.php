@@ -55,13 +55,10 @@ class SecondSlide extends Component
             8 => 'audio/lesson4/L4P8.m4a',
             9 => 'audio/lesson4/L4P9.m4a',
             10 => 'audio/lesson4/L4P10.m4a',
-
-            11 => 'audio/L4P1.m4a',
         ],
         5 => [ // Lesson 5
             1 => 'audio/Lesson5/L5P1.m4a',
             2 => 'audio/Lesson5/L5P2.m4a',
-            3 => 'audio/Lesson5/L5P3.m4a',
         ],
         6 => [ // Lesson 6
             1 => 'audio/lesson6/L6P1.m4a',
@@ -71,7 +68,6 @@ class SecondSlide extends Component
             5 => 'audio/lesson6/L6P6.m4a',
             6 => 'audio/lesson6/L6P7.m4a',
             7 => 'audio/lesson6/L6P8.m4a',
-            8 => 'audio/lesson6/L6P9.m4a',
         ],
         7 => [ // Lesson 7
             1 => ['audio/lesson7/L7P1.m4a', 'audio/lesson7/L7P2.m4a', 'audio/lesson7/L7P3.m4a'],

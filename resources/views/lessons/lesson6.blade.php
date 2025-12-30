@@ -6,9 +6,6 @@
                 <span class="!text-[#F4C300]">Sesyon 6:</span>
                 M, S, A, I, O at B
             </h1>
-            <p class="text-2xl font-semibold !text-gray-200">
-                Sa mga naunang sesyon ay nalaman mo na ang tunog ng mga letrang "m s a."
-            </p>
         </header>
 
         <div class="flex-1 flex flex-col gap-8 p-5">
@@ -22,10 +19,7 @@
     <div x-show="page === 2" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                Sa sesyong ito ay pagsasama-samahin natin ang tunog ng mga letrang Ii, Oo at Bb kasama ng tunog ng mga letrang m, s at a.
-            </p>
-            <p class="text-xl !text-gray-300 mt-4">
-                Sundan mo ako sa pagbigkas.
+                Letrang <span class="!text-[#F4C300]">Ii</span>, <span class="!text-[#F4C300]">Oo</span> at <span class="!text-[#F4C300]">Bb</span> kasama ng tunog ng mga letrang <span class="!text-[#F4C300]">m</span>, <span class="!text-[#F4C300]">s</span> at <span class="!text-[#F4C300]">a</span>.
             </p>
         </header>
 
@@ -49,7 +43,7 @@
     <div x-show="page === 3" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="text-2xl font-semibold !text-gray-200">
-                Narito ang mga pantig na ating mabubuo kapag pinagsama-sama natin ang mga tunog ng mga letrang Ii, Oo at Bb.
+                Narito ang mga pantig na ating mabubuo kapag pinagsama-sama natin ang mga tunog ng mga letrang <span class="!text-[#F4C300]">Ii</span>, <span class="!text-[#F4C300]">Oo</span> at <span class="!text-[#F4C300]">Bb</span>.
             </p>
         </header>
 
@@ -151,14 +145,6 @@
                 </p>
             @endforeach
         </div>
-    </div>
-
-
-    {{-- ===== PAGE 8 ===== --}}
-    <div x-show="page === 8" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <p class="text-2xl font-semibold !text-gray-200">
-            Pagsasanay, tayo na uling magbasaro! Magbasa at maglaro.
-        </p>
     </div>
 
     {{-- Navigation Buttons --}}

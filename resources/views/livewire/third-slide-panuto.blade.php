@@ -6,32 +6,44 @@
         currentAudioIndex: 0,
         audioQueue: [],
         soundEnabled: false,
-        audios: @js($audio),
+        audios: @js($audios),
         
+        // Prepare audio queue for current page
         prepareAudioQueue(page) {
             const audioData = this.audios[page];
+            
+            // If it's an array, use it as is
             if (Array.isArray(audioData)) {
                 this.audioQueue = audioData;
-            } else if (audioData) {
+            } 
+            // If it's a string, wrap it in an array
+            else if (audioData) {
                 this.audioQueue = [audioData];
-            } else {
+            } 
+            // No audio for this page
+            else {
                 this.audioQueue = [];
             }
+            
             this.currentAudioIndex = 0;
         },
         
+        // Play audio from queue
         playNextAudio() {
             if (!this.soundEnabled || this.audioQueue.length === 0) return;
             
+            // Stop current audio if playing
             if (this.currentAudio) {
                 this.currentAudio.pause();
                 this.currentAudio = null;
             }
             
+            // Check if there are more audios to play
             if (this.currentAudioIndex < this.audioQueue.length) {
                 const audioFile = this.audioQueue[this.currentAudioIndex];
                 this.currentAudio = new Audio('{{ asset('') }}' + audioFile);
                 
+                // When audio ends, play next one automatically
                 this.currentAudio.addEventListener('ended', () => {
                     this.currentAudioIndex++;
                     this.playNextAudio();
@@ -43,14 +55,17 @@
             }
         },
         
+        // Handle page change
         handlePageChange() {
             if (!this.soundEnabled) return;
             
+            // Stop any current audio
             if (this.currentAudio) {
                 this.currentAudio.pause();
                 this.currentAudio = null;
             }
             
+            // Prepare and play new page audio
             this.prepareAudioQueue(this.page);
             this.playNextAudio();
         }
@@ -82,231 +97,212 @@
                     <img class="absolute z-0 -right-7 top-0 rotate-180" width="55" src="../Img/ribbon.png" alt="">
                 </div>
             </div>
-
-            <!-- LESSON 1 -->
-            <template x-if="$lesson == 1">
+            @if($lesson == 1)
+                <!-- LESSON 1 -->
                 <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-10 w-full px-4">
                     <p class="text-lg font-semibold text-center max-w-2xl">Tayo ng mag-Basaro! Magbasa at maglaro. Sa bawat tamang sagot ay makakakuha ka ng ribbon.</p>
                     <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
-                        <p class="text-white mb-4"><strong>A. Ano ang tunog ng sumusunod na letra?</strong></p>
-                        <p class="text-white mb-4">Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.</p>
-                        <p class="text-white mb-4"><strong>B. Sa anong letra maririnig ang sumusunod na tunog?</strong></p>
+                        <p class="text-white mb-4"><strong>Hanay A. Ano ang tunog ng sumusunod na letra?</strong></p>
+                        <p class="!text-gray-300 mb-4">Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.</p>
+                        <p class="text-white mb-4"><strong>Hanay B. Sa anong letra maririnig ang sumusunod na tunog?</strong></p>
+                        <p class="!text-gray-300 mb-4">Pindutin ang tamang sagot</p>
                     </div>
                 </div>
-            </template>
-
-            <!-- LESSON 2 -->
-            <template x-if="$lesson == 2">
+            @elseif($lesson == 2)
+                <!-- LESSON 2 -->
                 <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-10 w-full px-4">
                     <p class="text-lg font-semibold text-center max-w-2xl">Tayo ng mag BASARO!</p>
                     <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
                         <p class="text-white mb-4"><strong>A. Tukuyin mo ang sumusunod na larawan.</strong></p>
-                        <p class="text-white mb-4">Pindutin mo ang microphone button sa iyong pagbigkas.</p>
+                        <p class="!text-gray-300 mb-4">Pindutin mo ang microphone button sa iyong pagbigkas.</p>
                         <p class="text-white mb-4"><strong>B. Pakinggan mo ang aking babasahin</strong> lalo na ang unang tunog na iyong maririnig.</p>
-                        <p class="text-white">Isulat mo sa patlang ang unang letra upang mabuo ang salita na may larawan. Pagkatapos ay pindutin ang microphone button para bigkasin o basahin ang mga nabuo mong salita.</p>
+                        <p class="!text-gray-300">Isulat mo sa patlang ang unang letra upang mabuo ang salita na may larawan. Pagkatapos ay pindutin ang microphone button para bigkasin o basahin ang mga nabuo mong salita.</p>
                     </div>
                 </div>
-            </template>
 
-            <!-- LESSON 3 -->
-            <template x-if="$lesson == 3">
+            @elseif($lesson == 3)
+                <!-- LESSON 3 -->
                 <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-10 w-full px-4">
                     <p class="text-lg font-semibold text-center max-w-2xl">Tayo ng mag-Basaro! Magbasa at maglaro. Sa bawat tamang sagot ay makakakuha ka ng ribbon.</p>
                     <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
-                        <p class="text-white mb-4">Sa harapan ng iyong guro ay babaybayin mo ang sumusunod na kataga.</p>
-                        <p class="text-white mb-4">Pagkatapos ay basahin mo ang sumusunod na pantulong na kataga.</p>
-                        <p class="text-white">Pindutin mo ang microphone button. Gagabayan ka ng iyong guro sa iyong pagbasa.</p>
+                        <p class="!text-gray-300 mb-4">Sa harapan ng iyong guro ay babaybayin mo ang sumusunod na kataga.</p>
+                        <p class="!text-gray-300 mb-4">Pagkatapos ay basahin mo ang sumusunod na pantulong na kataga.</p>
+                        <p class="!text-gray-300">Pindutin mo ang microphone button. Gagabayan ka ng iyong guro sa iyong pagbasa.</p>
                     </div>
                 </div>
-            </template>
 
-            <!-- LESSON 4 -->
-            <template x-if="$lesson == 4">
+            @elseif($lesson == 4)
+                <!-- LESSON 4 -->
                 <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-10 w-full px-4">
                     <p class="text-lg font-semibold text-center max-w-2xl">Tayo ng mag-Basaro! Magbasa at maglaro. Sa bawat tamang sagot ay makakakuha ka ng 1 ribbon.</p>
                     <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
-                        <p class="text-white">Pagdugtungin ang mga pantig upang makabuo ng salita. Pagkatapos ay subukan mo itong basahin.</p>
+                        <p class="!text-gray-300">Pagdugtungin ang mga pantig upang makabuo ng salita. Pagkatapos ay subukan mo itong basahin.</p>
                     </div>
                 </div>
-            </template>
 
-            <!-- LESSON 5 -->
-            <template x-if="$lesson == 5">
+            @elseif($lesson == 5)
+                <!-- LESSON 5 -->
                 <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-10 w-full px-4">
                     <p class="text-lg font-semibold text-center max-w-2xl">Tayo ng mag-Basaro! Magbasa at maglaro. Sa bawat tamang sagot ay makakakuha ka ng ribbon.</p>
                     <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
-                        <p class="text-white mb-4">Subukan mong basahin ang sumusunod na parirala.</p>
-                        <p class="text-white mb-4">Ngayon naman ay subukan mong basahin ang mga pangungusap.</p>
-                        <p class="text-white mb-4">Naunawaan mo ba ang iyong mga binasa?</p>
-                        <p class="text-white">Subukan nga nating sagutin ang mga tanong na ito: Isulat mo ang iyong sagot sa patlang.</p>
+                        <p class="!text-gray-300 mb-4">Subukan mong basahin ang sumusunod na parirala.</p>
+                        <p class="!text-gray-300 mb-4">Ngayon naman ay subukan mong basahin ang mga pangungusap.</p>
+                        <p class="!text-gray-300 mb-4">Naunawaan mo ba ang iyong mga binasa?</p>
+                        <p class="!text-gray-300">Subukan nga nating sagutin ang mga tanong na ito: Isulat mo ang iyong sagot sa patlang.</p>
                     </div>
                 </div>
-            </template>
 
-            <!-- LESSON 6 -->
-            <template x-if="$lesson == 6">
+            @elseif($lesson == 6)
+                <!-- LESSON 6 -->
                 <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-10 w-full px-4">
                     <p class="text-lg font-semibold text-center max-w-2xl">Tayo ng magbasaro. Magbasa at maglaro.</p>
                     <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
-                        <p class="text-white mb-4"><strong>A.</strong> Subukan mong basahin ang sumusunod na pantig upang makabuo ka ng salita.</p>
-                        <p class="text-white mb-4"><strong>B.</strong> Basahin mo ang sumusunod na parirala at pangungusap.</p>
-                        <p class="text-white">Subukan nga nating sagutin ang mga tanong batay sa iyong binasang pangungusap.</p>
+                        <p class="text-white mb-4"><strong>A.</strong> <span class="!text-gray-300">Subukan mong basahin ang sumusunod na pantig upang makabuo ka ng salita.</span></p>
+                        <p class="text-white mb-4"><strong>B.</strong> <span class="!text-gray-300">Basahin mo ang sumusunod na parirala at pangungusap.</span></p>
+                        <p class="!text-gray-300">Subukan nga nating sagutin ang mga tanong batay sa iyong binasang pangungusap.</p>
                     </div>
                 </div>
-            </template>
 
-            <!-- LESSON 7 -->
-            <template x-if="$lesson == 7">
+            @elseif($lesson == 7)
+                <!-- LESSON 7 -->
                 <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-10 w-full px-4">
                     <p class="text-lg font-semibold text-center max-w-2xl">Tayo ng magbasaro. Magbasa at maglaro.</p>
                     <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
-                        <p class="text-white mb-4"><strong>A.</strong> Pindutin ang microphone button. (Nakadisenyong parang scrabble ang sumusunod na salitang babasahin ng mga bata)</p>
-                        <p class="text-white"><strong>B.</strong> Basahin mo ang sumusunod na parirala.</p>
+                        <p class="text-white mb-4"><strong>A.</strong> <span class="!text-gray-300">Pindutin ang microphone button. (Nakadisenyong parang scrabble ang sumusunod na salitang babasahin ng mga bata)</span></p>
+                        <p class="text-white"><strong>B.</strong> <span class="!text-gray-300">Basahin mo ang sumusunod na parirala.</span></p>
                     </div>
                 </div>
-            </template>
 
-            <!-- LESSON 8 -->
-            <template x-if="$lesson == 8">
+            @elseif($lesson == 8)
+                <!-- LESSON 8 -->
                 <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-10 w-full px-4">
                     <p class="text-lg font-semibold text-center max-w-2xl">Tayo ng magbasaro. Magbasa at maglaro.</p>
                     <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
-                        <p class="text-white mb-4">Sasagutin natin ang mga tanong tungkol sa kuwento o talata na nabuo.</p>
-                        <p class="text-white">Panuto: Ilagay mo sa patlang ang iyong sagot. Pumili ka lamang sa mga nasa ibaba.</p>
+                        <p class="!text-gray-300 mb-4">Sasagutin natin ang mga tanong tungkol sa kuwento o talata na nabuo.</p>
+                        <p class="text-white"><strong>Panuto:</strong> <span class="!text-gray-300">Ilagay mo sa patlang ang iyong sagot. Pumili ka lamang sa mga nasa ibaba.</span></p>
                     </div>
                 </div>
-            </template>
 
-            <!-- LESSON 9 -->
-            <template x-if="$lesson == 9">
+            @elseif($lesson == 9)
+                <!-- LESSON 9 -->
                 <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-10 w-full px-4">
                     <p class="text-lg font-semibold text-center max-w-2xl">Tayo ng magbasaro. Magbasa at maglaro.</p>
                     <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
-                        <p class="text-white mb-4"><strong>A.</strong> Pagsama-samahin ang mga pantig upang mabuo ang salita.</p>
-                        <p class="text-white"><strong>B.</strong> Basahin ang sumusunod na parirala.</p>
+                        <p class="text-white mb-4"><strong>A.</strong> <span class="!text-gray-300">Pagsama-samahin ang mga pantig upang mabuo ang salita.</span></p>
+                        <p class="text-white"><strong>B.</strong> <span class="!text-gray-300">Basahin ang sumusunod na parirala.</span></p>
                     </div>
                 </div>
-            </template>
 
-            <!-- LESSON 10 -->
-            <template x-if="$lesson == 10">
+            @elseif($lesson == 10)
+                <!-- LESSON 10 -->
                 <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-10 w-full px-4">
                     <p class="text-lg font-semibold text-center max-w-2xl">Tayo ng magbasaro. Magbasa at maglaro.</p>
                     <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
-                        <p class="text-white">Isulat ang nawawalang pantig. Basahin mo ang mabubuong salita. (Lagyan ng larawan ang mga salita)</p>
+                        <p class="!text-gray-300">Isulat ang nawawalang pantig. Basahin mo ang mabubuong salita. (Lagyan ng larawan ang mga salita)</p>
                     </div>
                 </div>
-            </template>
 
-            <!-- LESSON 11 -->
-            <template x-if="$lesson == 11">
+            @elseif($lesson == 11)
+                <!-- LESSON 11 -->
                 <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-10 w-full px-4">
                     <p class="text-lg font-semibold text-center max-w-2xl">Tayo ng magbasaro. Magbasa at maglaro.</p>
                     <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
-                        <p class="text-white mb-4"><strong>A.</strong> Hanapin sa Hanay B ang kasingkahulugan ng mga salitang nasa Hanay A. Isulat ang letra ng tamang sagot sa patlang.</p>
-                        <p class="text-white"><strong>B.</strong> Hanapin mo sa pagpipilian ang tamang kasalungat na kahulugan ng sumusunod na salita. Pindutin mo lang ang salita.</p>
+                        <p class="text-white mb-4"><strong>A.</strong> <span class="!text-gray-300">Hanapin sa Hanay B ang kasingkahulugan ng mga salitang nasa Hanay A. Isulat ang letra ng tamang sagot sa patlang.</span></p>
+                        <p class="text-white"><strong>B.</strong> <span class="!text-gray-300">Hanapin mo sa pagpipilian ang tamang kasalungat na kahulugan ng sumusunod na salita. Pindutin mo lang ang salita.</span></p>
                     </div>
                 </div>
-            </template>
 
-            <!-- LESSON 12 -->
-            <template x-if="$lesson == 12">
+            @elseif($lesson == 12)
+                <!-- LESSON 12 -->
                 <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-10 w-full px-4">
                     <p class="text-lg font-semibold text-center max-w-2xl">Tayo ng magbasaro. Magbasa at maglaro.</p>
                     <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
-                        <p class="text-white">Punan ng tamang diptonggo na ay, aw, iw, oy, uy at ey ang sumusunod na salita. Pagkatapos ay basahin mo ang nabuo mong salita.</p>
+                        <p class="!text-gray-300">Punan ng tamang diptonggo na ay, aw, iw, oy, uy at ey ang sumusunod na salita. Pagkatapos ay basahin mo ang nabuo mong salita.</p>
                     </div>
                 </div>
-            </template>
 
-            <!-- LESSON 13 -->
-            <template x-if="$lesson == 13">
+            @elseif($lesson == 13)
+                <!-- LESSON 13 -->
                 <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-10 w-full px-4">
                     <p class="text-lg font-semibold text-center max-w-2xl">Tayo ng magbasaro. Magbasa at maglaro.</p>
                     <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
-                        <p class="text-white mb-4"><strong>A.</strong> Punan mo ng wastong kambal-katinig ang sumusunod upang mabuo ang mga salita.</p>
-                        <p class="text-white"><strong>B.</strong> Basahin mo ang mga nabuo mong salita.</p>
+                        <p class="text-white mb-4"><strong>A.</strong> <span class="!text-gray-300">Punan mo ng wastong kambal-katinig ang sumusunod upang mabuo ang mga salita.</span></p>
+                        <p class="text-white"><strong>B.</strong> <span class="!text-gray-300">Basahin mo ang mga nabuo mong salita.</span></p>
                     </div>
                 </div>
-            </template>
 
-            <!-- LESSON 14 -->
-            <template x-if="$lesson == 14">
+            @elseif($lesson == 14)
+                <!-- LESSON 14 -->
                 <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-10 w-full px-4">
                     <p class="text-lg font-semibold text-center max-w-2xl">Tayo ng magbasaro. Magbasa at maglaro.</p>
                     <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
-                        <p class="text-white mb-4"><strong>A.</strong> Punan mo ng wastong panlapi ang sumusunod na salitang-ugat.</p>
-                        <p class="text-white"><strong>B.</strong> Basahin mo ang mga nabuo mong salitang may panlapi.</p>
+                        <p class="text-white mb-4"><strong>A.</strong> <span class="!text-gray-300">Punan mo ng wastong panlapi ang sumusunod na salitang-ugat.</span></p>
+                        <p class="text-white"><strong>B.</strong> <span class="!text-gray-300">Basahin mo ang mga nabuo mong salitang may panlapi.</span></p>
                     </div>
                 </div>
-            </template>
 
-            <!-- LESSON 15 -->
-            <template x-if="$lesson == 15">
+            @elseif($lesson == 15)
+                <!-- LESSON 15 -->
                 <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-10 w-full px-4">
                     <p class="text-lg font-semibold text-center max-w-2xl">Tayo ng magbasaro. Magbasa at maglaro.</p>
                     <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
-                        <p class="text-white mb-4"><strong>A.</strong> Basahin mo ang sumusunod na karunungang bayan. Isulat kung ito ay kasabihan, salawikain o sawikain.</p>
-                        <p class="text-white"><strong>B.</strong> Basahin mo ang sumusunod na bugtong. Unawain mo kung ano ang tinutukoy upang masagot ang mga ito.</p>
+                        <p class="text-white mb-4"><strong>A.</strong> <span class="!text-gray-300">Basahin mo ang sumusunod na karunungang bayan. Isulat kung ito ay kasabihan, salawikain o sawikain.</span></p>
+                        <p class="text-white"><strong>B.</strong> <span class="!text-gray-300">Basahin mo ang sumusunod na bugtong. Unawain mo kung ano ang tinutukoy upang masagot ang mga ito.</span></p>
                     </div>
                 </div>
-            </template>
 
-            <!-- LESSON 16 -->
-            <template x-if="$lesson == 16">
+            @elseif($lesson == 16)
+                <!-- LESSON 16 -->
                 <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-10 w-full px-4">
                     <p class="text-lg font-semibold text-center max-w-2xl">Tayo ng magbasaro. Magbasa at maglaro.</p>
                     <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
-                        <p class="text-white mb-4"><strong>A.</strong> Subukan mong sagutin ang sumusunod na talasalitaan. Basahin mo muna ang salita pagkatapos ay pindutin mo lang ang letra ng tamang sagot.</p>
-                        <p class="text-white"><strong>B.</strong> Sagutin ang sumusunod na tanong batay sa binasang tula. Basahin mo muna ang mga ito pagkatapos ay pindutin mo ang letra ng tamang sagot.</p>
+                        <p class="text-white mb-4"><strong>A.</strong> <span class="!text-gray-300">Subukan mong sagutin ang sumusunod na talasalitaan. Basahin mo muna ang salita pagkatapos ay pindutin mo lang ang letra ng tamang sagot.</span></p>
+                        <p class="text-white"><strong>B.</strong> <span class="!text-gray-300">Sagutin ang sumusunod na tanong batay sa binasang tula. Basahin mo muna ang mga ito pagkatapos ay pindutin mo ang letra ng tamang sagot.</span></p>
                     </div>
                 </div>
-            </template>
 
-            <!-- LESSON 17 -->
-            <template x-if="$lesson == 17">
+            @elseif($lesson == 17)
+                <!-- LESSON 17 -->
                 <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-10 w-full px-4">
                     <p class="text-lg font-semibold text-center max-w-2xl">Tayo ng magbasaro. Magbasa at maglaro.</p>
                     <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
-                        <p class="text-white mb-4"><strong>A.</strong> Basahin mo at sagutin ang mga talasalitaan.</p>
-                        <p class="text-white"><strong>B.</strong> Basahin at unawain ang sumusunod na tanong batay sa kuwentong binasa. Isulat mo ang iyong sagot sa patlang.</p>
+                        <p class="text-white mb-4"><strong>A.</strong> <span class="!text-gray-300">Basahin mo at sagutin ang mga talasalitaan.</span></p>
+                        <p class="text-white"><strong>B.</strong> <span class="!text-gray-300">Basahin at unawain ang sumusunod na tanong batay sa kuwentong binasa. Isulat mo ang iyong sagot sa patlang.</span></p>
                     </div>
                 </div>
-            </template>
 
-            <!-- LESSON 18 -->
-            <template x-if="$lesson == 18">
+            @elseif($lesson == 18)
+                <!-- LESSON 18 -->
                 <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-10 w-full px-4">
                     <p class="text-lg font-semibold text-center max-w-2xl">Tayo ng magbasaro. Magbasa at maglaro.</p>
                     <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
-                        <p class="text-white mb-4"><strong>A.</strong> Batay sa nabasa mong huling balita, basahin at sagutin mo ang mga tanong.</p>
-                        <p class="text-white"><strong>B.</strong> Ano-ano ang mga salitang hindi pamilyar? Subukan mong sagutin ang sumusunod na talasalitaan at akronim.</p>
+                        <p class="text-white mb-4"><strong>A.</strong> <span class="!text-gray-300">Batay sa nabasa mong huling balita, basahin at sagutin mo ang mga tanong.</span></p>
+                        <p class="text-white"><strong>B.</strong> <span class="!text-gray-300">Ano-ano ang mga salitang hindi pamilyar? Subukan mong sagutin ang sumusunod na talasalitaan at akronim.</span></p>
                     </div>
                 </div>
-            </template>
 
-            <!-- LESSON 19 -->
-            <template x-if="$lesson == 19">
+            @elseif($lesson == 19)
+                <!-- LESSON 19 -->
                 <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-10 w-full px-4">
                     <p class="text-lg font-semibold text-center max-w-2xl">Tayo ng magbasaro. Magbasa at maglaro.</p>
                     <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
-                        <p class="text-white mb-4"><strong>A.</strong> Basahin at sagutin ang kasingkahulugan ng sumusunod na salita. Pindutin mo ang microphone button sa pagbasa mo ng tamang sagot.</p>
-                        <p class="text-white"><strong>B.</strong> Basahin at unawain ang bawat tanong. Sagutin mo sa pamamagitan ng paggamit ng microphone button at pagbasa mo nang malakas ngunit mahinahon.</p>
+                        <p class="text-white mb-4"><strong>A.</strong> <span class="!text-gray-300">Basahin at sagutin ang kasingkahulugan ng sumusunod na salita. Pindutin mo ang microphone button sa pagbasa mo ng tamang sagot.</span></p>
+                        <p class="text-white"><strong>B.</strong> <span class="!text-gray-300">Basahin at unawain ang bawat tanong. Sagutin mo sa pamamagitan ng paggamit ng microphone button at pagbasa mo nang malakas ngunit mahinahon.</span></p>
                     </div>
                 </div>
-            </template>
 
-            <!-- LESSON 20 -->
-            <template x-if="$lesson == 20">
+            @elseif($lesson == 20)
+                <!-- LESSON 20 -->
                 <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-10 w-full px-4">
                     <p class="text-lg font-semibold text-center max-w-2xl">Tayo ng magbasaro. Magbasa at maglaro.</p>
                     <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
-                        <p class="text-white mb-4"><strong>A.</strong> Basahin mo muna ang talasalitaan bago sagutin ang kahulugan. Pindutin mo lang ang puso kung ito ang tamang sagot.</p>
-                        <p class="text-white"><strong>B.</strong> Basahin at unawain mo ang mga tanong. Pindutin mo ang microphone button at bigkasin/basahin mo ang tamang sagot.</p>
+                        <p class="text-white mb-4"><strong>A.</strong> <span class="!text-gray-300">Basahin mo muna ang talasalitaan bago sagutin ang kahulugan. Pindutin mo lang ang puso kung ito ang tamang sagot.</span></p>
+                        <p class="text-white"><strong>B.</strong> <span class="!text-gray-300">Basahin at unawain mo ang mga tanong. Pindutin mo ang microphone button at bigkasin/basahin mo ang tamang sagot.</span></p>
                     </div>
                 </div>
-            </template>
+            @endif
 
+            @include('partials.panuto-navigation')
         </div>
     </div>
 
