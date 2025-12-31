@@ -1,25 +1,49 @@
 {{-- ===== LESSON 20: PAG-UNAWA SA BINASANG ARTIKULONG PANG-AGHAM AT TEKNOLOHIYA ===== --}}
 
-<div class="card w-full h-[70vh] min-h-[50vh] flex flex-col relative text-lg">
-    {{-- ===== PAGE 1 ===== --}}
+<div class="card w-full h-[70vh] min-h-[50vh] flex flex-col relative text-lg" x-data="{
+    vocabAnswers: {
+        v1: null,
+        v2: null,
+        v3: null,
+        v4: null,
+        v5: null
+    },
+    questionAnswers: {
+        q1: null,
+        q2: null,
+        q3: null,
+        q4: null,
+        q5: null
+    },
+    selectVocab(question, answer) {
+        this.vocabAnswers[question] = answer;
+    },
+    selectQuestion(question, answer) {
+        this.questionAnswers[question] = answer;
+    }
+}">
+    {{-- ===== PAGE 1: TITLE ===== --}}
     <div x-show="page === 1" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header">
-            <h1 class="text-3xl font-bold">
-                <span class="!text-[#F4C300]">Sesyon 20:</span>
-                Pag-unawa sa Binasang Artikulong Pang-agham at Teknolohiya
-            </h1>
-            <p class="text-xl !text-gray-300">(Science and Technology)</p>
-        </header>
+        <div class="flex-1 flex items-center justify-center">
+            <div class="text-center">
+                <h1 class="text-3xl font-bold">
+                    <span class="!text-[#F4C300]">Sesyon 20:</span><br>
+                    Pag-unawa sa Binasang Artikulong<br>
+                    Pang-agham at Teknolohiya
+                </h1>
+                <p class="text-xl !text-gray-300 mt-4">(Science and Technology)</p>
+            </div>
+        </div>
     </div>
 
-    {{-- ===== PAGE 2 ===== --}}
+    {{-- ===== PAGE 2: ARTICLE 1 - PART 1 ===== --}}
     <div x-show="page === 2" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
         <header class="header flex-shrink-0">
-            <h2 class="text-2xl font-bold !text-[#F4C300] text-center">Folic Acid Para sa mga Kababaihan</h2>
+            <h2 class="text-3xl font-bold !text-[#F4C300] text-center">Folic Acid Para sa mga Kababaihan</h2>
         </header>
 
         <div class="flex-1 overflow-y-auto p-5">
-            <div class="text-lg leading-relaxed space-y-4">
+            <div class="text-xl leading-relaxed space-y-4">
                 <p>
                     Isang mabuting hakbang ang pagtutulungan ng Department of Education (DepEd) at Department of Health (DOH) na mailunsad ang pamimigay ng Folic Acid sa mga mag-aaral sa mga pampublikong paaralan na makatutulong sa mga mag-aaral na kababaihan.
                 </p>
@@ -30,10 +54,10 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 3 ===== --}}
+    {{-- ===== PAGE 3: ARTICLE 1 - PART 2 ===== --}}
     <div x-show="page === 3" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
         <div class="flex-1 overflow-y-auto p-5">
-            <div class="text-lg leading-relaxed space-y-4">
+            <div class="text-xl leading-relaxed space-y-4">
                 <p>
                     Maaaring maging matamlay ang mga mag-aaral na may kakulangan o mababang dugo, kung kaya naman minabuti ng pamahalaan na maisagawa ang mga ganitong programa.
                 </p>
@@ -47,17 +71,14 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 4 ===== --}}
+    {{-- ===== PAGE 4: DEFINITION ===== --}}
     <div x-show="page === 4" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
-            <p class="text-2xl font-semibold !text-gray-200">
-                Ang binasa ay isang artikulong Pang-agham at Teknolohiya. Ano ba ang kahulugan nito?
-            </p>
+            <h1 class="text-3xl font-bold !text-[#F4C300]">
+                Ano ang Artikulong Pang-agham at Teknolohiya?
+            </h1>
         </header>
-    </div>
 
-    {{-- ===== PAGE 5 ===== --}}
-    <div x-show="page === 5" class="w-full flex-1 flex flex-col gap-6 px-2">
         <div class="flex-1 flex items-center justify-center p-8">
             <div class="text-xl leading-relaxed space-y-4 max-w-4xl">
                 <p>
@@ -70,152 +91,235 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 6 ===== --}}
-    <div x-show="page === 6" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header">
-            <p class="text-2xl font-semibold !text-gray-200">
-                Para maunawaan mo nang lubos ang nilalaman ng artikulong ito, subukan mong sagutin ang mga kasingkahulugan ng sumusunod na salita.
-            </p>
+    {{-- ===== PAGE 5: VOCABULARY (INTERACTIVE) ===== --}}
+    <div x-show="page === 5" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+        <header class="header flex-shrink-0">
+            <h1 class="text-2xl font-bold !text-[#F4C300]">Kasingkahulugan:</h1>
         </header>
-    </div>
 
-    {{-- ===== PAGE 7 ===== --}}
-    <div x-show="page === 7" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
-        <div class="flex-1 flex flex-col justify-center gap-8 overflow-y-auto p-5">
-            @foreach ([
-                ['Mailunsad', ['maipatupad', 'mailaban']],
-                ['Bentahe', ['galak', 'pakinabang']],
-                ['Magkatuwang', ['magkasama', 'magkahiwalay']],
-                ['Matamlay', ['masigla', 'walang sigla']],
-                ['Kapakanan', ['kabuhayan', 'kabutihan']]
-            ] as $item)
-                <div class="flex items-center gap-8">
-                    <span class="font-bold !text-[#F4C300] text-2xl w-64">{{ $item[0] }} -</span>
-                    <div class="flex gap-6">
-                        @foreach ($item[1] as $choice)
-                            <p class="text-xl cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform px-6 py-2 border-2 border-[#F4C300] rounded-lg">
-                                {{ $choice }}
-                            </p>
-                        @endforeach
+        <div class="flex-1 flex flex-col gap-6 overflow-y-auto p-5">
+            {{-- Vocab 1 --}}
+            <div class="space-y-3">
+                <p class="font-bold !text-[#F4C300] text-xl">Mailunsad -</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div @click="selectVocab('v1', 'A')" 
+                         :class="vocabAnswers.v1 === 'A' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-xl font-bold">maipatupad</p>
+                    </div>
+                    <div @click="selectVocab('v1', 'B')" 
+                         :class="vocabAnswers.v1 === 'B' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-xl font-bold">mailaban</p>
                     </div>
                 </div>
-            @endforeach
+            </div>
+
+            {{-- Vocab 2 --}}
+            <div class="space-y-3">
+                <p class="font-bold !text-[#F4C300] text-xl">Bentahe -</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div @click="selectVocab('v2', 'A')" 
+                         :class="vocabAnswers.v2 === 'A' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-xl font-bold">galak</p>
+                    </div>
+                    <div @click="selectVocab('v2', 'B')" 
+                         :class="vocabAnswers.v2 === 'B' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-xl font-bold">pakinabang</p>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Vocab 3 --}}
+            <div class="space-y-3">
+                <p class="font-bold !text-[#F4C300] text-xl">Magkatuwang -</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div @click="selectVocab('v3', 'A')" 
+                         :class="vocabAnswers.v3 === 'A' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-xl font-bold">magkasama</p>
+                    </div>
+                    <div @click="selectVocab('v3', 'B')" 
+                         :class="vocabAnswers.v3 === 'B' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-xl font-bold">magkahiwalay</p>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Vocab 4 --}}
+            <div class="space-y-3">
+                <p class="font-bold !text-[#F4C300] text-xl">Matamlay -</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div @click="selectVocab('v4', 'A')" 
+                         :class="vocabAnswers.v4 === 'A' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-xl font-bold">masigla</p>
+                    </div>
+                    <div @click="selectVocab('v4', 'B')" 
+                         :class="vocabAnswers.v4 === 'B' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-xl font-bold">walang sigla</p>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Vocab 5 --}}
+            <div class="space-y-3">
+                <p class="font-bold !text-[#F4C300] text-xl">Kapakanan -</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div @click="selectVocab('v5', 'A')" 
+                         :class="vocabAnswers.v5 === 'A' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-xl font-bold">kabuhayan</p>
+                    </div>
+                    <div @click="selectVocab('v5', 'B')" 
+                         :class="vocabAnswers.v5 === 'B' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-xl font-bold">kabutihan</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    {{-- ===== PAGE 8 ===== --}}
-    <div x-show="page === 8" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header">
-            <p class="text-2xl font-semibold !text-gray-200">
-                Basahin mo at unawain ang mga tanong. Piliin ang wastong sagot.
-            </p>
-        </header>
-    </div>
-
-    {{-- ===== PAGE 9 ===== --}}
-    <div x-show="page === 9" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
-        <header class="header flex-shrink-0">
-            <p class="text-xl font-semibold !text-gray-200">
-                Ano ang ipinamigay ng DepEd at DOH sa mga mag-aaral?
-            </p>
-        </header>
-
-        <div class="flex-1 flex items-center justify-center gap-8">
-            @foreach (['Ascorbic acid', 'Acid', 'Folic acid'] as $choice)
-                <p class="text-3xl font-bold cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform px-8 py-4 border-2 border-[#F4C300] rounded-lg">
-                    {{ $choice }}
+    {{-- ===== PAGE 6: QUESTIONS (ALL IN ONE) ===== --}}
+    <div x-show="page === 6" class="w-full flex-1 flex flex-col gap-4 px-2 min-h-0">
+        <div class="flex-1 overflow-y-auto p-5 space-y-6">
+            {{-- Question 1 --}}
+            <div class="space-y-3">
+                <p class="text-xl font-semibold !text-gray-200">
+                    1. Ano ang ipinamigay ng DepEd at DOH sa mga mag-aaral?
                 </p>
-            @endforeach
-        </div>
-    </div>
+                <div class="grid grid-cols-3 gap-4">
+                    <div @click="selectQuestion('q1', 'A')" 
+                         :class="questionAnswers.q1 === 'A' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-xl font-bold">Ascorbic acid</p>
+                    </div>
+                    <div @click="selectQuestion('q1', 'B')" 
+                         :class="questionAnswers.q1 === 'B' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-xl font-bold">Acid</p>
+                    </div>
+                    <div @click="selectQuestion('q1', 'C')" 
+                         :class="questionAnswers.q1 === 'C' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-xl font-bold">Folic acid</p>
+                    </div>
+                </div>
+            </div>
 
-    {{-- ===== PAGE 10 ===== --}}
-    <div x-show="page === 10" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
-        <header class="header flex-shrink-0">
-            <p class="text-xl font-semibold !text-gray-200">
-                Sino lamang sa mga mag-aaral ang binigyan?
-            </p>
-        </header>
-
-        <div class="flex-1 flex items-center justify-center gap-8">
-            @foreach (['Kababaihan', 'kalalakihan', 'kapwa lalaki at babae'] as $choice)
-                <p class="text-3xl font-bold cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform px-8 py-4 border-2 border-[#F4C300] rounded-lg">
-                    {{ $choice }}
+            {{-- Question 2 --}}
+            <div class="space-y-3">
+                <p class="text-xl font-semibold !text-gray-200">
+                    2. Sino lamang sa mga mag-aaral ang binigyan?
                 </p>
-            @endforeach
-        </div>
-    </div>
+                <div class="grid grid-cols-3 gap-4">
+                    <div @click="selectQuestion('q2', 'A')" 
+                         :class="questionAnswers.q2 === 'A' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-xl font-bold">Kababaihan</p>
+                    </div>
+                    <div @click="selectQuestion('q2', 'B')" 
+                         :class="questionAnswers.q2 === 'B' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-xl font-bold">kalalakihan</p>
+                    </div>
+                    <div @click="selectQuestion('q2', 'C')" 
+                         :class="questionAnswers.q2 === 'C' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-lg font-bold">kapwa lalaki at babae</p>
+                    </div>
+                </div>
+            </div>
 
-    {{-- ===== PAGE 11 ===== --}}
-    <div x-show="page === 11" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
-        <header class="header flex-shrink-0">
-            <p class="text-xl font-semibold !text-gray-200">
-                Ano ang isang bentahe ng pag-inom ng Folic acid?
-            </p>
-        </header>
-
-        <div class="flex-1 flex items-center justify-center gap-8">
-            @foreach (['Pampatibay ng puso', 'pampadagdag ng dugo', 'pampalakas ng tuhod'] as $choice)
-                <p class="text-2xl font-bold cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform px-8 py-4 border-2 border-[#F4C300] rounded-lg text-center">
-                    {{ $choice }}
+            {{-- Question 3 --}}
+            <div class="space-y-3">
+                <p class="text-xl font-semibold !text-gray-200">
+                    3. Ano ang isang bentahe ng pag-inom ng Folic acid?
                 </p>
-            @endforeach
-        </div>
-    </div>
+                <div class="grid grid-cols-3 gap-4">
+                    <div @click="selectQuestion('q3', 'A')" 
+                         :class="questionAnswers.q3 === 'A' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-lg font-bold">Pampatibay ng puso</p>
+                    </div>
+                    <div @click="selectQuestion('q3', 'B')" 
+                         :class="questionAnswers.q3 === 'B' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-lg font-bold">pampadagdag ng dugo</p>
+                    </div>
+                    <div @click="selectQuestion('q3', 'C')" 
+                         :class="questionAnswers.q3 === 'C' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-lg font-bold">pampalakas ng tuhod</p>
+                    </div>
+                </div>
+            </div>
 
-    {{-- ===== PAGE 12 ===== --}}
-    <div x-show="page === 12" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
-        <header class="header flex-shrink-0">
-            <p class="text-xl font-semibold !text-gray-200">
-                Ano ang isa sa di-magandang maidudulot ng kakulangan ng dugo?
-            </p>
-        </header>
-
-        <div class="flex-1 flex items-center justify-center gap-8">
-            @foreach (['Nakamamatay', 'pagka-malilimutin', 'pagiging matamlay'] as $choice)
-                <p class="text-2xl font-bold cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform px-8 py-4 border-2 border-[#F4C300] rounded-lg text-center">
-                    {{ $choice }}
+            {{-- Question 4 --}}
+            <div class="space-y-3">
+                <p class="text-xl font-semibold !text-gray-200">
+                    4. Ano ang isa sa di-magandang maidudulot ng kakulangan ng dugo?
                 </p>
-            @endforeach
-        </div>
-    </div>
+                <div class="grid grid-cols-3 gap-4">
+                    <div @click="selectQuestion('q4', 'A')" 
+                         :class="questionAnswers.q4 === 'A' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-lg font-bold">Nakamamatay</p>
+                    </div>
+                    <div @click="selectQuestion('q4', 'B')" 
+                         :class="questionAnswers.q4 === 'B' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-lg font-bold">pagka-malilimutin</p>
+                    </div>
+                    <div @click="selectQuestion('q4', 'C')" 
+                         :class="questionAnswers.q4 === 'C' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-lg font-bold">pagiging matamlay</p>
+                    </div>
+                </div>
+            </div>
 
-    {{-- ===== PAGE 13 ===== --}}
-    <div x-show="page === 13" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
-        <header class="header flex-shrink-0">
-            <p class="text-xl font-semibold !text-gray-200">
-                Ano sa iyong palagay ang tinutukoy na buwanang dalaw?
-            </p>
-        </header>
-
-        <div class="flex-1 flex items-center justify-center gap-8">
-            @foreach (['Pagreregla', 'pagkahilo', 'pagdating ng tao'] as $choice)
-                <p class="text-3xl font-bold cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform px-8 py-4 border-2 border-[#F4C300] rounded-lg">
-                    {{ $choice }}
+            {{-- Question 5 --}}
+            <div class="space-y-3">
+                <p class="text-xl font-semibold !text-gray-200">
+                    5. Ano sa iyong palagay ang tinutukoy na buwanang dalaw?
                 </p>
-            @endforeach
+                <div class="grid grid-cols-3 gap-4">
+                    <div @click="selectQuestion('q5', 'A')" 
+                         :class="questionAnswers.q5 === 'A' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-xl font-bold">Pagreregla</p>
+                    </div>
+                    <div @click="selectQuestion('q5', 'B')" 
+                         :class="questionAnswers.q5 === 'B' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-xl font-bold">pagkahilo</p>
+                    </div>
+                    <div @click="selectQuestion('q5', 'C')" 
+                         :class="questionAnswers.q5 === 'C' ? 'bg-[#F4C300] text-black' : 'bg-gray-800/50'"
+                         class="p-4 rounded-lg border-2 border-[#F4C300] cursor-pointer hover:scale-105 transition-transform text-center">
+                        <p class="text-xl font-bold">pagdating ng tao</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    {{-- ===== PAGE 14 ===== --}}
-    <div x-show="page === 14" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header">
-            <p class="text-2xl font-semibold !text-gray-200">
-                Basahin mo at unawain ang isa pang artikulong Pang-agham at Teknolohiya. Pagkatapos ay dumako ka sa Pagsasanay.
-            </p>
-        </header>
-    </div>
-
-    {{-- ===== PAGE 15 ===== --}}
-    <div x-show="page === 15" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+    {{-- ===== PAGE 7: ARTICLE 2 - INTRO ===== --}}
+    <div x-show="page === 7" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
         <header class="header flex-shrink-0">
-            <h2 class="text-2xl font-bold !text-[#F4C300] text-center">Lulong sa Usok</h2>
-            <p class="text-lg text-center italic">Tusong impostor, hatid ay adiksyon.</p>
-            <p class="text-lg text-center">Yishin D. Malong</p>
+            <h2 class="text-3xl font-bold !text-[#F4C300] text-center">Lulong sa Usok</h2>
+            <p class="text-xl text-center italic">Tusong impostor, hatid ay adiksyon.</p>
+            <p class="text-xl text-center">Yishin D. Malong</p>
         </header>
 
         <div class="flex-1 overflow-y-auto p-5">
-            <div class="text-lg leading-relaxed space-y-4">
+            <div class="text-xl leading-relaxed space-y-4">
                 <p>
                     Maliit, may di pangkaraniwang hugis at panibagong anyo't kulay na naman. Bakit mo sila inaakit sa iyong usok?
                 </p>
@@ -229,14 +333,14 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 16 ===== --}}
-    <div x-show="page === 16" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+    {{-- ===== PAGE 8: ARTICLE 2 - DUMARAMING HIPAK ===== --}}
+    <div x-show="page === 8" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
         <header class="header flex-shrink-0">
-            <h3 class="text-xl font-bold !text-[#F4C300]">Dumaraming Hipak.</h3>
+            <h3 class="text-2xl font-bold !text-[#F4C300]">Dumaraming Hipak.</h3>
         </header>
 
         <div class="flex-1 overflow-y-auto p-5">
-            <div class="text-lg leading-relaxed space-y-4">
+            <div class="text-xl leading-relaxed space-y-4">
                 <p>
                     Puno ng pangamba, ayon sa World Health Organization (WHO), higit na sa 100 million ang mga gumagamit ng vape. Samantala, mahigit 86 million dito ay matatanda at ang 15 million naman ay mga kabataang gaya ni Totoy.
                 </p>
@@ -250,14 +354,14 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 17 ===== --}}
-    <div x-show="page === 17" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+    {{-- ===== PAGE 9: ARTICLE 2 - ANG IMPOSTOR ===== --}}
+    <div x-show="page === 9" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
         <header class="header flex-shrink-0">
-            <h3 class="text-xl font-bold !text-[#F4C300]">Ang impostor na mapanlinlang</h3>
+            <h3 class="text-2xl font-bold !text-[#F4C300]">Ang impostor na mapanlinlang</h3>
         </header>
 
         <div class="flex-1 overflow-y-auto p-5">
-            <div class="text-lg leading-relaxed space-y-4">
+            <div class="text-xl leading-relaxed space-y-4">
                 <p>
                     Bagaman kaakit-akit at puno ng kulay ang vape ay kakambal ito ng tabako o ng kinagawiang sigarilyo na tila ba nagbabalat kayong impostor lang.
                 </p>
@@ -271,14 +375,14 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 18 ===== --}}
-    <div x-show="page === 18" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+    {{-- ===== PAGE 10: ARTICLE 2 - TIGIL SA PAGPIPIGIL ===== --}}
+    <div x-show="page === 10" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
         <header class="header flex-shrink-0">
-            <h3 class="text-xl font-bold !text-[#F4C300]">Tigil sa Pagpipigil</h3>
+            <h3 class="text-2xl font-bold !text-[#F4C300]">Tigil sa Pagpipigil</h3>
         </header>
 
         <div class="flex-1 overflow-y-auto p-5">
-            <div class="text-lg leading-relaxed space-y-4">
+            <div class="text-xl leading-relaxed space-y-4">
                 <p>
                     Gayunpaman, sa pamamagitan ng pagpipigil at tamang control ay magkakaroon ng pagbabago!
                 </p>
