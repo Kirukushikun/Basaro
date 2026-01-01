@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class FourthSlide extends Component
 {   
@@ -518,6 +519,8 @@ class FourthSlide extends Component
 
     ];
 
+    public $score = 0;
+
     public function mount($lesson)
     {
         $this->lesson = $lesson;
@@ -549,6 +552,8 @@ class FourthSlide extends Component
                 ]);
             }
         }
+
+        Log::info('Pagtataya completed' . 'Score: ' . $this->score);
     }
     
     public function render()

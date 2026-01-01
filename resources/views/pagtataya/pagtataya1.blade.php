@@ -3,7 +3,7 @@
     selected: null,
     confirmed: false,
     showFeedback: false,
-    score: 0,
+    score: @entangle('score'),
     questions: @js($questions),
 
     get current() {

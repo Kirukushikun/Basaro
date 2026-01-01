@@ -9,7 +9,7 @@
         confirmed: false,
         recording: false,
         processing: false,
-        score: 0,
+        score: @entangle('score'),
         transcription: '',
         userInput: '',
         mediaRecorder: null,

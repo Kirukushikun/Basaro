@@ -6,7 +6,7 @@
      x-data="{
         answers: {},
         submitted: false,
-        score: 0,
+        score: @entangle('score'),
         questions: window.pagtatayanQuestions,
         wordBank: window.pagtatayanQuestions[0]?.wordBank || [],
 

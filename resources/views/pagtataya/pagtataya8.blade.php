@@ -4,7 +4,7 @@
         page: 0,
         userInput: '',
         confirmed: false,
-        score: 0,
+        score: @entangle('score'),
         questions: @js($questions),
         story: @js($this->getStoryProperty()),
 
