@@ -34,6 +34,16 @@
                 @include('pagtataya.pagtataya5', ['questions' => $this->lessonQuestions])
             @elseif($lesson == 10)
                 @include('pagtataya.pagtataya3', ['questions' => $this->lessonQuestions])
+            @elseif($lesson == 11)
+                @include('pagtataya.pagtataya11', ['questions' => $this->lessonQuestions])
+            @elseif($lesson == 12)
+                @include('pagtataya.pagtataya12', ['questions' => $this->lessonQuestions])
+            @elseif($lesson == 13)
+                @include('pagtataya.pagtataya12', ['questions' => $this->lessonQuestions])
+            @elseif($lesson == 14)
+                @include('pagtataya.pagtataya14', ['questions' => $this->lessonQuestions])
+            @elseif($lesson == 15)
+                @include('pagtataya.pagtataya15', ['questions' => $this->lessonQuestions])
             @endif
 
         </div>

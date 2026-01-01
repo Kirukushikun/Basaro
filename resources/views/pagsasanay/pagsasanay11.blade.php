@@ -1,3 +1,7 @@
+<script>
+    window.pagsasanay11Questions = @json($questions);
+</script>
+
 <div class="relative flex flex-col items-center"
      x-data="{
         page: 1,
@@ -6,9 +10,8 @@
         score: 0,
         selected: null,
         partAAnswers: {},
-        questions: @js($questions),
+        questions: window.pagsasanay11Questions,
 
-        // In the x-data, update the current getter:
         get current() {
             // Get questions starting from page 2
             let antonymQuestions = this.questions.filter(q => q.type === 'antonym_select');
@@ -34,39 +37,39 @@
             this.score = partACorrect;
         },
 
-next() {
-    if (!this.showFeedback) {
-        this.showFeedback = true
-        if (this.page > 1 && this.selected === this.current.answer) {
-            this.score++
-        }
-    } else {
-        let antonymQuestions = this.questions.filter(q => q.type === 'antonym_select');
-        let totalPages = 1 + antonymQuestions.length; // 1 for Part A + antonym count
-        
-        if (this.page >= totalPages) {
-            this.page = totalPages + 1 // Show results
-        } else {
-            this.page++
-        }
-        this.reset()
-    }
-},
-
         confirm() {
             this.confirmed = true;
+            this.showFeedback = true;
+            
+            // Score for Part B (antonym questions)
+            if (this.page > 1 && this.selected === this.current.answer) {
+                this.score++;
+            }
+        },
+
+        next() {
+            let antonymQuestions = this.questions.filter(q => q.type === 'antonym_select');
+            let totalPages = 1 + antonymQuestions.length; // 1 for Part A + antonym count
+            
+            if (this.page >= totalPages) {
+                this.page = totalPages + 1; // Show results
+            } else {
+                this.page++;
+            }
+            this.reset();
         },
 
         reset() {
-            this.selected = null
-            this.confirmed = false
-            this.showFeedback = false
+            this.selected = null;
+            this.confirmed = false;
+            this.showFeedback = false;
             // DON'T reset partAAnswers or score here
         },
 
         replay() {
             this.page = 1;
             this.score = 0;
+            this.partAAnswers = {};
             this.reset();
         }
      }">
@@ -97,7 +100,8 @@ next() {
                                 <!-- Hanay B -->
                                 <td class="border border-[#F4C300] px-6 py-4">
                                     <select x-model="partAAnswers[question.word]"
-                                            class="w-full px-3 py-2 border-2 border-[#F4C300] bg-gray-800 text-[#F4C300] font-bold rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F4C300]">
+                                            :disabled="showFeedback"
+                                            class="w-full px-3 py-2 border-2 border-[#F4C300] bg-gray-800 text-[#F4C300] font-bold rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F4C300] disabled:opacity-50">
                                         <option value="">Piliin</option>
                                         <template x-for="choice in question.choices" :key="choice.letter">
                                             <option :value="choice.letter"
@@ -170,9 +174,13 @@ next() {
             <div class="flex flex-col gap-3 items-center max-w-md w-full">
                 <template x-for="choice in current.choices" :key="choice">
                     <button
-                        @click="selected = choice; confirmed = false; showFeedback = false"
-                        :class="{ 'bg-[#F4C300] !text-black': selected === choice }"
-                        class="w-full px-6 py-3 border-2 border-[#F4C300] !text-[#F4C300] font-bold rounded-lg hover:bg-[#F4C300] hover:!text-black transition-all text-center">
+                        @click="!confirmed && (selected = choice)"
+                        :disabled="confirmed"
+                        :class="{ 
+                            'bg-[#F4C300] !text-black': selected === choice,
+                            'opacity-50 cursor-not-allowed': confirmed && selected !== choice
+                        }"
+                        class="w-full px-6 py-3 border-2 border-[#F4C300] !text-[#F4C300] font-bold rounded-lg hover:bg-[#F4C300] hover:!text-black transition-all text-center disabled:hover:bg-transparent disabled:hover:!text-[#F4C300]">
                         <span x-text="choice"></span>
                     </button>
                 </template>
@@ -181,58 +189,59 @@ next() {
             <!-- Confirm Button -->
             <button x-show="selected && !confirmed"
                     @click="confirm"
-                    class="px-6 py-2 bg-[#F4C300] text-black font-bold rounded-lg">
+                    class="px-6 py-2 bg-[#F4C300] text-black font-bold rounded-lg hover:opacity-90 transition-all">
                 Kumpirmahin
             </button>
 
             <!-- Feedback -->
             <div x-show="showFeedback"
-                class="mt-4 px-6 py-3 rounded-lg text-lg font-semibold"
-                :class="selected === current.answer ? 'bg-green-500 text-white' : 'bg-red-500 text-white'">
-                <span x-show="selected === current.answer"><i class="fa-solid fa-check"></i> Tama!</span>
+                 x-transition
+                 class="mt-4 px-6 py-3 rounded-lg text-lg font-semibold"
+                 :class="selected === current.answer ? 'bg-green-500 text-white' : 'bg-red-500 text-white'">
+                <span x-show="selected === current.answer">✅ Tama!</span>
                 <span x-show="selected !== current.answer">
-                    <i class="fa-solid fa-x"></i> Mali. Ang tamang sagot ay <b x-text="current.answer"></b>
+                    ❌ Mali. Ang tamang sagot ay "<b x-text="current.answer"></b>"
                 </span>
             </div>
 
         </div>
     </template>
 
-<!-- Custom Navigation for Pagsasanay 11 -->
-<div x-show="page <= (1 + questions.filter(q => q.type === 'antonym_select').length)" 
-     class="absolute -bottom-[110px] flex items-center justify-between w-full">
-    <p>
-        <span x-text="page === 1 ? page : (page - 1)"></span>/
-        <span x-text="page === 1 ? questions.length : questions.filter(q => q.type === 'antonym_select').length"></span>
-    </p>
-    <div class="flex gap-5">
-        <button x-show="page > 1" @click="page--; reset()" class="px-4 py-2 border border-gray-500 text-white rounded-md font-bold">
-            <i class="fa-solid fa-arrow-left"></i> Balik
-        </button>
-        <button x-show="confirmed" @click="next" class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold">
-            Susunod <i class="fa-solid fa-arrow-right !text-black"></i>
-        </button>
+    <!-- Custom Navigation for Pagsasanay 11 -->
+    <div x-show="page <= (1 + questions.filter(q => q.type === 'antonym_select').length)" 
+         class="absolute -bottom-[110px] flex items-center justify-between w-full">
+        <p>
+            <span x-text="page === 1 ? page : (page - 1)"></span>/
+            <span x-text="page === 1 ? questions.length : questions.filter(q => q.type === 'antonym_select').length"></span>
+        </p>
+        <div class="flex gap-5">
+            <button x-show="page > 1" @click="page--; reset()" class="px-4 py-2 border border-gray-500 text-white rounded-md font-bold">
+                <i class="fa-solid fa-arrow-left"></i> Balik
+            </button>
+            <button x-show="confirmed && showFeedback" @click="next" class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold">
+                Susunod <i class="fa-solid fa-arrow-right !text-black"></i>
+            </button>
+        </div>
     </div>
-</div>
 
-<!-- Custom Results for Pagsasanay 11 -->
-<div x-show="page > (1 + questions.filter(q => q.type === 'antonym_select').length)" 
-     class="flex-1 flex flex-col items-center justify-center gap-5 mt-10 w-full">
-    <img src="../Img/Badge.png" width="200" alt="">
-    <h1 class="text-2xl font-bold">CONGRATULATIONS!</h1>
-    <h2 class="score !text-[#F4C300]" x-text="Math.round((score / (questions.length)) * 100) + '%'"></h2>
-    <p class="w-96 text-lg text-center">
-        Nakakuha ka ng <span class="font-bold" x-text="score"></span>
-        sa <span class="font-bold" x-text="questions.length"></span> na tanong!
-    </p>
-    <div class="flex gap-4 mt-4">
-        <button @click="replay()" class="px-4 py-2 border border-2 border-[#F4C300] text-[#F4C300] rounded-md font-bold hover:bg-[#F4C300] hover:text-black transition">
-            Ulitin
-        </button>
-        <button onclick="window.location.href='/'" class="px-4 py-2 bg-gray-600 rounded-md text-white font-bold hover:opacity-80">
-            Lumabas
-        </button>
+    <!-- Custom Results for Pagsasanay 11 -->
+    <div x-show="page > (1 + questions.filter(q => q.type === 'antonym_select').length)" 
+         class="flex-1 flex flex-col items-center justify-center gap-5 mt-10 w-full">
+        <img src="../Img/Badge.png" width="200" alt="">
+        <h1 class="text-2xl font-bold">CONGRATULATIONS!</h1>
+        <h2 class="score !text-[#F4C300]" x-text="Math.round((score / (questions.length)) * 100) + '%'"></h2>
+        <p class="w-96 text-lg text-center">
+            Nakakuha ka ng <span class="font-bold" x-text="score"></span>
+            sa <span class="font-bold" x-text="questions.length"></span> na tanong!
+        </p>
+        <div class="flex gap-4 mt-4">
+            <button @click="replay()" class="px-4 py-2 border border-2 border-[#F4C300] text-[#F4C300] rounded-md font-bold hover:bg-[#F4C300] hover:text-black transition">
+                Ulitin
+            </button>
+            <button onclick="window.location.href='/'" class="px-4 py-2 bg-gray-600 rounded-md text-white font-bold hover:opacity-80">
+                Lumabas
+            </button>
+        </div>
     </div>
-</div>
 
 </div>

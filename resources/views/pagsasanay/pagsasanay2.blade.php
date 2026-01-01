@@ -1,3 +1,7 @@
+<script>
+    window.pagsasanay2Questions = @json($questions);
+</script>
+
 <!-- Pagsasanay 2 -->
 <div class="relative" x-data="{
     page: 1,
@@ -5,7 +9,11 @@
     confirmed: false,
     showFeedback: false,
     score: 0,
-    isRecording: false,
+    recording: false,
+    processing: false,
+    transcription: '',
+    mediaRecorder: null,
+    audioChunks: [],
     questions: @js($questions),
 
     get current() {
@@ -15,10 +23,121 @@
     confirm() {
         this.confirmed = true
         this.showFeedback = true
-        // Only score for question types that have selectable answers
-        if (['fill_blank_audio'].includes(this.current.type)) {
-            if (this.selected === this.current.answer) this.score++
+        
+        // Score for vowel selection
+        if (this.current.type === 'fill_blank_audio') {
+            if (this.selected === this.current.answer) {
+                this.score++
+            }
         }
+        
+        // Score for pronunciation
+        if (this.current.type === 'pronounce_word') {
+            if (this.normalizeText(this.transcription) === this.normalizeText(this.current.full_word)) {
+                this.score++
+            }
+        }
+    },
+
+    normalizeText(text) {
+        return text.toLowerCase().trim().replace(/[.,!?]/g, '');
+    },
+
+    async startRecording() {
+        if (this.confirmed) return;
+        
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ 
+                audio: {
+                    echoCancellation: true,
+                    noiseSuppression: true,
+                    sampleRate: 48000
+                } 
+            });
+            
+            this.mediaRecorder = new MediaRecorder(stream, {
+                mimeType: 'audio/webm;codecs=opus'
+            });
+            
+            this.audioChunks = [];
+            
+            this.mediaRecorder.ondataavailable = (event) => {
+                if (event.data.size > 0) {
+                    this.audioChunks.push(event.data);
+                }
+            };
+            
+            this.mediaRecorder.onstop = async () => {
+                await this.processAudio();
+            };
+            
+            this.mediaRecorder.start();
+            this.recording = true;
+            
+            console.log('🎤 Recording started...');
+        } catch (error) {
+            console.error('❌ Error accessing microphone:', error);
+            alert('Hindi ma-access ang microphone. Please allow microphone access.');
+        }
+    },
+
+    stopRecording() {
+        if (this.mediaRecorder && this.recording) {
+            this.mediaRecorder.stop();
+            this.recording = false;
+            this.processing = true;
+            
+            console.log('⏹️ Recording stopped');
+            
+            this.mediaRecorder.stream.getTracks().forEach(track => track.stop());
+        }
+    },
+
+    async processAudio() {
+        const audioBlob = new Blob(this.audioChunks, { type: 'audio/webm' });
+        
+        console.log('📦 Audio blob size:', audioBlob.size, 'bytes');
+        
+        const reader = new FileReader();
+        reader.readAsDataURL(audioBlob);
+        reader.onloadend = async () => {
+            const base64Audio = reader.result.split(',')[1];
+            
+            console.log('📤 Sending to API...');
+            console.log('🎯 Expected answer:', this.current.full_word);
+            
+            try {
+                const response = await fetch('/api/speech-to-text', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        audio: base64Audio,
+                        language: 'tl-PH'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                console.log('📥 API Response:', data);
+                
+                if (data.success) {
+                    this.transcription = data.transcription;
+                    console.log('🗣️ You said:', this.transcription);
+                    this.confirm();
+                } else {
+                    console.error('❌ API Error:', data.error);
+                    alert('May error sa pag-process ng audio: ' + data.error);
+                    this.processing = false;
+                }
+            } catch (error) {
+                console.error('❌ Fetch Error:', error);
+                alert('May error sa pag-send ng audio.');
+                this.processing = false;
+            }
+        };
     },
 
     next() {
@@ -30,7 +149,10 @@
         this.selected = null
         this.confirmed = false
         this.showFeedback = false
-        this.isRecording = false
+        this.recording = false
+        this.processing = false
+        this.transcription = ''
+        this.audioChunks = []
     },
 
     replay() {
@@ -44,13 +166,7 @@
     <template x-if="current">
         <div class="flex-1 flex flex-col items-center gap-10 mt-10 w-full">
 
-            <!-- Audio Icon (for audio-based questions) -->
-            <i x-show="['mc_audio'].includes(current.type)"
-               class="fa-solid fa-ear-listen !text-[#F4C300] alphabet"></i>
-            
-
-
-            <!-- TYPE: IMAGE GROUP AUDIO (Part 1 - Identification with Voice) -->
+            <!-- TYPE: IMAGE GROUP AUDIO (Identify vowel sound) -->
             <template x-if="current.type === 'image_group_audio'">
                 <div class="flex flex-col items-center gap-6">
                     
@@ -63,44 +179,56 @@
                         </template>
                     </div>
 
-                    <!-- Success -->
+                    <!-- Success Feedback -->
                     <div x-show="confirmed"
                         x-transition
                         class="px-4 py-2 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold">
                         <i class="fa-solid fa-check"></i> Tama!
                     </div>
 
-                    <p class="w-96 text-lg text-center font-semibold">Tukuyin ang patinig ng mga sumusunod na larawan. Subukang bigkasin ito nang tama at dahan-dahan</p>
+                    <p class="w-96 text-lg text-center font-semibold">
+                        Tukuyin ang patinig ng mga sumusunod na larawan. Subukang bigkasin ito nang tama at dahan-dahan
+                    </p>
 
+                    <!-- Microphone Button -->
                     <div class="flex flex-col items-center gap-4">
-                        <div
-                            @mousedown="!confirmed && (isRecording = true)"
-                            @mouseup="
-                                isRecording = false;
-                                if (!confirmed) {
-                                    setTimeout(() => confirmed = true, 1500)
-                                }
-                            "
-                            @mouseleave="isRecording = false"
+                        <button
+                            @mousedown="startRecording()"
+                            @mouseup="stopRecording()"
+                            @touchstart.prevent="startRecording()"
+                            @touchend.prevent="stopRecording()"
+                            :disabled="confirmed || processing"
+                            class="relative bg-gray-500 px-3 py-2 rounded-full cursor-pointer transition-all hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
                             :class="{ 
-                                'ring-4 ring-red-500 animate-pulse scale-110': isRecording,
-                                'opacity-50 cursor-not-allowed': confirmed
-                            }"
-                            class="relative bg-gray-500 px-4 py-3 rounded-full cursor-pointer transition-transform hover:scale-110">
-                            <i class="fa-solid fa-microphone text-white text-xl"></i>
-                            <div x-show="isRecording"
-                                class="absolute inset-0 bg-red-500 opacity-30 rounded-full animate-ping"></div>
-                        </div>                        
-                        <p class="!text-gray-400 text-xs">
-                            Pindutin at hawakan ang mikropono habang nagbibigkas
-                        </p>
-                    </div>
-                    <!-- Microphone Button (Hold to Record) -->
+                                'scale-125 ring-4 ring-red-500 bg-red-500': recording,
+                                'animate-pulse': processing
+                            }">
 
+                            <i class="fa-solid fa-microphone text-white text-xl"
+                               :class="{ 'fa-spinner fa-spin': processing }"></i>
+
+                            <div x-show="recording"
+                                 class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
+                            </div>
+                        </button>
+                        
+                        <!-- Status text -->
+                        <div class="text-center">
+                            <p x-show="recording" class="text-red-500 font-semibold animate-pulse">
+                                🔴 Nagrerekord...
+                            </p>
+                            <p x-show="processing" class="text-blue-500 font-semibold">
+                                ⏳ Pinoproseso...
+                            </p>
+                            <p x-show="!recording && !processing && !confirmed" class="text-gray-400 text-sm">
+                                Pindutin at hawakan ang mikropono habang nagbibigkas
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </template>
 
-            <!-- TYPE: FILL BLANK AUDIO (Part 2 - Select Missing Vowel) -->
+            <!-- TYPE: FILL BLANK AUDIO (Select Missing Vowel) -->
             <template x-if="current.type === 'fill_blank_audio'">
                 <div class="flex flex-col items-center gap-6">
                     <img :src="current.image" class="w-40 rounded-lg border-4 border-gray-300">
@@ -123,39 +251,92 @@
                         </template>
                     </div>
 
-                    <!-- Pronunciation Button (after correct answer) -->
-                    <div x-show="showFeedback && selected === current.answer" class="flex flex-col items-center gap-3">
-                        <p class="text-sm text-gray-300">Bigkasin ang salita:</p>
-                        <div
-                            @mousedown="isRecording = true"
-                            @mouseup="isRecording = false"
-                            @mouseleave="isRecording = false"
-                            class="relative bg-gray-500 px-4 py-2 rounded-full cursor-pointer transition-transform hover:scale-110"
-                            :class="{ 'ring-4 ring-red-500 animate-pulse scale-110': isRecording }">
-                            <i class="fa-solid fa-microphone text-white"></i>
-                            <div x-show="isRecording"
-                                 class="absolute inset-0 bg-red-500 opacity-30 rounded-full animate-ping"></div>
-                        </div>
+                    <!-- Confirm Button -->
+                    <button x-show="selected && !confirmed"
+                            @click="confirm"
+                            class="px-6 py-2 bg-[#F4C300] text-black font-bold rounded-lg hover:bg-yellow-500 transition-colors">
+                        Kumpirmahin
+                    </button>
+
+                    <!-- Feedback -->
+                    <div x-show="showFeedback"
+                        class="px-4 py-2 rounded-lg text-lg font-semibold"
+                        :class="selected === current.answer ? 'bg-green-500 text-white' : 'bg-red-500 text-white'">
+                        <span x-show="selected === current.answer">
+                            <i class="fa-solid fa-check"></i> Tama!
+                        </span>
+                        <span x-show="selected !== current.answer">
+                            <i class="fa-solid fa-x"></i> Mali. Ang tamang sagot ay <b x-text="current.answer"></b>
+                        </span>
                     </div>
                 </div>
             </template>
 
-            <!-- Confirm Button -->
-            <button x-show="['fill_blank_audio'].includes(current.type) && selected && !confirmed"
-                    @click="confirm"
-                    class="px-6 py-2 bg-[#F4C300] text-black font-bold rounded-lg hover:bg-yellow-500 transition-colors">
-                Kumpirmahin
-            </button>
+            <!-- TYPE: PRONOUNCE WORD (Say the complete word) -->
+            <template x-if="current.type === 'pronounce_word'">
+                <div class="flex flex-col items-center gap-6">
+                    <img :src="current.image" class="w-48 rounded-lg border-4 border-gray-300">
+                    <p class="text-6xl font-bold !text-[#F4C300]" x-text="current.full_word"></p>
+                    <p class="text-lg text-center font-semibold">Bigkasin ang buong salita nang malinaw</p>
 
-            <!-- Feedback -->
-            <div x-show="['image_group_audio','fill_blank_audio'].includes(current.type) && showFeedback"
-                class="px-4 py-2 rounded-lg text-lg font-semibold"
-                :class="selected === current.answer ? 'bg-green-500 text-white' : 'bg-red-500 text-white'">
-                <span x-show="selected === current.answer"><i class="fa-solid fa-check"></i> Tama!</span>
-                <span x-show="selected !== current.answer">
-                    <i class="fa-solid fa-x"></i> Mali. Ang tamang sagot ay <b x-text="current.answer"></b>
-                </span>
-            </div>
+                    <!-- Feedback -->
+                    <div x-show="confirmed" 
+                         x-transition
+                         class="w-full max-w-lg">
+                        <div x-show="normalizeText(transcription) === normalizeText(current.full_word)"
+                             class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
+                            ✅ Tama!
+                            <div class="text-sm mt-2">
+                                Narinig: "<span x-text="transcription"></span>"
+                            </div>
+                        </div>
+                        <div x-show="normalizeText(transcription) !== normalizeText(current.full_word)"
+                             class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
+                            ❌ Mali
+                            <div class="text-sm mt-2">
+                                <div>Narinig: "<span x-text="transcription"></span>"</div>
+                                <div>Dapat: "<span x-text="current.full_word"></span>"</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Microphone Button -->
+                    <div x-show="!confirmed" class="flex flex-col items-center gap-4">
+                        <button
+                            @mousedown="startRecording()"
+                            @mouseup="stopRecording()"
+                            @touchstart.prevent="startRecording()"
+                            @touchend.prevent="stopRecording()"
+                            :disabled="confirmed || processing"
+                            class="relative bg-gray-500 p-6 rounded-full cursor-pointer transition-all hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                            :class="{ 
+                                'scale-125 ring-4 ring-red-500 bg-red-500': recording,
+                                'animate-pulse': processing
+                            }">
+
+                            <i class="fa-solid fa-microphone text-white text-3xl"
+                               :class="{ 'fa-spinner fa-spin': processing }"></i>
+
+                            <div x-show="recording"
+                                 class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
+                            </div>
+                        </button>
+
+                        <!-- Status text -->
+                        <div class="text-center">
+                            <p x-show="recording" class="text-red-500 font-semibold animate-pulse">
+                                🔴 Nagrerekord...
+                            </p>
+                            <p x-show="processing" class="text-blue-500 font-semibold">
+                                ⏳ Pinoproseso...
+                            </p>
+                            <p x-show="!recording && !processing" class="text-gray-400 text-sm">
+                                Pindutin at hawakan ang mikropono habang nagbibigkas
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </template>
 
         </div>
     </template>

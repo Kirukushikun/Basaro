@@ -1,4 +1,4 @@
-<!-- Pagsasanay 3 -->
+<!-- Pagtataya 5 -->
 <div class="relative flex flex-col items-center"
      x-data="{
         page: 1,

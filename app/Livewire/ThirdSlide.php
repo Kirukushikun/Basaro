@@ -29,9 +29,10 @@ class ThirdSlide extends Component
         ],
 
         2 => [
+            // Part 1: Image Group Audio (5 questions - identify vowel sound)
             [
                 'type' => 'image_group_audio',
-                'answer' => 'A',
+                'answer' => 'a',
                 'images' => [
                     ['src' => 'illustrations/aso.png', 'label' => 'aso'],
                     ['src' => 'illustrations/araw.png', 'label' => 'araw'],
@@ -40,7 +41,7 @@ class ThirdSlide extends Component
             ],
             [
                 'type' => 'image_group_audio',
-                'answer' => 'E',
+                'answer' => 'e',
                 'images' => [
                     ['src' => 'illustrations/ekis.png', 'label' => 'ekis'],
                     ['src' => 'illustrations/espada.png', 'label' => 'espada'],
@@ -49,7 +50,7 @@ class ThirdSlide extends Component
             ],
             [
                 'type' => 'image_group_audio',
-                'answer' => 'I',
+                'answer' => 'i',
                 'images' => [
                     ['src' => 'illustrations/itlog.png', 'label' => 'itlog'],
                     ['src' => 'illustrations/ilong.png', 'label' => 'ilong'],
@@ -58,7 +59,7 @@ class ThirdSlide extends Component
             ],
             [
                 'type' => 'image_group_audio',
-                'answer' => 'O',
+                'answer' => 'o',
                 'images' => [
                     ['src' => 'illustrations/oso.png', 'label' => 'oso'],
                     ['src' => 'illustrations/ospital.png', 'label' => 'ospital'],
@@ -67,13 +68,17 @@ class ThirdSlide extends Component
             ],
             [
                 'type' => 'image_group_audio',
-                'answer' => 'U',
+                'answer' => 'u',
                 'images' => [
                     ['src' => 'illustrations/unan.png', 'label' => 'unan'],
                     ['src' => 'illustrations/ulan.png', 'label' => 'ulan'],
                     ['src' => 'illustrations/ube.png', 'label' => 'ube'],
                 ],
             ],
+            
+            // Part 2: Fill Blank + Pronounce Word (20 questions total - 10 pairs)
+            
+            // Pair 1: ubas
             [
                 'type' => 'fill_blank_audio',
                 'word' => '_bas',
@@ -81,11 +86,25 @@ class ThirdSlide extends Component
                 'image' => 'illustrations/ubas.png',
             ],
             [
+                'type' => 'pronounce_word',
+                'full_word' => 'ubas',
+                'image' => 'illustrations/ubas.png',
+            ],
+            
+            // Pair 2: elepante
+            [
                 'type' => 'fill_blank_audio',
                 'word' => '_lepante',
                 'answer' => 'E',
                 'image' => 'illustrations/elepante.png',
             ],
+            [
+                'type' => 'pronounce_word',
+                'full_word' => 'elepante',
+                'image' => 'illustrations/elepante.png',
+            ],
+            
+            // Pair 3: apoy
             [
                 'type' => 'fill_blank_audio',
                 'word' => '_poy',
@@ -93,11 +112,25 @@ class ThirdSlide extends Component
                 'image' => 'illustrations/apoy.png',
             ],
             [
+                'type' => 'pronounce_word',
+                'full_word' => 'apoy',
+                'image' => 'illustrations/apoy.png',
+            ],
+            
+            // Pair 4: ilaw
+            [
                 'type' => 'fill_blank_audio',
                 'word' => '_law',
                 'answer' => 'I',
                 'image' => 'illustrations/ilaw.png',
             ],
+            [
+                'type' => 'pronounce_word',
+                'full_word' => 'ilaw',
+                'image' => 'illustrations/ilaw.png',
+            ],
+            
+            // Pair 5: okra
             [
                 'type' => 'fill_blank_audio',
                 'word' => '_kra',
@@ -105,11 +138,25 @@ class ThirdSlide extends Component
                 'image' => 'illustrations/okra.png',
             ],
             [
+                'type' => 'pronounce_word',
+                'full_word' => 'okra',
+                'image' => 'illustrations/okra.png',
+            ],
+            
+            // Pair 6: orasan
+            [
                 'type' => 'fill_blank_audio',
                 'word' => '_rasan',
                 'answer' => 'O',
                 'image' => 'illustrations/orasan.png',
             ],
+            [
+                'type' => 'pronounce_word',
+                'full_word' => 'orasan',
+                'image' => 'illustrations/orasan.png',
+            ],
+            
+            // Pair 7: upo
             [
                 'type' => 'fill_blank_audio',
                 'word' => '_po',
@@ -117,11 +164,25 @@ class ThirdSlide extends Component
                 'image' => 'illustrations/upo.png',
             ],
             [
+                'type' => 'pronounce_word',
+                'full_word' => 'upo',
+                'image' => 'illustrations/upo.png',
+            ],
+            
+            // Pair 8: ibon
+            [
                 'type' => 'fill_blank_audio',
                 'word' => '_bon',
                 'answer' => 'I',
                 'image' => 'illustrations/ibon.png',
             ],
+            [
+                'type' => 'pronounce_word',
+                'full_word' => 'ibon',
+                'image' => 'illustrations/ibon.png',
+            ],
+            
+            // Pair 9: isda
             [
                 'type' => 'fill_blank_audio',
                 'word' => '_sda',
@@ -129,9 +190,21 @@ class ThirdSlide extends Component
                 'image' => 'illustrations/isda.png',
             ],
             [
+                'type' => 'pronounce_word',
+                'full_word' => 'isda',
+                'image' => 'illustrations/isda.png',
+            ],
+            
+            // Pair 10: atis
+            [
                 'type' => 'fill_blank_audio',
                 'word' => '_tis',
                 'answer' => 'A',
+                'image' => 'illustrations/atis.png',
+            ],
+            [
+                'type' => 'pronounce_word',
+                'full_word' => 'atis',
                 'image' => 'illustrations/atis.png',
             ],
         ],
@@ -508,64 +581,74 @@ class ThirdSlide extends Component
 
         12 => [
             [
+                'type' => 'fill_syllable',
                 'word' => 'bah__',
                 'full_word' => 'bahay',
                 'answer' => 'ay',
                 'image' => 'illustrations/bahay.png',
             ],
             [
+                'type' => 'fill_syllable',
                 'word' => 'kah__',
                 'full_word' => 'kahaw',
                 'answer' => 'aw',
                 'image' => 'illustrations/kahaw.png',
             ],
             [
+                'type' => 'fill_syllable',
                 'word' => 'kas__',
                 'full_word' => 'kasiw',
                 'answer' => 'iw',
                 'image' => 'illustrations/kasiw.png',
             ],
             [
+                'type' => 'fill_syllable',
                 'word' => 'am__',
                 'full_word' => 'amoy',
                 'answer' => 'oy',
                 'image' => 'illustrations/amoy.png',
             ],
             [
+                'type' => 'fill_syllable',
                 'word' => 'b__wang',
-                'full_word' => 'buyung',
+                'full_word' => 'buywang',
                 'answer' => 'uy',
-                'image' => 'illustrations/buyung.png',
+                'image' => 'illustrations/buywang.png',
             ],
             [
+                'type' => 'fill_syllable',
                 'word' => 'kil__',
-                'full_word' => 'kiley',
-                'answer' => 'ey',
-                'image' => 'illustrations/kiley.png',
-            ],
-            [
-                'word' => 'gil__',
-                'full_word' => 'gilay',
+                'full_word' => 'kilay',
                 'answer' => 'ay',
-                'image' => 'illustrations/gilay.png',
+                'image' => 'illustrations/kilay.png',
             ],
             [
+                'type' => 'fill_syllable',
+                'word' => 'gul__',
+                'full_word' => 'gulay',
+                'answer' => 'ay',
+                'image' => 'illustrations/gulay.png',
+            ],
+            [
+                'type' => 'fill_syllable',
                 'word' => 'tul__',
                 'full_word' => 'tulay',
                 'answer' => 'ay',
                 'image' => 'illustrations/tulay.png',
             ],
             [
+                'type' => 'fill_syllable',
                 'word' => 'ar__',
                 'full_word' => 'araw',
                 'answer' => 'aw',
                 'image' => 'illustrations/araw.png',
             ],
             [
+                'type' => 'fill_syllable',
                 'word' => 'bat__',
-                'full_word' => 'batay',
+                'full_word' => 'bata',
                 'answer' => 'ay',
-                'image' => 'illustrations/batay.png',
+                'image' => 'illustrations/bata.png',
             ],
         ],
 

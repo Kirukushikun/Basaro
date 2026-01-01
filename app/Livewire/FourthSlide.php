@@ -225,6 +225,7 @@ class FourthSlide extends Component
             ['type' => 'read_sentence', 'pangungusap' => 'Masasama kay Ama ang mama.'],
             ['type' => 'comprehension', 'tanong' => 'Sino ang masasama kay Ama?', 'answer' => 'ang mama'],
         ],
+
         6 => [
             ['type' => 'read_phrase', 'parirala' => 'masiba'],
             ['type' => 'read_phrase', 'parirala' => 'mabisa'],
@@ -294,6 +295,126 @@ class FourthSlide extends Component
             ['kataga' => 'Malayo'],
             ['kataga' => 'Banga'],
             ['kataga' => 'Maya'],
+        ],
+
+        11 => [
+            ['type' => 'read_pair', 'word1' => 'Lungkot', 'word2' => 'Panglaw'],
+            ['type' => 'identify_relationship', 'word1' => 'Lungkot', 'word2' => 'Panglaw', 'answer' => 'Magkasingkahulugan'],
+            
+            ['type' => 'read_pair', 'word1' => 'Mabuti', 'word2' => 'Masama'],
+            ['type' => 'identify_relationship', 'word1' => 'Mabuti', 'word2' => 'Masama', 'answer' => 'Magkasalungat'],
+            
+            ['type' => 'read_pair', 'word1' => 'Katoto', 'word2' => 'Kaibigan'],
+            ['type' => 'identify_relationship', 'word1' => 'Katoto', 'word2' => 'Kaibigan', 'answer' => 'Magkasingkahulugan'],
+            
+            ['type' => 'read_pair', 'word1' => 'Batid', 'word2' => 'Alam'],
+            ['type' => 'identify_relationship', 'word1' => 'Batid', 'word2' => 'Alam', 'answer' => 'Magkasingkahulugan'],
+            
+            ['type' => 'read_pair', 'word1' => 'Bata', 'word2' => 'Tiis'],
+            ['type' => 'identify_relationship', 'word1' => 'Bata', 'word2' => 'Tiis', 'answer' => 'Magkasalungat'],
+            
+            ['type' => 'read_pair', 'word1' => 'Malamig', 'word2' => 'Mainit'],
+            ['type' => 'identify_relationship', 'word1' => 'Malamig', 'word2' => 'Mainit', 'answer' => 'Magkasalungat'],
+            
+            ['type' => 'read_pair', 'word1' => 'Mahirap', 'word2' => 'Dukha'],
+            ['type' => 'identify_relationship', 'word1' => 'Mahirap', 'word2' => 'Dukha', 'answer' => 'Magkasingkahulugan'],
+            
+            ['type' => 'read_pair', 'word1' => 'Kaibigan', 'word2' => 'Kaaway'],
+            ['type' => 'identify_relationship', 'word1' => 'Kaibigan', 'word2' => 'Kaaway', 'answer' => 'Magkasalungat'],
+            
+            ['type' => 'read_pair', 'word1' => 'Sobra', 'word2' => 'Kulang'],
+            ['type' => 'identify_relationship', 'word1' => 'Sobra', 'word2' => 'Kulang', 'answer' => 'Magkasalungat'],
+            
+            ['type' => 'read_pair', 'word1' => 'Yumao', 'word2' => 'Umalis'],
+            ['type' => 'identify_relationship', 'word1' => 'Yumao', 'word2' => 'Umalis', 'answer' => 'Magkasalungat'],
+        ],
+
+        12 => [
+            ['type' => 'read_word', 'word' => 'Malay'],
+            ['type' => 'read_word', 'word' => 'Bangaw'],
+            ['type' => 'read_word', 'word' => 'Alay'],
+            ['type' => 'read_word', 'word' => 'Halaw'],
+            ['type' => 'read_word', 'word' => 'Okoy'],
+            ['type' => 'read_word', 'word' => 'Bertdey'],
+            ['type' => 'read_word', 'word' => 'Baduy'],
+            ['type' => 'read_word', 'word' => 'Amoy'],
+            ['type' => 'read_word', 'word' => 'Giliw'],
+            ['type' => 'read_word', 'word' => 'Aguy'],
+
+            ['type' => 'multiple_choice', 'tanong' => 'in', 'blank_position' => 'end', 'choices' => ['aw', 'ay', 'ey'], 'answer' => 'ay'],
+            ['type' => 'multiple_choice', 'tanong' => 'sakl', 'blank_position' => 'end', 'choices' => ['uy', 'aw', 'oy'], 'answer' => 'aw'],
+            ['type' => 'multiple_choice', 'tanong' => 'sal', 'blank_position' => 'end', 'choices' => ['iw', 'aw', 'ey'], 'answer' => 'iw'],
+            ['type' => 'multiple_choice', 'tanong' => 'al', 'blank_position' => 'end', 'choices' => ['aw', 'iw', 'uy'], 'answer' => 'iw'],
+            ['type' => 'multiple_choice', 'tanong' => 'burlol', 'blank_position' => 'end', 'choices' => ['oy', 'ay', 'ey'], 'answer' => 'oy'],
+        ],
+
+        13 => [
+            ['type' => 'multiple_choice', 'tanong' => 'am', 'blank_position' => 'start', 'choices' => ['ts', 'br', 'dr'], 'answer' => 'dr'],
+            ['type' => 'multiple_choice', 'tanong' => 'atito', 'blank_position' => 'start', 'choices' => ['pl', 'pr', 'tr'], 'answer' => 'pl'],
+            ['type' => 'multiple_choice', 'tanong' => 'apo', 'blank_position' => 'start', 'choices' => ['bl', 'tr', 'pl'], 'answer' => 'tr'],
+            ['type' => 'multiple_choice', 'tanong' => 'umpeta', 'blank_position' => 'start', 'choices' => ['br', 'tr', 'dr'], 'answer' => 'tr'],
+            ['type' => 'multiple_choice', 'tanong' => 'obo', 'blank_position' => 'start', 'choices' => ['gr', 'tr', 'gl'], 'answer' => 'gl'],
+
+            ['type' => 'read_word', 'word' => 'Drama'],
+            ['type' => 'read_word', 'word' => 'Platito'],
+            ['type' => 'read_word', 'word' => 'Trapo'],
+            ['type' => 'read_word', 'word' => 'Trumpeta'],
+            ['type' => 'read_word', 'word' => 'Globo'],
+        ],
+
+        14 => [
+            ['type' => 'read_word', 'salita' => 'Lumakas'],
+            ['type' => 'input_panlapi', 'salita' => 'Lumakas', 'answer' => 'um'],
+            
+            ['type' => 'read_word', 'salita' => 'Matapang'],
+            ['type' => 'input_panlapi', 'salita' => 'Matapang', 'answer' => 'ma'],
+            
+            ['type' => 'read_word', 'salita' => 'Maganda'],
+            ['type' => 'input_panlapi', 'salita' => 'Maganda', 'answer' => 'ma'],
+            
+            ['type' => 'read_word', 'salita' => 'Nagbaklas'],
+            ['type' => 'input_panlapi', 'salita' => 'Nagbaklas', 'answer' => 'nag'],
+            
+            ['type' => 'read_word', 'salita' => 'Sumayaw'],
+            ['type' => 'input_panlapi', 'salita' => 'Sumayaw', 'answer' => 'um'],
+            
+            ['type' => 'read_word', 'salita' => 'Nagdusa'],
+            ['type' => 'input_panlapi', 'salita' => 'Nagdusa', 'answer' => 'nag'],
+            
+            ['type' => 'read_word', 'salita' => 'Maligaya'],
+            ['type' => 'input_panlapi', 'salita' => 'Maligaya', 'answer' => 'ma'],
+            
+            ['type' => 'read_word', 'salita' => 'Umibig'],
+            ['type' => 'input_panlapi', 'salita' => 'Umibig', 'answer' => 'um'],
+            
+            ['type' => 'read_word', 'salita' => 'Binagyo'],
+            ['type' => 'input_panlapi', 'salita' => 'Binagyo', 'answer' => 'in'],
+            
+            ['type' => 'read_word', 'salita' => 'Umayaw'],
+            ['type' => 'input_panlapi', 'salita' => 'Umayaw', 'answer' => 'um'],
+        ],
+
+        15 => [
+            // HANAY A: Read Sawikain + Write Kahulugan
+            ['type' => 'read_sawikain', 'sawikain' => 'Anak-dalita'],
+            ['type' => 'input_kahulugan', 'sawikain' => 'Anak-dalita', 'answer' => 'taong walang magulang o pamilya'],
+            
+            ['type' => 'read_sawikain', 'sawikain' => 'Nakahiga sa salapi'],
+            ['type' => 'input_kahulugan', 'sawikain' => 'Nakahiga sa salapi', 'answer' => 'mayaman'],
+            
+            ['type' => 'read_sawikain', 'sawikain' => 'Pusong mamon'],
+            ['type' => 'input_kahulugan', 'sawikain' => 'Pusong mamon', 'answer' => 'malambot ang puso'],
+            
+            ['type' => 'read_sawikain', 'sawikain' => 'Butas ang bulsa'],
+            ['type' => 'input_kahulugan', 'sawikain' => 'Butas ang bulsa', 'answer' => 'walang pera'],
+            
+            ['type' => 'read_sawikain', 'sawikain' => 'Ilaw ng tahanan'],
+            ['type' => 'input_kahulugan', 'sawikain' => 'Ilaw ng tahanan', 'answer' => 'ina'],
+            
+            // HANAY B: Kasabihan Page + Comprehension
+            ['type' => 'kasabihan', 'kasabihan' => 'Kumain tayo ng prutas at gulay, Upang humaba ang ating buhay.'],
+            ['type' => 'comprehension', 'tanong' => 'Ano-ano ang dapat na kainin ayon sa binasa?', 'answer' => 'prutas at gulay'],
+            ['type' => 'comprehension', 'tanong' => 'Bakit kailangang kainin ang mga ito?', 'answer' => 'upang humaba ang ating buhay'],
         ],
     ];
 
