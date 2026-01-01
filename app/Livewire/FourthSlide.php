@@ -5,6 +5,9 @@ namespace App\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
+
+use App\Models\UserTrack;
 
 class FourthSlide extends Component
 {   
@@ -551,9 +554,28 @@ class FourthSlide extends Component
                     'current_progress' => 100, // Completed discussion slide
                 ]);
             }
-        }
 
-        Log::info('Pagtataya completed' . 'Score: ' . $this->score);
+            // Update or create user track record
+            $userTrack = UserTrack::updateOrCreate(
+                [
+                    'user_id' => $user->id,
+                    'lesson_id' => $this->lesson, // Make sure you have this property
+                ],
+                [
+                    'status' => 'completed',
+                    'score' => $this->score,
+                    'attempts' => DB::raw('attempts + 1'), // Increment attempts
+                    'completed_at' => now(), // If you added this field
+                ]
+            );
+
+            Log::info('Pagtataya completed', [
+                'user_id' => $user->id,
+                'lesson_id' => $this->lesson,
+                'score' => $this->score,
+                'attempts' => $userTrack->attempts,
+            ]);
+        }
     }
     
     public function render()

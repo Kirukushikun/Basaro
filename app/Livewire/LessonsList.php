@@ -9,31 +9,53 @@ use Illuminate\Support\Facades\Auth;
 
 class LessonsList extends Component
 {
-public function render()
-{
-    $user = Auth::user();
+    public function render()
+    {
+        $user = Auth::user();
 
-    $lessons = Lesson::orderBy('id')->get();
+        $lessons = Lesson::orderBy('id')->get();
 
-    $userTracks = UserTrack::where('user_id', $user->id)
-        ->get()
-        ->keyBy('lesson_id');
+        $userTracks = UserTrack::where('user_id', $user->id)
+            ->get()
+            ->keyBy('lesson_id');
 
-    $currentUnlockedId = 1; // default first lesson unlocked
+        $currentUnlockedOrder = 1; // default first lesson unlocked
 
-    // Find highest completed lesson id
-    $completedLessons = $userTracks->filter(fn($track) => $track->status === 'completed');
+        // Find highest PASSING completed lesson order (score > 70%)
+        $passingLessons = $userTracks->filter(function($track) use ($lessons) {
+            if ($track->status !== 'completed') {
+                return false;
+            }
+            
+            // Get the lesson to calculate passing score
+            $lesson = $lessons->firstWhere('id', $track->lesson_id);
+            if (!$lesson) {
+                return false;
+            }
+            
+            // Calculate if score is passing (>70%)
+            $passingScore = $lesson->total_scores * 0.70;
+            return $track->score > $passingScore;
+        });
 
-    if ($completedLessons->isNotEmpty()) {
-        $highestCompleted = $completedLessons->sortByDesc('lesson_id')->first();
-        $currentUnlockedId = $highestCompleted->lesson_id + 1;
+        if ($passingLessons->isNotEmpty()) {
+            // Get the lesson IDs of passing tracks
+            $passingLessonIds = $passingLessons->pluck('lesson_id');
+            
+            // Find the highest order among passing lessons
+            $highestPassingLesson = $lessons->whereIn('id', $passingLessonIds)
+                ->sortByDesc('order')
+                ->first();
+            
+            if ($highestPassingLesson) {
+                $currentUnlockedOrder = $highestPassingLesson->order + 1;
+            }
+        }
+
+        return view('livewire.lessons-list', [
+            'lessons' => $lessons,
+            'userTracks' => $userTracks,
+            'currentUnlockedOrder' => $currentUnlockedOrder,
+        ]);
     }
-
-    return view('livewire.lessons-list', [
-        'lessons' => $lessons,
-        'userTracks' => $userTracks,
-        'currentUnlockedId' => $currentUnlockedId,
-    ]);
-}
-
 }
