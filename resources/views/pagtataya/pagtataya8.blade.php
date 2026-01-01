@@ -115,7 +115,7 @@
     </template>
 
     <!-- Results Page -->
-    @include('partials.pagsasanay-results')
+    @include('partials.pagtataya-results')
 
     <!-- Navigation Buttons (Modified for Story Page) -->
     <div x-show="page <= questions.length" class="absolute -bottom-[110px] flex items-center justify-between w-[450px]">

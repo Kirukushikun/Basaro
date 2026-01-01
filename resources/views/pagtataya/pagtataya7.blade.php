@@ -1,12 +1,20 @@
-<!-- Pagtataya 7: Read Sentence + Multiple Choice -->
+<script>
+    window.pagtataya7Questions = @json($questions);
+</script>
+
+<!-- Pagtataya 7: Read Sentence + Multiple Choice with Speech-to-Text API -->
 <div class="relative flex flex-col items-center"
      x-data="{
         page: 1,
         selected: null,
         confirmed: false,
         recording: false,
+        processing: false,
         score: 0,
-        questions: @js($questions),
+        transcription: '',
+        mediaRecorder: null,
+        audioChunks: [],
+        questions: window.pagtataya7Questions,
 
         get current() {
             return this.page <= this.questions.length
@@ -14,37 +22,169 @@
                 : null
         },
 
-        next() {
-            if (!this.confirmed) {
-                this.confirmed = true
-                // Score for read_sentence auto-pass
-                if (this.current.type === 'read_sentence') {
-                    this.score++
-                }
-                // Score for multiple_choice if correct
-                if (this.current.type === 'multiple_choice' && this.selected === this.current.answer) {
-                    this.score++
-                }
-            } else {
-                this.page++
-                this.reset()
+        get isCorrect() {
+            if (!this.confirmed) return false;
+            
+            if (this.current.type === 'read_sentence') {
+                return this.normalizeText(this.transcription) === this.normalizeText(this.current.pangungusap);
+            } else if (this.current.type === 'multiple_choice') {
+                return this.selected === this.current.answer;
+            }
+            
+            return false;
+        },
+
+        normalizeText(text) {
+            return text.toLowerCase().trim().replace(/[.,!?]/g, '');
+        },
+
+        async startRecording() {
+            if (this.confirmed) return;
+            
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ 
+                    audio: {
+                        echoCancellation: true,
+                        noiseSuppression: true,
+                        sampleRate: 48000
+                    } 
+                });
+                
+                this.mediaRecorder = new MediaRecorder(stream, {
+                    mimeType: 'audio/webm;codecs=opus'
+                });
+                
+                this.audioChunks = [];
+                
+                this.mediaRecorder.ondataavailable = (event) => {
+                    if (event.data.size > 0) {
+                        this.audioChunks.push(event.data);
+                    }
+                };
+                
+                this.mediaRecorder.onstop = async () => {
+                    await this.processAudio();
+                };
+                
+                this.mediaRecorder.start();
+                this.recording = true;
+                
+                console.log('🎤 Recording started...');
+            } catch (error) {
+                console.error('❌ Error accessing microphone:', error);
+                alert('Hindi ma-access ang microphone. Please allow microphone access.');
             }
         },
 
-        confirm() {
-            this.confirmed = true
+        stopRecording() {
+            if (this.mediaRecorder && this.recording) {
+                this.mediaRecorder.stop();
+                this.recording = false;
+                this.processing = true;
+                
+                console.log('⏹️ Recording stopped');
+                
+                this.mediaRecorder.stream.getTracks().forEach(track => track.stop());
+            }
+        },
+
+        async processAudio() {
+            const audioBlob = new Blob(this.audioChunks, { type: 'audio/webm' });
+            
+            console.log('📦 Audio blob size:', audioBlob.size, 'bytes');
+            
+            const reader = new FileReader();
+            reader.readAsDataURL(audioBlob);
+            reader.onloadend = async () => {
+                const base64Audio = reader.result.split(',')[1];
+                
+                const expected = this.current.pangungusap;
+                console.log('📤 Sending to API...');
+                console.log('🎯 Expected answer:', expected);
+                
+                try {
+                    const response = await fetch('/api/speech-to-text', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({
+                            audio: base64Audio,
+                            language: 'tl-PH'
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    console.log('📥 API Response:', data);
+                    
+                    if (data.success) {
+                        this.transcription = data.transcription;
+                        console.log('🗣️ You said:', this.transcription);
+                        this.checkAnswer();
+                    } else {
+                        console.error('❌ API Error:', data.error);
+                        alert('May error sa pag-process ng audio: ' + data.error);
+                        this.processing = false;
+                    }
+                } catch (error) {
+                    console.error('❌ Fetch Error:', error);
+                    alert('May error sa pag-send ng audio.');
+                    this.processing = false;
+                }
+            };
+        },
+
+        checkAnswer() {
+            this.confirmed = true;
+            this.processing = false;
+            
+            if (this.isCorrect) {
+                this.score++;
+                console.log('✅ Correct! Score:', this.score);
+            } else {
+                console.log('❌ Wrong answer');
+                if (this.current.type === 'read_sentence') {
+                    console.log('Expected:', this.current.pangungusap);
+                    console.log('Got:', this.transcription);
+                } else {
+                    console.log('Expected:', this.current.answer);
+                    console.log('Got:', this.selected);
+                }
+            }
+        },
+
+        handleMultipleChoiceConfirm() {
+            if (this.current.type === 'multiple_choice' && this.selected) {
+                this.checkAnswer();
+            }
+        },
+
+        next() {
+            if (!this.confirmed) {
+                if (this.current.type === 'multiple_choice') {
+                    this.handleMultipleChoiceConfirm();
+                }
+            } else {
+                this.page++;
+                this.reset();
+            }
         },
 
         reset() {
-            this.selected = null
-            this.confirmed = false
-            this.recording = false
+            this.selected = null;
+            this.confirmed = false;
+            this.recording = false;
+            this.processing = false;
+            this.transcription = '';
+            this.audioChunks = [];
         },
 
         replay() {
-            this.page = 1
-            this.score = 0
-            this.reset()
+            this.page = 1;
+            this.score = 0;
+            this.reset();
         }
      }">
 
@@ -58,44 +198,68 @@
                     <!-- Pangungusap -->
                     <h1 class="text-5xl font-bold mt-10 !text-[#F4C300] text-center px-4 max-w-3xl"
                         x-text="current.pangungusap"></h1>
-                        
-                    <!-- Success -->
-                    <div x-show="confirmed"
-                        x-transition
-                        class="px-4 py-2 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold">
-                        <i class="fa-solid fa-check"></i> Tama!
+
+                    <!-- Feedback -->
+                    <div x-show="confirmed" 
+                         x-transition
+                         class="w-full max-w-lg">
+                        <div x-show="isCorrect"
+                             class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
+                            ✅ Tama!
+                            <div class="text-sm mt-2">
+                                Narinig: "<span x-text="transcription"></span>"
+                            </div>
+                        </div>
+                        <div x-show="!isCorrect"
+                             class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
+                            ❌ Mali
+                            <div class="text-sm mt-2">
+                                <div>Narinig: "<span x-text="transcription"></span>"</div>
+                                <div>Dapat: "<span x-text="current.pangungusap"></span>"</div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Instruction -->
-                    <p class="w-96 text-lg text-center">
+                    <p class="w-96 text-lg text-center" x-show="!confirmed">
                         Basahin nang malinaw ang pangungusap na nasa itaas.
                         Subukang bigkasin ito nang tama at dahan-dahan.
                     </p>
 
                     <!-- Microphone -->
-                    <div class="flex flex-col items-center gap-4">
-                        <div
-                            @mousedown="recording = true"
-                            @mouseup="
-                                recording = false;
-                                setTimeout(() => confirm(), 1500)
-                            "
-                            @mouseleave="recording = false"
-                            class="relative bg-gray-500 px-3 py-2 rounded-full cursor-pointer transition-transform hover:scale-110"
-                            :class="{ 'scale-125 ring-4 ring-red-500 animate-pulse': recording }">
+                    <div x-show="!confirmed" class="flex flex-col items-center gap-4">
+                        <button
+                            @mousedown="startRecording()"
+                            @mouseup="stopRecording()"
+                            @touchstart.prevent="startRecording()"
+                            @touchend.prevent="stopRecording()"
+                            :disabled="confirmed || processing"
+                            class="relative bg-gray-500 px-3 py-2 rounded-full cursor-pointer transition-all hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                            :class="{ 
+                                'scale-125 ring-4 ring-red-500 bg-red-500': recording,
+                                'animate-pulse': processing
+                            }">
 
-                            <i class="fa-solid fa-microphone text-white text-xl"></i>
+                            <i class="fa-solid fa-microphone text-white text-xl"
+                               :class="{ 'fa-spinner fa-spin': processing }"></i>
 
                             <div x-show="recording"
-                                class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
+                                 class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
                             </div>
-                        </div>
+                        </button>
 
+                        <!-- Status text -->
                         <div class="text-center">
-                            <p class="!text-gray-400 text-xs">
+                            <p x-show="recording" class="text-red-500 font-semibold animate-pulse">
+                                🔴 Nagrerekord...
+                            </p>
+                            <p x-show="processing" class="text-blue-500 font-semibold">
+                                ⏳ Pinoproseso...
+                            </p>
+                            <p x-show="!recording && !processing" class="text-gray-400 text-xs">
                                 Pindutin at hawakan ang mikropono habang nagbibigkas
                             </p>
-                        </div>             
+                        </div>
                     </div>
 
                 </div>
@@ -149,25 +313,22 @@
     </template>
 
     <!-- Results Page -->
-    @include('partials.pagsasanay-results')
+    @include('partials.pagtataya-results')
 
     <!-- Navigation Buttons -->
-        <!-- Navigation Buttons (Modified for Story Page) -->
     <div x-show="page <= questions.length" class="absolute -bottom-[110px] flex items-center justify-between w-[450px]">
-        <!-- Page Counter (hide on story page) -->
+        <!-- Page Counter -->
         <p x-show="page > 0">
             <span x-text="page"></span>/<span x-text="questions.length"></span>
         </p>
         <p x-show="page === 0" class="text-sm opacity-70">Kwento</p>
         
         <div class="flex gap-3">
-            <!-- Story page: always show next button -->
-            <!-- Question pages: show when answer is selected -->
             <button 
                 x-show="page === 0 || (selected && !confirmed) || confirmed" 
                 @click="next" 
                 :disabled="page > 0 && !selected && !confirmed"
-                class="px-4 py-2 bg-[#F4C300] rounded-md  font-bold whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed">
+                class="px-4 py-2 bg-[#F4C300] rounded-md font-bold whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed">
                 <span x-show="page === 0 || confirmed" class="!text-black">Susunod</span>
                 <span x-show="page > 0 && selected && !confirmed">Kumpirmahin</span>
                 <i class="fa-solid fa-arrow-right !text-black"></i>

@@ -416,6 +416,106 @@ class FourthSlide extends Component
             ['type' => 'comprehension', 'tanong' => 'Ano-ano ang dapat na kainin ayon sa binasa?', 'answer' => 'prutas at gulay'],
             ['type' => 'comprehension', 'tanong' => 'Bakit kailangang kainin ang mga ito?', 'answer' => 'upang humaba ang ating buhay'],
         ],
+
+        16 => [
+            ['type' => 'multiple_choice', 'tanong' => 'Ano ang kahulugan ng salitang kamusmusan?', 'choices' => ['Kabataan', 'Katandaan', 'Kawalan'], 'answer' => 'Kawalan'],
+            ['type' => 'multiple_choice', 'tanong' => 'Ano ang ibig sabihin ng salitang tumatanglaw', 'choices' => ['Nagdidilim', 'Nagbibigay-liwanag', 'Nagbibigay'], 'answer' => 'Nagbibigay-liwanag'],
+            ['type' => 'multiple_choice', 'tanong' => 'Ito ay isang anyo ng sining o panitikan na naglalayong maipahayag ang damdamin sa malayang pagsusulat.', 'choices' => ['Dula', 'Kuwento', 'Tula'], 'answer' => 'Tula'],
+            ['type' => 'multiple_choice', 'tanong' => 'Sa iyong palagay, sino ang nagsasalita sa tula?', 'choices' => ['Nanay', 'Tatay', 'Anak'], 'answer' => 'Anak'],
+            ['type' => 'multiple_choice', 'tanong' => 'Ano ang kasingkahulugan ng salitang karimlan?', 'choices' => ['Kaliwanagan', 'Ilawan', 'Kadiliman'], 'answer' => 'Kadiliman'],
+        ],
+
+        17 => [
+            ['type' => 'multiple_choice', 'tanong' => 'Ano ang ibig sabihin ng salitang patungo?', 'choices' => ['Papunta', 'Palabas', 'Palibot'], 'answer' => 'Papunta'],
+            ['type' => 'multiple_choice', 'tanong' => 'Ano ang pamagat ng kuwentong binasa?', 'choices' => ['Si Toto', 'Ang Mag-ina', 'Panalangin'], 'answer' => 'Panalangin'],
+            ['type' => 'multiple_choice', 'tanong' => 'Sino ang gumaganap sa kuwento?', 'choices' => ['Berto', 'Toto', 'Tolits'], 'answer' => 'Toto'],
+            ['type' => 'multiple_choice', 'tanong' => 'Ano ang ginawa ng mag-anak bago kumain?', 'choices' => ['Naglaba', 'Nanalangin', 'Nagtinda'], 'answer' => 'Nanalangin'],
+            ['type' => 'multiple_choice', 'tanong' => 'Ano ang kahulugan ng salitang ipinagkaloob?', 'choices' => ['Ibinigay', 'Itinapon', 'Ikinalat'], 'answer' => 'Ibinigay'],
+            ['type' => 'multiple_choice', 'tanong' => 'Saan nagbebenta ng prutas at gulay ang mag-anak?', 'choices' => ['Ospital', 'Bahay', 'Palengke'], 'answer' => 'Palengke'],
+            ['type' => 'multiple_choice', 'tanong' => '“Umusal siya ng munting panalangin.” Ano ang kahulugan ng salitang munti?', 'choices' => ['Maikli', 'Mahaba', 'Malaki'], 'answer' => 'Maikli'],
+            ['type' => 'multiple_choice', 'tanong' => 'Ano ang kasingkahulugan ng salitang batalan?', 'choices' => ['Pahugasan', 'Hardin', 'Sala'], 'answer' => 'Pahugasan'],
+        ],
+
+        18 => [
+            ['type' => 'multiple_choice', 'tanong' => 'Ito ay isang uri ng trabaho o hanapbuhay.', 'choices' => ['Bokasyon', 'Propesyon', 'Okasyon'], 'answer' => 'Propesyon'],
+            ['type' => 'multiple_choice', 'tanong' => 'Ito ay tumutukoy sa isang guro na may pinakamataas na ranggong akademiko sa kolehiyo o unibersidad.', 'choices' => ['Aperal', 'Kontraktor', 'Propesor'], 'answer' => 'Propesor'],
+            ['type' => 'multiple_choice', 'tanong' => 'Nangangahulugang interbyu ang salitang ito.', 'choices' => ['Panayam', 'Payaman', 'Pamana'], 'answer' => 'Panayam'],
+            ['type' => 'multiple_choice', 'tanong' => 'Ano ang ibig sabihin ng akronim na ECF?', 'choices' => ['Education Call Form', 'Edd Corp Filipino', 'Eduardo Cojuangco Foundation'], 'answer' => 'Eduardo Cojuangco Foundation'],
+            ['type' => 'multiple_choice', 'tanong' => 'Ano ang kasingkahulugan ng salitang nagsikap?', 'choices' => ['Nagtamad', 'Nagtiyaga', 'Nagpabaya'], 'answer' => 'Nagtiyaga'],
+            ['type' => 'multiple_choice', 'tanong' => 'Sino ang gurong Master Teacher I na ngayon sa Cristo Rey High School?', 'choices' => ['Jay-r Guinto', 'Joy C. Ramos', 'Anna Divina-Yusi'], 'answer' => 'Joy C. Ramos'],
+            ['type' => 'multiple_choice', 'tanong' => 'Bakit siya nagsikap makapagtapos ng Post graduate?', 'choices' => ['Para umangat ang posisyon', 'Para umakyat sa opisina', 'Gusto lang niya'], 'answer' => 'Para umangat ang posisyon'],
+            ['type' => 'multiple_choice', 'tanong' => 'Anong scholarship exam ang naipasa niya?', 'choices' => ['EDD', 'MT', 'ECF'], 'answer' => 'ECF'],
+        ],
+
+        19 => [
+            // Edu-Aksyon (1–5)
+            ['type' => 'multiple_choice', 'tanong' => 'Ano ang katumbas na salita ng naaprubahan?', 'choices' => ['Nasasakupan', 'Naipasa', 'Naibalik'], 'answer' => 'Naipasa'],
+            ['type' => 'multiple_choice', 'tanong' => 'Ayon sa editoryal, magkano ang naaprubahang badyet ng DepEd para sa taong 2025?', 'choices' => ['P793.74 bilyon', 'P973.74 bilyon', 'P749.93 bilyon'], 'answer' => 'P793.74 bilyon'],
+            ['type' => 'multiple_choice', 'tanong' => 'Sino ang senador na nanguna sa paglalaan ng badyet para sa DepEd?', 'choices' => ['Mia Cayetano', 'Pia Cayetano', 'Lia Cayetona'], 'answer' => 'Pia Cayetano'],
+            ['type' => 'multiple_choice', 'tanong' => '“Ilaan sa DepEd ang naturang badyet.” Ano ang kahulugan ng salitang nakasalungguhit?', 'choices' => ['Ayusin', 'Isakatuparan', 'Ibigay'], 'answer' => 'Ibigay'],
+            ['type' => 'multiple_choice', 'tanong' => 'Alin ang kahulugan ng salitang mapupunan batay sa editoryal?', 'choices' => ['Mababawasan', 'Mabibigyan', 'Mawawala'], 'answer' => 'Mabibigyan'],
+
+            // Tuition Fee, Libre! (6–10)
+            ['type' => 'multiple_choice', 'tanong' => 'Ano ang bill na ipinakilala ni Sen. Paolo Benigno “Bam” Aquino?', 'choices' => ['Senate Bill No. 177', 'Senate Bill No. 711'], 'answer' => 'Senate Bill No. 177'],
+            ['type' => 'multiple_choice', 'tanong' => 'Sino lamang ang prayoridad ng libreng tuition fee ayon sa batas?', 'choices' => ['Estudyanteng mahihirap', 'Estudyanteng mayayaman'], 'answer' => 'Estudyanteng mahihirap'],
+            ['type' => 'multiple_choice', 'tanong' => 'Ano ang kasingkahulugan ng salitang pananaw?', 'choices' => ['Opinyon', 'Panaginip'], 'answer' => 'Opinyon'],
+            ['type' => 'multiple_choice', 'tanong' => 'Ano ang katumbas na salita ng estado?', 'choices' => ['Kasiyahan', 'Kalagayan'], 'answer' => 'Kalagayan'],
+            ['type' => 'multiple_choice', 'tanong' => 'Ito ay nangangahulugang masinop.', 'choices' => ['Maingat', 'Maganda'], 'answer' => 'Maingat'],
+        ],
+
+        20 => [
+            [
+                'word' => 'pangamba',
+                'answer' => 'takot',
+                'wordBank' => ['Humihithit', 'takot', 'lihim', 'magkatuwang', 'bentahe', 'mailunsad', 'Matamlay', 'kapakanan', 'Lumitaw', 'madaya']
+            ],
+            [
+                'word' => 'sumibol',
+                'answer' => 'Lumitaw',
+                'wordBank' => ['Humihithit', 'takot', 'lihim', 'magkatuwang', 'bentahe', 'mailunsad', 'Matamlay', 'kapakanan', 'Lumitaw', 'madaya']
+            ],
+            [
+                'word' => 'humihipak',
+                'answer' => 'Humihithit',
+                'wordBank' => ['Humihithit', 'takot', 'lihim', 'magkatuwang', 'bentahe', 'mailunsad', 'Matamlay', 'kapakanan', 'Lumitaw', 'madaya']
+            ],
+            [
+                'word' => 'lingid',
+                'answer' => 'lihim',
+                'wordBank' => ['Humihithit', 'takot', 'lihim', 'magkatuwang', 'bentahe', 'mailunsad', 'Matamlay', 'kapakanan', 'Lumitaw', 'madaya']
+            ],
+            [
+                'word' => 'tuso',
+                'answer' => 'madaya',
+                'wordBank' => ['Humihithit', 'takot', 'lihim', 'magkatuwang', 'bentahe', 'mailunsad', 'Matamlay', 'kapakanan', 'Lumitaw', 'madaya']
+            ],
+            [
+                'word' => 'kapakanan',
+                'answer' => 'kapakanan',
+                'wordBank' => ['Humihithit', 'takot', 'lihim', 'magkatuwang', 'bentahe', 'mailunsad', 'Matamlay', 'kapakanan', 'Lumitaw', 'madaya']
+            ],
+            [
+                'word' => 'matamlay',
+                'answer' => 'Matamlay',
+                'wordBank' => ['Humihithit', 'takot', 'lihim', 'magkatuwang', 'bentahe', 'mailunsad', 'Matamlay', 'kapakanan', 'Lumitaw', 'madaya']
+            ],
+            [
+                'word' => 'magkatuwang',
+                'answer' => 'magkatuwang',
+                'wordBank' => ['Humihithit', 'takot', 'lihim', 'magkatuwang', 'bentahe', 'mailunsad', 'Matamlay', 'kapakanan', 'Lumitaw', 'madaya']
+            ],
+            [
+                'word' => 'bentahe',
+                'answer' => 'bentahe',
+                'wordBank' => ['Humihithit', 'takot', 'lihim', 'magkatuwang', 'bentahe', 'mailunsad', 'Matamlay', 'kapakanan', 'Lumitaw', 'madaya']
+            ],
+            [
+                'word' => 'mailunsad',
+                'answer' => 'mailunsad',
+                'wordBank' => ['Humihithit', 'takot', 'lihim', 'magkatuwang', 'bentahe', 'mailunsad', 'Matamlay', 'kapakanan', 'Lumitaw', 'madaya']
+            ],
+        ]
+
     ];
 
     public function mount($lesson)
