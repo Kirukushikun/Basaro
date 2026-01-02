@@ -64,7 +64,7 @@
                     </button>
 
                     <button 
-                        onclick="window.location.href='/lesson-view?lesson={{ $lesson }}&slide=panuto'"
+                        onclick="window.location.href='/lesson-view?lesson={{ $lesson }}&slide=third-slide-panuto'"
                         @click="showModal = false"
                         class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold"
                     >

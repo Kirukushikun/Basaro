@@ -35,13 +35,42 @@
                 </div>
 
                 <div class="flex items-center justify-between">
-                    <button
-                        class="w-fit px-4 py-2 bg-[#F4C300] !text-black rounded-md font-bold {{ !$isUnlocked ? 'opacity-50 cursor-not-allowed' : '' }}"
-                        @if(!$isUnlocked) disabled @endif
-                        onclick="window.location.href='/lesson-view?lesson={{ $lesson->id }}&slide=first-slide'"
-                    >
-                        Start Lesson
-                    </button>
+                    @php
+                        $user = Auth::user();
+                        $isCurrentLesson = $user->current_lesson == $lesson->id;
+                        $progress = $user->current_progress;
+                    @endphp
+
+                    @if ($isCurrentLesson && $progress == 25)
+                        <button class="w-fit !text-black px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson={{$lesson->id}}&slide=second-slide'">
+                            Continue Lesson
+                        </button>
+                    @elseif ($isCurrentLesson && $progress == 50)
+                        <button class="w-fit !text-black px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson={{$lesson->id}}&slide=third-slide'">
+                            Continue Lesson
+                        </button>
+                    @elseif ($isCurrentLesson && $progress == 75)
+                        <button class="w-fit !text-black px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson={{$lesson->id}}&slide=fourth-slide'">
+                            Continue Lesson
+                        </button>
+                    @elseif ($track && $track->status === 'completed')
+                        <button
+                            class="w-fit px-4 py-2 bg-[#F4C300] !text-black rounded-md font-bold {{ !$isUnlocked ? 'opacity-50 cursor-not-allowed' : '' }}"
+                            @if(!$isUnlocked) disabled @endif
+                            onclick="window.location.href='/lesson-view?lesson={{ $lesson->id }}&slide=first-slide'"
+                        >
+                            Retry Lesson
+                        </button>
+                    @else
+                        <button
+                            class="w-fit px-4 py-2 bg-[#F4C300] !text-black rounded-md font-bold {{ !$isUnlocked ? 'opacity-50 cursor-not-allowed' : '' }}"
+                            @if(!$isUnlocked) disabled @endif
+                            onclick="window.location.href='/lesson-view?lesson={{ $lesson->id }}&slide=first-slide'"
+                        >
+                            Start Lesson
+                        </button>                    
+                    @endif
+
 
                     @if($track && $track->status === 'completed')
                         @php
@@ -51,7 +80,7 @@
                         <p class="{{ $isPassing ? 'text-green-400' : 'text-red-400' }}">
                             {{ $track->score }} / {{ $lesson->total_scores }}
                         </p>
-                    @elseif($track)
+                    @elseif($isCurrentLesson && $progress > 0)
                         <p>
                             In progress
                         </p>
