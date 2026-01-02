@@ -10,6 +10,6 @@
     @elseif($slide == 'fourth-slide')
         <livewire:fourth-slide :lesson="$lesson" />
     @else
-        <livewire:third-slide-panuto :lesson="$lesson" />
+        <livewire:fourth-slide-panuto :lesson="$lesson" />
     @endif
 @endsection
