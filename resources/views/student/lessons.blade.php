@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-<livewire:lessons-list />
+    <livewire:lessons-list />
 @endsection

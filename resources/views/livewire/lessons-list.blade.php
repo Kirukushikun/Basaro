@@ -1,5 +1,5 @@
 <main class="flex-1 overflow-hidden pb-[40px]">
-    <div class="lessons grid grid-cols-3 pr-5 gap-7 h-full overflow-y-auto">
+    <div class="lessons grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pr-5 gap-7 h-full overflow-y-auto">
 
         @foreach($lessons as $lesson)
             @php
