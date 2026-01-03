@@ -87,7 +87,7 @@
         </div>
 
         <!-- Navbar -->
-        <nav class="nav">
+        <nav class="nav hidden md:flex">
             <img class="logo" src="{{asset('img/logo-light.png')}}" alt="">
             <div class="nav-links" id="nav-links">
                 <a href="/dashboard" class="text-lg {{ request()->is('dashboard*') ? 'active' : '' }}">Dashboard</a>
@@ -98,9 +98,71 @@
             </div>
         </nav>
 
-        <nav class="nav-broken">
+        <!-- Mobile Navbar -->
+        <nav class="nav-broken md:hidden flex items-center justify-between px-4 py-3" x-data="{ open: false }">
             <img class="logo-broken" width="60" src="{{asset('img/logo-light-broken.png')}}" alt="">
-            <i class="fa-solid fa-bars text-2xl cursor-pointer"></i>
+            <button @click="open = !open" class="text-white focus:outline-none">
+                <i class="fa-solid text-2xl transition-transform duration-300" :class="open ? 'fa-xmark' : 'fa-bars'"></i>
+            </button>
+
+            <!-- Mobile Menu Overlay -->
+            <div 
+                x-show="open" 
+                @click.away="open = false"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-x-full"
+                x-transition:enter-end="opacity-100 translate-x-0"
+                x-transition:leave="transition ease-in duration-200"
+                x-transition:leave-start="opacity-100 translate-x-0"
+                x-transition:leave-end="opacity-0 translate-x-full"
+                class="fixed inset-y-0 right-0 w-64 bg-[#31343A] shadow-lg z-50 flex flex-col"
+                style="display: none;"
+            >
+                <!-- Close button inside menu -->
+                <div class="flex items-center justify-between p-4 border-b border-gray-700">
+                    <img width="50" src="{{asset('img/logo-light-broken.png')}}" alt="">
+                    <button @click="open = false" class="text-white">
+                        <i class="fa-solid fa-xmark text-2xl"></i>
+                    </button>
+                </div>
+
+                <!-- Menu Links -->
+                <div class="flex flex-col p-4 space-y-4">
+                    <a href="/dashboard" class="text-lg py-3 px-4 rounded-lg transition-colors {{ request()->is('dashboard*') ? 'bg-[#F4C300] text-black font-bold' : 'text-white hover:bg-gray-700' }}">
+                        <i class="fa-solid fa-house mr-3"></i>Dashboard
+                    </a>
+                    <a href="/lessons" class="text-lg py-3 px-4 rounded-lg transition-colors {{ request()->is('lessons*') || request()->is('lesson-view*') ? 'bg-[#F4C300] text-black font-bold' : 'text-white hover:bg-gray-700' }}">
+                        <i class="fa-solid fa-book mr-3"></i>Lessons
+                    </a>
+                    <a href="/achievements" class="text-lg py-3 px-4 rounded-lg transition-colors {{ request()->is('achievements*') ? 'bg-[#F4C300] text-black font-bold' : 'text-white hover:bg-gray-700' }}">
+                        <i class="fa-solid fa-trophy mr-3"></i>Achievements
+                    </a>
+                    <a href="/profile" class="text-lg py-3 px-4 rounded-lg transition-colors {{ request()->is('profile*') ? 'bg-[#F4C300] text-black font-bold' : 'text-white hover:bg-gray-700' }}">
+                        <i class="fa-solid fa-user mr-3"></i>Profile
+                    </a>
+                    
+                    <!-- Logout -->
+                    <div class="pt-4 mt-auto border-t border-gray-700">
+                        <a href="/teacher/dashboard" class="text-lg py-3 px-4 rounded-lg transition-colors text-red-400 hover:bg-gray-700 flex items-center">
+                            <i class="fa-solid fa-arrow-right-from-bracket mr-3"></i>Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overlay Background -->
+            <div 
+                x-show="open" 
+                @click="open = false"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition ease-in duration-200"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="fixed inset-0 bg-black/30 z-40"
+                style="display: none;"
+            ></div>
         </nav>
 
         @yield('content')

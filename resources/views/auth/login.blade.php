@@ -1,16 +1,16 @@
 @extends('layouts.auth')
 
 @section('content')
-    <form method="POST" action="{{ route('login.submit') }}" class="relative rounded-[10px] shadow-[0_20px_60px_rgba(0,0,0,0.3)] overflow-hidden max-w-[900px] w-full flex flex-col md:flex-row">
+    <form method="POST" action="{{ route('login.submit') }}" class="relative rounded-[10px] shadow-[0_20px_60px_rgba(0,0,0,0.3)] overflow-hidden w-full h-screen md:h-auto md:max-w-[900px] flex flex-col md:flex-row">
         @csrf
         <!-- Left Panel -->
-        <div class="w-full md:w-1/2 bg-[#31343A] text-white py-[90px] px-[60px] md:py-[90px] md:px-[60px] py-10 px-8 flex flex-col justify-center">
+        <div class="hidden md:flex md:w-1/2 bg-[#31343A] text-white py-[90px] px-[60px] flex-col justify-center">
             <img src="{{asset('img/logo-light.png')}}" alt="">
         </div>
 
         <!-- Right Panel -->
-        <div class="w-1/2 py-[90px] px-[60px] flex flex-col justify-center bg-white">
-            <h2 class="text-[2rem] font-black mb-[30px] text-[#333]">Login</h2>
+        <div class="w-full md:w-1/2 h-full py-[90px] px-[60px] md:py-[90px] md:px-[60px] py-10 px-8 flex flex-col justify-center bg-white">
+            <h2 class="text-[2rem] font-black mb-[30px] text-[#333] text-center md:text-left">Login</h2>
             <div class="mb-5">
                 <input type="text" class="w-full py-[15px] px-0 border-0 border-b-[3px] border-b-[#ddd] text-base outline-none focus:border-b-[#F4C300] transition-colors duration-300" name="email" value="{{ old('email') }}" placeholder="Username" required>
             </div>
@@ -43,5 +43,6 @@
             <p class="text-center mt-[30px] text-[0.9rem] text-[#666]">
                 Login as <a href="/teacher/login" class="text-yellow-500 no-underline hover:underline">Teacher</a>
             </p>
+        </div>
     </form>
 @endsection

@@ -35,6 +35,7 @@
                 wire:model="username"
                 class="text-sm rounded-md px-4 py-2 border border-[#ADADAD] bg-transparent text-white"
                 placeholder="Enter your username"
+                readonly
             />
             @error('username') 
                 <span class="!text-red-500 text-xs">{{ $message }}</span> 

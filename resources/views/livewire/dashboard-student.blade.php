@@ -4,7 +4,41 @@
             <div class="header">
                 <p class="text-lg !text-gray-400">Current Lesson:</p>
                 <h1 class="text-2xl font-bold">Lesson {{$lesson->order}}: {{$lesson->title}}</h1>
-                <h2 class="text-sm w-fit mt-2 px-2 py-1 border border-2 border-green-600 bg-green-900 rounded-md">Level {{$lesson->order}} - Beginner</h2>
+                @php
+                    // Color progression based on level
+                    $levelColors = [
+                        1 => 'border-green-500 bg-green-900 text-green-100',
+                        2 => 'border-emerald-500 bg-emerald-900 text-emerald-100',
+                        3 => 'border-teal-500 bg-teal-900 text-teal-100',
+                        4 => 'border-cyan-500 bg-cyan-900 text-cyan-100',
+                        5 => 'border-sky-500 bg-sky-900 text-sky-100',
+                        6 => 'border-blue-500 bg-blue-900 text-blue-100',
+                        7 => 'border-indigo-500 bg-indigo-900 text-indigo-100',
+                        8 => 'border-violet-500 bg-violet-900 text-violet-100',
+                        9 => 'border-purple-500 bg-purple-900 text-purple-100',
+                        10 => 'border-fuchsia-500 bg-fuchsia-900 text-fuchsia-100',
+                        11 => 'border-pink-500 bg-pink-900 text-pink-100',
+                        12 => 'border-rose-500 bg-rose-900 text-rose-100',
+                        13 => 'border-red-500 bg-red-900 text-red-100',
+                        14 => 'border-orange-500 bg-orange-900 text-orange-100',
+                        15 => 'border-amber-500 bg-amber-900 text-amber-100',
+                    ];
+                    
+                    // Difficulty labels based on level ranges
+                    $difficulty = match(true) {
+                        $lesson->order <= 4 => 'Beginner',
+                        $lesson->order <= 7 => 'Intermediate',
+                        $lesson->order <= 10 => 'Advanced',
+                        $lesson->order <= 13 => 'Expert',
+                        default => 'Master'
+                    };
+                    
+                    $colorClass = $levelColors[$lesson->order] ?? 'border-yellow-500 bg-yellow-900 text-yellow-100';
+                @endphp
+
+                <h2 class="text-sm w-fit mt-2 px-2 py-1 border-2 rounded-md {{ $colorClass }}">
+                    Level {{$lesson->order}} - {{$difficulty}}
+                </h2>
             </div>
 
             <div class="description">
