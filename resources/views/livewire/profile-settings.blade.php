@@ -1,5 +1,5 @@
 <div 
-    class="flex-1 overflow-y-auto scrolling pr-5"
+    class="flex-1 overflow-y-auto scrolling pr-5 mb-7"
     x-data="{ 
         showModal: false, 
         modalType: '' 

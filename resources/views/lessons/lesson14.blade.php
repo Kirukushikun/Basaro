@@ -4,19 +4,19 @@
     {{-- ===== PAGE 1 ===== --}}
     <div x-show="page === 1" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
-            <h1 class="text-3xl font-bold">
+            <h1 class="!text-xl sm:!text-2xl md:!text-3xl lg:!text-4xl font-bold">
                 <span class="!text-[#F4C300]">Sesyon 14:</span>
                 Panlapi
             </h1>
-            <p class="text-2xl font-semibold !text-gray-200">
+            <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
                 Puntahan naman natin ang mga salitang may panlapi.
             </p>
         </header>
 
         <div class="flex-1 flex flex-col items-center justify-center gap-8">
-            <div class="text-3xl font-semibold text-center">
+            <div class="!text-lg sm:!text-2xl md:!text-2xl lg:!text-3xl font-semibold text-center">
                 <p>Unlaping <span class="!text-[#F4C300]">ma</span> + salitang-ugat na <span class="!text-[#F4C300]">takaw</span></p>
-                <p class="text-5xl font-bold !text-[#F4C300] mt-4">= matakaw</p>
+                <p class="!text-3xl sm:!text-4xl md:!text-5xl lg:!text-5xl font-bold !text-[#F4C300] mt-4">= matakaw</p>
             </div>
         </div>
     </div>
@@ -24,15 +24,15 @@
     {{-- ===== PAGE 2 ===== --}}
     <div x-show="page === 2" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
-            <p class="text-2xl font-semibold !text-gray-200">
+            <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
                 Isa pang halimbawa:
             </p>
         </header>
 
         <div class="flex-1 flex flex-col items-center justify-center gap-8">
-            <div class="text-3xl font-semibold text-center">
+            <div class="!text-lg sm:!text-2xl md:!text-2xl lg:!text-3xl font-semibold text-center">
                 <p>Salitang ugat na <span class="!text-[#F4C300]">bato</span> + <span class="!text-[#F4C300]">hin</span></p>
-                <p class="text-5xl font-bold !text-[#F4C300] mt-4">= batuhin</p>
+                <p class="!text-3xl sm:!text-4xl md:!text-5xl lg:!text-5xl font-bold !text-[#F4C300] mt-4">= batuhin</p>
             </div>
         </div>
     </div>
@@ -40,12 +40,12 @@
     {{-- ===== PAGE 3 ===== --}}
     <div x-show="page === 3" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
         <header class="header flex-shrink-0">
-            <p class="text-2xl font-semibold !text-gray-200">
+            <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
                 Mga halimbawa ng salitang may panlapi:
             </p>
         </header>
 
-        <div class="flex-1 grid grid-cols-3 gap-6 text-3xl font-bold text-center overflow-y-auto p-5">
+        <div class="flex-1 grid grid-cols-3 gap-6 !text-lg sm:!text-2xl md:!text-2xl lg:!text-3xl font-bold text-center overflow-y-auto p-5">
             @foreach ([
                 'Ma + ganda',
                 'Una + hin',

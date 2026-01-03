@@ -1,4 +1,4 @@
-<div class="flex w-full justify-end gap-5 mt-4"
+<div class="flex flex-col md:flex-row w-full justify-end gap-5 mt-4"
     x-data="{ showModal: false }"
 >
     <button

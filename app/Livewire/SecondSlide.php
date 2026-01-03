@@ -36,7 +36,6 @@ class SecondSlide extends Component
             15 => 'audio/lesson2/L2P15.m4a',
             16 => 'audio/lesson2/L2P16.m4a',
             17 => 'audio/lesson2/L2P17.m4a',
-            18 => 'audio/lesson2/L2P18.m4a',
         ],
         3 => [ // Lesson 3
             1 => 'audio/lesson3/L3P1.m4a',

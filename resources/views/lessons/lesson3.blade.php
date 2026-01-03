@@ -4,7 +4,7 @@
     {{-- ===== PAGE 1 ===== --}}
     <div x-show="page === 1" class="w-full flex-1 flex flex-col gap-6 px-2">
         <div class="flex-1 flex items-center justify-center">
-            <h1 class="text-4xl font-bold text-center">
+            <h1 class="!text-2xl sm:!text-3xl md:!text-3xl lg:!text-4xl font-bold text-center">
                 <span class="!text-[#F4C300]">Sesyon 3:</span><br>
                 Mga Pantulong na Kataga
             </h1>
@@ -14,12 +14,12 @@
     {{-- ===== PAGE 2 ===== --}}
     <div x-show="page === 2" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
         <header class="header flex-shrink-0">
-            <p class="text-2xl font-semibold !text-gray-200">
+            <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
                 Babasahin ko ang mga halimbawa. Makinig kang mabuti upang masundan mo sa iyong isip at mga mata ang aking mga binabasa.
             </p>
         </header>
         
-        <div class="grid grid-cols-4 gap-5 text-4xl font-bold text-center p-5 overflow-y-auto flex-1">
+        <div class="grid grid-cols-4 gap-5 !text-2xl sm:!text-3xl md:!text-3xl lg:!text-4xl font-bold text-center p-5 overflow-y-auto flex-1">
             @foreach ([
                 'ang', 'mga', 'si', 'ay', 'ng', 'kay', 'at', 'sa', 
                 'ni', 'na', 'mo', 'may', 'kina', 'sina', 'sila', 'mas'
@@ -34,12 +34,12 @@
     {{-- ===== PAGE 3 ===== --}}
     <div x-show="page === 3" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
         <header class="header flex-shrink-0">
-            <p class="text-2xl font-semibold !text-gray-200">
+            <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
                 Ngayon naman ay ikaw na ang magbabasa pagkatapos ko.
             </p>
         </header>
         
-        <div class="grid grid-cols-4 gap-5 text-4xl font-bold text-center p-5 overflow-y-auto flex-1">
+        <div class="grid grid-cols-4 gap-5 !text-2xl sm:!text-3xl md:!text-3xl lg:!text-4xl font-bold text-center p-5 overflow-y-auto flex-1">
             @foreach ([
                 'ang', 'mga', 'si', 'ay', 'ng', 'kay', 'at', 'sa', 
                 'ni', 'na', 'mo', 'may', 'kina', 'sina', 'sila', 'mas'
@@ -54,12 +54,12 @@
     {{-- ===== PAGE 4 ===== --}}
     <div x-show="page === 4" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
         <header class="header flex-shrink-0">
-            <p class="text-2xl font-semibold !text-gray-200">
+            <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
                 Sa tulong ng iyong gurong nakaantabay sa iyo ay uulit-ulitin mong babasahin ang mga ito hanggang sa iyong makabisado.
             </p>
         </header>
         
-        <div class="grid grid-cols-4 gap-5 text-4xl font-bold text-center p-5 overflow-y-auto flex-1">
+        <div class="grid grid-cols-4 gap-5 !text-2xl sm:!text-3xl md:!text-3xl lg:!text-4xl font-bold text-center p-5 overflow-y-auto flex-1">
             @foreach ([
                 'ang', 'mga', 'si', 'ay', 'ng', 'kay', 'at', 'sa', 
                 'ni', 'na', 'mo', 'may', 'kina', 'sina', 'sila', 'mas'

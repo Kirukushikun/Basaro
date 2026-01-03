@@ -90,11 +90,11 @@
         <nav class="nav hidden md:flex">
             <img class="logo" src="{{asset('img/logo-light.png')}}" alt="">
             <div class="nav-links" id="nav-links">
-                <a href="/dashboard" class="text-lg {{ request()->is('dashboard*') ? 'active' : '' }}">Dashboard</a>
-                <a href="/lessons" class="text-lg {{ request()->is('lessons*') || request()->is('lesson-view*') ? 'active' : '' }}">Lessons</a>
-                <a href="/achievements" class="text-lg {{ request()->is('achievements*') ? 'active' : '' }}">Achievements</a>
-                <a href="/profile" class="text-lg {{ request()->is('profile*') ? 'active' : '' }}">Profile</a>
-                <a href="/teacher/dashboard" class="text-lg absolute right-[50px] hover:scale-125"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                <a href="/dashboard" class="!text-base lg:!text-lg {{ request()->is('dashboard*') ? 'active' : '' }}">Dashboard</a>
+                <a href="/lessons" class="!text-base lg:!text-lg {{ request()->is('lessons*') || request()->is('lesson-view*') ? 'active' : '' }}">Lessons</a>
+                <a href="/achievements" class="!text-base lg:!text-lg {{ request()->is('achievements*') ? 'active' : '' }}">Achievements</a>
+                <a href="/profile" class="!text-base lg:!text-lg {{ request()->is('profile*') ? 'active' : '' }}">Profile</a>
+                <a href="/teacher/dashboard" class="!text-base lg:!text-lg absolute right-[50px] hover:scale-125"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
             </div>
         </nav>
 
@@ -102,7 +102,7 @@
         <nav class="nav-broken md:hidden flex items-center justify-between px-4 py-3" x-data="{ open: false }">
             <img class="logo-broken" width="60" src="{{asset('img/logo-light-broken.png')}}" alt="">
             <button @click="open = !open" class="text-white focus:outline-none">
-                <i class="fa-solid text-2xl transition-transform duration-300" :class="open ? 'fa-xmark' : 'fa-bars'"></i>
+                <i class="fa-solid !text-xl sm:!text-2xl transition-transform duration-300" :class="open ? 'fa-xmark' : 'fa-bars'"></i>
             </button>
 
             <!-- Mobile Menu Overlay -->
@@ -122,28 +122,28 @@
                 <div class="flex items-center justify-between p-4 border-b border-gray-700">
                     <img width="50" src="{{asset('img/logo-light-broken.png')}}" alt="">
                     <button @click="open = false" class="text-white">
-                        <i class="fa-solid fa-xmark text-2xl"></i>
+                        <i class="fa-solid fa-xmark !text-xl sm:!text-2xl"></i>
                     </button>
                 </div>
 
                 <!-- Menu Links -->
                 <div class="flex flex-col p-4 space-y-4">
-                    <a href="/dashboard" class="text-lg py-3 px-4 rounded-lg transition-colors {{ request()->is('dashboard*') ? 'bg-[#F4C300] text-black font-bold' : 'text-white hover:bg-gray-700' }}">
+                    <a href="/dashboard" class="!text-base sm:!text-lg py-3 px-4 rounded-lg transition-colors {{ request()->is('dashboard*') ? 'bg-[#F4C300] text-black font-bold' : 'text-white hover:bg-gray-700' }}">
                         <i class="fa-solid fa-house mr-3"></i>Dashboard
                     </a>
-                    <a href="/lessons" class="text-lg py-3 px-4 rounded-lg transition-colors {{ request()->is('lessons*') || request()->is('lesson-view*') ? 'bg-[#F4C300] text-black font-bold' : 'text-white hover:bg-gray-700' }}">
+                    <a href="/lessons" class="!text-base sm:!text-lg py-3 px-4 rounded-lg transition-colors {{ request()->is('lessons*') || request()->is('lesson-view*') ? 'bg-[#F4C300] text-black font-bold' : 'text-white hover:bg-gray-700' }}">
                         <i class="fa-solid fa-book mr-3"></i>Lessons
                     </a>
-                    <a href="/achievements" class="text-lg py-3 px-4 rounded-lg transition-colors {{ request()->is('achievements*') ? 'bg-[#F4C300] text-black font-bold' : 'text-white hover:bg-gray-700' }}">
+                    <a href="/achievements" class="!text-base sm:!text-lg py-3 px-4 rounded-lg transition-colors {{ request()->is('achievements*') ? 'bg-[#F4C300] text-black font-bold' : 'text-white hover:bg-gray-700' }}">
                         <i class="fa-solid fa-trophy mr-3"></i>Achievements
                     </a>
-                    <a href="/profile" class="text-lg py-3 px-4 rounded-lg transition-colors {{ request()->is('profile*') ? 'bg-[#F4C300] text-black font-bold' : 'text-white hover:bg-gray-700' }}">
+                    <a href="/profile" class="!text-base sm:!text-lg py-3 px-4 rounded-lg transition-colors {{ request()->is('profile*') ? 'bg-[#F4C300] text-black font-bold' : 'text-white hover:bg-gray-700' }}">
                         <i class="fa-solid fa-user mr-3"></i>Profile
                     </a>
                     
                     <!-- Logout -->
                     <div class="pt-4 mt-auto border-t border-gray-700">
-                        <a href="/teacher/dashboard" class="text-lg py-3 px-4 rounded-lg transition-colors text-red-400 hover:bg-gray-700 flex items-center">
+                        <a href="/teacher/dashboard" class="!text-base sm:!text-lg py-3 px-4 rounded-lg transition-colors text-red-400 hover:bg-gray-700 flex items-center">
                             <i class="fa-solid fa-arrow-right-from-bracket mr-3"></i>Logout
                         </a>
                     </div>
