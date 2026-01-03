@@ -96,7 +96,7 @@
 
     {{-- ===== PAGE 6: QUESTIONS ===== --}}
     <div x-show="page === 6" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
-        <div class="flex-1 flex flex-col justify-center gap-6 overflow-y-auto p-5">
+        <div class="flex-1 flex flex-col md:justify-center gap-6 overflow-y-auto p-5">
             <div class="bg-gray-800/50 p-4 rounded-lg border-2 border-[#F4C300]">
                 <p class="!text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold">1. Sino ang nagsulat ng binasang balita?</p>
             </div>

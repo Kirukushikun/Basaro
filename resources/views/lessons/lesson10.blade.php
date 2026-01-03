@@ -6,14 +6,11 @@
                 <span class="!text-[#F4C300]">Sesyon 10:</span>
                 Pagbasa ng mga Pangunahin o Karaniwang Salita
             </h1>
-            <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
-                Ang mga karaniwang salita o basic sight words sa Ingles ay mga pangunahing salita na inaasahang agad makikilala ng mga batang mag-aaral na Pilipino.
-            </p>
         </header>
         <p class="!text-base sm:!text-lg md:!text-lg lg:!text-xl !text-gray-300">
             (Basic Sight Words sa Filipino)
         </p>
-        <div class="flex-1 grid grid-cols-3 gap-6 !text-2xl sm:!text-3xl md:!text-3xl lg:!text-4xl font-bold text-center overflow-y-auto p-5">
+        <div class="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 !text-2xl sm:!text-3xl md:!text-3xl lg:!text-4xl font-bold text-center overflow-y-auto p-5">
             @foreach ([
                 'mesa', 'mani', 'niya',
                 'beke', 'kami', 'mali',

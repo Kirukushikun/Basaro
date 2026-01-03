@@ -2,8 +2,8 @@
 
 <div class="card w-full h-[70vh] min-h-[50vh] flex flex-col relative text-lg">
     {{-- ===== PAGE 1 ===== --}}
-    <div x-show="page === 1" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header">
+    <div x-show="page === 1" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+        <header class="header flex-shrink-0">
             <h1 class="!text-xl sm:!text-2xl md:!text-3xl lg:!text-4xl font-bold">
                 <span class="!text-[#F4C300]">Sesyon 12:</span>
                 Diptonggo
@@ -13,7 +13,7 @@
             </p>
         </header>
 
-        <div class="flex-1 grid grid-cols-3 gap-6 !text-2xl sm:!text-3xl md:!text-3xl lg:!text-4xl font-bold text-center overflow-y-auto p-5">
+        <div class="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 !text-2xl sm:!text-3xl md:!text-3xl lg:!text-4xl font-bold text-center overflow-y-auto p-5">
             @foreach ([
                 'araw', 'natanaw', 'itinaboy',
                 'aruy!', 'pabulyaw', 'bayaw',

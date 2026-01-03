@@ -12,10 +12,10 @@
     </div>
 
     {{-- ===== PAGE 2: KAPAMPANGAN POEM ===== --}}
-    <div x-show="page === 2" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <div class="flex-1 flex flex-col items-center justify-center gap-8">
+    <div x-show="page === 2" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+        <div class="flex-1 flex flex-col items-center md:justify-center gap-8 overflow-y-auto">
             <div class="bg-gray-800/50 p-10 rounded-lg border-2 border-[#F4C300] w-full max-w-3xl">
-                <h2 class="text-3xl font-bold !text-[#F4C300] text-center mb-2">Lugud ning Indu</h2>
+                <h2 class="text-3xl  font-bold !text-[#F4C300] text-center mb-2">Lugud ning Indu</h2>
                 <p class="text-xl text-center mb-8">Jay-R C. Guinto</p>
                 
                 <div class="text-2xl leading-loose text-center">
@@ -30,10 +30,10 @@
     </div>
 
     {{-- ===== PAGE 3: KAPAMPANGAN POEM ===== --}}
-    <div x-show="page === 3" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <div class="flex-1 flex flex-col items-center justify-center gap-8">
+    <div x-show="page === 3" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+        <div class="flex-1 flex flex-col items-center md:justify-center gap-8 overflow-y-auto">
             <div class="bg-gray-800/50 p-10 rounded-lg border-2 border-[#F4C300] w-full max-w-3xl">
-                <h2 class="text-3xl font-bold !text-[#F4C300] text-center mb-2">Lugud ning Indu</h2>
+                <h2 class="text-3xl  font-bold !text-[#F4C300] text-center mb-2">Lugud ning Indu</h2>
                 <p class="text-xl text-center mb-8">Jay-R C. Guinto</p>
                 
                 <div class="text-2xl leading-loose text-center">
@@ -48,8 +48,8 @@
     </div>
 
     {{-- ===== PAGE 4: ANO ANG TULA ===== --}}
-    <div x-show="page === 4" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <div class="flex-1 flex items-center justify-center p-8">
+    <div x-show="page === 4" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+        <div class="flex-1 flex items-center md:justify-center p-8 overflow-y-auto">
             <div class="bg-gray-800/50 p-10 rounded-lg border-2 border-[#F4C300] max-w-4xl">
                 <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold leading-relaxed text-center">
                     Ang <span class="!text-[#F4C300]">TULA</span> ay isang anyo ng sining o panitikan na naglalayong maipahayag ang damdamin sa malayang pagsusulat.
@@ -64,8 +64,8 @@
     </div>
 
     {{-- ===== PAGE 5: FILIPINO TRANSLATION ===== --}}
-    <div x-show="page === 5" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <div class="flex-1 flex flex-col items-center justify-center gap-8 p-8">
+    <div x-show="page === 5" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+        <div class="flex-1 flex flex-col items-center md:justify-center gap-8 pr-5 md:pr-0 overflow-y-auto">
             <div class="bg-gray-800/50 p-10 rounded-lg border-2 border-[#F4C300] w-full max-w-3xl">
                 <h2 class="!text-lg sm:!text-2xl md:!text-3xl lg:!text-3xl font-bold !text-[#F4C300] text-center mb-2">Pag-ibig ng Ina</h2>
                 <p class="!text-base sm:!text-lg md:!text-lg lg:!text-xl text-center mb-8">Isinalin ni Elvie M. Dimatulac</p>
@@ -82,9 +82,9 @@
     </div>
 
     {{-- ===== PAGE 6: KASINGKAHULUGAN ===== --}}
-    <div x-show="page === 6" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <div class="flex-1 flex items-center justify-center p-8">
-            <div class="grid grid-cols-2 gap-10 !text-base sm:!text-lg md:!text-xl lg:!text-2xl w-full max-w-4xl">
+    <div x-show="page === 6" class="w-full flex-1 flex  min-h-0">
+        <div class="flex-1 flex md:items-center overflow-y-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 !text-base sm:!text-lg md:!text-xl lg:!text-2xl w-full max-w-4xl">
                 <div class="bg-gray-800/50 p-6 rounded-lg border-2 border-[#F4C300]">
                     <span class="font-bold !text-[#F4C300]">Pag-ibig</span>
                     <span class="mx-3">-</span>
@@ -114,8 +114,8 @@
 
     {{-- ===== PAGE 7: QUESTIONS ===== --}}
     <div x-show="page === 7" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
-        <div class="flex-1 flex flex-col justify-center gap-6 overflow-y-auto p-8">
-            <div class="bg-gray-800/50 p-6 rounded-lg border-2 border-[#F4C300] mt-15">
+        <div class="flex-1 flex flex-col gap-6 overflow-y-auto p-8">
+            <div class="bg-gray-800/50 p-6 rounded-lg border-2 border-[#F4C300]">
                 <p class="!text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold">1. Ano ang pamagat ng tula?</p>
             </div>
             
@@ -139,7 +139,7 @@
 
     {{-- ===== PAGE 8: SINAG AT LAKAS ===== --}}
     <div x-show="page === 8" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
-        <div class="flex-1 flex flex-col items-center justify-center overflow-y-auto pt-20">
+        <div class="flex-1 flex flex-col md:items-center overflow-y-auto ">
             <div class="bg-gray-800/50 p-10 rounded-lg border-2 border-[#F4C300] w-full max-w-4xl">
                 <h2 class="!text-lg sm:!text-2xl md:!text-3xl lg:!text-3xl font-bold !text-[#F4C300] text-center mb-2">Sinag at Lakas</h2>
                 <p class="!text-base sm:!text-lg md:!text-lg lg:!text-xl text-center mb-8">Elvie M. Dimatulac</p>

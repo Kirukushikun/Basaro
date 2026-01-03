@@ -45,7 +45,7 @@
             </p>
         </header>
 
-        <div class="flex-1 grid grid-cols-3 gap-6 !text-lg sm:!text-2xl md:!text-2xl lg:!text-3xl font-bold text-center overflow-y-auto p-5">
+        <div class="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 !text-lg sm:!text-2xl md:!text-2xl lg:!text-3xl font-bold text-center overflow-y-auto p-5">
             @foreach ([
                 'Ma + ganda',
                 'Una + hin',

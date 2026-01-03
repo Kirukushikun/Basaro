@@ -118,7 +118,7 @@
             </p>
         </header>
 
-        <div class="flex-1 flex flex-col justify-center gap-6 overflow-y-auto p-5">
+        <div class="flex-1 flex flex-col md:justify-center gap-6 overflow-y-auto p-5">
             <div class="flex items-center gap-6 !text-base sm:!text-lg md:!text-lg lg:!text-xl">
                 <span class="font-bold !text-[#F4C300] w-48">Nagtatadhana</span>
                 <input type="text" x-model="puzzleAnswers.p1" 

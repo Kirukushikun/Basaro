@@ -2,16 +2,16 @@
 
 <div class="card w-full h-[70vh] min-h-[50vh] flex flex-col relative text-lg">
     {{-- ===== PAGE 1: TITLE ===== --}}
-    <div x-show="page === 1" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header">
+    <div x-show="page === 1" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+        <header class="header flex-shrink-0">
             <h1 class="!text-xl sm:!text-2xl md:!text-3xl lg:!text-4xl font-bold border-b border-gray-500 pb-4">
                 <span class="!text-[#F4C300]">Sesyon 15:</span>
                 Karunungang Bayan
             </h1>
         </header>
 
-        <div class="flex-1 flex items-center justify-center">
-            <div class="grid grid-cols-2 gap-8 w-full max-w-4xl">
+        <div class="flex-1 flex md:items-center md:justify-center md:px-8 overflow-y-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
                 <div class="bg-gray-800/50 p-8 rounded-lg border-2 border-[#F4C300] text-center">
                     <p class="!text-lg sm:!text-xl md:!text-2xl lg:!text-2xl font-bold !text-[#F4C300]">BUGTONG</p>
                 </div>
@@ -49,7 +49,7 @@
 
     {{-- ===== PAGE 3: BUGTONG EXAMPLES ===== --}}
     <div x-show="page === 3" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
-        <div class="flex-1 grid grid-cols-2 gap-8 overflow-y-auto p-5">
+        <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-8 overflow-y-auto p-5">
             <div class="bg-gray-800/50 p-8 rounded-lg border-2 border-[#F4C300] flex flex-col justify-center">
                 <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold text-center leading-relaxed">
                     Dalawang bolang malalim,<br>
@@ -88,12 +88,12 @@
     </div>
 
     {{-- ===== PAGE 5: SALAWIKAIN INTRO ===== --}}
-    <div x-show="page === 5" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header">
+    <div x-show="page === 5" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+        <header class="header flex-shrink-0">
             <h1 class="!text-xl sm:!text-2xl md:!text-3xl lg:!text-4xl font-bold !text-[#F4C300]">SALAWIKAIN</h1>
         </header>
 
-        <div class="flex-1 flex flex-col items-center justify-center gap-10 p-8">
+        <div class="flex-1 flex flex-col items-center justify-center gap-10 p-8 overflow-y-auto">
             <div class="bg-gray-800/50 p-8 rounded-lg border-2 border-[#F4C300] text-center w-full max-w-3xl">
                 <p class="!text-lg sm:!text-2xl md:!text-2xl lg:!text-3xl font-bold leading-relaxed">
                     Kapag may tiyaga,<br>
@@ -111,8 +111,8 @@
     </div>
 
     {{-- ===== PAGE 6: SALAWIKAIN MEANING - ISINUKSOK ===== --}}
-    <div x-show="page === 6" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <div class="flex-1 flex flex-col justify-center gap-10 p-8">
+    <div x-show="page === 6" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+        <div class="flex-1 flex flex-col justify-center gap-10 p-8 overflow-y-auto">
             <div class="bg-gray-800/50 p-8 rounded-lg border-2 border-[#F4C300]">
                 <p class="!text-lg sm:!text-2xl md:!text-2xl lg:!text-3xl font-bold !text-[#F4C300] text-center mb-4">isinuksok</p>
                 <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold text-center">= itinago, inilagay, ipinasok</p>
@@ -126,8 +126,8 @@
     </div>
 
     {{-- ===== PAGE 7: SALAWIKAIN MEANING - PERA ===== --}}
-    <div x-show="page === 7" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <div class="flex-1 flex items-center justify-center p-8">
+    <div x-show="page === 7" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+        <div class="flex-1 flex items-center justify-center p-8 overflow-y-auto">
             <div class="bg-gray-800/50 p-12 rounded-lg border-2 border-[#F4C300] text-center">
                 <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold leading-relaxed mb-8">
                     Kapag may isinuksok,<br>
@@ -182,13 +182,13 @@
     </div>
 
     {{-- ===== PAGE 11: SAWIKAIN INTRO ===== --}}
-    <div x-show="page === 11" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header">
+    <div x-show="page === 11" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+        <header class="header flex-shrink-0">
             <h1 class="!text-xl sm:!text-2xl md:!text-3xl lg:!text-4xl font-bold !text-[#F4C300]">SAWIKAIN</h1>
         </header>
 
-        <div class="flex-1 flex items-center justify-center">
-            <div class="grid grid-cols-3 gap-8 !text-lg sm:!text-2xl md:!text-2xl lg:!text-3xl font-bold">
+        <div class="flex-1 flex items-center md:justify-center overflow-y-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center !text-lg sm:!text-2xl md:!text-2xl lg:!text-3xl font-bold">
                 <p class="text-center">Pusong mamon</p>
                 <p class="text-center">Malayo sa bituka</p>
                 <p class="text-center">Butas ang bulsa</p>
