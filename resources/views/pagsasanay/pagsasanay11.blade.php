@@ -227,7 +227,7 @@
     <!-- Custom Results for Pagsasanay 11 -->
     <div x-show="page > (1 + questions.filter(q => q.type === 'antonym_select').length)" 
          class="flex-1 flex flex-col items-center justify-center gap-5 mt-10 w-full">
-        <img src="../Img/Badge.png" width="200" alt="">
+        <img src="{{asset('img/Badge.png')}}" width="200" alt="">
         <h1 class="text-2xl font-bold">CONGRATULATIONS!</h1>
         <h2 class="score !text-[#F4C300]" x-text="Math.round((score / (questions.length)) * 100) + '%'"></h2>
         <p class="w-96 text-lg text-center">

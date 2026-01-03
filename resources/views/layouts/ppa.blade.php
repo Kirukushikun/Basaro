@@ -82,7 +82,7 @@
 
           <nav>
                <div class="logo">
-                    <img class="img-logo" src="../Img/logo-light.png" style="width: 130px;" alt="">
+                    <img class="img-logo" src="{{asset('img/logo-light.png')}}" style="width: 130px;" alt="">
                     <button id="toggle-btn" class="text-lg hover:scale-125"><i class="fa-solid fa-bars"></i></button>
                </div>
 

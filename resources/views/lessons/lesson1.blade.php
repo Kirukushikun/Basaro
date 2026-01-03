@@ -3,7 +3,7 @@
 <img 
     x-show="page === 1" 
     class="absolute bottom-[150px] left-[80px] z-[1] w-[730px] pointer-events-none" 
-    src="../Img/layunin-figure.png" 
+    src="{{asset('img/layunin-figure.png')}}" 
     alt="Layunin Figure"
 >
 
@@ -11,7 +11,7 @@
 <img 
     x-show="page === 2" 
     class="absolute bottom-[20px] left-[50px] z-[1] w-[730px] pointer-events-none" 
-    src="../Img/layunin-figure.png" 
+    src="{{asset('img/layunin-figure.png')}}" 
     alt="Layunin Figure"
 >
 
@@ -19,7 +19,7 @@
 <img 
     x-show="page === 3" 
     class="absolute bottom-[40px] left-[70px] z-[1] w-[730px] pointer-events-none" 
-    src="../Img/layunin-figure.png" 
+    src="{{asset('img/layunin-figure.png')}}" 
     alt="Layunin Figure"
 > -->
 

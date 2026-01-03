@@ -5,7 +5,7 @@
     x-show="page > questions.length"  
     x-effect="if (page > questions.length) { $wire.completePagtataya() }"
 >
-    <img src="../Img/Badge.png" width="200" alt="">
+    <img src="{{asset('img/Badge.png')}}" width="200" alt="">
     <h1 class="text-2xl font-bold">CONGRATULATIONS!</h1>
     <h2 class="score !text-[#F4C300]" x-text="Math.round((score / questions.length) * 100) + '%'"></h2>
     <p class="w-96 text-lg text-center">
