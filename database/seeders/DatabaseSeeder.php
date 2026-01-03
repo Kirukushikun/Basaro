@@ -31,12 +31,22 @@ class DatabaseSeeder extends Seeder
             'email' => 'i.robles@gmail.com',
             'password' => Hash::make('Kaytobilang'),
             ],
+            [
+            'name' => 'Juan Dela Cruz',
+            'email' => 'j.dela_cruz@bfcgroup.org',
+            'password' => Hash::make('password123'),
+            ]
         );
 
         Teacher::create([
             'name' => 'Iverson Guno',
             'email' => 'i.guno@bfcgroup.org',
             'password' => Hash::make('Brookside2025'),
+        ],
+        [
+            'name' => 'Elvie Ramos',
+            'email' => 'e.ramos@email.com',
+            'password' => Hash::make('password123'),
         ]);
 
         $lessonTitles = [

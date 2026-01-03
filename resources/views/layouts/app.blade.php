@@ -94,7 +94,6 @@
                 <a href="/lessons" class="!text-base lg:!text-lg {{ request()->is('lessons*') || request()->is('lesson-view*') ? 'active' : '' }}">Lessons</a>
                 <a href="/achievements" class="!text-base lg:!text-lg {{ request()->is('achievements*') ? 'active' : '' }}">Achievements</a>
                 <a href="/profile" class="!text-base lg:!text-lg {{ request()->is('profile*') ? 'active' : '' }}">Profile</a>
-                <a href="/teacher/dashboard" class="!text-base lg:!text-lg absolute right-[50px] hover:scale-125"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
             </div>
         </nav>
 
