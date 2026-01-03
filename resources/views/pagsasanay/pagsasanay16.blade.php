@@ -59,8 +59,8 @@
                     
                     <!-- Word -->
                     <div class="text-center">
-                        <p class="text-sm text-gray-400 mb-2">Kahulugan ng salita:</p>
-                        <p class="text-4xl font-bold !text-[#F4C300]" x-text="current.word"></p>
+                        <p class="!text-sm sm:!text-base text-gray-400 mb-2">Kahulugan ng salita:</p>
+                        <p class="!text-2xl sm:!text-3xl md:!text-4xl lg:!text-5xl font-bold !text-[#F4C300]" x-text="current.word"></p>
                     </div>
 
                     <!-- Answer Choices -->
@@ -73,7 +73,7 @@
                                     'bg-[#F4C300] !text-black': selected === choice.charAt(0),
                                     'opacity-50 cursor-not-allowed': confirmed && selected !== choice.charAt(0)
                                 }"
-                                class="w-full px-6 py-3 border-2 border-[#F4C300] !text-[#F4C300] font-bold rounded-lg hover:bg-[#F4C300] hover:!text-black transition-all text-center disabled:hover:bg-transparent disabled:hover:!text-[#F4C300]">
+                                class="w-full px-6 py-3 border-2 border-[#F4C300] !text-[#F4C300] font-bold rounded-lg hover:bg-[#F4C300] hover:!text-black transition-all text-center disabled:hover:bg-transparent disabled:hover:!text-[#F4C300] !text-base sm:!text-lg md:!text-lg lg:!text-xl">
                                 <span x-text="choice"></span>
                             </button>
                         </template>
@@ -86,7 +86,7 @@
                 <div class="flex flex-col items-center gap-8 w-full">
                     
                     <!-- Question -->
-                    <p class="text-lg font-semibold text-center max-w-xl" x-text="current.question"></p>
+                    <p class="!text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center max-w-xl" x-text="current.question"></p>
 
                     <!-- Answer Choices -->
                     <div class="flex flex-col gap-3 items-center max-w-md w-full">
@@ -98,7 +98,7 @@
                                     'bg-[#F4C300] !text-black': selected === choice.charAt(0),
                                     'opacity-50 cursor-not-allowed': confirmed && selected !== choice.charAt(0)
                                 }"
-                                class="w-full px-6 py-3 border-2 border-[#F4C300] !text-[#F4C300] font-bold rounded-lg hover:bg-[#F4C300] hover:!text-black transition-all text-center disabled:hover:bg-transparent disabled:hover:!text-[#F4C300]">
+                                class="w-full px-6 py-3 border-2 border-[#F4C300] !text-[#F4C300] font-bold rounded-lg hover:bg-[#F4C300] hover:!text-black transition-all text-center disabled:hover:bg-transparent disabled:hover:!text-[#F4C300] !text-base sm:!text-lg md:!text-lg lg:!text-xl">
                                 <span x-text="choice"></span>
                             </button>
                         </template>
@@ -107,16 +107,16 @@
             </template>
 
             <!-- Confirm Button -->
-            <button x-show="selected && !confirmed"
+                <button x-show="selected && !confirmed"
                     @click="confirm"
-                    class="px-6 py-2 bg-[#F4C300] text-black font-bold rounded-lg hover:opacity-90 transition-all">
+                    class="px-6 py-2 bg-[#F4C300] text-black font-bold rounded-lg hover:opacity-90 transition-all !text-base sm:!text-lg md:!text-lg lg:!text-xl">
                 Kumpirmahin
             </button>
 
             <!-- Feedback -->
             <div x-show="showFeedback"
                  x-transition
-                 class="mt-4 px-6 py-3 rounded-lg text-lg font-semibold"
+                 class="mt-4 px-6 py-3 rounded-lg !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold"
                  :class="isCorrect ? 'bg-green-500 text-white' : 'bg-red-500 text-white'">
                 <span x-show="isCorrect">✅ Tama!</span>
                 <span x-show="!isCorrect">

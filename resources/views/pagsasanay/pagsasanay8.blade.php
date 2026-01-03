@@ -52,13 +52,13 @@
     <template x-if="isStoryPage">
         <div class="flex-1 flex flex-col items-center justify-center gap-10 w-full px-4">
             
-            <h2 class="text-4xl font-bold !text-[#F4C300]">Basahin ang Kwento</h2>
+            <h2 class="!text-2xl sm:!text-3xl md:!text-4xl lg:!text-4xl font-bold !text-[#F4C300]">Basahin ang Kwento</h2>
 
             <div class="max-w-3xl bg-gray-800 p-10 rounded-xl border-4 border-[#F4C300] shadow-2xl">
-                <p class="text-xl leading-relaxed text-white" x-text="story"></p>
+                <p class="!text-base sm:!text-lg md:!text-lg lg:!text-xl leading-relaxed text-white" x-text="story"></p>
             </div>
 
-            <p class="text-lg text-center max-w-xl opacity-80">
+            <p class="!text-base sm:!text-lg md:!text-lg lg:!text-xl text-center max-w-xl opacity-80">
                 Basahin nang mabuti ang kwento. Pagkatapos, sasagutin mo ang mga tanong tungkol dito.
             </p>
 
@@ -71,7 +71,7 @@
 
             <!-- Question -->
             <div class="max-w-2xl">
-                <h3 class="text-3xl font-bold !text-[#F4C300] text-center mb-2" 
+                <h3 class="!text-lg sm:!text-2xl md:!text-2xl lg:!text-3xl font-bold !text-[#F4C300] text-center mb-2" 
                     x-text="current.question"></h3>
             </div>
 
@@ -87,7 +87,7 @@
                             'bg-red-500 !text-white border-red-500': confirmed && selected === choice && choice !== current.answer,
                             'opacity-50': confirmed && choice !== current.answer && choice !== selected
                         }"
-                        class="w-full px-6 py-4 border-2 border-[#F4C300] !text-[#F4C300] font-bold rounded-lg hover:bg-[#F4C300] hover:!text-black transition-all text-center disabled:cursor-not-allowed text-lg">
+                        class="w-full px-6 py-4 border-2 border-[#F4C300] !text-[#F4C300] font-bold rounded-lg hover:bg-[#F4C300] hover:!text-black transition-all text-center disabled:cursor-not-allowed !text-base sm:!text-lg md:!text-lg lg:!text-xl">
                         <span x-text="choice"></span>
                     </button>
                 </template>
@@ -96,7 +96,7 @@
             <!-- Feedback -->
             <div x-show="confirmed"
                  x-transition
-                 class="mt-4 px-6 py-3 rounded-lg text-lg font-semibold"
+                 class="mt-4 px-6 py-3 rounded-lg !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold"
                  :class="selected === current.answer ? 'bg-green-500 text-white' : 'bg-red-500 text-white'">
                 <span x-show="selected === current.answer">
                     <i class="fa-solid fa-check"></i> Tama! Magaling!

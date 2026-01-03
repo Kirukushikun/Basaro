@@ -78,7 +78,7 @@
     <template x-if="page === 1">
         <div class="flex-1 flex flex-col items-center gap-8 mt-10 w-full px-4">
 
-            <p class="text-lg text-center font-semibold">Hanapin sa Hanay B ang kasingkahulugan ng mga salita sa Hanay A</p>
+            <p class="!text-base sm:!text-lg md:!text-lg lg:!text-xl text-center font-semibold">Hanapin sa Hanay B ang kasingkahulugan ng mga salita sa Hanay A</p>
 
             <!-- Styled Table -->
             <div class="max-w-3xl w-full overflow-x-auto">
@@ -165,10 +165,10 @@
     <template x-if="page > 1 && current && current.type === 'antonym_select'">
         <div class="flex-1 flex flex-col items-center gap-10 mt-10 w-full">
 
-            <p class="text-lg text-center font-semibold">Piliin ang tamang kasalungat na kahulugan</p>
+            <p class="!text-base sm:!text-lg md:!text-lg lg:!text-xl text-center font-semibold">Piliin ang tamang kasalungat na kahulugan</p>
             
             <!-- Word -->
-            <p class="text-4xl font-bold !text-[#F4C300]" x-text="current.word"></p>
+            <p class="!text-2xl sm:!text-3xl md:!text-4xl lg:!text-5xl font-bold !text-[#F4C300]" x-text="current.word"></p>
 
             <!-- Antonym Choices -->
             <div class="flex flex-col gap-3 items-center max-w-md w-full">

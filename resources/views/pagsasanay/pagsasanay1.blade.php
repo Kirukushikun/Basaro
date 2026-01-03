@@ -181,16 +181,16 @@
                  x-transition
                  class="w-full max-w-lg">
                 <div x-show="isCorrect"
-                     class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
+                     class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
                     <i class="fa-solid fa-check"></i> Tama!
-                    <div class="text-sm mt-2">
+                    <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
                         Narinig: "<span x-text="transcription"></span>"
                     </div>
                 </div>
                 <div x-show="!isCorrect"
-                     class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
+                     class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
                     <i class="fa-solid fa-x"></i> Mali
-                    <div class="text-sm mt-2">
+                    <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
                         <div>Narinig: "<span x-text="transcription"></span>"</div>
                         <div>Dapat: "<span x-text="current.answer"></span>"</div>
                     </div>
@@ -198,7 +198,7 @@
             </div>
 
             <!-- Instruction -->
-            <p class="w-96 text-lg text-center" x-show="!confirmed">
+            <p class="w-96 !text-base sm:!text-lg md:!text-lg lg:!text-xl text-center" x-show="!confirmed">
                 Basahin nang malinaw ang alpabetong nasa itaas.
                 Subukang bigkasin ito nang tama at dahan-dahan.
             </p>

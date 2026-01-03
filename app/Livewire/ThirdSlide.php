@@ -983,9 +983,9 @@ class ThirdSlide extends Component
 
         19 => [
             // Part A: Vocabulary Matching
-            ['type' => 'vocabulary_match', 'word' => 'tuso', 'answer' => 'Ibigay', 'choices' => ['Ibigay', 'Itakas']],
-            ['type' => 'vocabulary_match', 'word' => 'sumibol', 'answer' => 'mababawasan', 'choices' => ['mababawasan', 'mapupunan']],
-            ['type' => 'vocabulary_match', 'word' => 'lingid', 'answer' => 'nasasakupan', 'choices' => ['nasasakupan', 'naaprubahan']],
+            ['type' => 'vocabulary_match', 'word' => 'ilaan', 'answer' => 'Ibigay', 'choices' => ['Ibigay', 'Itakas']],
+            ['type' => 'vocabulary_match', 'word' => 'mapupunan', 'answer' => 'mababawasan', 'choices' => ['mababawasan', 'maibibigay']],
+            ['type' => 'vocabulary_match', 'word' => 'naaprubahan', 'answer' => 'nakapasa', 'choices' => ['nasasakupan', 'nakapasa']],
             
             // Part B: Comprehension (MC)
             ['type' => 'comprehension', 'question' => 'Magkano ang naaprubahang badyet sa taong 2025?', 'answer' => 'P793. 74 bilyon', 'choices' => ['P793. 74 bilyon', 'P973. 74 bilyon']],
@@ -995,11 +995,11 @@ class ThirdSlide extends Component
 
         20 => [
             // Part A: Vocabulary Matching (2 choices)
-            ['type' => 'vocabulary_match', 'word' => 'tuso', 'answer' => 'impostor', 'choices' => ['matalino', 'impostor']],
-            ['type' => 'vocabulary_match', 'word' => 'sumibol', 'answer' => 'lumitaw', 'choices' => ['lumitaw', 'nawala']],
-            ['type' => 'vocabulary_match', 'word' => 'lingid', 'answer' => 'lihim', 'choices' => ['malinaw', 'lihim']],
-            ['type' => 'vocabulary_match', 'word' => 'pangamba', 'answer' => 'takot', 'choices' => ['saya', 'takot']],
-            ['type' => 'vocabulary_match', 'word' => 'humihipak', 'answer' => 'umiihip', 'choices' => ['umiihip', 'tumitingin']],
+            ['type' => 'vocabulary_match', 'word' => 'tuso', 'answer' => 'madaya', 'choices' => ['mabait', 'madaya']],
+            ['type' => 'vocabulary_match', 'word' => 'sumibol', 'answer' => 'lumitaw', 'choices' => ['lumitaw', 'lumubog']],
+            ['type' => 'vocabulary_match', 'word' => 'lingid', 'answer' => 'lihim', 'choices' => ['ligaw', 'lihim']],
+            ['type' => 'vocabulary_match', 'word' => 'pangamba', 'answer' => 'takot', 'choices' => ['sigla', 'takot']],
+            ['type' => 'vocabulary_match', 'word' => 'humihipak', 'answer' => 'humahawi', 'choices' => ['humahawi', 'humihithit']],
             
             // Part B: Comprehension (MC)
             ['type' => 'comprehension', 'question' => 'Ano ang inilalarawan na kinaaadikan nina Totoy at ng kaniyang Tiyo?', 'answer' => 'Vape', 'choices' => ['Tape', 'Vape']],

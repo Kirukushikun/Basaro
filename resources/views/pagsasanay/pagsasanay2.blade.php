@@ -186,7 +186,7 @@
                         <i class="fa-solid fa-check"></i> Tama!
                     </div>
 
-                    <p class="w-96 text-lg text-center font-semibold">
+                    <p class="w-96 !text-base sm:!text-lg md:!text-lg lg:!text-xl text-center font-semibold">
                         Tukuyin ang patinig ng mga sumusunod na larawan. Subukang bigkasin ito nang tama at dahan-dahan
                     </p>
 
@@ -233,7 +233,7 @@
                 <div class="flex flex-col items-center gap-6">
                     <img :src="current.image" class="w-40 rounded-lg border-4 border-gray-300">
                     <p class="text-6xl font-bold" x-text="current.word"></p>
-                    <p class="text-lg text-center">Piliin ang tamang letra upang mabuo ang salita</p>
+                    <p class="!text-base sm:!text-lg md:!text-lg lg:!text-xl text-center">Piliin ang tamang letra upang mabuo ang salita</p>
 
                     <!-- Vowel Choices -->
                     <div class="grid grid-cols-5 gap-4">
@@ -245,7 +245,7 @@
                                     'bg-[#F4C300] !text-black': selected === vowel,
                                     'opacity-50 cursor-not-allowed': confirmed && selected !== vowel
                                 }"
-                                class="choice font-extrabold px-6 py-3 text-2xl !text-[#F4C300] border-2 !border-[#F4C300] rounded-lg hover:bg-[#F4C300] hover:!text-black transition-all disabled:hover:bg-transparent disabled:hover:!text-[#F4C300]">
+                                class="choice font-extrabold px-6 py-3 !text-xl sm:!text-2xl md:!text-3xl lg:!text-4xl !text-[#F4C300] border-2 !border-[#F4C300] rounded-lg hover:bg-[#F4C300] hover:!text-black transition-all disabled:hover:bg-transparent disabled:hover:!text-[#F4C300]">
                                 <span x-text="vowel"></span>
                             </button>
                         </template>
@@ -277,23 +277,23 @@
                 <div class="flex flex-col items-center gap-6">
                     <img :src="current.image" class="w-48 rounded-lg border-4 border-gray-300">
                     <p class="text-6xl font-bold !text-[#F4C300]" x-text="current.full_word"></p>
-                    <p class="text-lg text-center font-semibold">Bigkasin ang buong salita nang malinaw</p>
+                    <p class="!text-base sm:!text-lg md:!text-lg lg:!text-xl text-center font-semibold">Bigkasin ang buong salita nang malinaw</p>
 
                     <!-- Feedback -->
                     <div x-show="confirmed" 
                          x-transition
                          class="w-full max-w-lg">
                         <div x-show="normalizeText(transcription) === normalizeText(current.full_word)"
-                             class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
+                             class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
                             ✅ Tama!
-                            <div class="text-sm mt-2">
+                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
                                 Narinig: "<span x-text="transcription"></span>"
                             </div>
                         </div>
                         <div x-show="normalizeText(transcription) !== normalizeText(current.full_word)"
-                             class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
+                             class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
                             ❌ Mali
-                            <div class="text-sm mt-2">
+                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
                                 <div>Narinig: "<span x-text="transcription"></span>"</div>
                                 <div>Dapat: "<span x-text="current.full_word"></span>"</div>
                             </div>

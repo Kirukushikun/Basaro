@@ -188,7 +188,7 @@
         <div class="flex-1 flex flex-col items-center gap-10">
 
             <!-- Kataga -->
-            <h1 class="alphabet mt-10 !text-[#F4C300]"
+            <h1 class="alphabet mt-10 !text-[#F4C300] text-center"
                 x-text="current.kataga"></h1>
 
             <!-- Feedback -->
@@ -196,16 +196,16 @@
                  x-transition
                  class="w-full max-w-lg">
                 <div x-show="isCorrect"
-                     class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
+                     class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
                     ✅ Tama!
-                    <div class="text-sm mt-2">
+                    <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
                         Narinig: "<span x-text="transcription"></span>"
                     </div>
                 </div>
                 <div x-show="!isCorrect"
-                     class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
+                     class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
                     ❌ Mali
-                    <div class="text-sm mt-2">
+                    <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
                         <div>Narinig: "<span x-text="transcription"></span>"</div>
                         <div>Dapat: "<span x-text="current.kataga"></span>"</div>
                     </div>
@@ -213,7 +213,7 @@
             </div>
 
             <!-- Instruction -->
-            <p class="w-96 text-lg text-center" x-show="!confirmed">
+            <p class="w-96 !text-base sm:!text-lg md:!text-lg lg:!text-xl text-center" x-show="!confirmed">
                 Basahin nang malinaw ang katagang nasa itaas.
                 Subukang bigkasin ito nang tama at dahan-dahan.
             </p>
@@ -262,7 +262,7 @@
         <div class="flex-1 flex flex-col items-center gap-10">
 
             <!-- Parirala -->
-            <h1 class="text-7xl font-bold mt-10 !text-[#F4C300]"
+            <h1 class="!text-4xl sm:!text-5xl md:!text-6xl lg:!text-7xl font-bold mt-10 !text-[#F4C300]"
                 x-text="current.parirala"></h1>
 
             <!-- Feedback -->
@@ -336,7 +336,7 @@
         <div class="flex-1 flex flex-col items-center gap-10">
 
             <!-- Pangungusap -->
-            <h1 class="text-5xl font-bold mt-10 !text-[#F4C300] text-center px-4"
+            <h1 class="!text-2xl sm:!text-3xl md:!text-4xl lg:!text-5xl font-bold mt-10 !text-[#F4C300] text-center px-4"
                 x-text="current.pangungusap"></h1>
 
             <!-- Feedback -->
@@ -411,7 +411,7 @@
 
             <!-- Question -->
             <div class="mt-10 max-w-2xl px-4">
-                <h2 class="text-5xl font-bold !text-[#F4C300] mb-6 text-center"
+                <h2 class="!text-lg sm:!text-xl md:!text-2xl lg:!text-2xl font-bold !text-[#F4C300] mb-6 text-center"
                     x-text="current.tanong"></h2>
             </div>
 
@@ -430,7 +430,7 @@
             </div>
 
             <!-- Instruction -->
-            <p class="w-96 text-lg text-center" x-show="!confirmed">
+            <p class="w-96 !text-base sm:!text-lg md:!text-lg lg:!text-xl text-center" x-show="!confirmed">
                 Sagutin ang tanong sa pamamagitan ng pagsulat ng iyong sagot sa ibaba.
             </p>
 

@@ -199,18 +199,18 @@
 
                     <!-- Incomplete Word with Input -->
                     <div class="text-center">
-                        <p class="text-xl mb-4 font-semibold">Punan ang nawawalang pantig:</p>
+                        <p class="!text-base sm:!text-lg md:!text-lg lg:!text-xl mb-4 font-semibold">Punan ang nawawalang pantig:</p>
                         <div class="flex items-center justify-center gap-2">
                             <template x-for="(part, index) in current.word.split('__')" :key="index">
                                 <div class="flex items-center">
-                                    <span class="text-5xl font-bold !text-[#F4C300]" x-text="part"></span>
+                                    <span class="!text-4xl sm:!text-5xl md:!text-6xl lg:!text-6xl font-bold !text-[#F4C300]" x-text="part"></span>
                                     <template x-if="index < current.word.split('__').length - 1">
                                         <input 
                                             type="text" 
                                             x-model="userInput"
                                             :disabled="confirmed"
                                             @keyup.enter="!confirmed && userInput.trim() && confirm()"
-                                            class="w-24 h-16 text-4xl font-bold text-center border-4 border-[#F4C300] rounded-md mx-1 focus:outline-none focus:ring-4 focus:ring-yellow-300 disabled:bg-gray-100"
+                                            class="w-24 h-16 !text-2xl sm:!text-3xl md:!text-4xl lg:!text-4xl font-bold text-center border-4 border-[#F4C300] rounded-md mx-1 focus:outline-none focus:ring-4 focus:ring-yellow-300 disabled:bg-gray-100"
                                             maxlength="3"
                                         >
                                     </template>
@@ -222,7 +222,7 @@
                     <!-- Feedback -->
                     <div x-show="confirmed"
                          x-transition
-                         class="px-6 py-3 text-white rounded-lg shadow-md text-lg font-semibold"
+                         class="px-6 py-3 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold"
                          :class="isCorrect ? 'bg-green-500' : 'bg-red-500'">
                         <span x-show="isCorrect">
                             ✅ Tama!
@@ -235,7 +235,7 @@
                     <!-- Confirm Button -->
                     <button x-show="userInput.trim() && !confirmed"
                             @click="confirm" 
-                            class="px-8 py-3 bg-[#F4C300] text-black font-bold rounded-lg hover:opacity-90 transition-all">
+                            class="px-8 py-3 bg-[#F4C300] text-black font-bold rounded-lg hover:opacity-90 transition-all !text-base sm:!text-lg md:!text-lg lg:!text-xl">
                         Kumpirmahin
                     </button>
 
@@ -247,23 +247,23 @@
                 <div class="flex-1 flex flex-col items-center gap-10">
 
                     <!-- Full Word -->
-                    <h1 class="!text-7xl !font-bold !text-[#F4C300] mt-10" x-text="current.full_word"></h1>
+                    <h1 class="!text-6xl sm:!text-7xl md:!text-8xl lg:!text-8xl !font-bold !text-[#F4C300] mt-10" x-text="current.full_word"></h1>
                     
                     <!-- Feedback -->
                     <div x-show="confirmed" 
                          x-transition
                          class="w-full max-w-lg">
                         <div x-show="isCorrect"
-                             class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
+                             class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
                             ✅ Tama!
-                            <div class="text-sm mt-2">
+                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
                                 Narinig: "<span x-text="transcription"></span>"
                             </div>
                         </div>
                         <div x-show="!isCorrect"
-                             class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
+                             class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
                             ❌ Mali
-                            <div class="text-sm mt-2">
+                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
                                 <div>Narinig: "<span x-text="transcription"></span>"</div>
                                 <div>Dapat: "<span x-text="current.full_word"></span>"</div>
                             </div>

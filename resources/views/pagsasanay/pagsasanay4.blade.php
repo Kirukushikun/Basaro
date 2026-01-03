@@ -179,32 +179,32 @@
             <div class="flex gap-2 items-center">
                 <template x-for="(s, index) in current.syllables" :key="index">
                     <div class="flex items-center gap-2">
-                        <div class="items-center justify-center alphabet !text-8xl">
+                        <div class="items-center justify-center alphabet !text-6xl sm:!text-7xl md:!text-8xl lg:!text-8xl">
                             <span x-text="s"></span>
                         </div>
-                        <span x-show="index < current.syllables.length - 1" class="text-4xl font-bold !text-[#F4C300]">+</span>
+                        <span x-show="index < current.syllables.length - 1" class="!text-2xl sm:!text-3xl md:!text-4xl lg:!text-4xl font-bold !text-[#F4C300]">+</span>
                     </div>
                 </template>
             </div>
 
             <!-- Formed Word (shown after confirmation) -->
-            <p x-show="confirmed" x-transition class="text-3xl font-extrabold !text-[#F4C300]" x-text="word"></p>
+            <p x-show="confirmed" x-transition class="!text-2xl sm:!text-3xl md:!text-4xl lg:!text-5xl font-extrabold !text-[#F4C300]" x-text="word"></p>
 
             <!-- Feedback -->
             <div x-show="confirmed" 
                  x-transition
                  class="w-full max-w-lg">
                 <div x-show="isCorrect"
-                     class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
+                     class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
                     ✅ Tama!
-                    <div class="text-sm mt-2">
+                    <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
                         Narinig: "<span x-text="transcription"></span>"
                     </div>
                 </div>
                 <div x-show="!isCorrect"
-                     class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
+                     class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
                     ❌ Mali
-                    <div class="text-sm mt-2">
+                    <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
                         <div>Narinig: "<span x-text="transcription"></span>"</div>
                         <div>Dapat: "<span x-text="current.answer"></span>"</div>
                     </div>
@@ -212,7 +212,7 @@
             </div>
 
             <!-- Instruction -->
-            <p x-show="!confirmed" class="w-96 text-center text-lg">
+            <p x-show="!confirmed" class="w-96 !text-base sm:!text-lg md:!text-lg lg:!text-xl text-center">
                 Pagdugtungin ang mga pantig upang makabuo ng salita. Pagkatapos ay subukan mo itong basahin.
             </p>
 

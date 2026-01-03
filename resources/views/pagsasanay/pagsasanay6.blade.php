@@ -216,16 +216,16 @@
                     <div class="flex gap-2 items-center">
                         <template x-for="(s, index) in current.syllables" :key="index">
                             <div class="flex items-center gap-2">
-                                <div class="items-center justify-center alphabet !text-8xl">
+                                <div class="items-center justify-center alphabet !text-6xl sm:!text-7xl md:!text-8xl lg:!text-8xl">
                                     <span x-text="s"></span>
                                 </div>
-                                <span x-show="index < current.syllables.length - 1" class="text-4xl font-bold !text-[#F4C300]">+</span>
+                                <span x-show="index < current.syllables.length - 1" class="!text-2xl sm:!text-3xl md:!text-4xl lg:!text-4xl font-bold !text-[#F4C300]">+</span>
                             </div>
                         </template>
                     </div>
 
                     <!-- Formed Word -->
-                    <p x-show="confirmed" x-transition class="text-3xl font-extrabold !text-[#F4C300]" x-text="word"></p>
+                    <p x-show="confirmed" x-transition class="!text-2xl sm:!text-3xl md:!text-4xl lg:!text-5xl font-extrabold !text-[#F4C300]" x-text="word"></p>
 
                     <!-- Feedback -->
                     <div x-show="confirmed" 
@@ -249,7 +249,7 @@
                     </div>
 
                     <!-- Instruction -->
-                    <p x-show="!confirmed" class="w-96 text-center text-lg">
+                    <p x-show="!confirmed" class="w-96 !text-base sm:!text-lg md:!text-lg lg:!text-xl text-center">
                         Pagdugtungin ang mga pantig upang makabuo ng salita. Pagkatapos ay subukan mo itong basahin.
                     </p>
 
@@ -297,7 +297,7 @@
                 <div class="flex-1 flex flex-col items-center gap-10">
 
                     <!-- Parirala -->
-                    <h1 class="text-7xl font-bold mt-10 !text-[#F4C300]"
+                    <h1 class="!text-4xl sm:!text-5xl md:!text-6xl lg:!text-7xl font-bold mt-10 !text-[#F4C300]"
                         x-text="current.parirala"></h1>
                         
                     <!-- Feedback -->
