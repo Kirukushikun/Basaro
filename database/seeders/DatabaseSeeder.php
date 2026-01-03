@@ -20,30 +20,31 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        $user = User::create(
-            [
+        $user = User::create([
             'name' => 'Iverson Guno',
             'email' => 'i.guno@bfcgroup.org',
             'password' => Hash::make('Brookside2025'),
-            ],
-            [
+        ]);
+
+        User::create([
             'name' => 'Ishi Robles',
             'email' => 'i.robles@gmail.com',
             'password' => Hash::make('Kaytobilang'),
-            ],
-            [
+        ]);
+
+        User::create([
             'name' => 'Juan Dela Cruz',
             'email' => 'j.dela_cruz@bfcgroup.org',
             'password' => Hash::make('password123'),
-            ]
-        );
+        ]);
 
         Teacher::create([
             'name' => 'Iverson Guno',
             'email' => 'i.guno@bfcgroup.org',
             'password' => Hash::make('Brookside2025'),
-        ],
-        [
+        ]);
+
+        Teacher::create([
             'name' => 'Elvie Ramos',
             'email' => 'e.ramos@email.com',
             'password' => Hash::make('password123'),
