@@ -308,13 +308,13 @@
                             @touchstart.prevent="startRecording()"
                             @touchend.prevent="stopRecording()"
                             :disabled="confirmed || processing"
-                            class="relative bg-gray-500 p-6 rounded-full cursor-pointer transition-all hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                            class="relative bg-gray-500 px-3 py-2 rounded-full cursor-pointer transition-all hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
                             :class="{ 
                                 'scale-125 ring-4 ring-red-500 bg-red-500': recording,
                                 'animate-pulse': processing
                             }">
 
-                            <i class="fa-solid fa-microphone text-white text-3xl"
+                            <i class="fa-solid fa-microphone text-white text-lg"
                                :class="{ 'fa-spinner fa-spin': processing }"></i>
 
                             <div x-show="recording"

@@ -194,7 +194,10 @@
             @elseif($lesson == 13)
                 <!-- LESSON 13 - NO PAGTATAYA YET -->
                 <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-10 w-full px-4">
-                    <!-- Empty for now - awaiting content -->
+                    <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
+                        <p class="text-white mb-4"><strong>A.</strong> <span class="!text-gray-300">Punan mo ng wastong panlapi ang sumusunod na salitang- ugat.</span></p>
+                        <p class="text-white"><strong>B.</strong> <span class="!text-gray-300">Basahin mo ang mga nabuo mong salitang may panlapi.</span></p>
+                    </div>
                 </div>
 
             @elseif($lesson == 14)

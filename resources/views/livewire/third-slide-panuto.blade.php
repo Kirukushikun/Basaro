@@ -178,8 +178,7 @@
                 <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-10 w-full px-4">
                     <p class="text-lg font-semibold text-center max-w-2xl">Tayo ng magbasaro. Magbasa at maglaro.</p>
                     <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
-                        <p class="!text-gray-300 mb-4">Sasagutin natin ang mga tanong tungkol sa kuwento o talata na nabuo.</p>
-                        <p class="text-white"><strong>Panuto:</strong> <span class="!text-gray-300">Ilagay mo sa patlang ang iyong sagot. Pumili ka lamang sa mga nasa ibaba.</span></p>
+                        <p class="text-white"> <span class="!text-gray-300">Ilagay mo sa patlang ang iyong sagot. Pumili ka lamang sa mga nasa ibaba.</span></p>
                     </div>
                 </div>
 
@@ -198,7 +197,7 @@
                 <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-10 w-full px-4">
                     <p class="text-lg font-semibold text-center max-w-2xl">Tayo ng magbasaro. Magbasa at maglaro.</p>
                     <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
-                        <p class="!text-gray-300">Isulat ang nawawalang pantig. Basahin mo ang mabubuong salita. (Lagyan ng larawan ang mga salita)</p>
+                        <p class="!text-gray-300">Isulat ang nawawalang pantig. Basahin mo ang mabubuong salita.</p>
                     </div>
                 </div>
 

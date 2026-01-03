@@ -11,22 +11,254 @@ class ThirdSlide extends Component
 
     protected $questions = [
         1 => [
-            ['alpabeto' => 'S', 'answer' => 's'],
-            ['alpabeto' => 'M', 'answer' => 'm'],
-            ['alpabeto' => 'E', 'answer' => 'e'],
-            ['alpabeto' => 'T', 'answer' => 't'],
-            ['alpabeto' => 'A', 'answer' => 'a'],
-            ['alpabeto' => 'P', 'answer' => 'p'],
-            ['alpabeto' => 'D', 'answer' => 'd'],
-            ['alpabeto' => 'O', 'answer' => 'o'],
-            ['alpabeto' => 'L', 'answer' => 'l'],
-            ['alpabeto' => 'W', 'answer' => 'w'],
-            ['alpabeto' => 'I', 'answer' => 'i'],
-            ['alpabeto' => 'B', 'answer' => 'b'],
-            ['alpabeto' => 'U', 'answer' => 'u'],
-            ['alpabeto' => 'G', 'answer' => 'g'],
-            ['alpabeto' => 'N', 'answer' => 'n'],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'M',
+                'answer' => 'm'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'S',
+                'answer' => 's'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'A',
+                'answer' => 'a'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'I',
+                'answer' => 'i'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'O',
+                'answer' => 'o'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'B',
+                'answer' => 'b'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'E',
+                'answer' => 'e'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'U',
+                'answer' => 'u'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'T',
+                'answer' => 't'
+            ],
+
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'K',
+                'answer' => 'k'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'L',
+                'answer' => 'l'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'Y',
+                'answer' => 'y'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'N',
+                'answer' => 'n'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'G',
+                'answer' => 'g'
+            ],
+            [
+                'alpabeto' => 'NG', 'answer' => 'ng'],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'P',
+                'answer' => 'p'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'R',
+                'answer' => 'r'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'D',
+                'answer' => 'd'
+            ],
+
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'H',
+                'answer' => 'h'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'W',
+                'answer' => 'w'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'C',
+                'answer' => 'c'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'F',
+                'answer' => 'f'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'J',
+                'answer' => 'j'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'Ñ',
+                'answer' => 'ñ'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'Q',
+                'answer' => 'q'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'V',
+                'answer' => 'v'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'X',
+                'answer' => 'x'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'Z',
+                'answer' => 'z'
+            ],
+
+            [
+                'type' => 'mc_audio',
+                'audio' => 'audio/L1Q1.mp3',
+                'prompt' => 'Sa anong letra maririnig ang sumusunod na tunog?',
+                'choices' => ['A', 'T', 'S', 'E', 'M'],
+                'answer' => 'S',
+            ],
+            [
+                'type' => 'mc_audio',
+                'audio' => 'audio/L1Q2.mp3',
+                'prompt' => 'Anong letra ang iyong narinig?',
+                'choices' => ['D', 'M', 'O', 'A', 'P'],
+                'answer' => 'M',
+            ],
+            [
+                'type' => 'mc_audio',
+                'audio' => 'audio/L1Q3.mp3',
+                'prompt' => 'Pakinggan mabuti. Aling letra ang tumutunog?',
+                'choices' => ['B', 'E', 'G', 'I', 'U'],
+                'answer' => 'E',
+            ],
+            [
+                'type' => 'mc_audio',
+                'audio' => 'audio/L1Q4.mp3',
+                'prompt' => 'Sa anong letra ang tunog na narinig mo?',
+                'choices' => ['N', 'T', 'S', 'L', 'W'],
+                'answer' => 'T',
+            ],
+            [
+                'type' => 'mc_audio',
+                'audio' => 'audio/L1Q5.mp3',
+                'prompt' => 'Anong letra ang narinig?',
+                'choices' => ['I', 'U', 'A', 'O', 'E'],
+                'answer' => 'A',
+            ],
+            [
+                'type' => 'mc_audio',
+                'audio' => 'audio/L1Q6.mp3',
+                'prompt' => 'Piliin ang tamang letra.',
+                'choices' => ['M', 'G', 'P', 'B', 'D'],
+                'answer' => 'P',
+            ],
+            [
+                'type' => 'mc_audio',
+                'audio' => 'audio/L1Q7.mp3',
+                'prompt' => 'Anong letra ang tumunog?',
+                'choices' => ['B', 'N', 'D', 'P', 'T'],
+                'answer' => 'D',
+            ],
+            [
+                'type' => 'mc_audio',
+                'audio' => 'audio/L1Q8.mp3',
+                'prompt' => 'Makinig at piliin ang letra.',
+                'choices' => ['E', 'O', 'U', 'A', 'I'],
+                'answer' => 'O',
+            ],
+            [
+                'type' => 'mc_audio',
+                'audio' => 'audio/L1Q9.mp3',
+                'prompt' => 'Aling letra ang iyong narinig?',
+                'choices' => ['S', 'L', 'N', 'M', 'W'],
+                'answer' => 'L',
+            ],
+            [
+                'type' => 'mc_audio',
+                'audio' => 'audio/L1Q10.mp3',
+                'prompt' => 'Pakinggan ang tunog at pumili.',
+                'choices' => ['N', 'W', 'T', 'L', 'M'],
+                'answer' => 'W',
+            ],
+            [
+                'type' => 'mc_audio',
+                'audio' => 'audio/L1Q11.mp3',
+                'prompt' => 'Anong letra ang narinig mo?',
+                'choices' => ['O', 'I', 'U', 'E', 'A'],
+                'answer' => 'I',
+            ],
+            [
+                'type' => 'mc_audio',
+                'audio' => 'audio/L1Q12.mp3',
+                'prompt' => 'Piliin ang tamang letra.',
+                'choices' => ['G', 'B', 'M', 'D', 'P'],
+                'answer' => 'B',
+            ],
+            [
+                'type' => 'mc_audio',
+                'audio' => 'audio/L1Q13.mp3',
+                'prompt' => 'Anong letra ang tumunog?',
+                'choices' => ['E', 'O', 'U', 'A', 'I'],
+                'answer' => 'U',
+            ],
+            [
+                'type' => 'mc_audio',
+                'audio' => 'audio/L1Q14.mp3',
+                'prompt' => 'Makinig mabuti at piliin.',
+                'choices' => ['P', 'M', 'G', 'D', 'B'],
+                'answer' => 'G',
+            ],
+            [
+                'type' => 'mc_audio',
+                'audio' => 'audio/L1Q15.mp3',
+                'prompt' => 'Sa anong letra ang tunog?',
+                'choices' => ['W', 'S', 'N', 'L', 'M'],
+                'answer' => 'N',
+            ],
+
         ],
+
 
         2 => [
             // Part 1: Image Group Audio (5 questions - identify vowel sound)
@@ -582,150 +814,187 @@ class ThirdSlide extends Component
         12 => [
             [
                 'type' => 'fill_syllable',
-                'word' => 'bah__',
-                'full_word' => 'bahay',
+                'word' => 'Bah__',
+                'full_word' => 'Bahay',
                 'answer' => 'ay',
                 'image' => 'illustrations/bahay.png',
             ],
+            ['type' => 'read_word', 'full_word' => 'Bahay'],
+
             [
                 'type' => 'fill_syllable',
-                'word' => 'kah__',
-                'full_word' => 'kahaw',
+                'word' => 'Kah__',
+                'full_word' => 'Kahaw',
                 'answer' => 'aw',
                 'image' => 'illustrations/kahaw.png',
             ],
+            ['type' => 'read_word', 'full_word' => 'Kahaw'],
+
             [
                 'type' => 'fill_syllable',
-                'word' => 'kas__',
-                'full_word' => 'kasiw',
+                'word' => 'Kas__',
+                'full_word' => 'Kasiw',
                 'answer' => 'iw',
                 'image' => 'illustrations/kasiw.png',
             ],
+            ['type' => 'read_word', 'full_word' => 'Kasiw'],
+
             [
                 'type' => 'fill_syllable',
-                'word' => 'am__',
-                'full_word' => 'amoy',
+                'word' => 'Am__',
+                'full_word' => 'Amoy',
                 'answer' => 'oy',
                 'image' => 'illustrations/amoy.png',
             ],
+            ['type' => 'read_word', 'full_word' => 'Amoy'],
+
             [
                 'type' => 'fill_syllable',
-                'word' => 'b__wang',
-                'full_word' => 'buywang',
+                'word' => 'B__wang',
+                'full_word' => 'Buywang',
                 'answer' => 'uy',
                 'image' => 'illustrations/buywang.png',
             ],
+            ['type' => 'read_word', 'full_word' => 'Buywang'],
+
             [
                 'type' => 'fill_syllable',
-                'word' => 'kil__',
-                'full_word' => 'kilay',
+                'word' => 'Kil__',
+                'full_word' => 'Kilay',
                 'answer' => 'ay',
                 'image' => 'illustrations/kilay.png',
             ],
+            ['type' => 'read_word', 'full_word' => 'Kilay'],
+
             [
                 'type' => 'fill_syllable',
-                'word' => 'gul__',
-                'full_word' => 'gulay',
+                'word' => 'Gul__',
+                'full_word' => 'Gulay',
                 'answer' => 'ay',
                 'image' => 'illustrations/gulay.png',
             ],
+            ['type' => 'read_word', 'full_word' => 'Gulay'],
+
             [
                 'type' => 'fill_syllable',
-                'word' => 'tul__',
-                'full_word' => 'tulay',
+                'word' => 'Tul__',
+                'full_word' => 'Tulay',
                 'answer' => 'ay',
                 'image' => 'illustrations/tulay.png',
             ],
+            ['type' => 'read_word', 'full_word' => 'Tulay'],
+
             [
                 'type' => 'fill_syllable',
-                'word' => 'ar__',
-                'full_word' => 'araw',
+                'word' => 'Ar__',
+                'full_word' => 'Araw',
                 'answer' => 'aw',
                 'image' => 'illustrations/araw.png',
             ],
+            ['type' => 'read_word', 'full_word' => 'Araw'],
+
             [
                 'type' => 'fill_syllable',
-                'word' => 'bat__',
-                'full_word' => 'bata',
+                'word' => 'Bat__',
+                'full_word' => 'Bata',
                 'answer' => 'ay',
                 'image' => 'illustrations/bata.png',
             ],
+            ['type' => 'read_word', 'full_word' => 'Bata'],
         ],
 
         13 => [
             [
                 'type' => 'fill_syllable',
                 'word' => '__aka',
-                'full_word' => 'plaka',
+                'full_word' => 'Plaka',
                 'answer' => 'pl',
                 'image' => 'illustrations/plaka.png',
             ],
+            ['type' => 'read_word', 'full_word' => 'Plaka'],
+
             [
                 'type' => 'fill_syllable',
                 'word' => '__oke',
-                'full_word' => 'bloke',
+                'full_word' => 'Bloke',
                 'answer' => 'bl',
                 'image' => 'illustrations/bloke.png',
             ],
+            ['type' => 'read_word', 'full_word' => 'Bloke'],
+
             [
                 'type' => 'fill_syllable',
                 'word' => '__otsa',
-                'full_word' => 'brotsa',
+                'full_word' => 'Brotsa',
                 'answer' => 'br',
                 'image' => 'illustrations/brotsa.png',
             ],
+            ['type' => 'read_word', 'full_word' => 'Brotsa'],
+
             [
                 'type' => 'fill_syllable',
                 'word' => 'Ero__ano',
-                'full_word' => 'eroplano',
+                'full_word' => 'Eroplano',
                 'answer' => 'pl',
                 'image' => 'illustrations/eroplano.png',
             ],
+            ['type' => 'read_word', 'full_word' => 'Eroplano'],
+
             [
                 'type' => 'fill_syllable',
                 'word' => '__en',
-                'full_word' => 'tren',
+                'full_word' => 'Tren',
                 'answer' => 'tr',
                 'image' => 'illustrations/tren.png',
             ],
+            ['type' => 'read_word', 'full_word' => 'Tren'],
         ],
 
         14 => [
             [
                 'type' => 'fill_syllable',
                 'word' => '__bango',
-                'full_word' => 'mabango',
+                'full_word' => 'Mabango',
                 'answer' => 'ma',
                 'image' => 'illustrations/mabango.png',
             ],
+            ['type' => 'read_word', 'full_word' => 'Mabango'],
+
             [
                 'type' => 'fill_syllable',
                 'word' => '__taas',
-                'full_word' => 'mataas',
+                'full_word' => 'Mataas',
                 'answer' => 'ma',
                 'image' => 'illustrations/mataas.png',
             ],
+            ['type' => 'read_word', 'full_word' => 'Mataas'],
+
             [
                 'type' => 'fill_syllable',
                 'word' => '__dapa',
-                'full_word' => 'nadapa',
+                'full_word' => 'Nadapa',
                 'answer' => 'na',
                 'image' => 'illustrations/nadapa.png',
             ],
+            ['type' => 'read_word', 'full_word' => 'Nadapa'],
+
             [
                 'type' => 'fill_syllable',
                 'word' => '__sipag',
-                'full_word' => 'masipag',
+                'full_word' => 'Masipag',
                 'answer' => 'ma',
                 'image' => 'illustrations/masipag.png',
             ],
+            ['type' => 'read_word', 'full_word' => 'Masipag'],
+
             [
                 'type' => 'fill_syllable',
                 'word' => '__tiyaga',
-                'full_word' => 'matiyaga',
+                'full_word' => 'Matiyaga',
                 'answer' => 'ma',
                 'image' => 'illustrations/matiyaga.png',
             ],
+            ['type' => 'read_word', 'full_word' => 'Matiyaga'],
         ],
 
         15 => [

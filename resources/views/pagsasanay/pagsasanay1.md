@@ -1,3 +1,4 @@
+```html
 <script>
     document.addEventListener('alpine:init', () => {
         Alpine.data('pagsasanay1Data', (questions) => ({
@@ -244,9 +245,10 @@
     </template>
 
     <!-- Results Page -->
-    @include('partials.pagtataya-results')
+    @include('partials.pagsasanay-results')
 
     <!-- Navigation Buttons -->
-    @include('partials.pagtataya-navigation')
+    @include('partials.pagsasanay-navigation')
 
 </div>
+```

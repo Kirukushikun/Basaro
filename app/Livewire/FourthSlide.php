@@ -16,109 +16,116 @@ class FourthSlide extends Component
     public $questions = [
         1 => [
             [
-                'type' => 'mc_audio',
-                'audio' => 'audio/L1Q1.mp3',
-                'prompt' => 'Sa anong letra maririnig ang sumusunod na tunog?',
-                'choices' => ['S', 'M', 'E', 'T', 'A'],
-                'answer' => 'S',
+                'alpabeto' => 'M',
+                'answer' => 'm'
             ],
             [
-                'type' => 'mc_audio',
-                'audio' => 'audio/L1Q2.mp3',
-                'prompt' => 'Anong letra ang iyong narinig?',
-                'choices' => ['M', 'A', 'P', 'D', 'O'],
-                'answer' => 'M',
+                'alpabeto' => 'S',
+                'answer' => 's'
             ],
             [
-                'type' => 'mc_audio',
-                'audio' => 'audio/L1Q3.mp3',
-                'prompt' => 'Pakinggan mabuti. Aling letra ang tumutunog?',
-                'choices' => ['E', 'I', 'U', 'B', 'G'],
-                'answer' => 'E',
+                'alpabeto' => 'A',
+                'answer' => 'a'
             ],
             [
-                'type' => 'mc_audio',
-                'audio' => 'audio/L1Q4.mp3',
-                'prompt' => 'Sa anong letra ang tunog na narinig mo?',
-                'choices' => ['T', 'L', 'W', 'N', 'S'],
-                'answer' => 'T',
+                'alpabeto' => 'I',
+                'answer' => 'i'
             ],
             [
-                'type' => 'mc_audio',
-                'audio' => 'audio/L1Q5.mp3',
-                'prompt' => 'Anong letra ang narinig?',
-                'choices' => ['A', 'E', 'I', 'O', 'U'],
-                'answer' => 'A',
+                'alpabeto' => 'O',
+                'answer' => 'o'
             ],
             [
-                'type' => 'mc_audio',
-                'audio' => 'audio/L1Q6.mp3',
-                'prompt' => 'Piliin ang tamang letra.',
-                'choices' => ['P', 'B', 'D', 'G', 'M'],
-                'answer' => 'P',
+                'alpabeto' => 'B',
+                'answer' => 'b'
             ],
             [
-                'type' => 'mc_audio',
-                'audio' => 'audio/L1Q7.mp3',
-                'prompt' => 'Anong letra ang tumunog?',
-                'choices' => ['D', 'T', 'P', 'B', 'N'],
-                'answer' => 'D',
+                'alpabeto' => 'E',
+                'answer' => 'e'
             ],
             [
-                'type' => 'mc_audio',
-                'audio' => 'audio/L1Q8.mp3',
-                'prompt' => 'Makinig at piliin ang letra.',
-                'choices' => ['O', 'A', 'E', 'I', 'U'],
-                'answer' => 'O',
+                'alpabeto' => 'U',
+                'answer' => 'u'
             ],
             [
-                'type' => 'mc_audio',
-                'audio' => 'audio/L1Q9.mp3',
-                'prompt' => 'Aling letra ang iyong narinig?',
-                'choices' => ['L', 'W', 'M', 'N', 'S'],
-                'answer' => 'L',
+                'alpabeto' => 'T',
+                'answer' => 't'
+            ],
+
+            [
+                'alpabeto' => 'K',
+                'answer' => 'k'
             ],
             [
-                'type' => 'mc_audio',
-                'audio' => 'audio/L1Q10.mp3',
-                'prompt' => 'Pakinggan ang tunog at pumili.',
-                'choices' => ['W', 'L', 'M', 'N', 'T'],
-                'answer' => 'W',
+                'alpabeto' => 'L',
+                'answer' => 'l'
             ],
             [
-                'type' => 'mc_audio',
-                'audio' => 'audio/L1Q11.mp3',
-                'prompt' => 'Anong letra ang narinig mo?',
-                'choices' => ['I', 'A', 'E', 'O', 'U'],
-                'answer' => 'I',
+                'alpabeto' => 'Y',
+                'answer' => 'y'
             ],
             [
-                'type' => 'mc_audio',
-                'audio' => 'audio/L1Q12.mp3',
-                'prompt' => 'Piliin ang tamang letra.',
-                'choices' => ['B', 'P', 'D', 'G', 'M'],
-                'answer' => 'B',
+                'alpabeto' => 'N',
+                'answer' => 'n'
             ],
             [
-                'type' => 'mc_audio',
-                'audio' => 'audio/L1Q13.mp3',
-                'prompt' => 'Anong letra ang tumunog?',
-                'choices' => ['U', 'A', 'E', 'I', 'O'],
-                'answer' => 'U',
+                'alpabeto' => 'G',
+                'answer' => 'g'
             ],
             [
-                'type' => 'mc_audio',
-                'audio' => 'audio/L1Q14.mp3',
-                'prompt' => 'Makinig mabuti at piliin.',
-                'choices' => ['G', 'B', 'D', 'P', 'M'],
-                'answer' => 'G',
+                'alpabeto' => 'NG', 'answer' => 'ng'],
+            [
+                'alpabeto' => 'P',
+                'answer' => 'p'
             ],
             [
-                'type' => 'mc_audio',
-                'audio' => 'audio/L1Q15.mp3',
-                'prompt' => 'Sa anong letra ang tunog?',
-                'choices' => ['N', 'M', 'L', 'W', 'S'],
-                'answer' => 'N',
+                'alpabeto' => 'R',
+                'answer' => 'r'
+            ],
+            [
+                'alpabeto' => 'D',
+                'answer' => 'd'
+            ],
+
+            [
+                'alpabeto' => 'H',
+                'answer' => 'h'
+            ],
+            [
+                'alpabeto' => 'W',
+                'answer' => 'w'
+            ],
+            [
+                'alpabeto' => 'C',
+                'answer' => 'c'
+            ],
+            [
+                'alpabeto' => 'F',
+                'answer' => 'f'
+            ],
+            [
+                'alpabeto' => 'J',
+                'answer' => 'j'
+            ],
+            [
+                'alpabeto' => 'Ñ',
+                'answer' => 'ñ'
+            ],
+            [
+                'alpabeto' => 'Q',
+                'answer' => 'q'
+            ],
+            [
+                'alpabeto' => 'V',
+                'answer' => 'v'
+            ],
+            [
+                'alpabeto' => 'X',
+                'answer' => 'x'
+            ],
+            [
+                'alpabeto' => 'Z',
+                'answer' => 'z'
             ],
         ],
 
