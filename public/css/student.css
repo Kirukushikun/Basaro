@@ -7,6 +7,10 @@
     --card-color: #31343A;
 }
 
+body {
+    zoom: 0.85; /* Makes EVERYTHING 15% smaller instantly */
+}
+
 *{
     font-family: "Nunito";
     transition: 0.3s ease;
@@ -39,7 +43,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 30px 0;
+    padding: 20px 0;
 }
 
 .nav-broken{
@@ -47,18 +51,18 @@ body {
 }
 
 .logo {
-    width: 200px;
+    width: 150px;
 }
 
 .nav-links {
     display: flex;
-    gap: 40px;
+    gap: 25px;
 }
 
 .nav-links a {
     color: white;
     text-decoration: none;
-    padding: 15px 0;
+    padding: 10px 0;
 }
 
 .nav-links a:hover {
@@ -87,7 +91,7 @@ body {
 
 .card{
     background-color: var(--card-color);
-    padding: 40px;
+    padding: 25px;
     border-radius: 15px;
 }
 
@@ -153,7 +157,7 @@ button{
 /* Scrollbar Styling */
 .lessons::-webkit-scrollbar {
     height: 15px;
-    width: 15px;
+    width: 10px;
 }
 .lessons::-webkit-scrollbar-track {
     background: var(--card-color);

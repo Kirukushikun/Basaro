@@ -1,5 +1,5 @@
-<main class="flex-1 overflow-hidden pb-[40px] px-4 md:px-0">
-    <div class="lessons grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:pr-5 gap-4 md:gap-7 h-full overflow-y-auto">
+<main class="flex-1 overflow-hidden pb-[30px] px-3">
+    <div class="lessons grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 pr-4 gap-5 h-full overflow-y-auto">
 
         @foreach($lessons as $lesson)
             @php
@@ -19,13 +19,13 @@
                 {{-- LOCK OVERLAY --}}
                 @if(!$isUnlocked)
                     <div class="absolute inset-0 rounded-2xl bg-black/50 flex items-center justify-center z-10">
-                        <i class="fa-solid fa-lock text-white text-4xl md:text-5xl"></i>
+                        <i class="fa-solid fa-lock text-white text-3xl"></i>
                     </div>
                 @endif
 
                 <div>
-                    <div class="flex items-start justify-between mb-3 md:mb-4 gap-2">
-                        <h1 class="text-lg md:text-xl font-bold">{{ $lesson->title }}</h1>
+                    <div class="flex items-start justify-between mb-3 gap-2">
+                        <h1 class="text-base font-bold">{{ $lesson->title }}</h1>
                         @php
                             // Color progression based on level
                             $levelColors = [
@@ -49,15 +49,15 @@
                             $colorClass = $levelColors[$lesson->order] ?? 'border-yellow-500 bg-yellow-900 text-yellow-100';
                         @endphp
 
-                        <h2 class="text-xs md:text-sm whitespace-nowrap w-fit px-2 md:px-3 py-1 border-2 rounded-md {{ $colorClass }}">
+                        <h2 class="text-xs whitespace-nowrap w-fit px-2 py-1 border-2 rounded-md {{ $colorClass }}">
                             Level {{ $lesson->order }}
                         </h2>
                     </div>
 
-                    <p class="mb-4 md:mb-6 text-sm md:text-base">{{ $lesson->description }}</p>
+                    <p class="mb-4 text-sm">{{ $lesson->description }}</p>
                 </div>
 
-                <div class="flex flex-col-reverse sm:flex-row items-start sm:items-center justify-between gap-3">
+                <div class="flex flex-col-reverse sm:flex-row items-start sm:items-center justify-between gap-2">
                     @php
                         $user = Auth::user();
                         $isCurrentLesson = $user->current_lesson == $lesson->id;
@@ -65,20 +65,20 @@
                     @endphp
 
                     @if ($isCurrentLesson && $progress == 25)
-                        <button class="w-full sm:w-fit !text-black px-3 md:px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold text-sm md:text-base" onclick="window.location.href='/lesson-view?lesson={{$lesson->id}}&slide=second-slide'">
+                        <button class="w-full sm:w-fit !text-black px-3 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold text-sm" onclick="window.location.href='/lesson-view?lesson={{$lesson->id}}&slide=second-slide'">
                             Continue Lesson
                         </button>
                     @elseif ($isCurrentLesson && $progress == 50)
-                        <button class="w-full sm:w-fit !text-black px-3 md:px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold text-sm md:text-base" onclick="window.location.href='/lesson-view?lesson={{$lesson->id}}&slide=third-slide'">
+                        <button class="w-full sm:w-fit !text-black px-3 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold text-sm" onclick="window.location.href='/lesson-view?lesson={{$lesson->id}}&slide=third-slide'">
                             Continue Lesson
                         </button>
                     @elseif ($isCurrentLesson && $progress == 75)
-                        <button class="w-full sm:w-fit !text-black px-3 md:px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold text-sm md:text-base" onclick="window.location.href='/lesson-view?lesson={{$lesson->id}}&slide=fourth-slide'">
+                        <button class="w-full sm:w-fit !text-black px-3 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold text-sm" onclick="window.location.href='/lesson-view?lesson={{$lesson->id}}&slide=fourth-slide'">
                             Continue Lesson
                         </button>
                     @elseif ($track && $track->status === 'completed')
                         <button
-                            class="w-full sm:w-fit px-3 md:px-4 py-2 bg-[#F4C300] !text-black rounded-md font-bold text-sm md:text-base {{ !$isUnlocked ? 'opacity-50 cursor-not-allowed' : '' }}"
+                            class="w-full sm:w-fit px-3 py-2 bg-[#F4C300] !text-black rounded-md font-bold text-sm {{ !$isUnlocked ? 'opacity-50 cursor-not-allowed' : '' }}"
                             @if(!$isUnlocked) disabled @endif
                             onclick="window.location.href='/lesson-view?lesson={{ $lesson->id }}&slide=first-slide'"
                         >
@@ -86,7 +86,7 @@
                         </button>
                     @else
                         <button
-                            class="w-full sm:w-fit px-3 md:px-4 py-2 bg-[#F4C300] !text-black rounded-md font-bold text-sm md:text-base {{ !$isUnlocked ? 'opacity-50 cursor-not-allowed' : '' }}"
+                            class="w-full sm:w-fit px-3 py-2 bg-[#F4C300] !text-black rounded-md font-bold text-sm {{ !$isUnlocked ? 'opacity-50 cursor-not-allowed' : '' }}"
                             @if(!$isUnlocked) disabled @endif
                             onclick="window.location.href='/lesson-view?lesson={{ $lesson->id }}&slide=first-slide'"
                         >
@@ -100,15 +100,15 @@
                             $passingScore = $lesson->total_scores * 0.70;
                             $isPassing = $track->score > $passingScore;
                         @endphp
-                        <p class="text-sm md:text-base {{ $isPassing ? 'text-green-400' : 'text-red-400' }}">
+                        <p class="text-sm {{ $isPassing ? 'text-green-400' : 'text-red-400' }}">
                             {{ $track->score }} / {{ $lesson->total_scores }}
                         </p>
                     @elseif($isCurrentLesson && $progress > 0)
-                        <p class="text-sm md:text-base">
+                        <p class="text-sm">
                             In progress
                         </p>
                     @else
-                        <p class="text-sm md:text-base">
+                        <p class="text-sm">
                             Not started
                         </p>
                     @endif

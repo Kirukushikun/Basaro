@@ -90,10 +90,10 @@
         <nav class="nav hidden md:flex">
             <img class="logo" src="{{asset('img/logo-light.png')}}" alt="">
             <div class="nav-links" id="nav-links">
-                <a href="/dashboard" class="!text-base lg:!text-lg {{ request()->is('dashboard*') ? 'active' : '' }}">Dashboard</a>
-                <a href="/lessons" class="!text-base lg:!text-lg {{ request()->is('lessons*') || request()->is('lesson-view*') ? 'active' : '' }}">Lessons</a>
-                <a href="/achievements" class="!text-base lg:!text-lg {{ request()->is('achievements*') ? 'active' : '' }}">Achievements</a>
-                <a href="/profile" class="!text-base lg:!text-lg {{ request()->is('profile*') ? 'active' : '' }}">Profile</a>
+                <a href="/dashboard" class="!text-xs  {{ request()->is('dashboard*') ? 'active' : '' }}">Dashboard</a>
+                <a href="/lessons" class="!text-xs  {{ request()->is('lessons*') || request()->is('lesson-view*') ? 'active' : '' }}">Lessons</a>
+                <a href="/achievements" class="!text-xs  {{ request()->is('achievements*') ? 'active' : '' }}">Achievements</a>
+                <a href="/profile" class="!text-xs  {{ request()->is('profile*') ? 'active' : '' }}">Profile</a>
             </div>
         </nav>
 
