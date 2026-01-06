@@ -1,5 +1,5 @@
 <!-- Pagsasanay navigation -->
-<div x-show="page <= questions.length" class="absolute -bottom-[110px] flex items-center justify-between w-[450px]">
+<div x-show="page <= questions.length" class="absolute -bottom-[110px] flex items-center justify-between w-full">
     <p><span x-text="page"></span>/<span x-text="questions.length"></span></p>
     <div class="flex gap-3">
         <button x-show="page > 1" @click="page--; reset()" class="px-4 py-2 border border-gray-500 text-white rounded-md font-bold whitespace-nowrap">

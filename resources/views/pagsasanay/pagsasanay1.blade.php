@@ -13,11 +13,18 @@
             // For MC questions
             selected: null,
             showFeedback: false,
+            // Sound enable overlay - only shows once
+            soundEnabled: false,
+            currentPanutoAudio: null,
 
             get current() {
                 return this.page <= this.questions.length
                     ? this.questions[this.page - 1]
                     : null
+            },
+
+            get isPanuto() {
+                return this.current && this.current.type === 'panuto';
             },
 
             get isAlphabetType() {
@@ -26,6 +33,11 @@
 
             get isMcAudioType() {
                 return this.current && this.current.type === 'mc_audio';
+            },
+
+            get showSoundOverlay() {
+                // Only show if sound not enabled AND it's the first panuto
+                return !this.soundEnabled && this.isPanuto;
             },
 
             get isCorrect() {
@@ -47,6 +59,15 @@
 
             normalizeText(text) {
                 return text.toLowerCase().trim().replace(/[.,!?]/g, '');
+            },
+
+            enableSound() {
+                this.soundEnabled = true;
+                // Play the panuto audio if it exists
+                if (this.current && this.current.audio) {
+                    const audio = new Audio(this.current.audio);
+                    audio.play();
+                }
             },
 
             async startRecording() {
@@ -177,7 +198,20 @@
             },
 
             next() {
-                if (this.confirmed) {
+                // Stop panuto audio if playing
+                if (this.currentPanutoAudio) {
+                    this.currentPanutoAudio.pause();
+                    this.currentPanutoAudio.currentTime = 0; // Reset to beginning
+                    this.currentPanutoAudio = null;
+                }
+                // Auto-play next panuto audio if applicable
+                this.$nextTick(() => {
+                    if (this.soundEnabled && this.isPanuto && this.current && this.current.audio) {
+                        this.currentPanutoAudio = new Audio(this.current.audio);
+                        this.currentPanutoAudio.play();
+                    }
+                });
+                if (this.confirmed || this.isPanuto) {
                     this.page++;
                     this.reset();
                 }
@@ -196,6 +230,7 @@
             replay() {
                 this.page = 1;
                 this.score = 0;
+                this.soundEnabled = false; // Reset sound for replay
                 this.reset();
             }
         }))
@@ -206,8 +241,37 @@
 <div class="relative flex flex-col items-center"
      x-data='pagsasanay1Data(@json($questions))'>
 
+
+    <template x-if="showSoundOverlay">
+        <div class="absolute inset-0 bg-black/90 flex items-center justify-center z-50">
+            <button 
+                @click="enableSound()" 
+                class="px-6 py-3 bg-[#F4C300] !text-black font-bold rounded-lg text-lg shadow-lg hover:bg-yellow-500 transition-all"
+            >
+                <i class="fa-solid fa-volume-high !text-black"></i> I-enable ang Tunog
+            </button>
+        </div>
+    </template>
+
     <template x-if="current">
         <div class="flex-1 flex flex-col items-center gap-10 w-full">
+
+            <!-- PANUTO TYPE -->
+            <template x-if="isPanuto">
+                <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-5 w-full px-4">
+                    <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
+                        <h2 class="text-center font-bold text-2xl !text-[#F4C300] mb-2">
+                            PANUTO
+                        </h2>
+                        <p class="text-white mb-4"><strong x-text="current.header"></strong></p>
+                        <p class="!text-gray-300 mb-4" x-text="current.body"></p>
+                    </div>
+
+                    <button @click="next" class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold whitespace-nowrap">
+                        Naiintindihan ko ang panuto
+                    </button>
+                </div>
+            </template>    
 
             <!-- ALPHABET TYPE -->
             <template x-if="isAlphabetType">

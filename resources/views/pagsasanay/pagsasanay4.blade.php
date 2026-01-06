@@ -3,7 +3,7 @@
 </script>
 
 <!-- Pagsasanay 4 -->
-<div class="relative flex flex-col items-center"
+<div class="relative"
      x-data="{
         page: 1,
         confirmed: false,
@@ -14,6 +14,26 @@
         mediaRecorder: null,
         audioChunks: [],
         questions: window.pagsasanay4Questions,
+        soundEnabled: false,
+        currentPanutoAudio: null,
+
+        get isPanuto() {
+            return this.current && this.current.type === 'panuto';
+        },
+
+        get showSoundOverlay() {
+            // Only show if sound not enabled AND it's the first panuto
+            return !this.soundEnabled && this.isPanuto;
+        },
+
+        enableSound() {
+            this.soundEnabled = true;
+            // Play the panuto audio if it exists
+            if (this.current && this.current.audio) {
+                this.currentPanutoAudio = new Audio(this.current.audio);
+                this.currentPanutoAudio.play();
+            }
+        },
 
         get current() {
             return this.page <= this.questions.length
@@ -150,9 +170,45 @@
         },
 
         next() {
-            if (this.confirmed) {
+            // For panuto, allow navigation even if not confirmed
+            if (this.isPanuto && !this.confirmed) {
                 this.page++;
                 this.reset();
+                
+                // Stop panuto audio if playing
+                if (this.currentPanutoAudio) {
+                    this.currentPanutoAudio.pause();
+                    this.currentPanutoAudio.currentTime = 0;
+                    this.currentPanutoAudio = null;
+                }
+
+                // Auto-play next panuto audio if applicable
+                this.$nextTick(() => {
+                    if (this.soundEnabled && this.isPanuto && this.current && this.current.audio) {
+                        this.currentPanutoAudio = new Audio(this.current.audio);
+                        this.currentPanutoAudio.play();
+                    }
+                });
+            }
+            // For regular questions, only proceed if confirmed
+            else if (this.confirmed) {
+                this.page++;
+                this.reset();
+                
+                // Stop panuto audio if playing
+                if (this.currentPanutoAudio) {
+                    this.currentPanutoAudio.pause();
+                    this.currentPanutoAudio.currentTime = 0;
+                    this.currentPanutoAudio = null;
+                }
+
+                // Auto-play next panuto audio if applicable
+                this.$nextTick(() => {
+                    if (this.soundEnabled && this.isPanuto && this.current && this.current.audio) {
+                        this.currentPanutoAudio = new Audio(this.current.audio);
+                        this.currentPanutoAudio.play();
+                    }
+                });
             }
         },
 
@@ -167,94 +223,130 @@
         replay() {
             this.page = 1;
             this.score = 0;
+            this.soundEnabled = false; // Reset sound for replay
             this.reset();
         }
      }">
 
-    <!-- Question Container -->
-    <template x-if="current">
-        <div class="flex-1 flex flex-col items-center gap-8 mt-10">
+    <template x-if="current"> 
+        <div class="flex-1 flex flex-col items-center gap-10 w-full">
+            
+            <template x-if="showSoundOverlay">
+                <div class="absolute inset-0 bg-black/60 flex items-center justify-center z-50 rounded-lg ">
+                    <button 
+                        @click="enableSound()" 
+                        class="px-6 py-3 bg-[#F4C300] !text-black font-bold rounded-lg text-lg shadow-lg hover:bg-yellow-500 transition-all"
+                    >
+                        <i class="fa-solid fa-volume-high !text-black"></i> I-enable ang Tunog
+                    </button>
+                </div>
+            </template>
 
-            <!-- Syllables with + sign -->
-            <div class="flex gap-2 items-center">
-                <template x-for="(s, index) in current.syllables" :key="index">
-                    <div class="flex items-center gap-2">
-                        <div class="items-center justify-center alphabet !text-6xl sm:!text-7xl md:!text-8xl lg:!text-8xl">
-                            <span x-text="s"></span>
+            <!-- PANUTO TYPE -->
+            <template x-if="isPanuto">
+                <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-5 w-full px-4">
+                    <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
+                        <h2 class="text-center font-bold text-2xl !text-[#F4C300] mb-2">
+                            PANUTO
+                        </h2>
+                        <p class="text-white mb-4"><strong x-text="current.header"></strong></p>
+                        <p class="!text-gray-300 mb-4" x-text="current.body"></p>
+                    </div>
+
+                    <button @click="next" class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold whitespace-nowrap mb-5">
+                        Naiintindihan ko ang panuto
+                    </button>
+                </div>
+            </template>    
+            
+            <!-- Question Container -->
+            <template x-if="!current.type">
+                <div class="flex-1 flex flex-col items-center gap-8 mt-10">
+
+                    <!-- Syllables with + sign -->
+                    <div class="flex gap-2 items-center">
+                        <template x-for="(s, index) in current.syllables" :key="index">
+                            <div class="flex items-center gap-2">
+                                <div class="items-center justify-center alphabet !text-6xl sm:!text-7xl md:!text-8xl lg:!text-8xl">
+                                    <span x-text="s"></span>
+                                </div>
+                                <span x-show="index < current.syllables.length - 1" class="!text-2xl sm:!text-3xl md:!text-4xl lg:!text-4xl font-bold !text-[#F4C300]">+</span>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- Formed Word (shown after confirmation) -->
+                    <p x-show="confirmed" x-transition class="!text-2xl sm:!text-3xl md:!text-4xl lg:!text-5xl font-extrabold !text-[#F4C300]" x-text="word"></p>
+
+                    <!-- Feedback -->
+                    <div x-show="confirmed" 
+                        x-transition
+                        class="w-full max-w-lg">
+                        <div x-show="isCorrect"
+                            class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            ✅ Tama!
+                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
+                                Narinig: "<span x-text="transcription"></span>"
+                            </div>
                         </div>
-                        <span x-show="index < current.syllables.length - 1" class="!text-2xl sm:!text-3xl md:!text-4xl lg:!text-4xl font-bold !text-[#F4C300]">+</span>
+                        <div x-show="!isCorrect"
+                            class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            ❌ Mali
+                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
+                                <div>Narinig: "<span x-text="transcription"></span>"</div>
+                                <div>Dapat: "<span x-text="current.answer"></span>"</div>
+                            </div>
+                        </div>
                     </div>
-                </template>
-            </div>
 
-            <!-- Formed Word (shown after confirmation) -->
-            <p x-show="confirmed" x-transition class="!text-2xl sm:!text-3xl md:!text-4xl lg:!text-5xl font-extrabold !text-[#F4C300]" x-text="word"></p>
-
-            <!-- Feedback -->
-            <div x-show="confirmed" 
-                 x-transition
-                 class="w-full max-w-lg">
-                <div x-show="isCorrect"
-                     class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
-                    ✅ Tama!
-                    <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
-                        Narinig: "<span x-text="transcription"></span>"
-                    </div>
-                </div>
-                <div x-show="!isCorrect"
-                     class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
-                    ❌ Mali
-                    <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
-                        <div>Narinig: "<span x-text="transcription"></span>"</div>
-                        <div>Dapat: "<span x-text="current.answer"></span>"</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Instruction -->
-            <p x-show="!confirmed" class="w-96 !text-base sm:!text-lg md:!text-lg lg:!text-xl text-center">
-                Pagdugtungin ang mga pantig upang makabuo ng salita. Pagkatapos ay subukan mo itong basahin.
-            </p>
-
-            <!-- Microphone Button -->
-            <div x-show="!confirmed" class="flex flex-col items-center gap-4">
-                <button
-                    @mousedown="startRecording()"
-                    @mouseup="stopRecording()"
-                    @touchstart.prevent="startRecording()"
-                    @touchend.prevent="stopRecording()"
-                    :disabled="confirmed || processing"
-                    class="relative bg-gray-500 px-3 py-2 rounded-full cursor-pointer transition-all hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
-                    :class="{ 
-                        'scale-125 ring-4 ring-red-500 bg-red-500': recording,
-                        'animate-pulse': processing
-                    }">
-
-                    <i class="fa-solid fa-microphone text-white text-xl"
-                       :class="{ 'fa-spinner fa-spin': processing }"></i>
-
-                    <!-- Recording indicator -->
-                    <div x-show="recording"
-                         class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
-                    </div>
-                </button>
-
-                <!-- Status text -->
-                <div class="text-center">
-                    <p x-show="recording" class="text-red-500 font-semibold animate-pulse">
-                        🔴 Nagrerekord...
+                    <!-- Instruction -->
+                    <p x-show="!confirmed" class="w-96 !text-base sm:!text-lg md:!text-lg lg:!text-xl text-center">
+                        Pagdugtungin ang mga pantig upang makabuo ng salita. Pagkatapos ay subukan mo itong basahin.
                     </p>
-                    <p x-show="processing" class="text-blue-500 font-semibold">
-                        ⏳ Pinoproseso...
-                    </p>
-                    <p x-show="!recording && !processing" class="!text-gray-400 text-xs">
-                        Pindutin at hawakan ang mikropono habang nagbibigkas
-                    </p>
+
+                    <!-- Microphone Button -->
+                    <div x-show="!confirmed" class="flex flex-col items-center gap-4">
+                        <button
+                            @mousedown="startRecording()"
+                            @mouseup="stopRecording()"
+                            @touchstart.prevent="startRecording()"
+                            @touchend.prevent="stopRecording()"
+                            :disabled="confirmed || processing"
+                            class="relative bg-gray-500 px-3 py-2 rounded-full cursor-pointer transition-all hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                            :class="{ 
+                                'scale-125 ring-4 ring-red-500 bg-red-500': recording,
+                                'animate-pulse': processing
+                            }">
+
+                            <i class="fa-solid fa-microphone text-white text-xl"
+                            :class="{ 'fa-spinner fa-spin': processing }"></i>
+
+                            <!-- Recording indicator -->
+                            <div x-show="recording"
+                                class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
+                            </div>
+                        </button>
+
+                        <!-- Status text -->
+                        <div class="text-center">
+                            <p x-show="recording" class="text-red-500 font-semibold animate-pulse">
+                                🔴 Nagrerekord...
+                            </p>
+                            <p x-show="processing" class="text-blue-500 font-semibold">
+                                ⏳ Pinoproseso...
+                            </p>
+                            <p x-show="!recording && !processing" class="!text-gray-400 text-xs">
+                                Pindutin at hawakan ang mikropono habang nagbibigkas
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
+            </template>    
 
         </div>
     </template>
+
 
     <!-- Results Page -->
     @include('partials.pagsasanay-results')
