@@ -12,6 +12,10 @@ class ThirdSlide extends Component
     protected $questions = [
         1 => [
             [
+                'type' => 'panuto',
+                'audio' => 'audio/lesson1/L1P3.m4a'
+            ],
+            [
                 'type' => 'alphabet',
                 'alpabeto' => 'M',
                 'answer' => 'm'

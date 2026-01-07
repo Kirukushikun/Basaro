@@ -1,15 +1,15 @@
 <main class="flex-1 pb-[50px]">
-    <div class="h-full flex items-center justify-center">
+    <div class="lg:h-full lg:flex lg:items-center lg:justify-center">
         <div class="card flex flex-col items-center gap-5 relative text-lg">
             
             <!-- Title Section (Shared across all lessons) -->
-            <div class="absolute -top-6 left-1/2 -translate-x-1/2">
-                <div class="relative inline-block">
-                    <h1 class="relative z-10 bg-[#F4C300] px-20 py-1 !text-black text-xl font-bold rounded-md border-2 border-[#31343A]">
+            <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-full max-w-xs sm:max-w-sm px-4">
+                <div class="relative inline-block w-full">
+                    <h1 class="relative z-10 bg-[#F4C300] px-8 sm:px-12 md:px-16 lg:px-20 py-1 !text-black text-sm sm:text-base md:text-lg lg:text-xl font-bold rounded-md border-2 border-[#31343A] text-center whitespace-nowrap">
                         PAGSASANAY
                     </h1>
-                    <img class="absolute z-0 -left-7 top-0" width="55" src="{{asset('img/ribbon.png')}}" alt="">
-                    <img class="absolute z-0 -right-7 top-0 rotate-180" width="55" src="{{asset('img/ribbon.png')}}" alt="">
+                    <img class="absolute z-0 -left-4 sm:-left-5 md:-left-6 lg:-left-7 top-0 w-8 sm:w-10 md:w-12 lg:w-[55px]" src="{{asset('img/ribbon.png')}}" alt="">
+                    <img class="absolute z-0 -right-4 sm:-right-5 md:-right-6 lg:-right-7 top-0 rotate-180 w-8 sm:w-10 md:w-12 lg:w-[55px]" src="{{asset('img/ribbon.png')}}" alt="">
                 </div>
             </div>
 

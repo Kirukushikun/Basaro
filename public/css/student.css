@@ -203,8 +203,8 @@ button{
     } 
 }
 
-.alphabet{
-    font-size: 110px;
+.alphabet {
+    font-size: clamp(40px, 10vw, 110px);
     font-weight: bold;
     font-family: 'Baloo 2';
 }
