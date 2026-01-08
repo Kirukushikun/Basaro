@@ -124,7 +124,7 @@
      }">
 
     <template x-if="current">
-        <div class="flex-1 flex flex-col items-center gap-10 mt-10 w-full">
+        <div class="flex-1 flex flex-col items-center gap-10 mt-10 w-full lg:min-w-96">
 
             <template x-if="showSoundOverlay">
                 <div class="absolute inset-0 bg-black/60 flex items-center justify-center z-50 rounded-lg ">
@@ -203,7 +203,7 @@
                         :disabled="confirmed"
                         placeholder="Sagutin dito..."
                         @keyup.enter="!confirmed && userInput.trim() && confirm()"
-                        class="px-4 py-2 border-2 border-[#F4C300] rounded-lg text-center !text-base sm:!text-lg md:!text-lg lg:!text-xl focus:outline-none max-w-md disabled:bg-gray-100 disabled:cursor-not-allowed">
+                        class="px-4 py-2 border-2 border-[#F4C300] rounded-lg text-center !text-base sm:!text-lg md:!text-lg lg:!text-xl focus:outline-none max-w-md disabled:bg-gray-800 disabled:cursor-not-allowed">
                 </div>
             </template>
 

@@ -3,7 +3,7 @@
 </script>
 
 <div class="relative flex flex-col items-center"
-     x-data="{
+    x-data="{
         page: 1,
         confirmed: false,
         showFeedback: false,
@@ -11,14 +11,75 @@
         selected: null,
         partAAnswers: {},
         questions: window.pagsasanay11Questions,
+        soundEnabled: false,
+        currentPanutoAudio: null,
+
+        get isPanuto() {
+            return this.current && this.current.type === 'panuto';
+        },
+
+        get showSoundOverlay() {
+            return !this.soundEnabled && this.isPanuto;
+        },
+
+        enableSound() {
+            this.soundEnabled = true;
+            if (this.current && this.current.audio) {
+                this.playPanutoAudio();
+            }
+        },
+
+        playPanutoAudio() {
+            if (!this.current || !this.current.audio) return;
+            
+            const audioFiles = Array.isArray(this.current.audio) 
+                ? this.current.audio 
+                : [this.current.audio];
+            
+            let currentIndex = 0;
+            
+            const playNext = () => {
+                if (currentIndex < audioFiles.length) {
+                    this.currentPanutoAudio = new Audio(audioFiles[currentIndex]);
+                    this.currentPanutoAudio.onended = () => {
+                        currentIndex++;
+                        playNext();
+                    };
+                    this.currentPanutoAudio.play();
+                } else {
+                    this.currentPanutoAudio = null;
+                }
+            };
+            
+            playNext();
+        },
 
         get current() {
-            // Get questions starting from page 2
+            let panutoQuestions = this.questions.filter(q => q.type === 'panuto');
+            let synonymQuestions = this.questions.filter(q => q.type === 'synonym_match');
             let antonymQuestions = this.questions.filter(q => q.type === 'antonym_select');
-            let antonymIndex = this.page - 2; // page 2 = index 0
+            
+            // Page 1: First panuto (before Part A)
+            if (this.page === 1 && panutoQuestions.length > 0) {
+                return panutoQuestions[0];
+            }
+            
+            // Page 2: Part A (handled by template)
+            
+            // Page 3: Second panuto (before Part B)
+            if (this.page === 3 && panutoQuestions.length > 1) {
+                return panutoQuestions[1];
+            }
+            
+            // Page 4+: Antonym questions (Part B)
+            let antonymIndex = this.page - 4; // page 4 = index 0
             return antonymIndex >= 0 && antonymIndex < antonymQuestions.length 
                 ? antonymQuestions[antonymIndex] 
                 : null;
+        },
+
+        get isPartA() {
+            return this.page === 2;
         },
 
         checkPartA() {
@@ -42,41 +103,90 @@
             this.showFeedback = true;
             
             // Score for Part B (antonym questions)
-            if (this.page > 1 && this.selected === this.current.answer) {
+            if (this.page > 3 && this.selected === this.current.answer) {
                 this.score++;
             }
         },
 
         next() {
-            let antonymQuestions = this.questions.filter(q => q.type === 'antonym_select');
-            let totalPages = 1 + antonymQuestions.length; // 1 for Part A + antonym count
-            
-            if (this.page >= totalPages) {
-                this.page = totalPages + 1; // Show results
-            } else {
-                this.page++;
+            // Stop current audio if playing
+            if (this.currentPanutoAudio) {
+                this.currentPanutoAudio.pause();
+                this.currentPanutoAudio.currentTime = 0;
+                this.currentPanutoAudio = null;
             }
-            this.reset();
+
+            if (this.isPanuto) {
+                // Move past panuto page
+                this.page++
+                this.reset()
+            } else {
+                let antonymQuestions = this.questions.filter(q => q.type === 'antonym_select');
+                let totalPages = 4 + antonymQuestions.length; // Panuto1 + PartA + Panuto2 + PartB questions
+                
+                if (this.page >= totalPages) {
+                    this.page = totalPages + 1; // Show results
+                } else {
+                    this.page++;
+                }
+                this.reset();
+            }
+
+            // Auto-play audio if next page is panuto
+            this.$nextTick(() => {
+                if (this.soundEnabled && this.isPanuto && this.current && this.current.audio) {
+                    this.playPanutoAudio();
+                }
+            });
         },
 
         reset() {
             this.selected = null;
             this.confirmed = false;
             this.showFeedback = false;
-            // DON'T reset partAAnswers or score here
         },
 
         replay() {
             this.page = 1;
             this.score = 0;
             this.partAAnswers = {};
+            this.soundEnabled = false;
             this.reset();
         }
-     }">
+    }">
+
+    <!-- SOUND OVERLAY -->
+    <template x-if="showSoundOverlay">
+        <div class="absolute inset-0 bg-black/60 flex items-center justify-center z-50 rounded-lg">
+            <button 
+                @click="enableSound()" 
+                class="px-6 py-3 bg-[#F4C300] !text-black font-bold rounded-lg text-lg shadow-lg hover:bg-yellow-500 transition-all"
+            >
+                <i class="fa-solid fa-volume-high !text-black"></i> I-enable ang Tunog
+            </button>
+        </div>
+    </template>
+
+    <!-- PANUTO TYPE -->
+    <template x-if="isPanuto">
+        <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-5 w-full px-4">
+            <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
+                <h2 class="text-center font-bold text-2xl !text-[#F4C300] mb-2">
+                    PANUTO
+                </h2>
+                <p class="text-white mb-4"><strong x-text="current.header"></strong></p>
+                <p class="!text-gray-300 mb-4" x-text="current.body"></p>
+            </div>
+
+            <button @click="next" class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold whitespace-nowrap mb-5">
+                Naiintindihan ko ang panuto
+            </button>
+        </div>
+    </template>
 
     <!-- PART A: Synonym Matching Table -->
-    <template x-if="page === 1">
-        <div class="flex-1 flex flex-col items-center gap-8 mt-10 w-full px-4">
+    <template x-if="isPartA">
+        <div class="flex-1 flex flex-col items-center gap-8 mt-10 w-full lg:min-w-96 px-4">
 
             <p class="!text-base sm:!text-lg md:!text-lg lg:!text-xl text-center font-semibold">Hanapin sa Hanay B ang kasingkahulugan ng mga salita sa Hanay A</p>
 
@@ -149,10 +259,10 @@
                         </div>
                     </div>
 
-                    <!-- Next Button (to Part B) -->
-                    <button @click="page = 2; reset()"
+                    <!-- Next Button - Goes to Panuto B -->
+                    <button @click="next"
                             class="px-8 py-3 bg-[#F4C300] text-black font-bold rounded-lg hover:opacity-90 transition-all">
-                        Susunod sa Bahagi B
+                        Susunod
                     </button>
 
                 </div>
@@ -208,31 +318,35 @@
     </template>
 
     <!-- Custom Navigation for Pagsasanay 11 -->
-    <div x-show="page <= (1 + questions.filter(q => q.type === 'antonym_select').length)" 
-         class="absolute -bottom-[110px] flex items-center justify-between w-full">
+    <div x-show="!isPanuto && page <= (4 + questions.filter(q => q.type === 'antonym_select').length)" 
+        class="absolute -bottom-[110px] flex items-center justify-between w-full">
         <p>
-            <span x-text="page === 1 ? page : (page - 1)"></span>/
-            <span x-text="page === 1 ? questions.length : questions.filter(q => q.type === 'antonym_select').length"></span>
+            <span x-show="page === 2">Bahagi A</span>
+            <span x-show="page > 3">
+                Bahagi B - <span x-text="page - 3"></span>/<span x-text="questions.filter(q => q.type === 'antonym_select').length"></span>
+            </span>
         </p>
         <div class="flex gap-5">
-            <button x-show="page > 1" @click="page--; reset()" class="px-4 py-2 border border-gray-500 text-white rounded-md font-bold">
+            <button x-show="page > 2" @click="page--; reset()" class="px-4 py-2 border border-gray-500 text-white rounded-md font-bold">
                 <i class="fa-solid fa-arrow-left"></i> Balik
             </button>
-            <button x-show="confirmed && showFeedback" @click="next" class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold">
+            <button x-show="(page === 2 && showFeedback) || (page > 3 && confirmed && showFeedback)" 
+                    @click="next" 
+                    class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold">
                 Susunod <i class="fa-solid fa-arrow-right !text-black"></i>
             </button>
         </div>
     </div>
 
     <!-- Custom Results for Pagsasanay 11 -->
-    <div x-show="page > (1 + questions.filter(q => q.type === 'antonym_select').length)" 
+    <div x-show="page > (3 + questions.filter(q => q.type === 'antonym_select').length)" 
          class="flex-1 flex flex-col items-center justify-center gap-5 mt-10 w-full">
         <img src="{{asset('img/Badge.png')}}" width="200" alt="">
         <h1 class="text-2xl font-bold">CONGRATULATIONS!</h1>
-        <h2 class="score !text-[#F4C300]" x-text="Math.round((score / (questions.length)) * 100) + '%'"></h2>
+        <h2 class="score !text-[#F4C300]" x-text="Math.round((score / 15) * 100) + '%'"></h2>
         <p class="w-96 text-lg text-center">
             Nakakuha ka ng <span class="font-bold" x-text="score"></span>
-            sa <span class="font-bold" x-text="questions.length"></span> na tanong!
+            sa <span class="font-bold">15</span> na tanong!
         </p>
         <div class="flex gap-4 mt-4">
             <button @click="replay()" class="px-4 py-2 border border-2 border-[#F4C300] text-[#F4C300] rounded-md font-bold hover:bg-[#F4C300] hover:text-black transition">

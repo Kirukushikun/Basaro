@@ -243,7 +243,7 @@
 
 
     <template x-if="showSoundOverlay">
-        <div class="absolute inset-0 bg-black/90 flex items-center justify-center z-50">
+        <div class="absolute inset-0 bg-black/60 flex items-center justify-center z-50 rounded-lg">
             <button 
                 @click="enableSound()" 
                 class="px-6 py-3 bg-[#F4C300] !text-black font-bold rounded-lg text-lg shadow-lg hover:bg-yellow-500 transition-all"
@@ -254,7 +254,7 @@
     </template>
 
     <template x-if="current">
-        <div class="flex-1 flex flex-col items-center gap-10 w-full">
+        <div class="flex-1 flex flex-col items-center gap-10 w-full lg:min-w-96">
 
             <!-- PANUTO TYPE -->
             <template x-if="isPanuto">
@@ -267,7 +267,7 @@
                         <p class="!text-gray-300 mb-4" x-text="current.body"></p>
                     </div>
 
-                    <button @click="next" class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold whitespace-nowrap">
+                    <button @click="next" class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold whitespace-nowrap mb-5">
                         Naiintindihan ko ang panuto
                     </button>
                 </div>
@@ -275,7 +275,7 @@
 
             <!-- ALPHABET TYPE -->
             <template x-if="isAlphabetType">
-                <div class="flex flex-col items-center gap-10 w-full">
+                <div class="flex flex-col items-center gap-10 w-full lg:min-w-96">
                     <!-- Alphabet Display -->
                     <h1 class="alphabet mt-10 !text-[#F4C300]"
                         x-text="current.alpabeto"></h1>

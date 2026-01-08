@@ -229,7 +229,7 @@
      }">
 
     <template x-if="current"> 
-        <div class="flex-1 flex flex-col items-center gap-10 w-full">
+        <div class="flex-1 flex flex-col items-center gap-10 w-full lg:min-w-96">
             
             <template x-if="showSoundOverlay">
                 <div class="absolute inset-0 bg-black/60 flex items-center justify-center z-50 rounded-lg ">

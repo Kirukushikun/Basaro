@@ -31,8 +31,28 @@
             this.soundEnabled = true;
             // Play the panuto audio if it exists
             if (this.current && this.current.audio) {
-                this.currentPanutoAudio = new Audio(this.current.audio);
-                this.currentPanutoAudio.play();
+                if (!this.current || !this.current.audio) return;
+                
+                const audioFiles = Array.isArray(this.current.audio) 
+                    ? this.current.audio 
+                    : [this.current.audio];
+                
+                let currentIndex = 0;
+                
+                const playNext = () => {
+                    if (currentIndex < audioFiles.length) {
+                        this.currentPanutoAudio = new Audio(audioFiles[currentIndex]);
+                        this.currentPanutoAudio.onended = () => {
+                            currentIndex++;
+                            playNext();
+                        };
+                        this.currentPanutoAudio.play();
+                    } else {
+                        this.currentPanutoAudio = null;
+                    }
+                };
+                
+                playNext();
             }
         },
 
@@ -247,7 +267,7 @@
      }">
 
     <template x-if="current">
-        <div class="flex-1 flex flex-col items-center gap-10 w-full">
+        <div class="flex-1 flex flex-col items-center gap-10 w-full lg:min-w-96">
 
             <template x-if="showSoundOverlay">
                 <div class="absolute inset-0 bg-black/60 flex items-center justify-center z-50 rounded-lg ">
@@ -299,7 +319,7 @@
                                             x-model="userInput"
                                             :disabled="confirmed"
                                             @keyup.enter="!confirmed && userInput.trim() && confirm()"
-                                            class="w-24 h-16 !text-2xl sm:!text-3xl md:!text-4xl lg:!text-4xl font-bold text-center border-4 border-[#F4C300] rounded-md mx-1 focus:outline-none focus:ring-4 focus:ring-yellow-300 disabled:bg-gray-100"
+                                            class="w-24 h-16 !text-2xl sm:!text-3xl md:!text-4xl lg:!text-4xl font-bold text-center border-4 border-[#F4C300] rounded-md mx-1 focus:outline-none focus:ring-4 focus:ring-yellow-300 disabled:bg-gray-800"
                                             maxlength="3"
                                         >
                                     </template>

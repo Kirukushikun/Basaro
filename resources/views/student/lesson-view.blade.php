@@ -9,10 +9,7 @@
 
     @elseif($slide == 'third-slide') 
         <livewire:third-slide :lesson="$lesson" />
-
-    @elseif($slide == 'third-slide-panuto') 
-        <livewire:third-slide-panuto :lesson="$lesson" />
-
+        
     @elseif($slide == 'fourth-slide')
         <livewire:fourth-slide :lesson="$lesson" />
         
