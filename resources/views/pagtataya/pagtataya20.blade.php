@@ -2,13 +2,34 @@
     window.pagtatayanQuestions = @json($questions);
 </script>
 
-<div class="relative flex flex-col items-center"
+<div class="relative flex flex-col items-center lg:min-w-96 p-6"
      x-data="{
+        showPanuto: true,  // ✅ Add this
         answers: {},
         submitted: false,
         score: @entangle('score'),
         questions: window.pagtatayanQuestions,
         wordBank: window.pagtatayanQuestions[0]?.wordBank || [],
+        soundEnabled: false,
+        currentPanutoAudio: null,
+
+        get isPanuto() {
+            return this.current && this.current.type === 'panuto';
+        },
+
+        get showSoundOverlay() {
+            // Only show if sound not enabled AND it's the first panuto
+            return !this.soundEnabled && this.isPanuto;
+        },
+
+        enableSound() {
+            this.soundEnabled = true;
+            // Play the panuto audio if it exists
+            if (this.current && this.current.audio) {
+                this.currentPanutoAudio = new Audio(this.current.audio);
+                this.currentPanutoAudio.play();
+            }
+        },
 
         get allAnswered() {
             return this.questions.every(q => this.answers[q.word]);
@@ -37,7 +58,27 @@
             this.score = 0;
         }
      }">
-
+    <!-- Panuto Overlay -->
+    <template x-if="showPanuto">
+        <div class="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+            <div class="bg-gray-800 p-8 rounded-lg border-2 border-[#F4C300] max-w-2xl">
+                <h2 class="text-center font-bold text-2xl !text-[#F4C300] mb-4">
+                    PANUTO
+                </h2>
+                <p class="text-white mb-4">
+                    <strong>Mga Hakbang:</strong>
+                </p>
+                <p class="!text-gray-300 mb-6">
+                    Basahin at unawain ang mga talasalitaan. Hanapin mo ang kasingkahulugan ng mga ito sa kahon sa itaas. Pumili ng tamang sagot mula sa dropdown menu para sa bawat salita.
+                </p>
+                <button @click="showPanuto = false" 
+                        class="w-full px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold">
+                    Naiintindihan ko ang panuto
+                </button>
+            </div>
+        </div>
+    </template>
+    
     <div class="flex-1 flex flex-col items-center gap-10 mt-10 w-full max-w-4xl px-4">
 
         <!-- Instructions -->
@@ -155,5 +196,4 @@
         </template>
 
     </div>
-
 </div>

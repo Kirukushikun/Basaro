@@ -3,7 +3,7 @@
 </script>
 
 <!-- Pagtataya 15: Sawikain + Kasabihan with Comprehension with Speech-to-Text API -->
-<div class="relative flex flex-col items-center"
+<div class="relative flex flex-col items-center lg:min-w-96 p-6"
      x-data="{
         page: 1,
         userInput: '',
@@ -15,6 +15,26 @@
         mediaRecorder: null,
         audioChunks: [],
         questions: window.pagtataya15Questions,
+        soundEnabled: false,
+        currentPanutoAudio: null,
+
+        get isPanuto() {
+            return this.current && this.current.type === 'panuto';
+        },
+
+        get showSoundOverlay() {
+            // Only show if sound not enabled AND it's the first panuto
+            return !this.soundEnabled && this.isPanuto;
+        },
+
+        enableSound() {
+            this.soundEnabled = true;
+            // Play the panuto audio if it exists
+            if (this.current && this.current.audio) {
+                this.currentPanutoAudio = new Audio(this.current.audio);
+                this.currentPanutoAudio.play();
+            }
+        },
 
         get current() {
             return this.page <= this.questions.length
@@ -173,17 +193,53 @@
         },
 
         next() {
-            if (!this.confirmed) {
+            if (this.isPanuto) {
+                // Move past panuto page (no confirmation needed)
+                this.page++
+                this.reset()
+                
+                // Stop panuto audio if playing
+                if (this.currentPanutoAudio) {
+                    this.currentPanutoAudio.pause();
+                    this.currentPanutoAudio.currentTime = 0;
+                    this.currentPanutoAudio = null;
+                }
+
+                // Auto-play next panuto audio if applicable
+                this.$nextTick(() => {
+                    if (this.soundEnabled && this.isPanuto && this.current && this.current.audio) {
+                        this.currentPanutoAudio = new Audio(this.current.audio);
+                        this.currentPanutoAudio.play();
+                    }
+                });
+            } else if (!this.confirmed) {
+                // Handle different question types before confirmation
                 if (this.current.type === 'kasabihan') {
                     this.handleKasabihanNext();
                 } else if (['input_kahulugan', 'comprehension'].includes(this.current.type)) {
                     this.handleTextInputConfirm();
                 }
             } else {
+                // Move to next question after confirmation
                 this.page++;
                 this.reset();
+                
+                // Stop panuto audio if playing
+                if (this.currentPanutoAudio) {
+                    this.currentPanutoAudio.pause();
+                    this.currentPanutoAudio.currentTime = 0;
+                    this.currentPanutoAudio = null;
+                }
+
+                // Auto-play next panuto audio if applicable
+                this.$nextTick(() => {
+                    if (this.soundEnabled && this.isPanuto && this.current && this.current.audio) {
+                        this.currentPanutoAudio = new Audio(this.current.audio);
+                        this.currentPanutoAudio.play();
+                    }
+                });
             }
-        },
+        }
 
         reset() {
             this.userInput = '';
@@ -202,7 +258,36 @@
     }">
 
     <template x-if="current">
-        <div class="flex-1 flex flex-col items-center gap-10 w-full">
+        <div class="flex-1 flex flex-col items-center gap-10 w-full lg:min-w-96">
+
+            <!-- SOUND OVERLAY -->
+            <template x-if="showSoundOverlay">
+                <div class="absolute inset-0 bg-black/60 flex items-center justify-center z-50 rounded-lg ">
+                    <button 
+                        @click="enableSound()" 
+                        class="px-6 py-3 bg-[#F4C300] !text-black font-bold rounded-lg text-lg shadow-lg hover:bg-yellow-500 transition-all"
+                    >
+                        <i class="fa-solid fa-volume-high !text-black"></i> I-enable ang Tunog
+                    </button>
+                </div>
+            </template>
+
+            <!-- PANUTO TYPE -->
+            <template x-if="isPanuto">
+                <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-5 w-full px-4">
+                    <div class="bg-gray-800 p-6 rounded-lg border-2 border-[#F4C300] max-w-2xl">
+                        <h2 class="text-center font-bold text-2xl !text-[#F4C300] mb-2">
+                            PANUTO
+                        </h2>
+                        <p class="text-white mb-4"><strong x-text="current.header"></strong></p>
+                        <p class="!text-gray-300 mb-4" x-text="current.body"></p>
+                    </div>
+
+                    <button @click="next" class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold whitespace-nowrap mb-5">
+                        Naiintindihan ko ang panuto
+                    </button>
+                </div>
+            </template>
 
             <!-- TYPE: READ SAWIKAIN -->
             <template x-if="current.type === 'read_sawikain'">
@@ -298,7 +383,7 @@
                             x-model="userInput"
                             :disabled="confirmed"
                             placeholder="Isulat ang kahulugan dito..."
-                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-lg focus:outline-none focus:border-[#F4C300] disabled:bg-gray-100 text-center"
+                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-lg focus:outline-none focus:border-[#F4C300] disabled:bg-gray-800 text-center"
                             @keyup.enter="userInput && !confirmed && next()">
                     </div>
 
@@ -370,7 +455,7 @@
                             x-model="userInput"
                             :disabled="confirmed"
                             placeholder="Isulat ang iyong sagot dito..."
-                            class="w-full px-6 py-4 border-2 border-[#F4C300] rounded-lg text-xl focus:outline-none focus:ring-3 focus:ring-yellow-300 disabled:bg-gray-100"
+                            class="w-full px-6 py-4 border-2 border-[#F4C300] rounded-lg text-xl focus:outline-none focus:ring-3 focus:ring-yellow-300 disabled:bg-gray-800"
                             @keyup.enter="!confirmed && userInput.trim() && next()">
                     </div>
 

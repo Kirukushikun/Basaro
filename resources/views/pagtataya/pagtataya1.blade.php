@@ -201,11 +201,11 @@
 </script>
 
 <!-- Pagsasanay 1 -->
-<div class="relative flex flex-col items-center"
+<div class="relative flex flex-col items-center lg:min-w-96 p-6"
      x-data='pagsasanay1Data(@json($questions))'>
 
     <template x-if="showSoundOverlay">
-        <div class="absolute inset-0 bg-black/90 flex items-center justify-center z-50">
+        <div class="absolute inset-0 bg-black/60 flex items-center justify-center z-50">
             <button 
                 @click="enableSound()" 
                 class="px-6 py-3 bg-[#F4C300] !text-black font-bold rounded-lg text-lg shadow-lg hover:bg-yellow-500 transition-all"
@@ -236,7 +236,7 @@
             </template> 
 
             <template x-if="!isPanuto">
-                <div class="flex flex-col items-center gap-10 w-full">
+                <div class="flex flex-col items-center gap-10 w-full lg:min-w-96">
                     <!-- Alphabet Display -->
                     <h1 class="alphabet mt-10 !text-[#F4C300]"
                         x-text="current.alpabeto"></h1>

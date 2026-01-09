@@ -43,6 +43,7 @@ class ThirdSlide extends Component
                 'alpabeto' => 'O',
                 'answer' => 'o'
             ],
+
             [
                 'type' => 'alphabet',
                 'alpabeto' => 'B',
@@ -63,12 +64,12 @@ class ThirdSlide extends Component
                 'alpabeto' => 'T',
                 'answer' => 't'
             ],
-
             [
                 'type' => 'alphabet',
                 'alpabeto' => 'K',
                 'answer' => 'k'
             ],
+
             [
                 'type' => 'alphabet',
                 'alpabeto' => 'L',
@@ -90,7 +91,11 @@ class ThirdSlide extends Component
                 'answer' => 'g'
             ],
             [
-                'alpabeto' => 'NG', 'answer' => 'ng'],
+                'type' => 'alphabet',
+                'alpabeto' => 'NG', 
+                'answer' => 'ng'
+            ],
+
             [
                 'type' => 'alphabet',
                 'alpabeto' => 'P',
@@ -106,7 +111,6 @@ class ThirdSlide extends Component
                 'alpabeto' => 'D',
                 'answer' => 'd'
             ],
-
             [
                 'type' => 'alphabet',
                 'alpabeto' => 'H',
@@ -117,6 +121,7 @@ class ThirdSlide extends Component
                 'alpabeto' => 'W',
                 'answer' => 'w'
             ],
+
             [
                 'type' => 'alphabet',
                 'alpabeto' => 'C',
@@ -142,6 +147,7 @@ class ThirdSlide extends Component
                 'alpabeto' => 'Q',
                 'answer' => 'q'
             ],
+
             [
                 'type' => 'alphabet',
                 'alpabeto' => 'V',
@@ -157,10 +163,10 @@ class ThirdSlide extends Component
                 'alpabeto' => 'Z',
                 'answer' => 'z'
             ],
-
+            
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
+                'audio' => 'audio/lesson1/L1P4.m4a',
                 'header' => 'B. Sa anong letra maririnig ang sumusunod na tunog?',
                 'body' => 'Pindutin ang tamang sagot.',
             ],
@@ -272,14 +278,13 @@ class ThirdSlide extends Component
 
         ],
 
-
         2 => [
             // Part 1: Image Group Audio (5 questions - identify vowel sound)
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => ['audio/lesson2/L2P19.m4a', 'audio/lesson2/L2P20.m4a'],
+                'header' => 'A. Tukuyin mo ang sumusunod na larawan.',
+                'body' => 'Pindutin mo ang microphone button para sa pagbigkas.',
             ],
             [
                 'type' => 'image_group_audio',
@@ -327,11 +332,12 @@ class ThirdSlide extends Component
                 ],
             ],
             
+            // PAGSASANAY B
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson2/L2P21.m4a',
+                'header' => 'B. Pakinggan mo ang aking babasahin lalo na ang unang tunog na iyong maririnig.',
+                'body' => 'Isulat mo sa patlang ang unang letra upang mabuo ang salita na may larawan. Pagkatapos ay pindutin ang microphone button para ikaw naman ang magbasa ng mga nabuo mong salita.',
             ],
             
             // Pair 1: ubas
@@ -468,9 +474,9 @@ class ThirdSlide extends Component
         3 => [
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson3/L3P5.m4a',
+                'header' => 'Sa harapan ng iyong guro ay babaybayin mo ang sumusunod na kataga. Pagkatapos ay basahin mo ang sumusunod na pantulong na kataga.',
+                'body' => 'Pindutin mo ang microphone button. Gagabayan ka ng iyong guro sa iyong pagbasa.',
             ],
             [
                 'type' => 'read_kataga',
@@ -537,9 +543,9 @@ class ThirdSlide extends Component
         4 => [
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson4/L4P12.m4a',
+                'header' => 'Pagdugtungin ang mga pantig upang makabuo ng salita. Pagkatapos ay subukan mo itong basahin.',
+                'body' => '',
             ],
             [
                 'syllables' => ['A', 'sa'],
@@ -574,9 +580,9 @@ class ThirdSlide extends Component
         5 => [
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson5/L5P3.m4a',
+                'header' => 'Subukan mong basahin ang sumusunod na parirala.',
+                'body' => '',
             ],
             ['type' => 'read_phrase', 'parirala' => 'sama-sama'],
             ['type' => 'read_phrase', 'parirala' => 'sasama'],
@@ -590,11 +596,18 @@ class ThirdSlide extends Component
 
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson5/L5P4.m4a',
+                'header' => 'Ngayon naman ay subukan mong basahin ang mga pangungusap.',
+                'body' => '',
             ],
             ['type' => 'read_sentence', 'pangungusap' => 'Sama-sama ang mga mama.'],
+
+            [
+                'type' => 'panuto',
+                'audio' => 'audio/lesson5/L5P5.m4a',
+                'header' => 'Naunawaan mo ba ang iyong mga binasa?',
+                'body' => 'Subukan nga nating sagutin ang mga tanong na ito pagktapos ay isulat mo ang iyong sagot sa patlang.',
+            ],
             ['type' => 'comprehension', 'tanong' => 'Sino ang sama-sama?', 'answer' => 'ang mga mama'],
             ['type' => 'read_sentence', 'pangungusap' => 'Sasama si Mama kay Ama.'],
             ['type' => 'comprehension', 'tanong' => 'Sino ang sasama kay Ama?', 'answer' => 'si Mama'],
@@ -609,18 +622,24 @@ class ThirdSlide extends Component
         6 => [
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => ['audio/lesson6/L6P10.m4a', 'audio/lesson6/L6P11.m4a'],
+                'header' => 'A. Subukan mong basahin ang sumusunod na pantig upang makabuo ka ng salita.',
+                'body' => '',
             ],
             // Part 1: Syllable Building
             ['type' => 'syllable_build', 'syllables' => ['Ba', 'so'], 'answer' => 'baso'],
             ['type' => 'syllable_build', 'syllables' => ['ba', 'sa'], 'answer' => 'basa'],
-            
+
+            [
+                'type' => 'panuto',
+                'audio' => 'audio/lesson6/L6P12.m4a',
+                'header' => 'B. Basahin mo ang sumusunod na parirala at pangungusap.',
+                'body' => '',
+            ],            
             // Part 2: Read Phrases
             ['type' => 'read_phrase', 'parirala' => 'iba ang abo'],
             ['type' => 'read_phrase', 'parirala' => 'ang mga baso'],
-            
+
             // Part 3: Read Sentences & Comprehension
             ['type' => 'read_sentence', 'pangungusap' => 'Ang mga bao ay basa.'],
             ['type' => 'comprehension', 'tanong' => 'Ano ang basa?', 'answer' => 'ang mga bao'],
@@ -632,15 +651,22 @@ class ThirdSlide extends Component
         7 => [
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson7/L7P38.m4a',
+                'header' => 'A. Pindutin ang microphone button upang mabasa ang sumusunod na salita.',
+                'body' => '',
             ],
             ['type' => 'read_phrase', 'parirala' => 'Kalaro'],
             ['type' => 'read_phrase', 'parirala' => 'Masaya'],
             ['type' => 'read_phrase', 'parirala' => 'Kalabasa'],
             ['type' => 'read_phrase', 'parirala' => 'katutubo'],
             ['type' => 'read_phrase', 'parirala' => 'ninuno'],
+
+            [
+                'type' => 'panuto',
+                'audio' => 'audio/lesson7/L7P39.m4a',
+                'header' => 'B. Basahin mo ang mga sumusunod na parirala.',
+                'body' => '',
+            ],
             ['type' => 'read_phrase', 'parirala' => 'mata ng ibon'],
             ['type' => 'read_phrase', 'parirala' => 'yoyo sa tabo'],
             ['type' => 'read_phrase', 'parirala' => 'bola sa ilalim ng kama'],
@@ -652,11 +678,20 @@ class ThirdSlide extends Component
         ], 
         
         8 => [
+            // Panuto before the kwento
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson8/L8P8.m4a',
+                'header' => 'Sasagutin natin ang mga tanong tungkol sa kuwento o talata na nabuo sa mga letrang m, s, a, i, o, b, e, u, t, k, l, n, y',
+                'body' => '',
+            ],
+
+            // Panuto after the kwento
+            [
+                'type' => 'panuto',
+                'audio' => 'audio/lesson8/L8P9.m4a',
+                'header' => 'Ilagay mo sa patlang ang iyong sagot. Pumili ka lamang sa mga nasa ibaba.',
+                'body' => '',
             ],
             [
                 'question' => 'Kanino ang mga luya?',
@@ -683,9 +718,9 @@ class ThirdSlide extends Component
         9 => [
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson9/L9P42.m4a',
+                'header' => 'A. Pagsama-samahin ang mga pantig upang mabuo ang salita. Pagkatapos basahin mo ang mga ito.',
+                'body' => 'Kailangan mong pindutin ang microphone button para iyong pagbasa',
             ],
             // Part 1: Syllable Building (6 questions)
             ['type' => 'syllable_build', 'syllables' => ['Ma', 'wa', 'wa', 'la'], 'answer' => 'mawawala'],
@@ -697,9 +732,9 @@ class ThirdSlide extends Component
             
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson9/L9P43.m4a',
+                'header' => 'B. Basahin ang sumusunod na parirala.',
+                'body' => 'Gamitin mo ang microphone button.',
             ],
             // Part 2: Read Phrases (8 questions)
             ['type' => 'read_phrase', 'parirala' => 'Ang sinigang'],
@@ -715,9 +750,9 @@ class ThirdSlide extends Component
         10 => [
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson10/L10P3.m4a',
+                'header' => 'Isulat ang nawawalang pantig. Basahin mo ang mabubuong salita.',
+                'body' => '',
             ],
             ['type' => 'fill_syllable', 'word' => 'Kale__', 'answer' => 'sa', 'image' => 'illustrations/kalesa.png', 'full_word' => 'Kalesa'],
             ['type' => 'read_word', 'full_word' => 'Kalesa'],
@@ -738,9 +773,9 @@ class ThirdSlide extends Component
         11 => [
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson11/L11P4.m4a',
+                'header' => 'A. Hanapin sa Hanay B ang kasingkahulugan ng mga salitang nasa Hanay A. Isulat ang letra ng tamang sagot sa patlang.',
+                'body' => '',
             ],
             // Part 1: Synonym Matching
             [
@@ -916,9 +951,9 @@ class ThirdSlide extends Component
             
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson11/L11P5.m4a',
+                'header' => 'B. Hanapin mo sa pagpipilian ang tamang kasalungat na kahulugan ng sumusunod na salita. Pindutin mo lang ang salita.',
+                'body' => '',
             ],
             // Part 2: Antonym Selection
             [
@@ -956,9 +991,9 @@ class ThirdSlide extends Component
         12 => [
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson12/L12P1.m4a',
+                'header' => 'Punan ng tamang diptonggo na ay, aw, iw, oy, uy at ey ang sumusunod na salita. Pagkatapos ay basahin mo ang nabuo mong salita.',
+                'body' => '',
             ],
             [
                 'type' => 'fill_syllable',
@@ -1045,7 +1080,7 @@ class ThirdSlide extends Component
                 'type' => 'fill_syllable',
                 'word' => 'Bat__',
                 'full_word' => 'Bata',
-                'answer' => 'ay',
+                'answer' => 'a',
                 'image' => 'illustrations/bata.png',
             ],
             ['type' => 'read_word', 'full_word' => 'Bata'],
@@ -1054,9 +1089,9 @@ class ThirdSlide extends Component
         13 => [
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => ['audio/lesson13/L13P1.m4a', 'audio/lesson13/L13P2.m4a'],
+                'header' => 'A. Punan mo ng wastong kambal-katinig ang sumusunod upang mabuo ang mga salita.',
+                'body' => '',
             ],
 
             [
@@ -1065,6 +1100,13 @@ class ThirdSlide extends Component
                 'full_word' => 'Plaka',
                 'answer' => 'pl',
                 'image' => 'illustrations/plaka.png',
+            ],
+
+            [
+                'type' => 'panuto',
+                'audio' => 'audio/lesson13/L13P3.m4a',
+                'header' => 'B. Basahin mo ang mga nabuo mong salita.',
+                'body' => '',
             ],
             ['type' => 'read_word', 'full_word' => 'Plaka'],
 
@@ -1108,9 +1150,9 @@ class ThirdSlide extends Component
         14 => [
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => ['audio/lesson14/L14P1.m4a', 'audio/lesson14/L14P2.m4a'],
+                'header' => 'A. Punan mo ng wastong panlapi ang sumusunod na salitang-ugat.',
+                'body' => '',
             ],
 
             [
@@ -1119,6 +1161,13 @@ class ThirdSlide extends Component
                 'full_word' => 'Mabango',
                 'answer' => 'ma',
                 'image' => 'illustrations/mabango.png',
+            ],
+
+            [
+                'type' => 'panuto',
+                'audio' => 'audio/lesson14/L14P3.m4a',
+                'header' => 'B. Basahin mo ang mga nabuo mong salitang may panlapi.',
+                'body' => 'Gamitin ang microphone button.',
             ],
             ['type' => 'read_word', 'full_word' => 'Mabango'],
 
@@ -1154,7 +1203,7 @@ class ThirdSlide extends Component
                 'word' => '__tiyaga',
                 'full_word' => 'Matiyaga',
                 'answer' => 'ma',
-                'image' => 'illustrations/matiyaga.png',
+                'image' => 'illustrations/matyaga.png',
             ],
             ['type' => 'read_word', 'full_word' => 'Matiyaga'],
         ],
@@ -1162,9 +1211,9 @@ class ThirdSlide extends Component
         15 => [
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson15/L15P1.m4a',
+                'header' => 'A. Basahin mo ang sumusunod na karunungang bayan. Isulat kung ito ay kasabihan, salawikain o sawikain.',
+                'body' => '',
             ],
             // Part A: Classify proverbs
             [
@@ -1205,11 +1254,10 @@ class ThirdSlide extends Component
             
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson15/L15P2.m4a',
+                'header' => 'B. Basahin mo ang sumusunod na bugtong. Unawain mo kung ano ang tinutukoy upang masagot ang mga ito.',
+                'body' => '',
             ],
-            
             // Part B: Answer riddles
             [
                 'type' => 'riddle',
@@ -1229,9 +1277,9 @@ class ThirdSlide extends Component
             // Part A: Vocabulary Matching
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson16/L16P1.m4a',
+                'header' => 'A. Subukan mong sagutin ang sumusunod na talasalitaan. Basahin mo muna ang salita pagkatapos ay pindutin mo lang ang letra ng tamang sagot.',
+                'body' => '',
             ],
             [
                 'type' => 'vocabulary',
@@ -1286,9 +1334,9 @@ class ThirdSlide extends Component
             // Part B: Comprehension
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson16/L16P2.m4a',
+                'header' => 'B. Sagutin ang sumusunod na tanong batay sa binasang tula. Basahin mo muna ang mga ito pagkatapos ay pindutin mo ang letra ng tamang sagot.',
+                'body' => '',
             ],
             [
                 'type' => 'comprehension',
@@ -1314,9 +1362,9 @@ class ThirdSlide extends Component
             // Part A: Vocabulary Matching (synonyms)
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson17/L17P1.m4a',
+                'header' => 'A. Basahin mo at sagutin ang mga talasalitaan.',
+                'body' => 'Pindutin ang microphone button.',
             ],
             [
                 'type' => 'vocabulary_match',
@@ -1352,9 +1400,9 @@ class ThirdSlide extends Component
             // Part B: Comprehension (text input)
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson17/L17P2.m4a',
+                'header' => 'B. Basahin at unawain ang sumusunod na tanong batay sa kuwentong binasa. Isulat mo ang iyong sagot sa patlang.',
+                'body' => '',
             ],
             [
                 'type' => 'comprehension',
@@ -1387,9 +1435,9 @@ class ThirdSlide extends Component
             // Part A: Comprehension (text input)
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson18/L18P1.m4a',
+                'header' => 'A. Batay sa nabasa mong huling balita, basahin at sagutin mo ang mga tanong.',
+                'body' => '',
             ],
             [
                 'type' => 'comprehension',
@@ -1425,9 +1473,9 @@ class ThirdSlide extends Component
             // Part B: Vocabulary/Acronym Matching
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson18/L18P2.m4a',
+                'header' => 'B. Ano-ano ang mga salitang hindi pamilyar? Subukan mong sagutin ang sumusunod na talasalitaan at akronim.',
+                'body' => '',
             ],
             [
                 'type' => 'vocabulary_match',
@@ -1465,9 +1513,9 @@ class ThirdSlide extends Component
             // Part A: Vocabulary Matching
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson19/L19P1.m4a',
+                'header' => 'A. Basahin at sagutin ang kasingkahulugan ng sumusunod na salita. Pindutin mo ang microphone button sa pagbasa mo ng tamang sagot.',
+                'body' => '',
             ],
             ['type' => 'vocabulary_match', 'word' => 'ilaan', 'answer' => 'Ibigay', 'choices' => ['Ibigay', 'Itakas']],
             ['type' => 'vocabulary_match', 'word' => 'mapupunan', 'answer' => 'mababawasan', 'choices' => ['mababawasan', 'maibibigay']],
@@ -1476,9 +1524,9 @@ class ThirdSlide extends Component
             // Part B: Comprehension (MC)
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson19/L19P2.m4a',
+                'header' => 'B. Basahin at unawain ang bawat tanong. Sagutin mo sa pamamagitan ng paggamit ng microphone button at pagbasa mo nang malakas ngunit mahinahon.',
+                'body' => '',
             ],
             ['type' => 'comprehension', 'question' => 'Magkano ang naaprubahang badyet sa taong 2025?', 'answer' => 'P793. 74 bilyon', 'choices' => ['P793. 74 bilyon', 'P973. 74 bilyon']],
             ['type' => 'comprehension', 'question' => 'Ilang porsyento ang itinaas nito kumpara sa nakaraang taon?', 'answer' => '3.93%', 'choices' => ['3.99%', '3.93%']],
@@ -1489,9 +1537,9 @@ class ThirdSlide extends Component
             // Part A: Vocabulary Matching (2 choices)
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson20/L20P1.m4a',
+                'header' => 'A. Basahin mo muna ang talasalitaan bago sagutin ang kahulugan. Pindutin mo lang ang puso kung ito ang tamang sagot.',
+                'body' => '',
             ],
             ['type' => 'vocabulary_match', 'word' => 'tuso', 'answer' => 'madaya', 'choices' => ['mabait', 'madaya']],
             ['type' => 'vocabulary_match', 'word' => 'sumibol', 'answer' => 'lumitaw', 'choices' => ['lumitaw', 'lumubog']],
@@ -1502,9 +1550,9 @@ class ThirdSlide extends Component
             // Part B: Comprehension (MC)
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'audio' => 'audio/lesson20/L20P2.m4a',
+                'header' => 'B. Basahin at unawain mo ang mga tanong. Pindutin mo ang microphone button at bigkasin/basahin mo ang tamang sagot.',
+                'body' => '',
             ],
             ['type' => 'comprehension', 'question' => 'Ano ang inilalarawan na kinaaadikan nina Totoy at ng kaniyang Tiyo?', 'answer' => 'Vape', 'choices' => ['Tape', 'Vape']],
             ['type' => 'comprehension', 'question' => 'Ano ang ibig sabihin ng akronim na WHO?', 'answer' => 'World Health Organization', 'choices' => ['World Health Office', 'World Health Organization']],

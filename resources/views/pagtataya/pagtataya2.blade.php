@@ -238,7 +238,7 @@
      }">
 
     <template x-if="current">
-        <div class="w-full">
+        <div class="w-full lg:min-w-96 p-6">
 
             <template x-if="showSoundOverlay">
                 <div class="absolute inset-0 bg-black/60 flex items-center justify-center z-50 rounded-lg ">

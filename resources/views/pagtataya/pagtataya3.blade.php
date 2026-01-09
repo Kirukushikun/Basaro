@@ -3,7 +3,7 @@
 </script>
 
 <!-- Pagtataya 3 with Speech-to-Text API -->
-<div class="relative flex flex-col items-center"
+<div class="relative flex flex-col items-center lg:min-w-96 p-6"
      x-data="{
         page: 1,
         confirmed: false,

@@ -3,7 +3,7 @@
 </script>
 
 <!-- Pagtataya 5 with Speech-to-Text API -->
-<div class="relative flex flex-col items-center"
+<div class="relative flex flex-col items-center lg:min-w-96 p-6"
      x-data="{
         page: 1,
         confirmed: false,
@@ -457,7 +457,7 @@
                             x-model="userInput"
                             :disabled="confirmed"
                             placeholder="Isulat ang iyong sagot dito..."
-                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-lg focus:outline-none focus:border-[#F4C300] disabled:bg-gray-100"
+                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-lg focus:outline-none focus:border-[#F4C300] disabled:bg-gray-800"
                             @keyup.enter="!confirmed && next()">
                     </div>
 
