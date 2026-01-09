@@ -49,9 +49,16 @@
         </header>
 
         <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5 !text-2xl sm:!text-3xl md:!text-3xl lg:!text-4xl font-bold text-center p-5 overflow-y-auto flex-1 min-h-0">
-            @foreach (range('A', 'Z') as $letter)
+            @php
+                $letters = [
+                    'A','B','C','D','E','F','G','H','I','J','K','L','M',
+                    'N','Ñ','Ng','O','P','Q','R','S','T','U','V','W','X','Y','Z'
+                ];
+            @endphp
+
+            @foreach ($letters as $letter)
                 <p class="z-[2] cursor-pointer hover:scale-125 hover:!text-[#F4C300] transition-transform">
-                    {{ $letter }}{{ strtolower($letter) }}
+                    {{ $letter }}{{ mb_strtolower($letter, 'UTF-8') }}
                 </p>
             @endforeach
         </div>
