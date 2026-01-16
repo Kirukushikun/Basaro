@@ -239,7 +239,7 @@
                     }
                 });
             }
-        }
+        },
 
         reset() {
             this.userInput = '';
