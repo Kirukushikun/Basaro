@@ -874,7 +874,7 @@ class ThirdSlide extends Component
                 'answer' => 'ay',
                 'image' => 'illustrations/bahay.png',
             ],
-            ['type' => 'read_word', 'full_word' => 'Bahay'],
+            // ['type' => 'read_word', 'full_word' => 'Bahay'],
 
             [
                 'type' => 'fill_syllable',
@@ -883,16 +883,16 @@ class ThirdSlide extends Component
                 'answer' => 'aw',
                 'image' => 'illustrations/kahaw.png',
             ],
-            ['type' => 'read_word', 'full_word' => 'Kahaw'],
+            // ['type' => 'read_word', 'full_word' => 'Kahaw'],
 
             [
                 'type' => 'fill_syllable',
-                'word' => 'Kas__',
-                'full_word' => 'Kasiw',
-                'answer' => 'iw',
+                'word' => 'Kah__',
+                'full_word' => 'Kahoy',
+                'answer' => 'oy',
                 'image' => 'illustrations/kasiw.png',
             ],
-            ['type' => 'read_word', 'full_word' => 'Kasiw'],
+            // ['type' => 'read_word', 'full_word' => 'Kahoy'],
 
             [
                 'type' => 'fill_syllable',
@@ -901,16 +901,16 @@ class ThirdSlide extends Component
                 'answer' => 'oy',
                 'image' => 'illustrations/amoy.png',
             ],
-            ['type' => 'read_word', 'full_word' => 'Amoy'],
+            // ['type' => 'read_word', 'full_word' => 'Amoy'],
 
             [
                 'type' => 'fill_syllable',
                 'word' => 'B__wang',
-                'full_word' => 'Buywang',
-                'answer' => 'uy',
-                'image' => 'illustrations/buywang.png',
+                'full_word' => 'Baywang',
+                'answer' => 'ay',
+                'image' => 'illustrations/baywang.png',
             ],
-            ['type' => 'read_word', 'full_word' => 'Buywang'],
+            // ['type' => 'read_word', 'full_word' => 'Buywang'],
 
             [
                 'type' => 'fill_syllable',
@@ -919,7 +919,7 @@ class ThirdSlide extends Component
                 'answer' => 'ay',
                 'image' => 'illustrations/kilay.png',
             ],
-            ['type' => 'read_word', 'full_word' => 'Kilay'],
+            // ['type' => 'read_word', 'full_word' => 'Kilay'],
 
             [
                 'type' => 'fill_syllable',
@@ -928,7 +928,7 @@ class ThirdSlide extends Component
                 'answer' => 'ay',
                 'image' => 'illustrations/gulay.png',
             ],
-            ['type' => 'read_word', 'full_word' => 'Gulay'],
+            // ['type' => 'read_word', 'full_word' => 'Gulay'],
 
             [
                 'type' => 'fill_syllable',
@@ -937,7 +937,7 @@ class ThirdSlide extends Component
                 'answer' => 'ay',
                 'image' => 'illustrations/tulay.png',
             ],
-            ['type' => 'read_word', 'full_word' => 'Tulay'],
+            // ['type' => 'read_word', 'full_word' => 'Tulay'],
 
             [
                 'type' => 'fill_syllable',
@@ -946,16 +946,16 @@ class ThirdSlide extends Component
                 'answer' => 'aw',
                 'image' => 'illustrations/araw.png',
             ],
-            ['type' => 'read_word', 'full_word' => 'Araw'],
+            // ['type' => 'read_word', 'full_word' => 'Araw'],
 
             [
                 'type' => 'fill_syllable',
                 'word' => 'Bat__',
-                'full_word' => 'Bata',
+                'full_word' => 'Bataw',
                 'answer' => 'a',
-                'image' => 'illustrations/bata.png',
+                'image' => 'illustrations/bataw.png',
             ],
-            ['type' => 'read_word', 'full_word' => 'Bata'],
+            // ['type' => 'read_word', 'full_word' => 'Bataw'],
         ],
 
         13 => [
