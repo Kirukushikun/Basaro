@@ -69,100 +69,6 @@ class ThirdSlide extends Component
                 'alpabeto' => 'K',
                 'answer' => 'k'
             ],
-
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'L',
-                'answer' => 'l'
-            ],
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'Y',
-                'answer' => 'y'
-            ],
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'N',
-                'answer' => 'n'
-            ],
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'G',
-                'answer' => 'g'
-            ],
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'NG', 
-                'answer' => 'ng'
-            ],
-
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'P',
-                'answer' => 'p'
-            ],
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'R',
-                'answer' => 'r'
-            ],
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'D',
-                'answer' => 'd'
-            ],
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'H',
-                'answer' => 'h'
-            ],
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'W',
-                'answer' => 'w'
-            ],
-
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'C',
-                'answer' => 'c'
-            ],
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'F',
-                'answer' => 'f'
-            ],
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'J',
-                'answer' => 'j'
-            ],
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'Ñ',
-                'answer' => 'ñ'
-            ],
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'Q',
-                'answer' => 'q'
-            ],
-
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'V',
-                'answer' => 'v'
-            ],
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'X',
-                'answer' => 'x'
-            ],
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'Z',
-                'answer' => 'z'
-            ],
             
             [
                 'type' => 'panuto',
@@ -205,6 +111,7 @@ class ThirdSlide extends Component
                 'choices' => ['I', 'U', 'A', 'O', 'E'],
                 'answer' => 'A',
             ],
+
             [
                 'type' => 'mc_audio',
                 'audio' => 'audio/L1Q6.mp3',
@@ -239,41 +146,6 @@ class ThirdSlide extends Component
                 'prompt' => 'Pakinggan ang tunog at pumili.',
                 'choices' => ['N', 'W', 'T', 'L', 'M'],
                 'answer' => 'W',
-            ],
-            [
-                'type' => 'mc_audio',
-                'audio' => 'audio/L1Q11.mp3',
-                'prompt' => 'Anong letra ang narinig mo?',
-                'choices' => ['O', 'I', 'U', 'E', 'A'],
-                'answer' => 'I',
-            ],
-            [
-                'type' => 'mc_audio',
-                'audio' => 'audio/L1Q12.mp3',
-                'prompt' => 'Piliin ang tamang letra.',
-                'choices' => ['G', 'B', 'M', 'D', 'P'],
-                'answer' => 'B',
-            ],
-            [
-                'type' => 'mc_audio',
-                'audio' => 'audio/L1Q13.mp3',
-                'prompt' => 'Anong letra ang tumunog?',
-                'choices' => ['E', 'O', 'U', 'A', 'I'],
-                'answer' => 'U',
-            ],
-            [
-                'type' => 'mc_audio',
-                'audio' => 'audio/L1Q14.mp3',
-                'prompt' => 'Makinig mabuti at piliin.',
-                'choices' => ['P', 'M', 'G', 'D', 'B'],
-                'answer' => 'G',
-            ],
-            [
-                'type' => 'mc_audio',
-                'audio' => 'audio/L1Q15.mp3',
-                'prompt' => 'Sa anong letra ang tunog?',
-                'choices' => ['W', 'S', 'N', 'L', 'M'],
-                'answer' => 'N',
             ],
 
         ],

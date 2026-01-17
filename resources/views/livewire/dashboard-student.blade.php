@@ -197,46 +197,34 @@
                         ],
 
                         16 => [
-                            "Makaunawa sa binasang awiting-bayan",
-                            "Matukoy ang paksa at damdaming ipinapahayag",
-                            "Makapagbigay ng interpretasyon batay sa binasa",
-                        ],
-
-                        17 => [
                             "Makaunawa sa binasang tula",
                             "Matukoy ang tugma, sukat, at mensahe ng tula",
                             "Makapagbigay ng sariling pagpapakahulugan sa tula",
                         ],
 
-                        18 => [
+                        17 => [
                             "Makaunawa sa binasang maikling kuwento",
                             "Matukoy ang tauhan, tagpuan, at banghay",
                             "Makabuo ng konklusyon batay sa pangyayari",
                         ],
 
-                        19 => [
-                            "Makaunawa sa binasang diyalogo",
-                            "Matukoy ang nagsasalita at layunin ng usapan",
-                            "Makapagbigay ng wastong interpretasyon sa diyalogo",
-                        ],
-
-                        20 => [
+                        18 => [
                             "Makaunawa sa binasang balita",
                             "Matukoy ang pangunahing impormasyon at detalye",
                             "Makapagpaliwanag ng kahalagahan ng balitang nabasa",
                         ],
 
-                        21 => [
+                        19 => [
                             "Makaunawa sa binasang editoryal",
                             "Matukoy ang opinyon at paninindigan ng may-akda",
                             "Makapagbigay ng sariling pananaw kaugnay ng editoryal",
                         ],
 
-                        22 => [
-                            "Makaunawa sa binasang dula",
-                            "Matukoy ang tauhan, tagpo, at diyalogo",
-                            "Makapagbigay ng interpretasyon batay sa kilos at usapan",
-                        ]
+                        20 => [
+                            "Makaunawa sa binasang artikulong pang-agham at teknolohiya",
+                            "Matukoy ang mga konsepto at impormasyon sa artikulo",
+                            "Makapagbigay ng aplikasyon ng mga natutunang kaalaman mula sa artikulo",
+                        ],
                     ];
                 @endphp
 
