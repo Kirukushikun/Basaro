@@ -364,7 +364,7 @@
     <div x-show="page === 21" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
         <header class="header flex-shrink-0">
             <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
-                Narito ang mga salitang nabuo natin gamit ang pantig na <span class="!text-[#F4C300]">ha</span>, <span class="!text-[#F4C300]">ha</span>, <span class="!text-[#F4C300]">hi</span>, <span class="!text-[#F4C300]">ho</span> at <span class="!text-[#F4C300]">hu</span> kasama ang iba pang pantig na ating natalakay. Halimbawa:
+                Narito ang mga salitang nabuo natin gamit ang pantig na <span class="!text-[#F4C300]">ha</span>, <span class="!text-[#F4C300]">he</span>, <span class="!text-[#F4C300]">hi</span>, <span class="!text-[#F4C300]">ho</span> at <span class="!text-[#F4C300]">hu</span> kasama ang iba pang pantig na ating natalakay. Halimbawa:
             </p>
         </header>
         <div class="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 !text-lg sm:!text-2xl md:!text-2xl lg:!text-3xl font-bold text-center overflow-y-auto p-5">

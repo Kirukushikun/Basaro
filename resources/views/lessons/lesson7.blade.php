@@ -14,11 +14,11 @@
             @foreach ([
                 'E',
                 'U',
-                'T',
-                'K',
-                'L',
-                'N',
-                'Y',
+                'Ta',
+                'Ka',
+                'La',
+                'Na',
+                'Ya',
             ] as $phrase)
                 <p class="cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform">
                     {{ $phrase }}

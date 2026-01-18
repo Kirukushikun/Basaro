@@ -879,18 +879,9 @@ class ThirdSlide extends Component
             [
                 'type' => 'fill_syllable',
                 'word' => 'Kah__',
-                'full_word' => 'Kahaw',
-                'answer' => 'aw',
-                'image' => 'illustrations/kahaw.png',
-            ],
-            // ['type' => 'read_word', 'full_word' => 'Kahaw'],
-
-            [
-                'type' => 'fill_syllable',
-                'word' => 'Kah__',
                 'full_word' => 'Kahoy',
                 'answer' => 'oy',
-                'image' => 'illustrations/kasiw.png',
+                'image' => 'illustrations/kahoy.png',
             ],
             // ['type' => 'read_word', 'full_word' => 'Kahoy'],
 
@@ -910,7 +901,7 @@ class ThirdSlide extends Component
                 'answer' => 'ay',
                 'image' => 'illustrations/baywang.png',
             ],
-            // ['type' => 'read_word', 'full_word' => 'Buywang'],
+            // ['type' => 'read_word', 'full_word' => 'Baywang'],
 
             [
                 'type' => 'fill_syllable',
@@ -952,7 +943,7 @@ class ThirdSlide extends Component
                 'type' => 'fill_syllable',
                 'word' => 'Bat__',
                 'full_word' => 'Bataw',
-                'answer' => 'a',
+                'answer' => 'aw',
                 'image' => 'illustrations/bataw.png',
             ],
             // ['type' => 'read_word', 'full_word' => 'Bataw'],
@@ -1410,14 +1401,14 @@ class ThirdSlide extends Component
             [
                 'type' => 'panuto',
                 'audio' => 'audio/lesson20/L20P1.m4a',
-                'header' => 'A. Basahin mo muna ang talasalitaan bago sagutin ang kahulugan. Pindutin mo lang ang puso kung ito ang tamang sagot.',
+                'header' => 'A. Basahin mo muna ang talasalitaan bago sagutin ang kahulugan. Pindutin mo lang ang kahon kung ito ang tamang sagot.',
                 'body' => '',
             ],
             ['type' => 'vocabulary_match', 'word' => 'tuso', 'answer' => 'madaya', 'choices' => ['mabait', 'madaya']],
             ['type' => 'vocabulary_match', 'word' => 'sumibol', 'answer' => 'lumitaw', 'choices' => ['lumitaw', 'lumubog']],
             ['type' => 'vocabulary_match', 'word' => 'lingid', 'answer' => 'lihim', 'choices' => ['ligaw', 'lihim']],
             ['type' => 'vocabulary_match', 'word' => 'pangamba', 'answer' => 'takot', 'choices' => ['sigla', 'takot']],
-            ['type' => 'vocabulary_match', 'word' => 'humihipak', 'answer' => 'humahawi', 'choices' => ['humahawi', 'humihithit']],
+            ['type' => 'vocabulary_match', 'word' => 'humihipak', 'answer' => 'humihithit', 'choices' => ['humahawi', 'humihithit']],
             
             // Part B: Comprehension (MC)
             [

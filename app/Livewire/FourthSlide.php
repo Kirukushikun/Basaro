@@ -573,7 +573,7 @@ class FourthSlide extends Component
                 'header' => 'Basahin at unawain ang sumusunod na katanungan o pahayag. Pindutin mo lang ang salita na sa palagay mo ay ang tamang sagot.',
                 'body' => '',
             ],
-            ['type' => 'multiple_choice', 'tanong' => 'Ano ang kahulugan ng salitang kamusmusan?', 'choices' => ['Kabataan', 'Katandaan', 'Kawalan'], 'answer' => 'Kawalan'],
+            ['type' => 'multiple_choice', 'tanong' => 'Ano ang kahulugan ng salitang kamusmusan?', 'choices' => ['Kabataan', 'Katandaan', 'Kawalan'], 'answer' => 'Kabataan'],
             ['type' => 'multiple_choice', 'tanong' => 'Ano ang ibig sabihin ng salitang tumatanglaw', 'choices' => ['Nagdidilim', 'Nagbibigay-liwanag', 'Nagbibigay'], 'answer' => 'Nagbibigay-liwanag'],
             ['type' => 'multiple_choice', 'tanong' => 'Ito ay isang anyo ng sining o panitikan na naglalayong maipahayag ang damdamin sa malayang pagsusulat.', 'choices' => ['Dula', 'Kuwento', 'Tula'], 'answer' => 'Tula'],
             ['type' => 'multiple_choice', 'tanong' => 'Sa iyong palagay, sino ang nagsasalita sa tula?', 'choices' => ['Nanay', 'Tatay', 'Anak'], 'answer' => 'Anak'],
