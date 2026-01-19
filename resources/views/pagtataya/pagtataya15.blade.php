@@ -17,19 +17,18 @@
         questions: window.pagtataya15Questions,
         soundEnabled: false,
         currentPanutoAudio: null,
+        selectedChoice: null,
 
         get isPanuto() {
             return this.current && this.current.type === 'panuto';
         },
 
         get showSoundOverlay() {
-            // Only show if sound not enabled AND it's the first panuto
             return !this.soundEnabled && this.isPanuto;
         },
 
         enableSound() {
             this.soundEnabled = true;
-            // Play the panuto audio if it exists
             if (this.current && this.current.audio) {
                 this.currentPanutoAudio = new Audio(this.current.audio);
                 this.currentPanutoAudio.play();
@@ -49,8 +48,9 @@
                 return this.normalizeText(this.transcription) === this.normalizeText(this.current.sawikain);
             } else if (['input_kahulugan', 'comprehension'].includes(this.current.type)) {
                 return this.normalizeText(this.userInput) === this.normalizeText(this.current.answer);
-            } else if (this.current.type === 'kasabihan') {
-                // Kasabihan is just a reading page, no validation needed
+            } else if (this.current.type === 'multiple_choice') {
+                return this.selectedChoice === this.current.answer;
+            } else if (['kasabihan', 'salawikain'].includes(this.current.type)) {
                 return true;
             }
             
@@ -168,13 +168,6 @@
                 console.log('✅ Correct! Score:', this.score);
             } else {
                 console.log('❌ Wrong answer');
-                if (this.current.type === 'read_sawikain') {
-                    console.log('Expected:', this.current.sawikain);
-                    console.log('Got:', this.transcription);
-                } else {
-                    console.log('Expected:', this.current.answer);
-                    console.log('Got:', this.userInput);
-                }
             }
         },
 
@@ -184,28 +177,31 @@
             }
         },
 
-        handleKasabihanNext() {
-            if (this.current.type === 'kasabihan') {
+        handleReadingPageNext() {
+            if (['kasabihan', 'salawikain'].includes(this.current.type)) {
                 this.confirmed = true;
                 this.score++;
-                console.log('✅ Kasabihan read! Score:', this.score);
+                console.log('✅ Reading page completed! Score:', this.score);
+            }
+        },
+
+        handleMultipleChoiceConfirm() {
+            if (this.current.type === 'multiple_choice' && this.selectedChoice) {
+                this.checkAnswer();
             }
         },
 
         next() {
             if (this.isPanuto) {
-                // Move past panuto page (no confirmation needed)
                 this.page++
                 this.reset()
                 
-                // Stop panuto audio if playing
                 if (this.currentPanutoAudio) {
                     this.currentPanutoAudio.pause();
                     this.currentPanutoAudio.currentTime = 0;
                     this.currentPanutoAudio = null;
                 }
 
-                // Auto-play next panuto audio if applicable
                 this.$nextTick(() => {
                     if (this.soundEnabled && this.isPanuto && this.current && this.current.audio) {
                         this.currentPanutoAudio = new Audio(this.current.audio);
@@ -213,25 +209,23 @@
                     }
                 });
             } else if (!this.confirmed) {
-                // Handle different question types before confirmation
-                if (this.current.type === 'kasabihan') {
-                    this.handleKasabihanNext();
+                if (['kasabihan', 'salawikain'].includes(this.current.type)) {
+                    this.handleReadingPageNext();
                 } else if (['input_kahulugan', 'comprehension'].includes(this.current.type)) {
                     this.handleTextInputConfirm();
+                } else if (this.current.type === 'multiple_choice') {
+                    this.handleMultipleChoiceConfirm();
                 }
             } else {
-                // Move to next question after confirmation
                 this.page++;
                 this.reset();
                 
-                // Stop panuto audio if playing
                 if (this.currentPanutoAudio) {
                     this.currentPanutoAudio.pause();
                     this.currentPanutoAudio.currentTime = 0;
                     this.currentPanutoAudio = null;
                 }
 
-                // Auto-play next panuto audio if applicable
                 this.$nextTick(() => {
                     if (this.soundEnabled && this.isPanuto && this.current && this.current.audio) {
                         this.currentPanutoAudio = new Audio(this.current.audio);
@@ -248,6 +242,7 @@
             this.processing = false;
             this.transcription = '';
             this.audioChunks = [];
+            this.selectedChoice = null;
         },
 
         replay() {
@@ -420,6 +415,23 @@
                 </div>
             </template>
 
+            <!-- TYPE: SALAWIKAIN PAGE -->
+            <template x-if="current.type === 'salawikain'">
+                <div class="flex-1 flex flex-col items-center justify-center gap-10 w-full px-4">
+                    
+                    <h2 class="text-4xl font-bold !text-[#F4C300]">Basahin ang Salawikain</h2>
+
+                    <div class="max-w-3xl bg-gray-800 p-10 rounded-xl border-4 border-[#F4C300] shadow-2xl">
+                        <p class="text-2xl leading-relaxed text-white text-center" x-text="current.salawikain"></p>
+                    </div>
+
+                    <p class="text-lg text-center max-w-xl opacity-80">
+                        Basahin nang mabuti ang salawikain. Pagkatapos, sasagutin mo ang mga tanong tungkol dito.
+                    </p>
+
+                </div>
+            </template>
+
             <!-- TYPE: COMPREHENSION -->
             <template x-if="current.type === 'comprehension'">
                 <div class="flex-1 flex flex-col items-center gap-10 mt-10 w-full px-4">
@@ -462,6 +474,51 @@
                 </div>
             </template>
 
+            <!-- TYPE: MULTIPLE CHOICE -->
+            <template x-if="current.type === 'multiple_choice'">
+                <div class="flex-1 flex flex-col items-center gap-10 mt-10 w-full px-4">
+
+                    <!-- Question -->
+                    <div class="max-w-2xl">
+                        <h2 class="text-3xl font-bold !text-[#F4C300] mb-6 text-center"
+                            x-text="current.tanong"></h2>
+                    </div>
+
+                    <!-- Feedback -->
+                    <div x-show="confirmed"
+                        x-transition
+                        class="px-6 py-3 rounded-lg text-lg font-semibold"
+                        :class="isCorrect ? 'bg-green-500 text-white' : 'bg-red-500 text-white'">
+                        <span x-show="isCorrect">
+                            <i class="fa-solid fa-check"></i> Tama!
+                        </span>
+                        <span x-show="!isCorrect">
+                            <i class="fa-solid fa-x"></i> Mali. Ang tamang sagot ay: <b x-text="current.answer"></b>
+                        </span>
+                    </div>
+
+                    <!-- Choices -->
+                    <div class="w-full max-w-xl space-y-3">
+                        <template x-for="(choice, index) in current.choices" :key="index">
+                            <button
+                                @click="!confirmed && (selectedChoice = choice)"
+                                :disabled="confirmed"
+                                class="w-full px-6 py-4 border-2 rounded-lg text-lg font-medium transition-all disabled:cursor-not-allowed"
+                                :class="{
+                                    'border-[#F4C300] bg-[#F4C300] !text-black': selectedChoice === choice && !confirmed,
+                                    'border-green-500 bg-green-500 text-white': confirmed && choice === current.answer,
+                                    'border-red-500 bg-red-500 text-white': confirmed && selectedChoice === choice && choice !== current.answer,
+                                    'border-gray-300 hover:border-[#F4C300]': selectedChoice !== choice && !confirmed,
+                                    'border-gray-600 opacity-50': confirmed && choice !== current.answer && selectedChoice !== choice
+                                }"
+                                x-text="choice">
+                            </button>
+                        </template>
+                    </div>
+
+                </div>
+            </template>
+
         </div>
     </template>
 
@@ -471,20 +528,22 @@
     <!-- Navigation Buttons -->
     <div x-show="page <= questions.length" class="absolute -bottom-[110px] flex items-center justify-between w-[450px]">
         <!-- Page Counter -->
-        <p x-show="current.type !== 'kasabihan'">
+        <p x-show="!['kasabihan', 'salawikain'].includes(current.type)">
             <span x-text="page"></span>/<span x-text="questions.length"></span>
         </p>
         <p x-show="current.type === 'kasabihan'" class="text-sm opacity-70">Kasabihan</p>
+        <p x-show="current.type === 'salawikain'" class="text-sm opacity-70">Salawikain</p>
         
         <div class="flex gap-3">
             <button 
-                x-show="(current.type === 'kasabihan' && !confirmed) || (['input_kahulugan', 'comprehension'].includes(current.type) && userInput && !confirmed) || confirmed" 
+                x-show="(['kasabihan', 'salawikain'].includes(current.type) && !confirmed) || (['input_kahulugan', 'comprehension'].includes(current.type) && userInput && !confirmed) || (current.type === 'multiple_choice' && selectedChoice && !confirmed) || confirmed" 
                 @click="next" 
-                :disabled="['input_kahulugan', 'comprehension'].includes(current.type) && !userInput && !confirmed"
+                :disabled="(['input_kahulugan', 'comprehension'].includes(current.type) && !userInput && !confirmed) || (current.type === 'multiple_choice' && !selectedChoice && !confirmed)"
                 class="px-4 py-2 bg-[#F4C300] rounded-md font-bold whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed">
                 <span x-show="confirmed" class="!text-black">Susunod</span>
-                <span x-show="current.type === 'kasabihan' && !confirmed" class="!text-black">Susunod</span>
+                <span x-show="['kasabihan', 'salawikain'].includes(current.type) && !confirmed" class="!text-black">Susunod</span>
                 <span x-show="['input_kahulugan', 'comprehension'].includes(current.type) && userInput && !confirmed" class="!text-black">Kumpirmahin</span>
+                <span x-show="current.type === 'multiple_choice' && selectedChoice && !confirmed" class="!text-black">Kumpirmahin</span>
                 <i class="fa-solid fa-arrow-right !text-black"></i>
             </button>
         </div>

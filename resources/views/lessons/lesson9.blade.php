@@ -129,7 +129,7 @@
                 'ga + ya = gaya',
                 'ga + a + no = gaano',
                 'ma + ga = maga',
-                'ge + mo = gemo',
+                'Ge + mo = gemo',
                 'ga + tas = gatas',
                 'gi + las = gilas',
                 'gu + lat = gulat',

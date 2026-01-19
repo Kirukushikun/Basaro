@@ -105,7 +105,7 @@
     <div x-show="page === 6" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
         <header class="header flex-shrink-0">
             <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
-                Narito ang mga halimbawa ng mga salitang mabubuo natin kapag ibinagsamasama natin ang mga panting na ito:
+                Narito ang mga halimbawa ng mga salitang mabubuo natin kapag pinagsamasama natin ang mga panting na ito:
             </p>
         </header>
 

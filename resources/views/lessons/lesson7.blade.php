@@ -215,9 +215,6 @@
             <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
                 Alam mo ba? Hindi lang <span class="!text-[#F4C300]">ta</span> ang pantig na mabubuo natin kapag isinama natin ang tunog <span class="!text-[#F4C300]">t</span> sa iba pang patinig na atin ng napag-aralan. Aralin natin.
             </p>
-            <p class="!text-sm sm:!text-base md:!text-lg lg:!text-xl !text-gray-300 mt-4">
-                Kapag pinagsama ang tunog na <span class="!text-[#F4C300]">t</span> sa tunog na <span class="!text-[#F4C300]">e</span> ay mabubuo natin ang pantig na <span class="!text-[#F4C300]">te</span>.
-            </p>
         </header>
     </div>
 
@@ -225,7 +222,7 @@
     <div x-show="page === 10" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
-                Kapag pinag sama ang tunog na <span class="!text-[#F4C300]">t</span> at tunog na <span class="!text-[#F4C300]">e</span> ay mabubuo natin ang pantig na <span class="!text-[#F4C300]">te</span>. Magbigay tayo nga tayo ng mga salitang mabubuo natin kapag ang pantig na <span class="!text-[#F4C300]">te</span> ay hinalo natin sa iba pang pantig.
+                Kapag pinagsama ang tunog na <span class="!text-[#F4C300]">t</span> at tunog na <span class="!text-[#F4C300]">e</span> ay mabubuo natin ang pantig na <span class="!text-[#F4C300]">te</span>. Magbigay tayo nga tayo ng mga salitang mabubuo natin kapag ang pantig na <span class="!text-[#F4C300]">te</span> ay hinalo natin sa iba pang pantig.
             </p>
         </header>
 
@@ -425,6 +422,27 @@
 
     {{-- ===== PAGE 18 ===== --}}
     <div x-show="page === 18" class="w-full flex-1 flex flex-col gap-6 px-2">
+        <div class="flex-1 flex items-center justify-center">
+            <div class="grid grid-cols-3 gap-8 !text-2xl sm:!text-3xl md:!text-4xl lg:!text-5xl font-bold">
+                @foreach ([
+                    'Makita',
+                    'Kusa',
+                    'Bulsa',
+                    'Bakit',
+                    'Sumakit',
+                    'Kabute',
+                    'Takam',
+                    'Bantas',
+                    'Tumakas'
+                ] as $example)
+                    <p>{{ $example }}</p>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+    {{-- ===== PAGE 19 ===== --}}
+    <div x-show="page === 19" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
                 Ang pantig na <span class="!text-[#F4C300]">la</span> ito naman ang pantig na mabubuo kapag pinagsama ang tunog ng <span class="!text-[#F4C300]">Ll</span> at <span class="!text-[#F4C300]">Aa</span>. Tunog <span class="!text-[#F4C300]">l</span> at <span class="!text-[#F4C300]">a</span> ay <span class="!text-[#F4C300]">la</span>
@@ -445,8 +463,8 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 19 ===== --}}
-    <div x-show="page === 19" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 20 ===== --}}
+    <div x-show="page === 20" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
                 Ang tunog <span class="!text-[#F4C300]">l</span> at <span class="!text-[#F4C300]">e</span> = <span class="!text-[#F4C300]">le</span>
@@ -466,11 +484,11 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 20 ===== --}}
-    <div x-show="page === 20" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 21 ===== --}}
+    <div x-show="page === 21" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
-                kapag ipinag sama ang tunog <span class="!text-[#F4C300]">l</span> at <span class="!text-[#F4C300]">i</span> = <span class="!text-[#F4C300]">li</span>
+                kapag ipinagsama ang tunog <span class="!text-[#F4C300]">l</span> at <span class="!text-[#F4C300]">i</span> = <span class="!text-[#F4C300]">li</span>
             </p>
         </header>
 
@@ -487,8 +505,8 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 21 ===== --}}
-    <div x-show="page === 21" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 22 ===== --}}
+    <div x-show="page === 22" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
                 kapag ipinag sama naman ang tunog <span class="!text-[#F4C300]">l</span> at <span class="!text-[#F4C300]">o</span> = <span class="!text-[#F4C300]">lo</span>
@@ -508,8 +526,8 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 22 ===== --}}
-    <div x-show="page === 22" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 23 ===== --}}
+    <div x-show="page === 23" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
                 Kapag ipinag sama naman ang tunog <span class="!text-[#F4C300]">l</span> at <span class="!text-[#F4C300]">u</span> = <span class="!text-[#F4C300]">lu</span>
@@ -521,7 +539,6 @@
                 @foreach ([
                     'lu + ma = luma',
                     'lu + to = luto',
-                    'lu + pa = lupa'
                     ] as $example)
                     <p>{{ $example }}</p>
                 @endforeach
@@ -529,8 +546,8 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 23 ===== --}}
-    <div x-show="page === 23" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 24 ===== --}}
+    <div x-show="page === 24" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
                 Ang pantig na <span class="!text-[#F4C300]">na</span>. Ito ang nabubuo kapag pinagsama ang tunog na <span class="!text-[#F4C300]">n</span> at <span class="!text-[#F4C300]">a</span>.
@@ -551,8 +568,8 @@
     </div>
 
 
-    {{-- ===== PAGE 24 ===== --}}
-    <div x-show="page === 24" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 25 ===== --}}
+    <div x-show="page === 25" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
                 kapag inihalo natin ang tunog na <span class="!text-[#F4C300]">n</span> sa iba pang mga patinig ganito ang mang yayari. <span class="!text-[#F4C300]">N</span> + <span class="!text-[#F4C300]">e</span> = <span class="!text-[#F4C300]">ne</span>, halika basahin natin ang mga halimbawa:
@@ -572,8 +589,8 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 25 ===== --}}
-    <div x-show="page === 25" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 26 ===== --}}
+    <div x-show="page === 26" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
                 Tunog <span class="!text-[#F4C300]">n</span> + <span class="!text-[#F4C300]">i</span> = <span class="!text-[#F4C300]">ni</span>. Mga halimbawa:
@@ -593,8 +610,8 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 26 ===== --}}
-    <div x-show="page === 26" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 27 ===== --}}
+    <div x-show="page === 27" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
                 <span class="!text-[#F4C300]">n</span> + <span class="!text-[#F4C300]">o</span> = <span class="!text-[#F4C300]">no</span>
@@ -614,8 +631,8 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 27 ===== --}}
-    <div x-show="page === 27" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 28 ===== --}}
+    <div x-show="page === 28" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
                 <span class="!text-[#F4C300]">n</span> + <span class="!text-[#F4C300]">u</span> = <span class="!text-[#F4C300]">nu</span>
@@ -635,8 +652,8 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 28 ===== --}}
-    <div x-show="page === 28" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+    {{-- ===== PAGE 29 ===== --}}
+    <div x-show="page === 29" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
         <header class="header flex-shrink-0">
             <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
                 Basahin ang mga salitang nabuo gamit ang mga panting na <span class="!text-[#F4C300]">na</span>, <span class="!text-[#F4C300]">ne</span>, <span class="!text-[#F4C300]">ni</span>, <span class="!text-[#F4C300]">no</span> at <span class="!text-[#F4C300]">nu</span> at ang mga pantig na napag-aralan mo na.
@@ -657,8 +674,8 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 29 ===== --}}
-    <div x-show="page === 29" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 30 ===== --}}
+    <div x-show="page === 30" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
                 Ang pantig na <span class="!text-[#F4C300]">ya</span> - ito'y pinagsamang tunog na <span class="!text-[#F4C300]">y</span> at <span class="!text-[#F4C300]">a</span>. Halika basahin natin ang mga halimbawa:
@@ -678,11 +695,11 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 30 ===== --}}
-    <div x-show="page === 30" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 31 ===== --}}
+    <div x-show="page === 31" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
-                <span class="!text-[#F4C300]">ye</span> pinagsamang tunog na<span class="!text-[#F4C300]">y</span> at <span class="!text-[#F4C300]">e</span>. Halimbawa:
+                <span class="!text-[#F4C300]">ye</span> pinagsamang tunog na <span class="!text-[#F4C300]">y</span> at <span class="!text-[#F4C300]">e</span>. Halimbawa:
             </p>
         </header>
 
@@ -699,8 +716,8 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 31 ===== --}}
-    <div x-show="page === 31" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 32 ===== --}}
+    <div x-show="page === 32" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
                 <span class="!text-[#F4C300]">yi</span> pinagsamang tunog na<span class="!text-[#F4C300]">y</span> at <span class="!text-[#F4C300]">i</span>. Halimbawa:
@@ -720,8 +737,8 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 32 ===== --}}
-    <div x-show="page === 32" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 33 ===== --}}
+    <div x-show="page === 33" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
                 <span class="!text-[#F4C300]">yo</span> - pinagsamang tunog ng <span class="!text-[#F4C300]">y</span> + <span class="!text-[#F4C300]">o</span> = <span class="!text-[#F4C300]">yo</span>. Halimbawa:
@@ -741,8 +758,8 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 33 ===== --}}
-    <div x-show="page === 33" class="w-full flex-1 flex flex-col gap-6 px-2">
+    {{-- ===== PAGE 34 ===== --}}
+    <div x-show="page === 34" class="w-full flex-1 flex flex-col gap-6 px-2">
         <header class="header">
             <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
                 <span class="!text-[#F4C300]">yu</span> - pinagsamang tunog ng <span class="!text-[#F4C300]">y</span> + <span class="!text-[#F4C300]">u</span> = <span class="!text-[#F4C300]">yu</span>. Basahin natin ang mga halimbawa:
@@ -762,8 +779,8 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 34 ===== --}}
-    <div x-show="page === 34" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
+    {{-- ===== PAGE 35 ===== --}}
+    <div x-show="page === 35" class="w-full flex-1 flex flex-col gap-6 px-2 min-h-0">
         <header class="header flex-shrink-0">
             <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
                 Basahin ang sumusunod na pantig upang mabuo ang salita:

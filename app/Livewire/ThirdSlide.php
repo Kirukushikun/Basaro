@@ -11,64 +11,64 @@ class ThirdSlide extends Component
 
     protected $questions = [
         1 => [
-            [
-                'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
-            ],
+            // [
+            //     'type' => 'panuto',
+            //     'audio' => 'audio/lesson1/L1P3.m4a',
+            //     'header' => 'A. Ano ang tunog ng sumusunod na letra?',
+            //     'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+            // ],
 
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'M',
-                'answer' => 'm'
-            ],
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'S',
-                'answer' => 's'
-            ],
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'A',
-                'answer' => 'a'
-            ],
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'I',
-                'answer' => 'i'
-            ],
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'O',
-                'answer' => 'o'
-            ],
+            // [
+            //     'type' => 'alphabet',
+            //     'alpabeto' => 'M',
+            //     'answer' => 'm'
+            // ],
+            // [
+            //     'type' => 'alphabet',
+            //     'alpabeto' => 'S',
+            //     'answer' => 's'
+            // ],
+            // [
+            //     'type' => 'alphabet',
+            //     'alpabeto' => 'A',
+            //     'answer' => 'a'
+            // ],
+            // [
+            //     'type' => 'alphabet',
+            //     'alpabeto' => 'I',
+            //     'answer' => 'i'
+            // ],
+            // [
+            //     'type' => 'alphabet',
+            //     'alpabeto' => 'O',
+            //     'answer' => 'o'
+            // ],
 
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'B',
-                'answer' => 'b'
-            ],
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'E',
-                'answer' => 'e'
-            ],
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'U',
-                'answer' => 'u'
-            ],
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'T',
-                'answer' => 't'
-            ],
-            [
-                'type' => 'alphabet',
-                'alpabeto' => 'K',
-                'answer' => 'k'
-            ],
+            // [
+            //     'type' => 'alphabet',
+            //     'alpabeto' => 'B',
+            //     'answer' => 'b'
+            // ],
+            // [
+            //     'type' => 'alphabet',
+            //     'alpabeto' => 'E',
+            //     'answer' => 'e'
+            // ],
+            // [
+            //     'type' => 'alphabet',
+            //     'alpabeto' => 'U',
+            //     'answer' => 'u'
+            // ],
+            // [
+            //     'type' => 'alphabet',
+            //     'alpabeto' => 'T',
+            //     'answer' => 't'
+            // ],
+            // [
+            //     'type' => 'alphabet',
+            //     'alpabeto' => 'K',
+            //     'answer' => 'k'
+            // ],
             
             [
                 'type' => 'panuto',
@@ -78,35 +78,35 @@ class ThirdSlide extends Component
             ],
             [
                 'type' => 'mc_audio',
-                'audio' => 'audio/L1Q1.mp3',
+                'audio' => 'audio/lesson1/pagsasanay/A1.m4a',
                 'prompt' => 'Sa anong letra maririnig ang sumusunod na tunog?',
                 'choices' => ['A', 'T', 'S', 'E', 'M'],
                 'answer' => 'S',
             ],
             [
                 'type' => 'mc_audio',
-                'audio' => 'audio/L1Q2.mp3',
+                'audio' => 'audio/lesson1/pagsasanay/A2.m4a',
                 'prompt' => 'Anong letra ang iyong narinig?',
                 'choices' => ['D', 'M', 'O', 'A', 'P'],
                 'answer' => 'M',
             ],
             [
                 'type' => 'mc_audio',
-                'audio' => 'audio/L1Q3.mp3',
+                'audio' => 'audio/lesson1/pagsasanay/A3.m4a',
                 'prompt' => 'Pakinggan mabuti. Aling letra ang tumutunog?',
                 'choices' => ['B', 'E', 'G', 'I', 'U'],
                 'answer' => 'E',
             ],
             [
                 'type' => 'mc_audio',
-                'audio' => 'audio/L1Q4.mp3',
+                'audio' => 'audio/lesson1/pagsasanay/A4.m4a',
                 'prompt' => 'Sa anong letra ang tunog na narinig mo?',
                 'choices' => ['N', 'T', 'S', 'L', 'W'],
                 'answer' => 'T',
             ],
             [
                 'type' => 'mc_audio',
-                'audio' => 'audio/L1Q5.mp3',
+                'audio' => 'audio/lesson1/pagsasanay/A5.m4a',
                 'prompt' => 'Anong letra ang narinig?',
                 'choices' => ['I', 'U', 'A', 'O', 'E'],
                 'answer' => 'A',
@@ -114,35 +114,35 @@ class ThirdSlide extends Component
 
             [
                 'type' => 'mc_audio',
-                'audio' => 'audio/L1Q6.mp3',
+                'audio' => 'audio/lesson1/pagsasanay/A6.m4a',
                 'prompt' => 'Piliin ang tamang letra.',
                 'choices' => ['M', 'G', 'P', 'B', 'D'],
                 'answer' => 'P',
             ],
             [
                 'type' => 'mc_audio',
-                'audio' => 'audio/L1Q7.mp3',
+                'audio' => 'audio/lesson1/pagsasanay/A7.m4a',
                 'prompt' => 'Anong letra ang tumunog?',
                 'choices' => ['B', 'N', 'D', 'P', 'T'],
                 'answer' => 'D',
             ],
             [
                 'type' => 'mc_audio',
-                'audio' => 'audio/L1Q8.mp3',
+                'audio' => 'audio/lesson1/pagsasanay/A8.m4a',
                 'prompt' => 'Makinig at piliin ang letra.',
                 'choices' => ['E', 'O', 'U', 'A', 'I'],
                 'answer' => 'O',
             ],
             [
                 'type' => 'mc_audio',
-                'audio' => 'audio/L1Q9.mp3',
+                'audio' => 'audio/lesson1/pagsasanay/A9.m4a',
                 'prompt' => 'Aling letra ang iyong narinig?',
                 'choices' => ['S', 'L', 'N', 'M', 'W'],
                 'answer' => 'L',
             ],
             [
                 'type' => 'mc_audio',
-                'audio' => 'audio/L1Q10.mp3',
+                'audio' => 'audio/lesson1/pagsasanay/A10.m4a',
                 'prompt' => 'Pakinggan ang tunog at pumili.',
                 'choices' => ['N', 'W', 'T', 'L', 'M'],
                 'answer' => 'W',
@@ -1092,21 +1092,21 @@ class ThirdSlide extends Component
                 'type' => 'classify',
                 'text' => 'Butas ang bulsa',
                 'question' => 'Anong uri ng karunungang bayan ito?',
-                'answer' => 'kasabihan',
+                'answer' => 'sawikain',
                 'choices' => ['kasabihan', 'salawikain', 'sawikain'],
             ],
             [
                 'type' => 'classify',
                 'text' => 'Ilaw ng tahanan',
                 'question' => 'Anong uri ng karunungang bayan ito?',
-                'answer' => 'salawikain',
+                'answer' => 'sawikain',
                 'choices' => ['kasabihan', 'salawikain', 'sawikain'],
             ],
             [
                 'type' => 'classify',
                 'text' => 'Kapag may tiyaga, may nilaga',
                 'question' => 'Anong uri ng karunungang bayan ito?',
-                'answer' => 'kasabihan',
+                'answer' => 'salawikain',
                 'choices' => ['kasabihan', 'salawikain', 'sawikain'],
             ],
             [
@@ -1120,7 +1120,7 @@ class ThirdSlide extends Component
                 'type' => 'classify',
                 'text' => 'Malayo sa bituka',
                 'question' => 'Anong uri ng karunungang bayan ito?',
-                'answer' => 'salawikain',
+                'answer' => 'sawikain',
                 'choices' => ['kasabihan', 'salawikain', 'sawikain'],
             ],
             
@@ -1240,33 +1240,33 @@ class ThirdSlide extends Component
             ],
             [
                 'type' => 'vocabulary_match',
-                'word' => 'bumulong',
-                'answer' => 'sumigaw',
-                'choices' => ['umusal', 'sumigaw', 'bumati'],
+                'word' => 'umusal',
+                'answer' => 'bumulong',
+                'choices' => ['bumulong', 'sumigaw', 'bumati'],
             ],
             [
                 'type' => 'vocabulary_match',
-                'word' => 'itinakas',
+                'word' => 'ipinagkaloob',
                 'answer' => 'ibinigay',
-                'choices' => ['ipinagkaloob', 'ibinigay', 'isinalin'],
+                'choices' => ['itinakas', 'ibinigay', 'isinalin'],
             ],
             [
                 'type' => 'vocabulary_match',
-                'word' => 'mahaba',
-                'answer' => 'malaki',
-                'choices' => ['munti', 'maiksi', 'malaki'],
+                'word' => 'munti',
+                'answer' => 'maiksi',
+                'choices' => ['mahaba', 'maiksi', 'malaki'],
             ],
             [
                 'type' => 'vocabulary_match',
-                'word' => 'sala',
-                'answer' => 'hugasan',
-                'choices' => ['batalan', 'hardin', 'hugasan'],
+                'word' => 'batalan',
+                'answer' => 'Hugasan/paliguan',
+                'choices' => ['sala', 'hardin', 'Hugasan/paliguan'],
             ],
             [
                 'type' => 'vocabulary_match',
-                'word' => 'palibot',
+                'word' => 'patungo',
                 'answer' => 'papunta',
-                'choices' => ['patungo', 'palabas', 'papunta'],
+                'choices' => ['palibot', 'palabas', 'papunta'],
             ],
             
             // Part B: Comprehension (text input)
@@ -1279,27 +1279,27 @@ class ThirdSlide extends Component
             [
                 'type' => 'comprehension',
                 'question' => 'Sino ang batang gumaganap sa kuwento?',
-                'answer' => 'si Maria',
+                'answer' => 'si Toto',
             ],
             [
                 'type' => 'comprehension',
                 'question' => 'Ano ang ginawa niya pagkagising sa umaga?',
-                'answer' => 'bumangon at naglingkod',
+                'answer' => 'nananalangin',
             ],
             [
                 'type' => 'comprehension',
                 'question' => 'Saan siya dumiretso upang maghilamos at magsipilyo?',
-                'answer' => 'sa ilog',
+                'answer' => 'sa batalan',
             ],
             [
                 'type' => 'comprehension',
                 'question' => 'Sino ang kaniyang nakasalubong at binati matapos maghilamos?',
-                'answer' => 'ang lola niya',
+                'answer' => 'sina nanay at tatay',
             ],
             [
                 'type' => 'comprehension',
                 'question' => 'Ano ang kanilang hanapbuhay?',
-                'answer' => 'mamimili ng prutas',
+                'answer' => 'nagbebenta ng gulay at prutas',
             ],
         ],
 
@@ -1314,32 +1314,32 @@ class ThirdSlide extends Component
             [
                 'type' => 'comprehension',
                 'question' => 'Saan nakapagtapos ng Master of Arts in Education ang tinutukoy sa balita?',
-                'answer' => 'sa Benguet State University',
+                'answer' => 'sa Tarlac State University',
             ],
             [
                 'type' => 'comprehension',
                 'question' => 'Sino ang ibinabalitang guro sa binasang balita?',
-                'answer' => 'si Maria Santos',
+                'answer' => 'si Joy C. Ramos',
             ],
             [
                 'type' => 'comprehension',
                 'question' => 'Ano ang hindi niya ikinahiya noong siya ay kumuha ng 18 units sa Filipino undergraduate?',
-                'answer' => 'ang kanyang background',
+                'answer' => 'ang magsuot ng unipormeng pang-kolehiyo',
             ],
             [
                 'type' => 'comprehension',
                 'question' => 'Anong taon siya nakapagtapos sa nasabing unibersidad?',
-                'answer' => '2015',
+                'answer' => '2013',
             ],
             [
                 'type' => 'comprehension',
                 'question' => 'Ano sa kasalukuyan ang kaniyang posisyon?',
-                'answer' => 'Master Teacher',
+                'answer' => 'Master Teacher I',
             ],
             [
                 'type' => 'comprehension',
                 'question' => 'Saang paaralan siya naglilingkod ngayon?',
-                'answer' => 'sa Benguet High School',
+                'answer' => 'Cristo Rey High School',
             ],
             
             // Part B: Vocabulary/Acronym Matching
@@ -1376,7 +1376,7 @@ class ThirdSlide extends Component
             [
                 'type' => 'vocabulary_match',
                 'word' => 'ECF',
-                'answer' => 'Education Call Form',
+                'answer' => 'Eduardo Cojuanco Foundation',
                 'choices' => ['Education Call Form', 'Edd Corp Filipino', 'Eduardo Cojuanco Foundation'],
             ],
         ],

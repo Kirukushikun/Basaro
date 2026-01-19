@@ -198,22 +198,34 @@
             },
 
             next() {
-                // Stop panuto audio if playing
+                // Stop any currently playing audio
                 if (this.currentPanutoAudio) {
                     this.currentPanutoAudio.pause();
-                    this.currentPanutoAudio.currentTime = 0; // Reset to beginning
+                    this.currentPanutoAudio.currentTime = 0;
                     this.currentPanutoAudio = null;
                 }
-                // Auto-play next panuto audio if applicable
-                this.$nextTick(() => {
-                    if (this.soundEnabled && this.isPanuto && this.current && this.current.audio) {
-                        this.currentPanutoAudio = new Audio(this.current.audio);
-                        this.currentPanutoAudio.play();
-                    }
-                });
+                if (this.currentQuestionAudio) {
+                    this.currentQuestionAudio.pause();
+                    this.currentQuestionAudio.currentTime = 0;
+                    this.currentQuestionAudio = null;
+                }
+                
                 if (this.confirmed || this.isPanuto) {
                     this.page++;
                     this.reset();
+                    
+                    // Auto-play audio for next question if applicable
+                    this.$nextTick(() => {
+                        if (this.soundEnabled && this.current && this.current.audio) {
+                            if (this.isPanuto) {
+                                this.currentPanutoAudio = new Audio(this.current.audio);
+                                this.currentPanutoAudio.play();
+                            } else if (this.isMcAudioType) {
+                                // Auto-play audio for sound identification questions
+                                this.playAudio();
+                            }
+                        }
+                    });
                 }
             },
 

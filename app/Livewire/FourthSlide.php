@@ -240,7 +240,7 @@ class FourthSlide extends Component
             ['pantig' => 'Ama'],
             ['pantig' => 'Asa'],
             ['pantig' => 'Mama'],
-            ['pantig' => 'Aama'],
+            ['pantig' => 'Ama'],
             ['pantig' => 'Sasama'],
             ['pantig' => 'Aasa'],
             ['pantig' => 'Masama'],
@@ -329,7 +329,7 @@ class FourthSlide extends Component
             ['type' => 'read_sentence', 'pangungusap' => 'Kakain ng kalabasa si Mina'],
             ['type' => 'multiple_choice', 'tanong' => 'Sino ang kakain ng kalabasa?', 'choices' => ['Si Tina', 'Si Lina', 'Si Mina'], 'answer' => 'Si Mina'],
             
-            ['type' => 'read_sentence', 'pangungusap' => 'Nabasa ang tela ni Miyumi'],
+            ['type' => 'read_sentence', 'pangungusap' => 'Nabasa ang tela ni Mayumi'],
             ['type' => 'multiple_choice', 'tanong' => 'Ano ang nabasa?', 'choices' => ['Ang biko ni Mayumi', 'Si Mayumi', 'Ang Tela ni Mayumi'], 'answer' => 'Ang Tela ni Mayumi'],
             
             ['type' => 'read_sentence', 'pangungusap' => 'Nasa lamesa ang mga ubas.'],
@@ -533,36 +533,50 @@ class FourthSlide extends Component
         15 => [
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson15/L15P25.m4a',
+                'audio' => '',
                 'header' => 'A.	Basahin mo ang mga sawikain. Pagkatapos ay isulat mo ang kanilang kahulugan.',
                 'body' => '',
             ],
             // HANAY A: Read Sawikain + Write Kahulugan
-            ['type' => 'read_sawikain', 'sawikain' => 'Anak-dalita'],
+            // ['type' => 'read_sawikain', 'sawikain' => 'Anak-dalita'],
             ['type' => 'input_kahulugan', 'sawikain' => 'Anak-dalita', 'answer' => 'taong walang magulang o pamilya'],
             
-            ['type' => 'read_sawikain', 'sawikain' => 'Nakahiga sa salapi'],
+            // ['type' => 'read_sawikain', 'sawikain' => 'Nakahiga sa salapi'],
             ['type' => 'input_kahulugan', 'sawikain' => 'Nakahiga sa salapi', 'answer' => 'mayaman'],
             
-            ['type' => 'read_sawikain', 'sawikain' => 'Pusong mamon'],
+            // ['type' => 'read_sawikain', 'sawikain' => 'Pusong mamon'],
             ['type' => 'input_kahulugan', 'sawikain' => 'Pusong mamon', 'answer' => 'malambot ang puso'],
             
-            ['type' => 'read_sawikain', 'sawikain' => 'Butas ang bulsa'],
+            // ['type' => 'read_sawikain', 'sawikain' => 'Butas ang bulsa'],
             ['type' => 'input_kahulugan', 'sawikain' => 'Butas ang bulsa', 'answer' => 'walang pera'],
             
-            ['type' => 'read_sawikain', 'sawikain' => 'Ilaw ng tahanan'],
+            // ['type' => 'read_sawikain', 'sawikain' => 'Ilaw ng tahanan'],
             ['type' => 'input_kahulugan', 'sawikain' => 'Ilaw ng tahanan', 'answer' => 'ina'],
             
-            // [
-            //     'type' => 'panuto',
-            //     'audio' => 'audio/lesson1/L1P3.m4a',
-            //     'header' => 'B.	Basahin mo ang isang kasabihan. Pagkatapos ay sagutin ang mga tanong.',
-            //     'body' => '',
-            // ],
-            // // HANAY B: Kasabihan Page + Comprehension
-            // ['type' => 'kasabihan', 'kasabihan' => 'Kumain tayo ng prutas at gulay, Upang humaba ang ating buhay.'],
-            // ['type' => 'comprehension', 'tanong' => 'Ano-ano ang dapat na kainin ayon sa binasa?', 'answer' => 'prutas at gulay'],
-            // ['type' => 'comprehension', 'tanong' => 'Bakit kailangang kainin ang mga ito?', 'answer' => 'upang humaba ang ating buhay'],
+            [
+                'type' => 'panuto',
+                'audio' => '',
+                'header' => 'B.	Basahin mo ang isang kasabihan. Pagkatapos ay sagutin ang mga tanong.',
+                'body' => '',
+            ],
+            // HANAY B: Kasabihan Page + Comprehension
+            ['type' => 'kasabihan', 'kasabihan' => 'Kumain tayo ng prutas at gulay, Upang humaba ang ating buhay.'],
+            ['type' => 'comprehension', 'tanong' => 'Ano-ano ang dapat na kainin ayon sa binasa?', 'answer' => 'prutas at gulay'],
+            ['type' => 'comprehension', 'tanong' => 'Bakit kailangang kainin ang mga ito?', 'answer' => 'upang humaba ang ating buhay'],
+
+
+            // HANAY C: Multiple Choice
+            [
+                'type' => 'panuto',
+                'audio' => '',
+                'header' => 'C.	Basahin mo ang isang salawikain. Pagkatapos ay sagutin ang mga tanong.',
+                'body' => '',
+            ],
+            ['type' => 'salawikain', 'salawikain' => 'Kapag may isinuksok, may madudukot.'],
+            ['type' => 'multiple_choice', 'tanong' => 'Ano ang kasingkahulugan ng salitang isinuksok?', 'choices' => ['itinipon', 'itinago', 'ibinato'], 'answer' => 'itinago'],
+            ['type' => 'multiple_choice', 'tanong' => 'Ano ang kahulugan ng salitang madurukot?', 'choices' => ['mahuhugot', 'mawawala', 'masasala'], 'answer' => 'mahuhugot'],
+            ['type' => 'multiple_choice', 'tanong' => 'Ano ang kadalasang isinusuksok o iniipon ng tao?', 'choices' => ['bahay', 'kotse', 'pera'], 'answer' => 'pera'],
+            
         ],
 
         16 => [

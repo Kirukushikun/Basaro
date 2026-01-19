@@ -104,129 +104,125 @@
         </div>
         <div class="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-7">
             <div class="card">
-                @php 
-                    $lessonGoals = [
-                        1 => [
-                            "Makilala ang bawat letra sa Alpabetong Filipino",
-                            "Mabigkas ang wastong tunog ng mga letra",
-                            "Makasunod sa mga simpleng tagubilin patungkol sa pagbasa at pagbigkas",
-                        ],
+            @php 
+                $lessonGoals = [
+                    1 => [
+                        "Makilala ang bawat letra sa Alpabetong Filipino",
+                        "Mabigkas ang wastong tunog ng mga letra",
+                        "Makasunod sa mga simpleng tagubilin patungkol sa pagbasa at pagbigkas",
+                        "Mabigyang-halaga ang patuloy na pagsasanay bilang bahagi ng pagkatuto sa pagbasa",
+                    ],
 
-                        2 => [
-                            "Matukoy ang limang patinig sa Alpabetong Filipino",
-                            "Mabigkas nang tama ang bawat patinig sa iba’t ibang tunog",
-                            "Makagamit ng mga patinig sa mga simpleng tunog at pantig",
-                        ],
+                    2 => [
+                        "Makilala ang limang patinig ng Filipino",
+                        "Mabigkas nang malinaw ang tunog ng bawat patinig",
+                        "Maipakita ang pag-unawa sa pagkakaiba ng mga tunog-patinig",
+                        "Mailapat ang kaalaman sa patinig sa mga simpleng gawain sa pagbasa",
+                    ],
 
-                        3 => [
-                            "Makilala ang mga katinig sa alpabeto",
-                            "Mabigkas ang wastong tunog ng bawat katinig",
-                            "Makaunawa sa pagkakaiba ng tunog-patinig at tunog-katinig",
-                        ],
+                    3 => [
+                        "Makilala ang mga pantulong na kataga",
+                        "Mabasa ang mga pantulong na kataga",
+                        "Maunawaan ang kahulugan ng mga pantulong na kataga",
+                    ],
 
-                        4 => [
-                            "Makilala ang tunog ng M, S, at A",
-                            "Mabigkas nang malinaw ang mga tunog na ito",
-                            "Makapagsanib ng tunog upang mabuo ang mga pantig at simpleng salita",
-                        ],
+                    4 => [
+                        "Makabuo ng mga pantig gamit ang tunog ng M, S, at A",
+                        "Mabigkas nang tama ang mga tunog na M, S, at A",
+                        "Makabasa ng mga pantig at salita gamit ang M, S, at A",
+                    ],
 
-                        5 => [
-                            "Makabuo ng mga simpleng parirala at pangungusap",
-                            "Makagamit ng wastong bantas at tamang pagkakasunod-sunod ng salita",
-                            "Makaunawa sa kahulugan ng mga ginawang parirala at pangungusap",
-                        ],
+                    5 => [
+                        "Malaman ang parirala at pangungusap",
+                        "Mabasa ang mga parirala at pangungusap",
+                    ],
 
-                        6 => [
-                            "Makilala ang mga letrang M, S, A, I, O, at B",
-                            "Mabigkas ang tamang tunog ng bawat isa",
-                            "Makabuo ng mga pantig gamit ang mga letrang ito",
-                        ],
+                    6 => [
+                        "Makilala ang mga letrang M, S, A, I, O at B",
+                        "Mabigkas ang tamang tunog ng bawat letra",
+                        "Mabasa ang mga salitang mabuo mula sa M, S, A, I, O at B",
+                    ],
 
-                        7 => [
-                            "Makilala ang mga letrang E, U, T, K, L, Y, at N",
-                            "Mabigkas nang wasto ang mga tunog ng mga ito",
-                            "Makabuo ng mga simpleng salita gamit ang mga tunog na ito",
-                        ],
+                    7 => [
+                        "Makilala ang mga letrang E, U, T, K, L, Y at N",
+                        "Mabigkas ang wastong tunog ng bawat isa",
+                        "Mabasa ang mga salitang nabuo mula sa mga tunog ng E, U, T, K, L, Y at N",
+                    ],
 
-                        8 => [
-                            "Makaunawa sa kahulugan ng binabasang pangungusap",
-                            "Matukoy ang pangunahing ideya ng pangungusap",
-                            "Makapagbigay ng tamang sagot batay sa nabasang pangungusap",
-                        ],
+                    8 => [
+                        "Malaman ang kahulugan ng talata",
+                        "Mabasa ang talata",
+                        "Maipakita ang pag-unawa sa pamamagitan ng pagsagot sa mga tanong",
+                    ],
 
-                        9 => [
-                            "Makilala ang iba’t ibang uri ng pantig",
-                            "Makabuo ng pantig mula sa pagsasanib ng patinig at katinig",
-                            "Makabasa ng mga pantig nang malinaw at tama",
-                        ],
+                    9 => [
+                        "Makilala ang mga pantig sa isang salita",
+                        "Maihati ang salita ayon sa tamang pagpapantig",
+                        "Mabigkas ang mga pantig nang malinaw at wasto",
+                        "Magamit ang kaalaman sa pantig sa pagbasa ng mga salita",
+                    ],
 
-                        10 => [
-                            "Makabasa ng mga pangunahing salita",
-                            "Makilala ang mga salitang madalas gamitin",
-                            "Mabigkas nang tama ang mga salitang ito",
-                        ],
+                    10 => [
+                        "Makilala ang mga pangunahing salitang karaniwang ginagamit",
+                        "Mabigkas nang tama ang mga salitang ito",
+                    ],
 
-                        11 => [
-                            "Makilala at magamit ang bagong bokabularyo",
-                            "Makabuo ng pangungusap gamit ang mga bagong salita",
-                            "Makaunawa sa kahulugan ng salita batay sa konteksto",
-                        ],
+                    11 => [
+                        "Matukoy ang kasing kahulugan at kasalungat ng mga salita",
+                        "Mabasa ang mga magkakasing kahulugan at magkakasalungat na salita",
+                    ],
 
-                        12 => [
-                            "Makilala ang diptonggo sa salita",
-                            "Mabigkas nang tama ang mga salitang may diptonggo",
-                            "Makapagtukoy ng diptonggo sa pangungusap",
-                        ],
+                    12 => [
+                        "Makilala ang mga diptonggo sa salita",
+                        "Mabigkas nang tama ang mga salitang may diptonggo",
+                        "Mabasa ang mga salita na may diptonggo",
+                    ],
 
-                        13 => [
-                            "Makilala ang kambal-katinig sa salita",
-                            "Makabasa ng mga salitang may kambal-katinig",
-                            "Makapagtukoy ng kambal-katinig sa pangungusap",
-                        ],
+                    13 => [
+                        "Makilala ang mga kambal katinig sa mga salita",
+                        "Mabigkas ang mga salitang may kambal katinig nang wasto",
+                        "Matukoy ang kambal katinig sa binasang salita",
+                    ],
 
-                        14 => [
-                            "Makilala ang iba’t ibang uri ng panlapi",
-                            "Makabuo ng salita gamit ang mga panlapi",
-                            "Makilala ang kahulugan ng salita batay sa panlaping ginamit",
-                        ],
+                    14 => [
+                        "Makilala ang iba't ibang uri ng panlapi",
+                        "Mabasa ang mga salitang may panlapi",
+                    ],
 
-                        15 => [
-                            "Makaunawa sa binasang karunungang-bayan",
-                            "Matukoy ang aral at mensaheng taglay nito",
-                            "Makapagbigay ng halimbawa ng karunungang-bayan",
-                        ],
+                    15 => [
+                        "Maunawaan ang binasang karunungang-bayan",
+                        "Maipakita ang pagpapahalaga sa kulturang Pilipino",
+                    ],
 
-                        16 => [
-                            "Makaunawa sa binasang tula",
-                            "Matukoy ang tugma, sukat, at mensahe ng tula",
-                            "Makapagbigay ng sariling pagpapakahulugan sa tula",
-                        ],
+                    16 => [
+                        "Nakakabasa ng mga tula.",
+                        "Nauunawaan ang mga binasang tula.",
+                    ],
 
-                        17 => [
-                            "Makaunawa sa binasang maikling kuwento",
-                            "Matukoy ang tauhan, tagpuan, at banghay",
-                            "Makabuo ng konklusyon batay sa pangyayari",
-                        ],
+                    17 => [
+                        "Makabasa ng mga maikling kwento",
+                        "Maunawaan ang mga binasang maikling kuwento",
+                    ],
 
-                        18 => [
-                            "Makaunawa sa binasang balita",
-                            "Matukoy ang pangunahing impormasyon at detalye",
-                            "Makapagpaliwanag ng kahalagahan ng balitang nabasa",
-                        ],
+                    18 => [
+                        "Makabasa ng mga balita",
+                        "Maunawaan ang mga binasang balita",
+                        "Mahimay ang mahahalagang detalye sa mga binasang balita",
+                    ],
 
-                        19 => [
-                            "Makaunawa sa binasang editoryal",
-                            "Matukoy ang opinyon at paninindigan ng may-akda",
-                            "Makapagbigay ng sariling pananaw kaugnay ng editoryal",
-                        ],
+                    19 => [
+                        "Matukoy ang kahulugan ng editoryal",
+                        "Makabasa ng artikulong editoryal",
+                        "Maunawaan ang mga binasang artikulo",
+                    ],
 
-                        20 => [
-                            "Makaunawa sa binasang artikulong pang-agham at teknolohiya",
-                            "Matukoy ang mga konsepto at impormasyon sa artikulo",
-                            "Makapagbigay ng aplikasyon ng mga natutunang kaalaman mula sa artikulo",
-                        ],
-                    ];
-                @endphp
+                    20 => [
+                        "Matukoy ang kahulugan ng artikulong pang-agham at teknolohiya",
+                        "Makabasa nang may pang-unawa sa mga artikulong pang-agham at teknolohiya",
+                        "Mahimay ang mga mahahalagang detalye sa mga binasang artikulo",
+                    ],
+                ];
+            @endphp
 
                 <h1 class="text-xl font-bold mb-5"><i class="fa-solid fa-bullseye"></i> Today's Target</h1>
                 

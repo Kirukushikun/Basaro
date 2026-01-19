@@ -58,12 +58,6 @@
 
     {{-- ===== PAGE 5 ===== --}}
     <div x-show="page === 5" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header">
-            <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
-                Letrang <span class="!text-[#F4C300]">M</span>, <span class="!text-[#F4C300]">S</span> at <span class="!text-[#F4C300]">A</span> na ito ay mga tunog ng mga letrang MM, S at A pagdurugtungin natin ang mga tunog ng mga letrang ito. 
-            </p>
-        </header>
-
         <div class="flex-1 flex flex-col items-center justify-center gap-6">
             <p class="!text-3xl sm:!text-4xl md:!text-5xl lg:!text-6xl font-bold">
                 m + a = ma
@@ -78,12 +72,6 @@
 
     {{-- ===== PAGE 6 ===== --}}
     <div x-show="page === 6" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <header class="header">
-            <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
-                Ito ang nabuo nating pantig nang pagsamahin natin ang tunog na <span class="!text-[#F4C300]">sss</span> at <span class="!text-[#F4C300]">aaa</span>
-            </p>
-        </header>
-
         <div class="flex-1 flex flex-col items-center justify-center gap-6">
             <p class="!text-3xl sm:!text-4xl md:!text-5xl lg:!text-6xl font-bold">
                 s + a = sa

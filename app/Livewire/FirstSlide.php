@@ -49,14 +49,12 @@ class FirstSlide extends Component
         7 => [
             "Nakikilala ang mga letrang E, U, T, K, L, Y at N.",
             "Nabibigkas ang wastong tunog ng bawat isa.",
-            "Naibebenta ang tunog sa mga salitang naglalaman nito.",
-            "Naiuugnay ang mga tunog sa pagbasa at pagsusuri ng mga simpleng salita."
+            "Nababasa ang mga salitang nabuo mula sa mga tunog ng E, U, T, K, L, Y at N.",
         ],
 
         8 => [
-            "Naiintindihan ang kahulugan ng binasang pangungusap.",
-            "Natutukoy ang pangunahing ideya ng pangungusap.",
-            "Nailalarawan ang kaisipan batay sa binasa.",
+            "Nalalaman ang kahulugan ng talata",
+            "Nababasa ang talata",
             "Naipapakita ang pag-unawa sa pamamagitan ng pagsagot sa mga tanong."
         ],
 
@@ -70,71 +68,55 @@ class FirstSlide extends Component
         10 => [
             "Nakikilala ang mga pangunahing salitang karaniwang ginagamit.",
             "Nabibigkas nang tama ang mga salitang ito.",
-            "Naiuugnay ang salita sa larawan o sitwasyon.",
-            "Nagagamit ang mga pangunahing salita sa simpleng pangungusap."
         ],
 
         11 => [
-            "Naiuugnay ang salitang bago sa kahulugan nito.",
-            "Nakikilala ang bagong bokabularyo sa binasa.",
-            "Naiisa-isa ang mga salitang bago at ang kahulugan nito.",
-            "Nailalapat ang mga bagong salita sa iba’t ibang sitwasyon."
+            "Natutukoy ang kasing kahulugan at kasalungat ng mga salita.",
+            "Nababasa ang mga magkakasing kahulugan at magkakasalungat na salita.",
         ],
 
         12 => [
             "Nakikilala ang mga diptonggo sa salita.",
             "Nabibigkas nang tama ang mga salitang may diptonggo.",
-            "Natatukoy ang diptonggo sa binasang salita.",
-            "Nagagamit ang kaalaman sa diptonggo sa pagbasa."
+            "Nababasa ang mga salita na may diptonggo.",
         ],
 
         13 => [
             "Nakikilala ang mga kambal katinig sa mga salita.",
             "Nabibigkas ang mga salitang may kambal katinig nang wasto.",
             "Natutukoy ang kambal katinig sa binasang salita.",
-            "Nagagamit ang kambal katinig sa pagbasa ng mas mahahabang salita."
         ],
 
         14 => [
             "Nakikilala ang iba’t ibang uri ng panlapi.",
-            "Natutukoy ang salitang-ugat sa loob ng salita.",
-            "Nabubuo ang salita gamit ang angkop na panlapi.",
-            "Naiuugnay ang mga nabubuong salita sa kahulugan nito."
+            "Nababasa ang mga salitang may panlapi.",
         ],
 
         15 => [
             "Nauunawaan ang binasang karunungang-bayan.",
-            "Natutukoy ang aral o mensahe nito.",
-            "Naiuugnay ang karunungang-bayan sa sariling karanasan.",
             "Naipapakita ang pagpapahalaga sa kulturang Pilipino."
         ],
 
         16 => [
-            "Nauunawaan ang binasang awiting-bayan.",
-            "Nabibigkas ang bahagi nito nang may wastong himig.",
-            "Natutukoy ang temang makikita sa awiting-bayan.",
-            "Naiuugnay ang awiting-bayan sa kultura at tradisyon."
+            "Nakakabasa ng mga tula.",
+            "Nauunawaan ang mga binasang tula.",
         ],
 
         17 => [
-            "Naiintindihan ang elemento ng tula.",
-            "Nabibigkas ang tula nang may tamang himig at damdamin.",
-            "Natutukoy ang mensahe ng binasang tula.",
-            "Nailalapat ang aral ng tula sa pang-araw-araw na buhay."
+            "Nakababasa ng mga maikling kwento.",
+            "Nauunawaan ang mga binasang maikling kuwento.",
         ],
 
         18 => [
-            "Nauunawaan ang banghay ng maikling kuwento.",
-            "Natutukoy ang tauhan, tagpuan, at pangyayari.",
-            "Naiisa-isa ang mahahalagang detalye ng kuwento.",
-            "Naiuugnay ang aral sa sariling karanasan."
+            "Nakababasa ng mga balita.",
+            "Nauunawaan ang mga binasang balita.",
+            "Nahihimay ang mahahalagang detalye sa mga binasang balita.",
         ],
 
         19 => [
-            "Natutukoy ang mga tauhan sa binasang diyalogo.",
-            "Nauunawaan ang layunin ng bawat linya.",
-            "Nabibigkas ang diyalogo nang may tamang damdamin.",
-            "Naiuugnay ang diyalogo sa mga pang-araw-araw na sitwasyon."
+            "Natutukoy ang kahulugan ng editoryal.",
+            "Nakakabasa ng artikulong editoryal.",
+            "Nauunawaan ang mga binasang artikulo.",
         ],
 
         20 => [

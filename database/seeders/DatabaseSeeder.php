@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
 
             'M, S, A, I, O at B',
             'E, U, T, K, L, Y at N',
-            'Pag-unawa sa Binasang Pangungusap',
+            'Pag-unawa sa Binasang Talata',
             'Pagbasa ng mga Pantig',
             'Pagbasa ng mga Pangunahing Salita',
 
@@ -85,7 +85,7 @@ class DatabaseSeeder extends Seeder
 
             'M, S, A, I, O at B' => 'Pagkilala at pagbigkas sa mga tunog ng mga letrang M, S, A, I, O at B.',
             'E, U, T, K, L, Y at N' => 'Pagkilala at pagbigkas sa mga tunog ng mga letrang E, U, T, K, L, Y at N.',
-            'Pag-unawa sa Binasang Pangungusap' => 'Pagsasanay sa pag-unawa ng kahulugan ng mga binasang pangungusap.',
+            'Pag-unawa sa Binasang Talata' => 'Pagsasanay sa pag-unawa ng kahulugan ng mga binasang talata.',
             'Pagbasa ng mga Pantig' => 'Pagsasanay sa pagbasa at pagbuo ng iba’t ibang uri ng pantig.',
             'Pagbasa ng mga Pangunahing Salita' => 'Pagkilala at pagbasa ng mga salitang karaniwang ginagamit.',
 
@@ -111,7 +111,7 @@ class DatabaseSeeder extends Seeder
 
             'M, S, A, I, O at B' => 10,
             'E, U, T, K, L, Y at N' => 10,
-            'Pag-unawa sa Binasang Pangungusap' => 10,
+            'Pag-unawa sa Binasang Talata' => 10,
             'Pagbasa ng mga Pantig' => 10,
             'Pagbasa ng mga Pangunahing Salita' => 10,
 

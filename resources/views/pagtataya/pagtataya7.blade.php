@@ -31,8 +31,28 @@
             this.soundEnabled = true;
             // Play the panuto audio if it exists
             if (this.current && this.current.audio) {
-                this.currentPanutoAudio = new Audio(this.current.audio);
-                this.currentPanutoAudio.play();
+                if (!this.current || !this.current.audio) return;
+                
+                const audioFiles = Array.isArray(this.current.audio) 
+                    ? this.current.audio 
+                    : [this.current.audio];
+                
+                let currentIndex = 0;
+                
+                const playNext = () => {
+                    if (currentIndex < audioFiles.length) {
+                        this.currentPanutoAudio = new Audio(audioFiles[currentIndex]);
+                        this.currentPanutoAudio.onended = () => {
+                            currentIndex++;
+                            playNext();
+                        };
+                        this.currentPanutoAudio.play();
+                    } else {
+                        this.currentPanutoAudio = null;
+                    }
+                };
+                
+                playNext();
             }
         },
 
