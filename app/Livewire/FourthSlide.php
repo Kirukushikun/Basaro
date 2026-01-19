@@ -138,9 +138,9 @@ class FourthSlide extends Component
         2 => [
             [
                 'type' => 'panuto',
-                'audio' => ['audio/lesson2/L4P23.m4a', 'audio/lesson2/L4P24.m4a'],
-                'header' => 'A. Kilalanin mo ang bawat letra, pagkatapos ay pindutin mo ang microphone button sa pagbigkas ng tunog ng mga ito.',
-                'body' => '',
+                'audio' => ['audio/lesson2/L2P23.m4a', 'audio/lesson2/L2P24.m4a'],
+                'header' => 'A.	Bigkasin mo ang tunog ng sumusunod na patinig.',
+                'body' => 'Pindutin mo lamang ang microphone button sa pagbigkas mo ng tunog ng mga ito.',
             ],
             [
                 'type' => 'patinig_identification',
@@ -170,10 +170,9 @@ class FourthSlide extends Component
 
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson2/L4P25.m4a',
-                'header' => 'B.	Ano ang unang tunog ng sumusunod na larawan? Bigkasin mo ang unang tunog sa pamamagitan ng pagpindot sa microphone button.',
-                'body' => '',
-                'answer' => 'A',
+                'audio' => 'audio/lesson2/L2P25.m4a',
+                'header' => 'B.	Ano ang unang tunog ng sumusunod na larawan?',
+                'body' => 'Bigkasin mo ang unang tunog sa pamamagitan ng pagpindot sa microphone button.',
             ],
             [
                 'type' => 'image_identification',
@@ -220,38 +219,38 @@ class FourthSlide extends Component
             [
                 'type' => 'panuto',
                 'audio' => 'audio/lesson4/L4P15.m4a',
-                'header' => 'A. Pindutin mo ang microphone button.',
-                'body' => '',
+                'header' => 'A.	Basahin mo ang sumusunod na pantig.',
+                'body' => 'Pindutin mo ang microphone button.',
             ],
-            ['kataga' => 'Am'],
-            ['kataga' => 'A'],
-            ['kataga' => 'As'],
-            ['kataga' => 'Mas'],
-            ['kataga' => 'Sa'],
-            ['kataga' => 'Ma'],
-            ['kataga' => 'Sam'],
+            ['pantig' => 'Am'],
+            ['pantig' => 'A'],
+            ['pantig' => 'As'],
+            ['pantig' => 'Mas'],
+            ['pantig' => 'Sa'],
+            ['pantig' => 'Ma'],
+            ['pantig' => 'Sam'],
 
             [
                 'type' => 'panuto',
                 'audio' => 'audio/lesson4/L4P16.m4a',
-                'header' => 'B. Sa bawat pagbasa mo sa mga salita ay pipindutin mo ang microphone button.',
+                'header' => 'B.	Sa bawat pagbasa mo sa mga salita ay pipindutin mo ang microphone button.',
                 'body' => '',
             ],
-            ['kataga' => 'Masa'],
-            ['kataga' => 'Ama'],
-            ['kataga' => 'Asa'],
-            ['kataga' => 'Mama'],
-            ['kataga' => 'Aama'],
-            ['kataga' => 'Sasama'],
-            ['kataga' => 'Aasa'],
-            ['kataga' => 'Masama'],
+            ['pantig' => 'Masa'],
+            ['pantig' => 'Ama'],
+            ['pantig' => 'Asa'],
+            ['pantig' => 'Mama'],
+            ['pantig' => 'Aama'],
+            ['pantig' => 'Sasama'],
+            ['pantig' => 'Aasa'],
+            ['pantig' => 'Masama'],
         ],
 
         5 => [
             [
                 'type' => 'panuto',
                 'audio' => 'audio/lesson5/L5P8.m4a',
-                'header' => 'A.	Pindutin mo ang microphone button upang mabasa ang sumusunod na parirala',
+                'header' => 'A.	Pindutin mo ang microphone button upang mabasa ang sumusunod na parirala.',
                 'body' => '',
             ],
             ['type' => 'read_phrase', 'parirala' => 'sama-sama'],
@@ -652,52 +651,52 @@ class FourthSlide extends Component
             [
                 'word' => 'pangamba',
                 'answer' => 'takot',
-                'wordBank' => ['Humihithit', 'takot', 'lihim', 'magkatuwang', 'bentahe', 'mailunsad', 'Matamlay', 'kapakanan', 'Lumitaw', 'madaya']
+                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'bentahe', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
             ],
             [
                 'word' => 'sumibol',
                 'answer' => 'Lumitaw',
-                'wordBank' => ['Humihithit', 'takot', 'lihim', 'magkatuwang', 'bentahe', 'mailunsad', 'Matamlay', 'kapakanan', 'Lumitaw', 'madaya']
+                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'bentahe', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
             ],
             [
                 'word' => 'humihipak',
-                'answer' => 'Humihithit',
-                'wordBank' => ['Humihithit', 'takot', 'lihim', 'magkatuwang', 'bentahe', 'mailunsad', 'Matamlay', 'kapakanan', 'Lumitaw', 'madaya']
+                'answer' => 'humihithit',
+                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'bentahe', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
             ],
             [
                 'word' => 'lingid',
                 'answer' => 'lihim',
-                'wordBank' => ['Humihithit', 'takot', 'lihim', 'magkatuwang', 'bentahe', 'mailunsad', 'Matamlay', 'kapakanan', 'Lumitaw', 'madaya']
+                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'bentahe', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
             ],
             [
                 'word' => 'tuso',
                 'answer' => 'madaya',
-                'wordBank' => ['Humihithit', 'takot', 'lihim', 'magkatuwang', 'bentahe', 'mailunsad', 'Matamlay', 'kapakanan', 'Lumitaw', 'madaya']
+                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'bentahe', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
             ],
             [
                 'word' => 'kapakanan',
-                'answer' => 'kapakanan',
-                'wordBank' => ['Humihithit', 'takot', 'lihim', 'magkatuwang', 'bentahe', 'mailunsad', 'Matamlay', 'kapakanan', 'Lumitaw', 'madaya']
+                'answer' => 'kabutihan',
+                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'bentahe', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
             ],
             [
                 'word' => 'matamlay',
-                'answer' => 'Matamlay',
-                'wordBank' => ['Humihithit', 'takot', 'lihim', 'magkatuwang', 'bentahe', 'mailunsad', 'Matamlay', 'kapakanan', 'Lumitaw', 'madaya']
+                'answer' => 'walang sigla',
+                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'bentahe', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
             ],
             [
                 'word' => 'magkatuwang',
-                'answer' => 'magkatuwang',
-                'wordBank' => ['Humihithit', 'takot', 'lihim', 'magkatuwang', 'bentahe', 'mailunsad', 'Matamlay', 'kapakanan', 'Lumitaw', 'madaya']
+                'answer' => 'magkasama',
+                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'bentahe', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
             ],
             [
                 'word' => 'bentahe',
-                'answer' => 'bentahe',
-                'wordBank' => ['Humihithit', 'takot', 'lihim', 'magkatuwang', 'bentahe', 'mailunsad', 'Matamlay', 'kapakanan', 'Lumitaw', 'madaya']
+                'answer' => 'pakinabang',
+                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'bentahe', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
             ],
             [
                 'word' => 'mailunsad',
-                'answer' => 'mailunsad',
-                'wordBank' => ['Humihithit', 'takot', 'lihim', 'magkatuwang', 'bentahe', 'mailunsad', 'Matamlay', 'kapakanan', 'Lumitaw', 'madaya']
+                'answer' => 'maipatupad',
+                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'bentahe', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
             ],
         ]
 

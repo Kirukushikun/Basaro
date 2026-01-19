@@ -22,6 +22,21 @@
             return this.current && this.current.type === 'panuto';
         },
 
+        get currentType() {
+            if (!this.current) return null;
+            // If type is explicitly set, use it
+            if (this.current.type) return this.current.type;
+            // Check what property exists to determine type
+            if (this.current.kataga) return 'kataga';
+            if (this.current.pantig) return 'pantig';
+            return null;
+        },
+
+        get currentWord() {
+            // Get the word/syllable to display and check
+            return this.current.kataga || this.current.pantig || '';
+        },
+
         get showSoundOverlay() {
             // Only show if sound not enabled AND it's the first panuto
             return !this.soundEnabled && this.isPanuto;
@@ -45,8 +60,8 @@
         get isCorrect() {
             if (!this.confirmed) return false;
             
-            // For word reading (kataga)
-            const expected = this.current.kataga;
+            // For word/syllable reading
+            const expected = this.currentWord;
             return this.normalizeText(this.transcription) === this.normalizeText(expected);
         },
 
@@ -114,9 +129,10 @@
             reader.onloadend = async () => {
                 const base64Audio = reader.result.split(',')[1];
                 
-                const expected = this.current.kataga;
+                const expected = this.currentWord;
                 console.log('📤 Sending to API...');
                 console.log('🎯 Expected answer:', expected);
+                console.log('📝 Type:', this.currentType);
                 
                 try {
                     const response = await fetch('/api/speech-to-text', {
@@ -161,7 +177,7 @@
                 console.log('✅ Correct! Score:', this.score);
             } else {
                 console.log('❌ Wrong answer');
-                console.log('Expected:', this.current.kataga);
+                console.log('Expected:', this.currentWord);
                 console.log('Got:', this.transcription);
             }
         },
@@ -263,9 +279,9 @@
 
             <template x-if="!isPanuto">
                 <div class="flex-1 flex flex-col items-center justify-center gap-8">
-                    <!-- Kataga -->
+                    <!-- Display Word/Syllable -->
                     <h1 class="alphabet text-center mt-10 !text-[#F4C300]"
-                        x-text="current.kataga"></h1>
+                        x-text="currentWord"></h1>
 
                     <!-- Feedback -->
                     <div x-show="confirmed" 
@@ -283,14 +299,14 @@
                             ❌ Mali
                             <div class="text-sm mt-2">
                                 <div>Narinig: "<span x-text="transcription"></span>"</div>
-                                <div>Dapat: "<span x-text="current.kataga"></span>"</div>
+                                <div>Dapat: "<span x-text="currentWord"></span>"</div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Instruction -->
                     <p class="w-96 text-lg text-center" x-show="!confirmed">
-                        Basahin nang malinaw ang katagang nasa itaas.
+                        <span x-text="currentType === 'kataga' ? 'Basahin nang malinaw ang kataga nasa itaas.' : 'Basahin nang malinaw ang pantig nasa itaas.'"></span>
                         Subukang bigkasin ito nang tama at dahan-dahan.
                     </p>
 

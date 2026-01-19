@@ -500,7 +500,16 @@ class ThirdSlide extends Component
             ],
             // Part 1: Syllable Building
             ['type' => 'syllable_build', 'syllables' => ['Ba', 'so'], 'answer' => 'baso'],
-            ['type' => 'syllable_build', 'syllables' => ['ba', 'sa'], 'answer' => 'basa'],
+            ['type' => 'syllable_build', 'syllables' => ['Ba', 'sa'], 'answer' => 'basa'],
+            ['type' => 'syllable_build', 'syllables' => ['A', 'bo'], 'answer' => 'abo'],
+            ['type' => 'syllable_build', 'syllables' => ['I', 'ba'], 'answer' => 'iba'],
+            ['type' => 'syllable_build', 'syllables' => ['Ba', 'ba'], 'answer' => 'baba'],
+            ['type' => 'syllable_build', 'syllables' => ['Ma', 'bi', 'sa'], 'answer' => 'mabisa'],
+            ['type' => 'syllable_build', 'syllables' => ['Ma', 'si', 'ba'], 'answer' => 'masiba'],
+            ['type' => 'syllable_build', 'syllables' => ['Bom', 'ba'], 'answer' => 'bomba'],
+            ['type' => 'syllable_build', 'syllables' => ['I', 'ba', 'ba'], 'answer' => 'ibaba'],
+            ['type' => 'syllable_build', 'syllables' => ['Ba', 'to'], 'answer' => 'bato'],
+            ['type' => 'syllable_build', 'syllables' => ['A', 'ba'], 'answer' => 'aba'],
 
             [
                 'type' => 'panuto',
@@ -1381,7 +1390,7 @@ class ThirdSlide extends Component
                 'body' => '',
             ],
             ['type' => 'vocabulary_match', 'word' => 'ilaan', 'answer' => 'Ibigay', 'choices' => ['Ibigay', 'Itakas']],
-            ['type' => 'vocabulary_match', 'word' => 'mapupunan', 'answer' => 'mababawasan', 'choices' => ['mababawasan', 'maibibigay']],
+            ['type' => 'vocabulary_match', 'word' => 'mapupunan', 'answer' => 'maibibigay', 'choices' => ['mababawasan', 'maibibigay']],
             ['type' => 'vocabulary_match', 'word' => 'naaprubahan', 'answer' => 'nakapasa', 'choices' => ['nasasakupan', 'nakapasa']],
             
             // Part B: Comprehension (MC)
@@ -1392,7 +1401,7 @@ class ThirdSlide extends Component
                 'body' => '',
             ],
             ['type' => 'comprehension', 'question' => 'Magkano ang naaprubahang badyet sa taong 2025?', 'answer' => 'P793. 74 bilyon', 'choices' => ['P793. 74 bilyon', 'P973. 74 bilyon']],
-            ['type' => 'comprehension', 'question' => 'Ilang porsyento ang itinaas nito kumpara sa nakaraang taon?', 'answer' => '3.93%', 'choices' => ['3.99%', '3.93%']],
+            ['type' => 'comprehension', 'question' => 'Ilang porsyento ang itinaas nito kumpara sa nakaraang taon?', 'answer' => '3.99%', 'choices' => ['3.99%', '3.93%']],
             ['type' => 'comprehension', 'question' => 'Sino ang senador na nanguna sa naturang badyet ng DepEd?', 'answer' => 'Pia Cayetano', 'choices' => ['Mia Cayetano', 'Pia Cayetano']],
         ],
 

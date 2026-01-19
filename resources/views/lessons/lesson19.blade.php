@@ -16,11 +16,11 @@
         p5: ''
     },
     correctAnswers: {
-        p1: 'nagtatatag',
+        p1: 'nagtatakda',
         p2: 'opinyon',
         p3: 'kalagayan',
         p4: 'maingat',
-        p5: 'pag-una'
+        p5: 'pag-uuna'
     },
     selectAnswer(question, answer) {
         this.answers[question] = answer;
@@ -124,7 +124,7 @@
                 <input type="text" x-model="puzzleAnswers.p1" 
                        :class="getPuzzleClass('p1')"
                        class="flex-1 px-4 py-2 bg-gray-800/50 border-2 rounded-lg !text-base sm:!text-lg md:!text-lg lg:!text-xl transition-colors"
-                       placeholder="n a g t a t a t a g">
+                       placeholder="_ a g t a _ a k _ a">
             </div>
 
             <div class="flex items-center gap-6 !text-base sm:!text-lg md:!text-lg lg:!text-xl">
@@ -132,7 +132,7 @@
                 <input type="text" x-model="puzzleAnswers.p2" 
                        :class="getPuzzleClass('p2')"
                        class="flex-1 px-4 py-2 bg-gray-800/50 border-2 rounded-lg !text-base sm:!text-lg md:!text-lg lg:!text-xl transition-colors"
-                       placeholder="o p i n y o n">
+                       placeholder="o _ p n y _ n">
             </div>
 
             <div class="flex items-center gap-6 !text-base sm:!text-lg md:!text-lg lg:!text-xl">
@@ -140,7 +140,7 @@
                 <input type="text" x-model="puzzleAnswers.p3" 
                        :class="getPuzzleClass('p3')"
                        class="flex-1 px-4 py-2 bg-gray-800/50 border-2 rounded-lg !text-base sm:!text-lg md:!text-lg lg:!text-xl transition-colors"
-                       placeholder="k a l a g a y a n">
+                       placeholder="k _ l _ g a _ a _">
             </div>
 
             <div class="flex items-center gap-6 !text-base sm:!text-lg md:!text-lg lg:!text-xl">
@@ -148,7 +148,7 @@
                 <input type="text" x-model="puzzleAnswers.p4" 
                        :class="getPuzzleClass('p4')"
                        class="flex-1 px-4 py-2 bg-gray-800/50 border-2 rounded-lg !text-base sm:!text-lg md:!text-lg lg:!text-xl transition-colors"
-                       placeholder="m a i n g a t">
+                       placeholder="m a _ n g _ t">
             </div>
 
             <div class="flex items-center gap-6 !text-base sm:!text-lg md:!text-lg lg:!text-xl">
@@ -156,7 +156,7 @@
                 <input type="text" x-model="puzzleAnswers.p5" 
                        :class="getPuzzleClass('p5')"
                        class="flex-1 px-4 py-2 bg-gray-800/50 border-2 rounded-lg !text-base sm:!text-lg md:!text-lg lg:!text-xl transition-colors"
-                       placeholder="p a g - u n a">
+                       placeholder="p a g - _ _ n _">
             </div>
         </div>
     </div>

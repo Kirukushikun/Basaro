@@ -10,19 +10,13 @@
                 Sundan mo ako sa pagbigkas ng sumusunod na pantig.
             </p>
         </header>
-        <div class="grid grid-cols-3 gap-6 !text-2xl sm:!text-3xl md:!text-3xl lg:!text-4xl font-bold text-center p-5 overflow-y-auto flex-1">
-            @foreach ([
-                'E',
-                'U',
-                'Ta',
-                'Ka',
-                'La',
-                'Na',
-                'Ya',
-            ] as $phrase)
-                <p class="cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform">
-                    {{ $phrase }}
-                </p>
+        <div class="grid grid-cols-5 gap-6 !text-2xl sm:!text-3xl md:!text-3xl lg:!text-4xl font-bold text-center p-5 overflow-y-auto flex-1">
+            @foreach(['E', 'U', 'Ta', 'Ka', 'La', 'Na', 'Ya'] as $syllable)
+                @for($i = 0; $i < 5; $i++)
+                    <p class="cursor-pointer hover:scale-110 hover:!text-[#F4C300] transition-transform mb-4">
+                        {{ $syllable }}
+                    </p>
+                @endfor
             @endforeach
         </div>
     </div>

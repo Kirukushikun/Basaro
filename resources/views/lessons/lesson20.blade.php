@@ -65,7 +65,7 @@
                     Mabuti na lamang, karamihan sa mga babaeng mag-aaral ay sang-ayon sa pagkakaroon ng mga ganitong hakbang o aktibidad ng gobyerno.
                 </p>
                 <p>
-                    Sa kabuuan, marapat lamang na isiping makabubuti ang mga programang ito ng pamahalaan. Isinasaalang-alang ang mga ganitong hakbang para rin sa ating kapakanan.
+                    Sa kabuoan, marapat lamang na isiping makabubuti ang mga programang ito ng pamahalaan. Isinasaalang-alang ang mga ganitong hakbang para rin sa ating kapakanan.
                 </p>
             </div>
         </div>

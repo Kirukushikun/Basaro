@@ -78,7 +78,7 @@ class DatabaseSeeder extends Seeder
 
         $lessonDescriptions = [
             'Ang Alpabetong Filipino' => 'Pagkilala sa mga letra ng alpabetong Filipino at tamang pagbasa ng mga ito.',
-            'Ang Mga Patinig' => 'Pagkilala at tamang pagbigkas ng limang pangunahing patinig.',
+            'Ang Mga Patinig' => 'Pagkilala at tamang pagbigkas ng limang patinig.',
             'Pantulong na Kataga' => 'Pagkilala sa mga pantulong na kataga na ginagamit sa pangungusap.',
             'Pagsasama-sama ng mga tunog (M, S, A)' => 'Pagsasanay sa pagsasanib ng mga tunog upang makabuo ng mga pantig.',
             'Pagbuo ng mga Parirala at Pangungusap' => 'Pagbuo at pag-unawa ng simpleng parirala at pangungusap.',

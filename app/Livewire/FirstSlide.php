@@ -17,38 +17,33 @@ class FirstSlide extends Component
         ],
 
         2 => [
-            "Nakikilala ang limang pangunahing patinig ng Filipino.",
+            "Nakikilala ang limang patinig ng Filipino.",
             "Nabibigkas nang malinaw ang tunog ng bawat patinig.",
             "Naipapakita ang pag-unawa sa pagkakaiba ng mga tunog-patinig.",
             "Nailalapat ang kaalaman sa patinig sa mga simpleng gawain sa pagbasa."
         ],
 
         3 => [
-            "Natutukoy ang mga pantulong na kataga sa pangungusap.",
-            "Naiuugnay ang kahulugan ng mga kataga sa wastong gamit nito.",
-            "Nababasa ang mga pangungusap na may pantulong na kataga.",
-            "Nauunawaan ang kahalagahan ng mga pantulong na kataga sa pagbuo ng kaisipan."
+            "Nakikilala ang mga pantulong na kataga.",
+            "Nababasa ang mga pantulong na kataga.",
+            "Nauuanwaang ang kahulugan ng mga pantulong na kataga.",
         ],
 
         4 => [
-            "Naiuugnay ang tunog ng M, S, at A sa tamang letra.",
+            "Nakabubuo ng mga pantig gamit ang tunog ng M, S, at A.",
             "Nabibigkas nang tama ang mga tunog na M, S, at A.",
-            "Nakikilala ang mga tunog sa mga salitang may M, S, at A.",
-            "Nagagamit ang mga tunog na ito sa pagbasa ng pantig at salita."
+            "Nakababasa ng mga pantig at salita gamit ang M, S, at A.",
         ],
 
         5 => [
-            "Nauunawaan ang pagbuo ng parirala at pangungusap.",
-            "Nakakabuo ng simpleng parirala mula sa magkakaugnay na salita.",
-            "Nabibigkas ang parirala at pangungusap nang may tamang diin.",
-            "Nailalapat ang tamang pagbasa ng parirala at pangungusap sa mga gawain."
+            "Nalalaman ang parirala at pangungusap.",
+            "Nababasa ang mga parirala at pangungusap.",
         ],
 
         6 => [
             "Nakikilala ang mga letrang M, S, A, I, O at B.",
             "Nabibigkas ang tamang tunog ng bawat letra.",
-            "Naiaangkop ang tunog sa mga halimbawa ng salita.",
-            "Naipapakita ang pag-unawa sa tunog at letra sa pamamagitan ng pagsasanay."
+            "Nababasa ang mga salitang mabuo mula sa M, S, A, I, O at B.",
         ],
 
         7 => [
@@ -143,24 +138,9 @@ class FirstSlide extends Component
         ],
 
         20 => [
-            "Nakikilala ang pangunahing impormasyon sa balita.",
-            "Natutukoy ang pangyayari, panahon, at mga sangkot dito.",
-            "Naiintindihan ang mahalagang mensahe ng balita.",
-            "Nailalapat ang kahalagahan ng pagiging maalam sa nangyayari."
-        ],
-
-        21 => [
-            "Natutukoy ang layunin ng isang editoryal.",
-            "Nauunawaan ang opinyon at argumento ng manunulat.",
-            "Naiisa-isa ang mahahalagang punto ng editoryal.",
-            "Nailalapat ang kritikal na pag-iisip sa pagbasa."
-        ],
-
-        22 => [
-            "Nakikilala ang mga bahagi ng dulang binasa.",
-            "Natutukoy ang tauhan, tagpuan, at banghay ng dula.",
-            "Nauunawaan ang mensahe at temang taglay nito.",
-            "Naipapakita ang pagpapahalaga sa sining ng pagtatanghal."
+            "Naitutukoy ang kahulugan ng artikulong pang-agham at teknolohiya.",
+            "Nakababasa nang may pang-unawa sa mga artikulong pang-agham at teknolohiya.",
+            "Nahihimay ang mga mahahalagang detalye sa mga binasang artikulo.",
         ],
     ];
 
