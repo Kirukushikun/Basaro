@@ -343,7 +343,7 @@ class FourthSlide extends Component
         8 => [
             [
                 'type' => 'panuto',
-                'audio' => ['audio/lesson8/L8P12.m4a', 'audio/lesson8/L8P13.m4a'],
+                'audio' => 'audio/lesson8/L8P12.m4a',
                 'header' => 'Basahin mo ang isa pang talata na nabuo sa mga letrang m, s, a, i, o, b, e, u, t, k, l, n, y.',
                 'body' => '',
             ],
@@ -533,29 +533,29 @@ class FourthSlide extends Component
         15 => [
             [
                 'type' => 'panuto',
-                'audio' => '',
+                'audio' => 'audio/lesson15/L15P25.m4a',
                 'header' => 'A.	Basahin mo ang mga sawikain. Pagkatapos ay isulat mo ang kanilang kahulugan.',
                 'body' => '',
             ],
             // HANAY A: Read Sawikain + Write Kahulugan
-            // ['type' => 'read_sawikain', 'sawikain' => 'Anak-dalita'],
+            ['type' => 'read_sawikain', 'sawikain' => 'Anak-dalita'],
             ['type' => 'input_kahulugan', 'sawikain' => 'Anak-dalita', 'answer' => 'taong walang magulang o pamilya'],
             
-            // ['type' => 'read_sawikain', 'sawikain' => 'Nakahiga sa salapi'],
+            ['type' => 'read_sawikain', 'sawikain' => 'Nakahiga sa salapi'],
             ['type' => 'input_kahulugan', 'sawikain' => 'Nakahiga sa salapi', 'answer' => 'mayaman'],
             
-            // ['type' => 'read_sawikain', 'sawikain' => 'Pusong mamon'],
+            ['type' => 'read_sawikain', 'sawikain' => 'Pusong mamon'],
             ['type' => 'input_kahulugan', 'sawikain' => 'Pusong mamon', 'answer' => 'malambot ang puso'],
             
-            // ['type' => 'read_sawikain', 'sawikain' => 'Butas ang bulsa'],
+            ['type' => 'read_sawikain', 'sawikain' => 'Butas ang bulsa'],
             ['type' => 'input_kahulugan', 'sawikain' => 'Butas ang bulsa', 'answer' => 'walang pera'],
             
-            // ['type' => 'read_sawikain', 'sawikain' => 'Ilaw ng tahanan'],
+            ['type' => 'read_sawikain', 'sawikain' => 'Ilaw ng tahanan'],
             ['type' => 'input_kahulugan', 'sawikain' => 'Ilaw ng tahanan', 'answer' => 'ina'],
             
             [
                 'type' => 'panuto',
-                'audio' => '',
+                'audio' => 'audio/lesson15/L15P26.m4a',
                 'header' => 'B.	Basahin mo ang isang kasabihan. Pagkatapos ay sagutin ang mga tanong.',
                 'body' => '',
             ],
@@ -568,7 +568,7 @@ class FourthSlide extends Component
             // HANAY C: Multiple Choice
             [
                 'type' => 'panuto',
-                'audio' => '',
+                'audio' => 'audio/lesson15/L15P27.m4a',
                 'header' => 'C.	Basahin mo ang isang salawikain. Pagkatapos ay sagutin ang mga tanong.',
                 'body' => '',
             ],
