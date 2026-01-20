@@ -1,16 +1,60 @@
 <!-- Pagsasanay result -->
+@php
+    $totalScore = 0;
+    if($lesson == '1') {
+        $totalScore = 20;
+    } elseif($lesson == '2') {
+        $totalScore = 25;
+    } elseif($lesson == '3') {
+        $totalScore = 15;
+    }elseif($lesson == '4') {
+        $totalScore = 7;
+    }elseif($lesson == '5') {
+        $totalScore = 18;
+    }elseif($lesson == '6') {
+        $totalScore = 17;
+    }elseif($lesson == '7') {
+        $totalScore = 13;
+    }elseif($lesson == '9') {
+        $totalScore = 14;
+    } elseif($lesson == '10') {
+        $totalScore = 10;
+    } elseif($lesson == '12') {
+        $totalScore = 18;
+    } elseif($lesson == '13') {
+        $totalScore = 10;
+    } elseif($lesson == '14') {
+        $totalScore = 10;
+    } elseif($lesson == '15') {
+        $totalScore = 7;
+    }elseif($lesson == '16') {
+        $totalScore = 10;
+    }elseif($lesson == '17') {
+        $totalScore = 10;
+    }elseif($lesson == '18') {
+        $totalScore = 11;
+    }elseif($lesson == '19') {
+        $totalScore = 6;
+    } elseif($lesson == '20') {
+        $totalScore = 10;
+    }
+@endphp
+
 <div 
     class="flex-1 flex flex-col items-center gap-5"
-    x-data="{ showModal: false }"
+    x-data="{ 
+        showModal: false,
+        totalScore: {{ $totalScore }}
+    }"
     x-show="page > questions.length"  
     x-effect="if (page > questions.length) { $wire.completePagsasanay() }"
 >
     <img src="{{asset('img/Badge.png')}}" width="200" alt="">
     <h1 class="text-2xl font-bold">CONGRATULATIONS!</h1>
-    <h2 class="score !text-[#F4C300]" x-text="Math.round((score / questions.length) * 100) + '%'"></h2>
+    <h2 class="score !text-[#F4C300]" x-text="Math.round((score / totalScore) * 100) + '%'"></h2>
     <p class="w-96 text-lg text-center">
         Nakakuha ka ng <span class="font-bold" x-text="score"></span>
-        sa <span class="font-bold" x-text="questions.length"></span> na tanong!
+        sa <span class="font-bold" x-text="totalScore"></span> na tanong!
     </p>
     <p class="w-96 text-lg text-center">Mahusay! Natapos mo ang araling ito nang may buong sigasig at pagsisikap. Ipagpatuloy lamang ang iyong pagkatuto!</p>
     <div class="flex gap-4 mt-4">

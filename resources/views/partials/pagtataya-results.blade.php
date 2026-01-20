@@ -1,16 +1,30 @@
 <!-- Pagtataya result -->
+@php
+    $totalScore = 0;
+    if($lesson == '1') {
+        $totalScore = 20;
+    } elseif($lesson == '2') {
+        $totalScore = 15;
+    } elseif($lesson == '3') {
+        $totalScore = 20;
+    }
+@endphp
+
 <div 
     class="flex-1 flex flex-col items-center gap-5"
-    x-data="{ showModal: false }"
+    x-data="{ 
+        showModal: false,
+        totalScore: {{ $totalScore }}
+    }"
     x-show="page > questions.length"  
     x-effect="if (page > questions.length) { $wire.completePagtataya() }"
 >
     <img src="{{asset('img/Badge.png')}}" width="200" alt="">
     <h1 class="text-2xl font-bold">CONGRATULATIONS!</h1>
-    <h2 class="score !text-[#F4C300]" x-text="Math.round((score / questions.length) * 100) + '%'"></h2>
+    <h2 class="score !text-[#F4C300]" x-text="Math.round((score / totalScore) * 100) + '%'"></h2>
     <p class="w-96 text-lg text-center">
         Nakakuha ka ng <span class="font-bold" x-text="score"></span>
-        sa <span class="font-bold" x-text="questions.length"></span> na tanong!
+        sa <span class="font-bold" x-text="totalScore"></span> na tanong!
     </p>
     <p class="w-96 text-lg text-center">Mahusay! Natapos mo ang araling ito nang may buong sigasig at pagsisikap. Ipagpatuloy lamang ang iyong pagkatuto!</p>
     <div class="flex gap-4 mt-4">
@@ -35,7 +49,7 @@
         </button>
     </div>
 
-        <!-- Backdrop -->
+    <!-- Backdrop -->
     <div x-show="showModal" x-transition.opacity class="fixed inset-0 bg-black/30 z-40" @click="showModal = false"></div>
 
     <!-- Modal Container -->
@@ -82,4 +96,4 @@
 
         </div>
     </div>
-</div>  
+</div>

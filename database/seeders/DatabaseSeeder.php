@@ -103,28 +103,28 @@ class DatabaseSeeder extends Seeder
         ];
 
         $lessonScores = [
-            'Ang Alpabetong Filipino' => 10,
-            'Ang Mga Patinig' => 10,
-            'Pantulong na Kataga' => 10,
-            'Pagsasama-sama ng mga tunog (M, S, A)' => 10,
-            'Pagbuo ng mga Parirala at Pangungusap' => 10,
+            'Ang Alpabetong Filipino' => 20,
+            'Ang Mga Patinig' => 25,
+            'Pantulong na Kataga' => 15,
+            'Pagsasama-sama ng mga tunog (M, S, A)' => 7,
+            'Pagbuo ng mga Parirala at Pangungusap' => 18,
 
-            'M, S, A, I, O at B' => 10,
-            'E, U, T, K, L, Y at N' => 10,
-            'Pag-unawa sa Binasang Talata' => 10,
-            'Pagbasa ng mga Pantig' => 10,
+            'M, S, A, I, O at B' => 17,
+            'E, U, T, K, L, Y at N' => 13,
+            'Pag-unawa sa Binasang Talata' => 4,
+            'Pagbasa ng mga Pantig' => 14,
             'Pagbasa ng mga Pangunahing Salita' => 10,
 
-            'Pagpapalawak ng mga Bokabularyo' => 10,
-            'Diptonggo' => 10,
+            'Pagpapalawak ng mga Bokabularyo' => 15,
+            'Diptonggo' => 18,
             'Kambal Katinig' => 10,
             'Panlapi' => 10,
-            'Pag-unawa sa Binasang Karunungang-bayan' => 10,
+            'Pag-unawa sa Binasang Karunungang-bayan' => 7,
 
             'Pag-unawa sa Binasang Tula' => 10,
             'Pag-unawa sa Binasang Maikling Kuwento' => 10,
-            'Pag-unawa sa Binasang Balita' => 10,
-            'Pag-unawa sa Binasang Editoryal' => 10,
+            'Pag-unawa sa Binasang Balita' => 11,
+            'Pag-unawa sa Binasang Editoryal' => 6,
             'Pag-unawa sa Binasang Artikulong Pang-agham at Teknolohiya' => 10,
         ];
 

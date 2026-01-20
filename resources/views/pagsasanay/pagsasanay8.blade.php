@@ -218,10 +218,10 @@ replay() {
     >
         <img src="{{asset('img/Badge.png')}}" width="200" alt="">
         <h1 class="text-2xl font-bold">CONGRATULATIONS!</h1>
-        <h2 class="score !text-[#F4C300]" x-text="Math.round((score / regularQuestions.length) * 100) + '%'"></h2>
+        <h2 class="score !text-[#F4C300]" x-text="Math.round((score / 4) * 100) + '%'"></h2>
         <p class="w-96 text-lg text-center">
             Nakakuha ka ng <span class="font-bold" x-text="score"></span>
-            sa <span class="font-bold" x-text="regularQuestions.length"></span> na tanong!
+            sa <span class="font-bold" x-text="4"></span> na tanong!
         </p>
         <p class="w-96 text-lg text-center">Mahusay! Natapos mo ang araling ito nang may buong sigasig at pagsisikap. Ipagpatuloy lamang ang iyong pagkatuto!</p>
         <div class="flex gap-4 mt-4">

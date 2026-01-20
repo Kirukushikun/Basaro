@@ -1,277 +1,273 @@
 <script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('pagsasanay1Data', (questions) => ({
-            page: 1,
-            confirmed: false,
-            recording: false,
-            processing: false,
-            score: 0,
-            transcription: '',
-            mediaRecorder: null,
-            audioChunks: [],
-            questions: questions,
-            // For MC questions
-            selected: null,
-            showFeedback: false,
-            // Sound enable overlay - only shows once
-            soundEnabled: false,
-            currentPanutoAudio: null,
-            currentQuestionAudio: null,
-
-            get current() {
-                return this.page <= this.questions.length
-                    ? this.questions[this.page - 1]
-                    : null
-            },
-
-            get isPanuto() {
-                return this.current && this.current.type === 'panuto';
-            },
-
-            get isAlphabetType() {
-                return this.current && this.current.type === 'alphabet';
-            },
-
-            get isMcAudioType() {
-                return this.current && this.current.type === 'mc_audio';
-            },
-
-            get showSoundOverlay() {
-                // Only show if sound not enabled AND it's the first panuto
-                return !this.soundEnabled && this.isPanuto;
-            },
-
-            get isCorrect() {
-                if (!this.confirmed) return false;
-                
-                if (this.isAlphabetType) {
-                    if (!this.transcription) return false;
-                    const userSaid = this.normalizeText(this.transcription);
-                    const correctAnswer = this.normalizeText(this.current.answer);
-                    return userSaid === correctAnswer;
-                }
-                
-                if (this.isMcAudioType) {
-                    return this.selected === this.current.answer;
-                }
-                
-                return false;
-            },
-
-            normalizeText(text) {
-                return text.toLowerCase().trim().replace(/[.,!?]/g, '');
-            },
-
-            enableSound() {
-                this.soundEnabled = true;
-                // Play the panuto audio if it exists
-                if (this.current && this.current.audio) {
-                    this.currentPanutoAudio = new Audio(this.current.audio);
-                    this.currentPanutoAudio.play();
-                }
-            },
-
-            async startRecording() {
-                if (this.confirmed) return;
-                
-                try {
-                    const stream = await navigator.mediaDevices.getUserMedia({ 
-                        audio: {
-                            echoCancellation: true,
-                            noiseSuppression: true,
-                            sampleRate: 48000
-                        } 
-                    });
-                    
-                    this.mediaRecorder = new MediaRecorder(stream, {
-                        mimeType: 'audio/webm;codecs=opus'
-                    });
-                    
-                    this.audioChunks = [];
-                    
-                    this.mediaRecorder.ondataavailable = (event) => {
-                        if (event.data.size > 0) {
-                            this.audioChunks.push(event.data);
-                        }
-                    };
-                    
-                    this.mediaRecorder.onstop = async () => {
-                        await this.processAudio();
-                    };
-                    
-                    this.mediaRecorder.start();
-                    this.recording = true;
-                    
-                    console.log('🎤 Recording started...');
-                } catch (error) {
-                    console.error('❌ Error accessing microphone:', error);
-                    alert('Hindi ma-access ang microphone. Please allow microphone access.');
-                }
-            },
-
-            stopRecording() {
-                if (this.mediaRecorder && this.recording) {
-                    this.mediaRecorder.stop();
-                    this.recording = false;
-                    this.processing = true;
-                    
-                    console.log('⏹️ Recording stopped');
-                    
-                    this.mediaRecorder.stream.getTracks().forEach(track => track.stop());
-                }
-            },
-
-            async processAudio() {
-                const audioBlob = new Blob(this.audioChunks, { type: 'audio/webm' });
-                
-                console.log('📦 Audio blob size:', audioBlob.size, 'bytes');
-                
-                const reader = new FileReader();
-                reader.readAsDataURL(audioBlob);
-                reader.onloadend = async () => {
-                    const base64Audio = reader.result.split(',')[1];
-                    
-                    console.log('📤 Sending to API...');
-                    console.log('🎯 Expected answer:', this.current.answer);
-                    
-                    try {
-                        const response = await fetch('/api/speech-to-text', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                            },
-                            body: JSON.stringify({
-                                audio: base64Audio,
-                                language: 'tl-PH'
-                            })
-                        });
-                        
-                        const data = await response.json();
-                        
-                        console.log('📥 API Response:', data);
-                        
-                        if (data.success) {
-                            this.transcription = data.transcription;
-                            console.log('🗣️ You said:', this.transcription);
-                            this.checkAnswer();
-                        } else {
-                            console.error('❌ API Error:', data.error);
-                            alert('May error sa pag-process ng audio: ' + data.error);
-                            this.processing = false;
-                        }
-                    } catch (error) {
-                        console.error('❌ Fetch Error:', error);
-                        alert('May error sa pag-send ng audio. Check console for details.');
-                        this.processing = false;
-                    }
-                };
-            },
-
-            confirm() {
-                this.confirmed = true;
-                this.showFeedback = true;
-                
-                if (this.isCorrect) {
-                    this.score++;
-                }
-            },
-
-            checkAnswer() {
-                this.confirmed = true;
-                this.processing = false;
-                
-                if (this.isCorrect) {
-                    this.score++;
-                    console.log('✅ Correct! Score:', this.score);
-                } else {
-                    console.log('❌ Wrong answer');
-                    console.log('Expected:', this.current.answer);
-                    console.log('Got:', this.transcription);
-                }
-            },
-
-            playAudio() {
-                if (this.current && this.current.audio) {
-                    // Stop previous audio if playing
-                    if (this.currentQuestionAudio) {
-                        this.currentQuestionAudio.pause();
-                        this.currentQuestionAudio.currentTime = 0;
-                    }
-                    this.currentQuestionAudio = new Audio(this.current.audio);
-                    this.currentQuestionAudio.play();
-                }
-            },
-
-            next() {
-                // Stop any currently playing audio
-                if (this.currentPanutoAudio) {
-                    this.currentPanutoAudio.pause();
-                    this.currentPanutoAudio.currentTime = 0;
-                    this.currentPanutoAudio = null;
-                }
-                if (this.currentQuestionAudio) {
-                    this.currentQuestionAudio.pause();
-                    this.currentQuestionAudio.currentTime = 0;
-                    this.currentQuestionAudio = null;
-                }
-                
-                if (this.confirmed || this.isPanuto) {
-                    this.page++;
-                    this.reset();
-                    
-                    // Auto-play audio for next question if applicable
-                    this.$nextTick(() => {
-                        if (this.soundEnabled && this.current && this.current.audio) {
-                            if (this.isPanuto) {
-                                this.currentPanutoAudio = new Audio(this.current.audio);
-                                this.currentPanutoAudio.play();
-                            } else if (this.isMcAudioType) {
-                                // Auto-play audio for sound identification questions
-                                this.currentQuestionAudio = new Audio(this.current.audio);
-                                this.currentQuestionAudio.play();
-                            }
-                        }
-                    });
-                }
-            },
-
-            reset() {
-                this.confirmed = false;
-                this.recording = false;
-                this.processing = false;
-                this.transcription = '';
-                this.audioChunks = [];
-                this.selected = null;
-                this.showFeedback = false;
-            },
-
-            replay() {
-                // Stop any playing audio before replay
-                if (this.currentPanutoAudio) {
-                    this.currentPanutoAudio.pause();
-                    this.currentPanutoAudio.currentTime = 0;
-                    this.currentPanutoAudio = null;
-                }
-                if (this.currentQuestionAudio) {
-                    this.currentQuestionAudio.pause();
-                    this.currentQuestionAudio.currentTime = 0;
-                    this.currentQuestionAudio = null;
-                }
-                
-                this.page = 1;
-                this.score = 0;
-                this.soundEnabled = false; // Reset sound for replay
-                this.reset();
-            }
-        }))
-    });
+    window.pagsasanay1Questions = @json($questions);
 </script>
 
-<!-- Merged Pagsasanay Component -->
-<div class="relative flex flex-col items-center"
-     x-data='pagsasanay1Data(@json($questions))'>
+<!-- Pagsasanay 1 -->
+<div class="relative flex flex-col items-center" x-data="{
+    page: 1,
+    confirmed: false,
+    recording: false,
+    processing: false,
+    score: 0,
+    transcription: '',
+    mediaRecorder: null,
+    audioChunks: [],
+    questions: @js($questions),
+    // For MC questions
+    selected: null,
+    showFeedback: false,
+    // Sound enable overlay - only shows once
+    soundEnabled: false,
+    currentPanutoAudio: null,
+    currentQuestionAudio: null,
 
+    get current() {
+        return this.page <= this.questions.length
+            ? this.questions[this.page - 1]
+            : null
+    },
+
+    get isPanuto() {
+        return this.current && this.current.type === 'panuto';
+    },
+
+    get isAlphabetType() {
+        return this.current && this.current.type === 'alphabet';
+    },
+
+    get isMcAudioType() {
+        return this.current && this.current.type === 'mc_audio';
+    },
+
+    get showSoundOverlay() {
+        // Only show if sound not enabled AND it's the first panuto
+        return !this.soundEnabled && this.isPanuto;
+    },
+
+    get isCorrect() {
+        if (!this.confirmed) return false;
+        
+        if (this.isAlphabetType) {
+            if (!this.transcription) return false;
+            const userSaid = this.normalizeText(this.transcription);
+            const correctAnswer = this.normalizeText(this.current.answer);
+            return userSaid === correctAnswer;
+        }
+        
+        if (this.isMcAudioType) {
+            return this.selected === this.current.answer;
+        }
+        
+        return false;
+    },
+
+    normalizeText(text) {
+        return text.toLowerCase().trim().replace(/[.,!?]/g, '');
+    },
+
+    enableSound() {
+        this.soundEnabled = true;
+        // Play the panuto audio if it exists
+        if (this.current && this.current.audio) {
+            this.currentPanutoAudio = new Audio(this.current.audio);
+            this.currentPanutoAudio.play();
+        }
+    },
+
+    async startRecording() {
+        if (this.confirmed) return;
+        
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ 
+                audio: {
+                    echoCancellation: true,
+                    noiseSuppression: true,
+                    sampleRate: 48000
+                } 
+            });
+            
+            this.mediaRecorder = new MediaRecorder(stream, {
+                mimeType: 'audio/webm;codecs=opus'
+            });
+            
+            this.audioChunks = [];
+            
+            this.mediaRecorder.ondataavailable = (event) => {
+                if (event.data.size > 0) {
+                    this.audioChunks.push(event.data);
+                }
+            };
+            
+            this.mediaRecorder.onstop = async () => {
+                await this.processAudio();
+            };
+            
+            this.mediaRecorder.start();
+            this.recording = true;
+            
+            console.log('🎤 Recording started...');
+        } catch (error) {
+            console.error('❌ Error accessing microphone:', error);
+            alert('Hindi ma-access ang microphone. Please allow microphone access.');
+        }
+    },
+
+    stopRecording() {
+        if (this.mediaRecorder && this.recording) {
+            this.mediaRecorder.stop();
+            this.recording = false;
+            this.processing = true;
+            
+            console.log('⏹️ Recording stopped');
+            
+            this.mediaRecorder.stream.getTracks().forEach(track => track.stop());
+        }
+    },
+
+    async processAudio() {
+        const audioBlob = new Blob(this.audioChunks, { type: 'audio/webm' });
+        
+        console.log('📦 Audio blob size:', audioBlob.size, 'bytes');
+        
+        const reader = new FileReader();
+        reader.readAsDataURL(audioBlob);
+        reader.onloadend = async () => {
+            const base64Audio = reader.result.split(',')[1];
+            
+            console.log('📤 Sending to API...');
+            console.log('🎯 Expected answer:', this.current.full_word);
+            
+            try {
+                const response = await fetch('/api/speech-to-text', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        audio: base64Audio,
+                        language: 'tl-PH'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                console.log('📥 API Response:', data);
+                
+                if (data.success) {
+                    this.transcription = data.transcription;
+                    console.log('🗣️ You said:', this.transcription);
+                    this.confirm();
+                } else {
+                    console.error('❌ API Error:', data.error);
+                    alert('May error sa pag-process ng audio: ' + data.error);
+                    this.processing = false;
+                }
+            } catch (error) {
+                console.error('❌ Fetch Error:', error);
+                alert('May error sa pag-send ng audio.');
+                this.processing = false;
+            }
+        };
+    },
+
+    confirm() {
+        this.confirmed = true;
+        this.showFeedback = true;
+        
+        if (this.isCorrect) {
+            this.score++;
+        }
+    },
+
+    checkAnswer() {
+        this.confirmed = true;
+        this.processing = false;
+        
+        if (this.isCorrect) {
+            this.score++;
+            console.log('✅ Correct! Score:', this.score);
+        } else {
+            console.log('❌ Wrong answer');
+            console.log('Expected:', this.current.answer);
+            console.log('Got:', this.transcription);
+        }
+    },
+
+    playAudio() {
+        if (this.current && this.current.audio) {
+            // Stop previous audio if playing
+            if (this.currentQuestionAudio) {
+                this.currentQuestionAudio.pause();
+                this.currentQuestionAudio.currentTime = 0;
+            }
+            this.currentQuestionAudio = new Audio(this.current.audio);
+            this.currentQuestionAudio.play();
+        }
+    },
+
+    next() {
+        // Stop any currently playing audio
+        if (this.currentPanutoAudio) {
+            this.currentPanutoAudio.pause();
+            this.currentPanutoAudio.currentTime = 0;
+            this.currentPanutoAudio = null;
+        }
+        if (this.currentQuestionAudio) {
+            this.currentQuestionAudio.pause();
+            this.currentQuestionAudio.currentTime = 0;
+            this.currentQuestionAudio = null;
+        }
+        
+        if (this.confirmed || this.isPanuto) {
+            this.page++;
+            this.reset();
+            
+            // Auto-play audio for next question if applicable
+            this.$nextTick(() => {
+                if (this.soundEnabled && this.current && this.current.audio) {
+                    if (this.isPanuto) {
+                        this.currentPanutoAudio = new Audio(this.current.audio);
+                        this.currentPanutoAudio.play();
+                    } else if (this.isMcAudioType) {
+                        // Auto-play audio for sound identification questions
+                        this.currentQuestionAudio = new Audio(this.current.audio);
+                        this.currentQuestionAudio.play();
+                    }
+                }
+            });
+        }
+    },
+
+    reset() {
+        this.confirmed = false;
+        this.recording = false;
+        this.processing = false;
+        this.transcription = '';
+        this.audioChunks = [];
+        this.selected = null;
+        this.showFeedback = false;
+    },
+
+    replay() {
+        // Stop any playing audio before replay
+        if (this.currentPanutoAudio) {
+            this.currentPanutoAudio.pause();
+            this.currentPanutoAudio.currentTime = 0;
+            this.currentPanutoAudio = null;
+        }
+        if (this.currentQuestionAudio) {
+            this.currentQuestionAudio.pause();
+            this.currentQuestionAudio.currentTime = 0;
+            this.currentQuestionAudio = null;
+        }
+        
+        this.page = 1;
+        this.score = 0;
+        this.soundEnabled = false; // Reset sound for replay
+        this.reset();
+    }
+}">
 
     <template x-if="showSoundOverlay">
         <div class="absolute inset-0 bg-black/60 flex items-center justify-center z-50 rounded-lg">
