@@ -11,64 +11,64 @@ class ThirdSlide extends Component
 
     protected $questions = [
         1 => [
-            // [
-            //     'type' => 'panuto',
-            //     'audio' => 'audio/lesson1/L1P3.m4a',
-            //     'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-            //     'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
-            // ],
+            [
+                'type' => 'panuto',
+                'audio' => 'audio/lesson1/L1P3.m4a',
+                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
+                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+            ],
 
-            // [
-            //     'type' => 'alphabet',
-            //     'alpabeto' => 'M',
-            //     'answer' => 'm'
-            // ],
-            // [
-            //     'type' => 'alphabet',
-            //     'alpabeto' => 'S',
-            //     'answer' => 's'
-            // ],
-            // [
-            //     'type' => 'alphabet',
-            //     'alpabeto' => 'A',
-            //     'answer' => 'a'
-            // ],
-            // [
-            //     'type' => 'alphabet',
-            //     'alpabeto' => 'I',
-            //     'answer' => 'i'
-            // ],
-            // [
-            //     'type' => 'alphabet',
-            //     'alpabeto' => 'O',
-            //     'answer' => 'o'
-            // ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'M',
+                'answer' => 'm'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'S',
+                'answer' => 's'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'A',
+                'answer' => 'a'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'I',
+                'answer' => 'i'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'O',
+                'answer' => 'o'
+            ],
 
-            // [
-            //     'type' => 'alphabet',
-            //     'alpabeto' => 'B',
-            //     'answer' => 'b'
-            // ],
-            // [
-            //     'type' => 'alphabet',
-            //     'alpabeto' => 'E',
-            //     'answer' => 'e'
-            // ],
-            // [
-            //     'type' => 'alphabet',
-            //     'alpabeto' => 'U',
-            //     'answer' => 'u'
-            // ],
-            // [
-            //     'type' => 'alphabet',
-            //     'alpabeto' => 'T',
-            //     'answer' => 't'
-            // ],
-            // [
-            //     'type' => 'alphabet',
-            //     'alpabeto' => 'K',
-            //     'answer' => 'k'
-            // ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'B',
+                'answer' => 'b'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'E',
+                'answer' => 'e'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'U',
+                'answer' => 'u'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'T',
+                'answer' => 't'
+            ],
+            [
+                'type' => 'alphabet',
+                'alpabeto' => 'K',
+                'answer' => 'k'
+            ],
             
             [
                 'type' => 'panuto',
