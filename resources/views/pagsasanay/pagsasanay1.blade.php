@@ -16,6 +16,7 @@
             // Sound enable overlay - only shows once
             soundEnabled: false,
             currentPanutoAudio: null,
+            currentQuestionAudio: null,
 
             get current() {
                 return this.page <= this.questions.length
@@ -65,8 +66,8 @@
                 this.soundEnabled = true;
                 // Play the panuto audio if it exists
                 if (this.current && this.current.audio) {
-                    const audio = new Audio(this.current.audio);
-                    audio.play();
+                    this.currentPanutoAudio = new Audio(this.current.audio);
+                    this.currentPanutoAudio.play();
                 }
             },
 
@@ -192,8 +193,13 @@
 
             playAudio() {
                 if (this.current && this.current.audio) {
-                    const audio = new Audio(this.current.audio);
-                    audio.play();
+                    // Stop previous audio if playing
+                    if (this.currentQuestionAudio) {
+                        this.currentQuestionAudio.pause();
+                        this.currentQuestionAudio.currentTime = 0;
+                    }
+                    this.currentQuestionAudio = new Audio(this.current.audio);
+                    this.currentQuestionAudio.play();
                 }
             },
 
@@ -222,7 +228,8 @@
                                 this.currentPanutoAudio.play();
                             } else if (this.isMcAudioType) {
                                 // Auto-play audio for sound identification questions
-                                this.playAudio();
+                                this.currentQuestionAudio = new Audio(this.current.audio);
+                                this.currentQuestionAudio.play();
                             }
                         }
                     });
@@ -240,6 +247,18 @@
             },
 
             replay() {
+                // Stop any playing audio before replay
+                if (this.currentPanutoAudio) {
+                    this.currentPanutoAudio.pause();
+                    this.currentPanutoAudio.currentTime = 0;
+                    this.currentPanutoAudio = null;
+                }
+                if (this.currentQuestionAudio) {
+                    this.currentQuestionAudio.pause();
+                    this.currentQuestionAudio.currentTime = 0;
+                    this.currentQuestionAudio = null;
+                }
+                
                 this.page = 1;
                 this.score = 0;
                 this.soundEnabled = false; // Reset sound for replay
