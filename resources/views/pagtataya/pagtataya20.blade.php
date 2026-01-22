@@ -197,10 +197,10 @@
                         <h3 class="text-2xl font-bold !text-[#F4C300] mb-2">Resulta</h3>
                         <p class="text-xl text-white">
                             Nakakuha ka ng <span class="font-bold text-[#F4C300]" x-text="score"></span>
-                            sa <span class="font-bold text-[#F4C300]" x-text="actualQuestions.length"></span> tanong
+                            sa <span class="font-bold text-[#F4C300]" x-text="10"></span> tanong
                         </p>
                         <p class="text-3xl font-bold !text-[#F4C300] mt-4" 
-                           x-text="Math.round((score / actualQuestions.length) * 100) + '%'"></p>
+                           x-text="Math.round((score / 10) * 100) + '%'"></p>
                     </div>
 
                     <!-- Correct Answers Table -->
@@ -245,10 +245,10 @@
         <div class="flex-1 flex flex-col items-center gap-5">
             <img src="{{asset('img/Badge.png')}}" width="200" alt="">
             <h1 class="text-2xl font-bold">CONGRATULATIONS!</h1>
-            <h2 class="score !text-[#F4C300]" x-text="Math.round((score / actualQuestions.length) * 100) + '%'"></h2>
+            <h2 class="score !text-[#F4C300]" x-text="Math.round((score / 10) * 100) + '%'"></h2>
             <p class="w-96 text-lg text-center">
                 Nakakuha ka ng <span class="font-bold" x-text="score"></span>
-                sa <span class="font-bold" x-text="actualQuestions.length"></span> na tanong!
+                sa <span class="font-bold" x-text="10"></span> na tanong!
             </p>
             <p class="w-96 text-lg text-center">Mahusay! Natapos mo ang araling ito nang may buong sigasig at pagsisikap. Ipagpatuloy lamang ang iyong pagkatuto!</p>
             

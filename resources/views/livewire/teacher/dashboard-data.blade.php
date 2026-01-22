@@ -192,24 +192,62 @@
                          </div>
                     </div>
                     
-                    <div class="card !bg-[#F4C300] flex-1 flex flex-col gap-5">
-                         <h1 class="text-xl text-black font-bold">Quick Actions</h1>
+<div class="card !bg-[#F4C300] flex-1 flex flex-col gap-3">
+     <div class="flex justify-between items-center">
+          <h1 class="text-xl text-black font-bold">Message of the day</h1>
+          
+          @if(!$isEditing)
+               <button 
+                    wire:click="editMessage"
+                    class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition text-sm font-medium"
+               >
+                    Edit
+               </button>
+          @endif
+     </div>
 
-                         <div class="grid grid-cols-2 gap-4">
-                              <a href="" class="bg-[#31343A] rounded-md p-3 text-sm font-semibold hover:scale-105 transition-transform text-center">
-                                   <i class="fa-solid fa-plus text-yellow-400"></i> Add Student
-                              </a>
-                              <a href="" class="bg-[#31343A] rounded-md p-3 text-sm font-semibold hover:scale-105 transition-transform text-center">
-                                   <i class="fa-solid fa-user-plus text-yellow-400"></i> Add Teacher
-                              </a>
-                              <a href="" class="bg-[#31343A] rounded-md p-3 text-sm font-semibold hover:scale-105 transition-transform text-center">
-                                   <i class="fa-solid fa-chart-line text-yellow-400"></i> View Reports
-                              </a>
-                              <a href="" class="bg-[#31343A] rounded-md p-3 text-sm font-semibold hover:scale-105 transition-transform text-center">
-                                   <i class="fa-solid fa-user-gear text-yellow-400"></i> Settings
-                              </a>
-                         </div>
-                    </div>
+     @if(session()->has('message'))
+          <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded text-sm">
+               {{ session('message') }}
+          </div>
+     @endif
+
+     <!-- Sticky note textarea with lines -->
+     <textarea 
+          wire:model="messageOfTheDay"
+          @if(!$isEditing) readonly @endif
+          class="w-full flex-1 bg-transparent border-none rounded-sm text-gray-800 resize-none focus:outline-none focus:ring-0 {{ !$isEditing ? 'cursor-default' : '' }}" 
+          placeholder="Write your message here..."
+          style="
+               font-family: 'Indie Flower', 'Comic Sans MS', cursive; 
+               line-height: 2rem;
+               background-image: repeating-linear-gradient(
+                    transparent,
+                    transparent 1.9rem,
+                    rgba(0, 0, 0, 0.15) 1.9rem,
+                    rgba(0, 0, 0, 0.15) 2rem
+               );
+               background-size: 100% 2rem;
+          "
+     ></textarea>
+
+     @if($isEditing)
+          <div class="flex gap-2 justify-end">
+               <button 
+                    wire:click="cancelEdit"
+                    class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition text-sm font-medium"
+               >
+                    Cancel
+               </button>
+               <button 
+                    wire:click="saveMessageOfTheDay"
+                    class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition text-sm font-medium"
+               >
+                    Save
+               </button>
+          </div>
+     @endif
+</div>
                </div>
           </div>
      </div>

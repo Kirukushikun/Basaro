@@ -21,42 +21,6 @@ class FourthSlide extends Component
                 'header' => 'Kilalanin mo ang bawat letra, pagkatapos ay pindutin mo ang microphone button sa pagbigkas ng tunog ng mga ito',
                 'body' => '',
             ],
-            [
-                'alpabeto' => 'M',
-                'answer' => 'm'
-            ],
-            [
-                'alpabeto' => 'S',
-                'answer' => 's'
-            ],
-            [
-                'alpabeto' => 'A',
-                'answer' => 'a'
-            ],
-            [
-                'alpabeto' => 'I',
-                'answer' => 'i'
-            ],
-            [
-                'alpabeto' => 'O',
-                'answer' => 'o'
-            ],
-            [
-                'alpabeto' => 'B',
-                'answer' => 'b'
-            ],
-            [
-                'alpabeto' => 'E',
-                'answer' => 'e'
-            ],
-            [
-                'alpabeto' => 'U',
-                'answer' => 'u'
-            ],
-            [
-                'alpabeto' => 'T',
-                'answer' => 't'
-            ],
 
             [
                 'alpabeto' => 'K',
@@ -92,46 +56,9 @@ class FourthSlide extends Component
                 'alpabeto' => 'D',
                 'answer' => 'd'
             ],
-
             [
                 'alpabeto' => 'H',
                 'answer' => 'h'
-            ],
-            [
-                'alpabeto' => 'W',
-                'answer' => 'w'
-            ],
-            [
-                'alpabeto' => 'C',
-                'answer' => 'c'
-            ],
-            [
-                'alpabeto' => 'F',
-                'answer' => 'f'
-            ],
-            [
-                'alpabeto' => 'J',
-                'answer' => 'j'
-            ],
-            [
-                'alpabeto' => 'Ñ',
-                'answer' => 'ñ'
-            ],
-            [
-                'alpabeto' => 'Q',
-                'answer' => 'q'
-            ],
-            [
-                'alpabeto' => 'V',
-                'answer' => 'v'
-            ],
-            [
-                'alpabeto' => 'X',
-                'answer' => 'x'
-            ],
-            [
-                'alpabeto' => 'Z',
-                'answer' => 'z'
             ],
         ],
 
@@ -665,52 +592,52 @@ class FourthSlide extends Component
             [
                 'word' => 'pangamba',
                 'answer' => 'takot',
-                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'bentahe', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
+                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'pakinabang', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
             ],
             [
                 'word' => 'sumibol',
                 'answer' => 'Lumitaw',
-                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'bentahe', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
+                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'pakinabang', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
             ],
             [
                 'word' => 'humihipak',
                 'answer' => 'humihithit',
-                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'bentahe', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
+                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'pakinabang', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
             ],
             [
                 'word' => 'lingid',
                 'answer' => 'lihim',
-                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'bentahe', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
+                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'pakinabang', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
             ],
             [
                 'word' => 'tuso',
                 'answer' => 'madaya',
-                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'bentahe', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
+                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'pakinabang', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
             ],
             [
                 'word' => 'kapakanan',
                 'answer' => 'kabutihan',
-                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'bentahe', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
+                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'pakinabang', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
             ],
             [
                 'word' => 'matamlay',
                 'answer' => 'walang sigla',
-                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'bentahe', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
+                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'pakinabang', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
             ],
             [
                 'word' => 'magkatuwang',
                 'answer' => 'magkasama',
-                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'bentahe', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
+                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'pakinabang', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
             ],
             [
                 'word' => 'bentahe',
                 'answer' => 'pakinabang',
-                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'bentahe', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
+                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'pakinabang', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
             ],
             [
                 'word' => 'mailunsad',
                 'answer' => 'maipatupad',
-                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'bentahe', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
+                'wordBank' => ['humihithit', 'takot', 'lihim', 'magkasama', 'pakinabang', 'maipatupad', 'walang sigla', 'kabutihan', 'Lumitaw', 'madaya']
             ],
         ]
 

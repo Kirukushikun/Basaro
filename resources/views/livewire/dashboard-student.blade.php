@@ -270,7 +270,7 @@
             <div class="card flex flex-col">
                 <h1 class="text-xl font-bold mb-5"><i class="fa-solid fa-quote-left"></i> Teacher's Message</h1>
                 <div class="flex-1 flex flex-col justify-between">
-                    <p>"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio vitae aperiam perspiciatis consequuntur laudantium aliquid eos unde voluptate atque consectetur."</p>
+                    <p>"{{$message->content ?? 'No message yet.'}}"</p>
 
                     <div class="flex justify-between">
                         <p class="font-bold">- Gng. Beng</p>

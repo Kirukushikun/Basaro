@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\Lesson;
 use App\Models\Note;
+use App\Models\UserTrack;
+use Illuminate\Support\Facades\DB;
 
 class DashboardStudent extends Component
 {   
@@ -15,6 +17,8 @@ class DashboardStudent extends Component
     public $noteContent = '';
     public $selectedNoteId;
     public $selectedNote;
+
+    public $message;
 
     protected $rules = [
         'noteTitle' => 'required|min:3|max:255',
@@ -80,6 +84,7 @@ class DashboardStudent extends Component
     {
         try {
             $lesson = Lesson::findOrFail(Auth::user()->current_lesson);
+            $this->message = DB::table('note')->first() ?? null;
 
         } catch (\Exception $e) {
             // use reload notification here since render is part of a full reload

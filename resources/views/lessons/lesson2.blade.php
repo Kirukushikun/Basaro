@@ -7,7 +7,7 @@
                 Ang Mga Patinig
             </h1>
             <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
-                Ang alpabetong filipino ay binubuo ng <span class="!text-[#F4C300]">28</span> letra, <span class="!text-[#F4C300]">5</span> sa mga ito ay tinatawag na patinig. Ang mga ito ay ang sumusunod:
+                Ang Alpabetong Filipino ay binubuo ng <span class="!text-[#F4C300]">28</span> letra, <span class="!text-[#F4C300]">5</span> sa mga ito ay tinatawag na patinig. Ang mga ito ay ang sumusunod:
             </p>
         </header>
 

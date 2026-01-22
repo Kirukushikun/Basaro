@@ -11,6 +11,15 @@ use Carbon\Carbon;
 
 class DashboardData extends Component
 {
+    public $messageOfTheDay = '';
+    public $isEditing = false;
+
+    public function mount()
+    {
+        // Load the current message of the day
+        $this->loadMessageOfTheDay();
+    }
+
     public function render()
     {
         // Get all students with their tracking data
@@ -33,6 +42,58 @@ class DashboardData extends Component
             'topPerformers' => $topPerformers,
             'alerts' => $recentAlerts,
         ]);
+    }
+
+    /**
+     * Load the message of the day from database
+     */
+    private function loadMessageOfTheDay()
+    {
+        $note = DB::table('note')->first();
+        $this->messageOfTheDay = $note ? $note->content : '';
+    }
+
+    /**
+     * Enable editing mode
+     */
+    public function editMessage()
+    {
+        $this->isEditing = true;
+    }
+
+    /**
+     * Save the message of the day to database
+     */
+    public function saveMessageOfTheDay()
+    {
+        $existing = DB::table('note')->first();
+
+        if ($existing) {
+            DB::table('note')
+                ->where('id', $existing->id)
+                ->update([
+                    'content' => $this->messageOfTheDay,
+                    'updated_at' => now(),
+                ]);
+        } else {
+            DB::table('note')->insert([
+                'content' => $this->messageOfTheDay,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+
+        $this->isEditing = false;
+        session()->flash('message', 'Message saved successfully!');
+    }
+
+    /**
+     * Cancel editing
+     */
+    public function cancelEdit()
+    {
+        $this->loadMessageOfTheDay();
+        $this->isEditing = false;
     }
 
     /**
