@@ -1,244 +1,287 @@
 <script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('pagtataya1Data', (questions) => ({
-            page: 1,
-            confirmed: false,
-            recording: false,
-            processing: false,
-            score: 0,
-            transcription: '',
-            mediaRecorder: null,
-            audioChunks: [],
-            questions: questions,
-            soundEnabled: false,
-            currentPanutoAudio: null,
-
-            // Phonetic mapping for letter sounds
-            phoneticMap: {
-                'A': ['a', 'ah'],
-                'E': ['e', 'eh'],
-                'I': ['i', 'ee'],
-                'O': ['o', 'oh'],
-                'U': ['u', 'oo'],
-                'B': ['b', 'buh'],
-                'K': ['k', 'kah'],
-                'M': ['m', 'muh'],
-                'S': ['s', 'suh'],
-                'T': ['t', 'tuh'],
-                'L': ['l', 'luh'],
-                'Y': ['y', 'yuh'],
-                'N': ['n', 'nuh'],
-                'G': ['g', 'guh'],
-                'NG': ['ng', 'nang'],  // FIXED: Accept both "ng" and "nang"
-                'P': ['p', 'puh'],
-                'R': ['r', 'ruh'],
-                'D': ['d', 'duh'],
-                'H': ['h', 'huh']
-            },
-
-            get current() {
-                return this.page <= this.questions.length
-                    ? this.questions[this.page - 1]
-                    : null
-            },
-
-            get isPanuto() {
-                return this.current && this.current.type === 'panuto';
-            },
-
-            get showSoundOverlay() {
-                return !this.soundEnabled && this.isPanuto;
-            },
-
-            enableSound() {
-                this.soundEnabled = true;
-                if (this.current && this.current.audio) {
-                    this.currentPanutoAudio = new Audio(this.current.audio);
-                    this.currentPanutoAudio.play();
-                }
-            },
-
-            normalizeText(text) {
-                return text.toLowerCase().trim().replace(/[.,!?]/g, '').replace(/\s+/g, '');
-            },
-
-            isPhoneticMatch(transcription, letter) {
-                const normalized = this.normalizeText(transcription);
-                const acceptableAnswers = this.phoneticMap[letter.toUpperCase()] || [];
-                return acceptableAnswers.some(answer => normalized === answer || normalized.includes(answer));
-            },
-
-            get isCorrect() {
-                if (!this.confirmed || !this.transcription) return false;
-                
-                // Use phonetic matching
-                return this.isPhoneticMatch(this.transcription, this.current.alpabeto);
-            },
-
-            async startRecording() {
-                if (this.confirmed) return;
-                
-                try {
-                    const stream = await navigator.mediaDevices.getUserMedia({ 
-                        audio: {
-                            echoCancellation: true,
-                            noiseSuppression: true,
-                            sampleRate: 48000
-                        } 
-                    });
-                    
-                    this.mediaRecorder = new MediaRecorder(stream, {
-                        mimeType: 'audio/webm;codecs=opus'
-                    });
-                    
-                    this.audioChunks = [];
-                    
-                    this.mediaRecorder.ondataavailable = (event) => {
-                        if (event.data.size > 0) {
-                            this.audioChunks.push(event.data);
-                        }
-                    };
-                    
-                    this.mediaRecorder.onstop = async () => {
-                        await this.processAudio();
-                    };
-                    
-                    this.mediaRecorder.start();
-                    this.recording = true;
-                    
-                    console.log('🎤 Recording started...');
-                } catch (error) {
-                    console.error('❌ Error accessing microphone:', error);
-                    alert('Hindi ma-access ang microphone. Please allow microphone access.');
-                }
-            },
-
-            stopRecording() {
-                if (this.mediaRecorder && this.recording) {
-                    this.mediaRecorder.stop();
-                    this.recording = false;
-                    this.processing = true;
-                    
-                    console.log('⏹️ Recording stopped');
-                    
-                    this.mediaRecorder.stream.getTracks().forEach(track => track.stop());
-                }
-            },
-
-            async processAudio() {
-                const audioBlob = new Blob(this.audioChunks, { type: 'audio/webm' });
-                
-                console.log('📦 Audio blob size:', audioBlob.size, 'bytes');
-                
-                const reader = new FileReader();
-                reader.readAsDataURL(audioBlob);
-                reader.onloadend = async () => {
-                    const base64Audio = reader.result.split(',')[1];
-                    
-                    console.log('📤 Sending to API...');
-                    console.log('🎯 Expected answer:', this.current.answer);
-                    
-                    try {
-                        const response = await fetch('/api/speech-to-text', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                            },
-                            body: JSON.stringify({
-                                audio: base64Audio,
-                                language: 'tl-PH'
-                            })
-                        });
-                        
-                        const data = await response.json();
-                        
-                        console.log('📥 API Response:', data);
-                        
-                        if (data.success) {
-                            this.transcription = data.transcription;
-                            console.log('🗣️ You said:', this.transcription);
-                            this.checkAnswer();
-                        } else {
-                            console.error('❌ API Error:', data.error);
-                            alert('May error sa pag-process ng audio: ' + data.error);
-                            this.processing = false;
-                        }
-                    } catch (error) {
-                        console.error('❌ Fetch Error:', error);
-                        alert('May error sa pag-send ng audio.');
-                        this.processing = false;
-                    }
-                };
-            },
-
-            checkAnswer() {
-                this.confirmed = true;
-                this.processing = false;
-                
-                if (this.isCorrect) {
-                    this.score++;
-                    console.log('✅ Correct! Score:', this.score);
-                } else {
-                    console.log('❌ Wrong answer');
-                    console.log('Expected:', this.current.answer);
-                    console.log('Got:', this.transcription);
-                }
-            },
-
-            next() {
-                // Stop panuto audio if playing
-                if (this.currentPanutoAudio) {
-                    this.currentPanutoAudio.pause();
-                    this.currentPanutoAudio.currentTime = 0;
-                    this.currentPanutoAudio = null;
-                }
-                
-                if (this.confirmed || this.isPanuto) {
-                    this.page++;
-                    this.reset();
-                    
-                    // Auto-play next panuto audio if applicable
-                    this.$nextTick(() => {
-                        if (this.soundEnabled && this.isPanuto && this.current && this.current.audio) {
-                            this.currentPanutoAudio = new Audio(this.current.audio);
-                            this.currentPanutoAudio.play();
-                        }
-                    });
-                }
-            },
-
-            reset() {
-                this.confirmed = false;
-                this.recording = false;
-                this.processing = false;
-                this.transcription = '';
-                this.audioChunks = [];
-            },
-
-            replay() {
-                // Stop any playing audio
-                if (this.currentPanutoAudio) {
-                    this.currentPanutoAudio.pause();
-                    this.currentPanutoAudio.currentTime = 0;
-                    this.currentPanutoAudio = null;
-                }
-                
-                this.page = 1;
-                this.score = 0;
-                this.soundEnabled = false;
-                this.reset();
-            }
-        }))
-    });
+    window.pagtataya1Questions = @json($questions);
 </script>
 
-<!-- Pagtataya 1 (No Retry Buttons) -->
-<div class="relative flex flex-col items-center lg:min-w-96 p-6"
-     x-data='pagtataya1Data(@json($questions))'>
+<!-- Pagtataya 1 -->
+<div class="relative flex flex-col items-center" x-data="{
+    page: 1,
+    confirmed: false,
+    recording: false,
+    processing: false,
+    score: @entangle('score'),
+    totalScore: @entangle('totalScore'),
+    completed: false,
+    showModal: false,
+    transcription: '',
+    mediaRecorder: null,
+    audioChunks: [],
+    questions: @js($questions),
+    selected: null,
+    showFeedback: false,
+    soundEnabled: false,
+    currentPanutoAudio: null,
+    currentQuestionAudio: null,
+
+    phoneticMap: {
+        'K': ['k', 'kah'],
+        'L': ['l', 'lah'],
+        'Y': ['y', 'yah'],
+        'N': ['n', 'nah'],
+        'G': ['g', 'gah'],
+        'NG': ['ng', 'nga'],
+        'P': ['p', 'pah'],
+        'R': ['r', 'rah'],
+        'D': ['d', 'dah'],
+        'H': ['h', 'hah']
+    },
+
+    get current() {
+        return this.page <= this.questions.length
+            ? this.questions[this.page - 1]
+            : null
+    },
+
+    get isPanuto() {
+        return this.current && this.current.type === 'panuto';
+    },
+
+    get isAlphabetType() {
+        return this.current && this.current.type === 'alphabet';
+    },
+
+    get isMcAudioType() {
+        return this.current && this.current.type === 'mc_audio';
+    },
+
+    get showSoundOverlay() {
+        return !this.soundEnabled && this.isPanuto;
+    },
+
+    get isCorrect() {
+        if (!this.confirmed) return false;
+        
+        if (this.isAlphabetType) {
+            if (!this.transcription) return false;
+            return this.isPhoneticMatch(this.transcription, this.current.alpabeto);
+        }
+        
+        if (this.isMcAudioType) {
+            return this.selected === this.current.answer;
+        }
+        
+        return false;
+    },
+
+    normalizeText(text) {
+        return text.toLowerCase().trim().replace(/[.,!?]/g, '').replace(/\s+/g, '');
+    },
+
+    isPhoneticMatch(transcription, letter) {
+        const normalized = this.normalizeText(transcription);
+        const acceptableAnswers = this.phoneticMap[letter.toUpperCase()] || [];
+        return acceptableAnswers.some(answer => normalized === answer || normalized.includes(answer));
+    },
+
+    enableSound() {
+        this.soundEnabled = true;
+        if (this.current && this.current.audio) {
+            this.currentPanutoAudio = new Audio(this.current.audio);
+            this.currentPanutoAudio.play();
+        }
+    },
+
+    async startRecording() {
+        if (this.confirmed) return;
+        
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ 
+                audio: {
+                    echoCancellation: true,
+                    noiseSuppression: true,
+                    sampleRate: 48000
+                } 
+            });
+            
+            this.mediaRecorder = new MediaRecorder(stream, {
+                mimeType: 'audio/webm;codecs=opus'
+            });
+            
+            this.audioChunks = [];
+            
+            this.mediaRecorder.ondataavailable = (event) => {
+                if (event.data.size > 0) {
+                    this.audioChunks.push(event.data);
+                }
+            };
+            
+            this.mediaRecorder.onstop = async () => {
+                await this.processAudio();
+            };
+            
+            this.mediaRecorder.start();
+            this.recording = true;
+            
+            console.log('🎤 Recording started...');
+        } catch (error) {
+            console.error('❌ Error accessing microphone:', error);
+            alert('Hindi ma-access ang microphone. Please allow microphone access.');
+        }
+    },
+
+    stopRecording() {
+        if (this.mediaRecorder && this.recording) {
+            this.mediaRecorder.stop();
+            this.recording = false;
+            this.processing = true;
+            
+            console.log('⏹️ Recording stopped');
+            
+            this.mediaRecorder.stream.getTracks().forEach(track => track.stop());
+        }
+    },
+
+    async processAudio() {
+        const audioBlob = new Blob(this.audioChunks, { type: 'audio/webm' });
+        
+        console.log('📦 Audio blob size:', audioBlob.size, 'bytes');
+        
+        const reader = new FileReader();
+        reader.readAsDataURL(audioBlob);
+        reader.onloadend = async () => {
+            const base64Audio = reader.result.split(',')[1];
+            
+            console.log('📤 Sending to API...');
+            console.log('🎯 Expected answer:', this.current.alpabeto);
+            
+            try {
+                const response = await fetch('/api/speech-to-text', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        audio: base64Audio,
+                        language: 'tl-PH'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                console.log('📥 API Response:', data);
+                
+                if (data.success) {
+                    this.transcription = data.transcription;
+                    console.log('🗣️ You said:', this.transcription);
+                    this.confirm();
+                } else {
+                    console.error('❌ API Error:', data.error);
+                    alert('May error sa pag-process ng audio: ' + data.error);
+                    this.processing = false;
+                }
+            } catch (error) {
+                console.error('❌ Fetch Error:', error);
+                alert('May error sa pag-send ng audio.');
+                this.processing = false;
+            }
+        };
+    },
+
+    confirm() {
+        this.confirmed = true;
+        this.showFeedback = true;
+        
+        if (this.isCorrect) {
+            this.score++;
+        }
+    },
+
+    checkAnswer() {
+        this.confirmed = true;
+        this.processing = false;
+        
+        if (this.isCorrect) {
+            this.score++;
+            console.log('✅ Correct! Score:', this.score);
+        } else {
+            console.log('❌ Wrong answer');
+            console.log('Expected:', this.current.answer);
+            console.log('Got:', this.transcription);
+        }
+    },
+
+    playAudio() {
+        if (this.current && this.current.audio) {
+            if (this.currentQuestionAudio) {
+                this.currentQuestionAudio.pause();
+                this.currentQuestionAudio.currentTime = 0;
+            }
+            this.currentQuestionAudio = new Audio(this.current.audio);
+            this.currentQuestionAudio.play();
+        }
+    },
+
+    next() {
+        if (this.currentPanutoAudio) {
+            this.currentPanutoAudio.pause();
+            this.currentPanutoAudio.currentTime = 0;
+            this.currentPanutoAudio = null;
+        }
+        if (this.currentQuestionAudio) {
+            this.currentQuestionAudio.pause();
+            this.currentQuestionAudio.currentTime = 0;
+            this.currentQuestionAudio = null;
+        }
+        
+        if (this.confirmed || this.isPanuto) {
+            this.page++;
+            this.reset();
+            
+            this.$nextTick(() => {
+                if (this.soundEnabled && this.current && this.current.audio) {
+                    if (this.isPanuto) {
+                        this.currentPanutoAudio = new Audio(this.current.audio);
+                        this.currentPanutoAudio.play();
+                    } else if (this.isMcAudioType) {
+                        this.currentQuestionAudio = new Audio(this.current.audio);
+                        this.currentQuestionAudio.play();
+                    }
+                }
+            });
+        }
+    },
+
+    reset() {
+        this.confirmed = false;
+        this.recording = false;
+        this.processing = false;
+        this.transcription = '';
+        this.audioChunks = [];
+        this.selected = null;
+        this.showFeedback = false;
+    },
+
+    replay() {
+        if (this.currentPanutoAudio) {
+            this.currentPanutoAudio.pause();
+            this.currentPanutoAudio.currentTime = 0;
+            this.currentPanutoAudio = null;
+        }
+        if (this.currentQuestionAudio) {
+            this.currentQuestionAudio.pause();
+            this.currentQuestionAudio.currentTime = 0;
+            this.currentQuestionAudio = null;
+        }
+        
+        this.page = 1;
+        this.score = 0;
+        this.soundEnabled = false;
+        this.reset();
+    }
+}">
 
     <template x-if="showSoundOverlay">
-        <div class="absolute inset-0 bg-black/60 flex items-center justify-center z-50">
+        <div class="absolute inset-0 bg-black/60 flex items-center justify-center z-50 rounded-lg">
             <button 
                 @click="enableSound()" 
                 class="px-6 py-3 bg-[#F4C300] !text-black font-bold rounded-lg text-lg shadow-lg hover:bg-yellow-500 transition-all"
@@ -249,7 +292,7 @@
     </template>
 
     <template x-if="current">
-        <div class="flex-1 flex flex-col items-center gap-10">
+        <div class="flex-1 flex flex-col items-center gap-10 w-full lg:min-w-96">
 
             <!-- PANUTO TYPE -->
             <template x-if="isPanuto">
@@ -262,25 +305,25 @@
                         <p class="!text-gray-300 mb-4" x-text="current.body"></p>
                     </div>
 
-                    <button @click="next" class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold whitespace-nowrap">
+                    <button @click="next" class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold whitespace-nowrap mb-5">
                         Naiintindihan ko ang panuto
                     </button>
                 </div>
-            </template> 
+            </template>    
 
-            <!-- ALPHABET TYPE (No Retry Button - Final Test) -->
-            <template x-if="!isPanuto">
+            <!-- ALPHABET TYPE -->
+            <template x-if="isAlphabetType">
                 <div class="flex flex-col items-center gap-10 w-full lg:min-w-96">
                     <!-- Alphabet Display -->
                     <h1 class="alphabet mt-10 !text-[#F4C300]"
                         x-text="current.alpabeto"></h1>
 
-                    <!-- Feedback (NO RETRY BUTTON) -->
+                    <!-- Feedback -->
                     <div x-show="confirmed" 
-                        x-transition
-                        class="w-full max-w-lg">
+                         x-transition
+                         class="w-full max-w-lg">
                         <div x-show="isCorrect"
-                            class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                             class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
                             <i class="fa-solid fa-check"></i> Tama!
                             <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
                                 Narinig: "<span x-text="transcription"></span>"
@@ -297,7 +340,7 @@
 
                     <!-- Instruction -->
                     <p class="w-96 !text-base sm:!text-lg md:!text-lg lg:!text-xl text-center" x-show="!confirmed">
-                        Basahin nang malinaw ang alpabetong nasa itaas.
+                        Ano ang tunog ng letrang nasa itaas?
                         Subukang bigkasin ito nang tama at dahan-dahan.
                     </p>
 
@@ -316,17 +359,18 @@
                             }">
 
                             <i class="fa-solid fa-microphone text-white text-xl"
-                            :class="{ 'fa-spinner fa-spin': processing }"></i>
+                               :class="{ 'fa-spinner fa-spin': processing }"></i>
 
+                            <!-- Recording indicator -->
                             <div x-show="recording"
-                                class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
+                                 class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
                             </div>
                         </button>
 
                         <!-- Status text -->
                         <div class="text-center">
                             <p x-show="recording" class="text-red-500 font-semibold animate-pulse">
-                                🔴 Nagrerekord...
+                                🔴 Nagrerekord... (Hawakan ang button)
                             </p>
                             <p x-show="processing" class="text-blue-500 font-semibold">
                                 ⏳ Pinoproseso ang iyong boses...
@@ -338,6 +382,7 @@
                     </div>
                 </div>
             </template>
+
 
         </div>
     </template>

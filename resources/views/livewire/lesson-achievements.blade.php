@@ -1,6 +1,6 @@
 @if($achievements->isNotEmpty())
     <main class="flex-1 overflow-hidden pb-[40px] px-4 md:px-0">
-        <div class="lessons grid grid-cols-1 sm:grid-cols-2 md:pr-5 gap-4 md:gap-7 h-full overflow-y-auto">
+        <div class="lessons grid grid-cols-1 sm:grid-cols-2 md:pr-5 gap-4 md:gap-7 overflow-y-auto">
             
             @foreach($achievements as $achievement)
                 <div class="card flex gap-6 items-start">

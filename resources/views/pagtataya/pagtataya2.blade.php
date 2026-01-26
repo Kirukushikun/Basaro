@@ -10,6 +10,9 @@
         recording: false,
         processing: false,
         score: @entangle('score'),
+        totalScore: @entangle('totalScore'),
+        completed: false,
+        showModal: false,
         transcription: '',
         userInput: '',
         mediaRecorder: null,
@@ -17,6 +20,15 @@
         questions: window.pagtataya2Questions,
         soundEnabled: false,
         currentPanutoAudio: null,
+
+        // Add phonetic map for vowel sounds
+        phoneticMap: {
+            'a': ['a', 'ah', 'uh', 'ha', 'aa', 'aah'],
+            'e': ['e', 'eh', 'ay', 'he', 'ee', 'eeh'],
+            'i': ['i', 'ih', 'ee', 'ey', 'hi', 'eee'],
+            'o': ['o', 'oh', 'ow', 'ho', 'oo', 'ooh'],
+            'u': ['u', 'uh', 'oo', 'hu', 'ooh', 'uuh']
+        },
 
         get isPanuto() {
             return this.current && this.current.type === 'panuto';
@@ -62,23 +74,58 @@
                 : null
         },
 
+        normalizeText(text) {
+            return text.toLowerCase().trim().replace(/[.,!?]/g, '').replace(/\s+/g, '');
+        },
+
+        isPhoneticMatch(transcription, expectedVowel) {
+            const normalized = this.normalizeText(transcription);
+            const acceptableAnswers = this.phoneticMap[expectedVowel.toLowerCase()] || [];
+            
+            // Check exact match or if transcription contains any acceptable answer
+            return acceptableAnswers.some(answer => {
+                return normalized === answer || 
+                    normalized.includes(answer) || 
+                    answer.includes(normalized) ||
+                    this.levenshteinDistance(normalized, answer) <= 1; // Allow 1 character difference
+            });
+        },
+
+        // Add this helper function for fuzzy matching
+        levenshteinDistance(str1, str2) {
+            const m = str1.length;
+            const n = str2.length;
+            const dp = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0));
+            
+            for (let i = 0; i <= m; i++) dp[i][0] = i;
+            for (let j = 0; j <= n; j++) dp[0][j] = j;
+            
+            for (let i = 1; i <= m; i++) {
+                for (let j = 1; j <= n; j++) {
+                    if (str1[i - 1] === str2[j - 1]) {
+                        dp[i][j] = dp[i - 1][j - 1];
+                    } else {
+                        dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]) + 1;
+                    }
+                }
+            }
+            
+            return dp[m][n];
+        },
+
         get isCorrect() {
             if (!this.confirmed) return false;
             
             if (this.current.type === 'patinig_identification') {
-                // For vowel identification, check if transcription matches the patinig
-                return this.normalizeText(this.transcription) === this.normalizeText(this.current.patinig);
+                // Use phonetic matching for vowel identification
+                return this.isPhoneticMatch(this.transcription, this.current.patinig);
             } else if (this.current.type === 'image_identification') {
                 // For image identification, check if transcription matches the first letter/sound
                 const expected = this.current.unang_tunog || this.current.answer;
-                return this.normalizeText(this.transcription) === this.normalizeText(expected);
+                return this.isPhoneticMatch(this.transcription, expected);
             }
             
             return false;
-        },
-
-        normalizeText(text) {
-            return text.toLowerCase().trim().replace(/[.,!?]/g, '');
         },
 
         async startRecording() {

@@ -70,8 +70,8 @@
                 >
                     <div class="notif-header font-bold text-lg flex items-center relative">
                         <i x-show="n.type === 'gold'" class="fa-solid fa-medal absolute -left-8 !text-yellow-400 text-xl"></i>
-                        <i x-show="n.type === 'bronze'" class="fa-solid fa-medal absolute -left-8 !text-gray-400 text-xl"></i>
-                        <i x-show="n.type === 'silver'" class="fa-solid fa-medal absolute -left-8 !text-amber-700 text-xl"></i>
+                        <i x-show="n.type === 'bronze'" class="fa-solid fa-medal absolute -left-8 !text-amber-700 text-xl"></i>
+                        <i x-show="n.type === 'silver'" class="fa-solid fa-medal absolute -left-8 !text-gray-400 text-xl"></i>
 
                         <i x-show="n.type === 'success'" class="fa-regular fa-circle-check absolute -left-8 !text-green-500 text-xl"></i>
                         <i x-show="n.type === 'failed'" class="fa-regular fa-circle-xmark absolute -left-8 !text-red-500 text-xl"></i>

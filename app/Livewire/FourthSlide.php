@@ -24,41 +24,52 @@ class FourthSlide extends Component
             ],
 
             [
+                'type' => 'alphabet', // ✅ Add this
                 'alpabeto' => 'K',
                 'answer' => 'k'
             ],
             [
+                'type' => 'alphabet', // ✅ Add this
                 'alpabeto' => 'L',
                 'answer' => 'l'
             ],
             [
+                'type' => 'alphabet', // ✅ Add this
                 'alpabeto' => 'Y',
                 'answer' => 'y'
             ],
             [
+                'type' => 'alphabet', // ✅ Add this
                 'alpabeto' => 'N',
                 'answer' => 'n'
             ],
             [
+                'type' => 'alphabet', // ✅ Add this
                 'alpabeto' => 'G',
                 'answer' => 'g'
             ],
             [
-                'alpabeto' => 'NG', 'answer' => 'ng'
+                'type' => 'alphabet', // ✅ Add this
+                'alpabeto' => 'NG',
+                'answer' => 'ng'
             ],
             [
+                'type' => 'alphabet', // ✅ Add this
                 'alpabeto' => 'P',
                 'answer' => 'p'
             ],
             [
+                'type' => 'alphabet', // ✅ Add this
                 'alpabeto' => 'R',
                 'answer' => 'r'
             ],
             [
+                'type' => 'alphabet', // ✅ Add this
                 'alpabeto' => 'D',
                 'answer' => 'd'
             ],
             [
+                'type' => 'alphabet', // ✅ Add this
                 'alpabeto' => 'H',
                 'answer' => 'h'
             ],
@@ -646,10 +657,20 @@ class FourthSlide extends Component
     ];
 
     public $score = 0;
-
+    public $totalScore = 0;
+    
     public function mount($lesson)
     {
         $this->lesson = $lesson;
+
+        $scores = [
+            '1' => 10, '2' => 9, '3' => 10, '4' => 15, '5' => 19,
+            '6' => 12, '7' => 10, '8' => 4, '9' => 11, '10' => 10,
+            '11' => 20, '12' => 15, '13' => 10, '14' => 20, '15' => 17,
+            '16' => 5, '17' => 8, '18' => 8, '19' => 10, '20' => 10
+        ];
+
+        $this->totalScore = $scores[$lesson] ?? 0;
     }
 
     public function getLessonQuestionsProperty()
@@ -674,18 +695,12 @@ class FourthSlide extends Component
             return;
         }
 
-        // ============================
-        // 📈 PROGRESS
-        // ============================
         if ($user->current_progress < 100) {
             $user->update([
                 'current_progress' => 100,
             ]);
         }
 
-        // ============================
-        // 🧠 USER TRACK (ATTEMPTS)
-        // ============================
         $userTrack = UserTrack::updateOrCreate(
             [
                 'user_id'   => $user->id,
@@ -699,16 +714,13 @@ class FourthSlide extends Component
             ]
         );
 
-        // ============================
-        // 🏅 ACHIEVEMENTS
-        // ============================
         if ($this->totalScore > 0) {
             $percentage = round(($this->score / $this->totalScore) * 100);
 
             $medal = $this->getMedalFromPercentage($percentage);
 
             if ($medal) {
-                Achievement::updateOrCreate(
+                $achievement = Achievement::firstOrCreate(
                     [
                         'user_id' => $user->id,
                         'lesson'  => (int) $this->lesson,
@@ -716,8 +728,20 @@ class FourthSlide extends Component
                         'type'    => 'pagtataya',
                     ],
                     [
-                        'count' => DB::raw('count + 1'),
+                        'count' => 1, // ✅ Default to 1 on creation
                     ]
+                );
+
+                // If it already existed (wasn't just created), increment
+                if (!$achievement->wasRecentlyCreated) {
+                    $achievement->increment('count');
+                }
+
+                $this->dispatch(
+                    'notif',
+                    type: $medal,
+                    header: 'Nakakuha ka ng Parangal!',
+                    message: "Nakakuha ka ng {$medal} ribbon sa sesyon na ito! Ipagpatuloy mo lamang ang iyong pagkatuto!"
                 );
             }
         }

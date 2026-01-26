@@ -9,6 +9,9 @@
         submitted: false,
         showResults: false,
         score: @entangle('score'),
+        totalScore: @entangle('totalScore'),
+        completed: false,
+        showModal: false,
         questions: window.pagtatayanQuestions,
         wordBank: window.pagtatayanQuestions.find(q => q.wordBank)?.wordBank || [],
         soundEnabled: false,
@@ -250,7 +253,9 @@
                 get hasPassed() {
                     return this.percentage >= 70;
                 }
-            }">
+            }"
+            x-effect="if (page > questions.length) { $wire.completePagtataya() }"
+            >
             <img src="{{asset('img/Badge.png')}}" width="200" alt="">
             <h1 class="text-2xl font-bold">CONGRATULATIONS!</h1>
             <h2 class="score !text-[#F4C300]" x-text="percentage + '%'"></h2>

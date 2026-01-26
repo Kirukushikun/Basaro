@@ -4,11 +4,18 @@
     page: 1,
     selected: null,
     confirmed: false,
-    score: 0,
+    score: @entangle('score'),
+    totalScore: @entangle('totalScore'),
+    completed: false,
+    showModal: false,
     questions: @js($questions),
     story: @js($this->getStoryProperty()),
     soundEnabled: false,
     currentPanutoAudio: null,
+
+    get regularQuestions() {
+        return questions.filter(q => q.type !== 'panuto');
+    }
 
     get isPanuto() {
         return this.current && this.current.type === 'panuto';
@@ -207,12 +214,6 @@ replay() {
 
     <div 
         class="flex-1 flex flex-col items-center gap-5"
-        x-data="{ 
-            showModal: false,
-            get regularQuestions() {
-                return questions.filter(q => q.type !== 'panuto');
-            }
-        }"
         x-show="page > (3 + regularQuestions.length)"  
         x-effect="if (page > (3 + regularQuestions.length)) { $wire.completePagsasanay() }"
     >

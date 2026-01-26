@@ -1,57 +1,11 @@
 <!-- Pagtataya result -->
 @php
-    $totalScore = 0;
-    if($lesson == '1') {
-        $totalScore = 10;
-    } elseif($lesson == '2') {
-        $totalScore = 9;
-    } elseif($lesson == '3') {
-        $totalScore = 10;
-    }elseif($lesson == '4') {
-        $totalScore = 15;
-    }elseif($lesson == '5') {
-        $totalScore = 19;
-    }elseif($lesson == '6') {
-        $totalScore = 12;
-    }elseif($lesson == '7') {
-        $totalScore = 10;
-    }elseif($lesson == '8') {
-        $totalScore = 4;
-    }elseif($lesson == '9') {
-        $totalScore = 11;
-    } elseif($lesson == '10') {
-        $totalScore = 10;
-    } elseif($lesson == '11') {
-        $totalScore = 20;
-    } elseif($lesson == '12') {
-        $totalScore = 15;
-    } elseif($lesson == '13') {
-        $totalScore = 10;
-    }elseif($lesson == '14') {
-        $totalScore = 20;
-    } elseif($lesson == '15') {
-        $totalScore = 17;
-    }elseif($lesson == '16') {
-        $totalScore = 5;
-    }elseif($lesson == '17') {
-        $totalScore = 8;
-    }elseif($lesson == '18') {
-        $totalScore = 8;
-    }elseif($lesson == '19') {
-        $totalScore = 10;
-    } elseif($lesson == '20') {
-        $totalScore = 10;
-    }
-
     $nextLesson = $lesson + 1;
 @endphp
 
 <div 
     class="flex-1 flex flex-col items-center gap-5"
     x-data="{ 
-        showModal: false,
-        completed: false,
-        totalScore: {{ $totalScore }},
         get percentage() {
             return Math.round((this.score / this.totalScore) * 100);
         },
@@ -60,14 +14,8 @@
         }
     }"
     x-show="page > questions.length"  
-    x-effect="
-        if (page > questions.length && !completed) {
-            completed = true;
-            $wire.completePagtataya();
-        }
-    "
+    x-effect="if (page > questions.length) { $wire.completePagtataya() }"
 >
-
     <img src="{{asset('img/Badge.png')}}" width="200" alt="">
     <h1 class="text-2xl font-bold">CONGRATULATIONS!</h1>
     <h2 class="score !text-[#F4C300]" x-text="percentage + '%'"></h2>

@@ -6,10 +6,14 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Achievement;
+use Illuminate\Support\Facades\Log;
 
 class ThirdSlide extends Component
 {
     public $lesson;
+
+    public $score = 0;
+    public $totalScore = 0;
 
     protected $questions = [
         1 => [
@@ -1439,6 +1443,17 @@ class ThirdSlide extends Component
     public function mount($lesson)
     {
         $this->lesson = $lesson;
+
+        $scores = [
+            '1' => 20, '2' => 25, '3' => 15, '4' => 7, '5' => 18,
+            '6' => 17, '7' => 13, '9' => 14, '10' => 10, '12' => 18,
+            '13' => 10, '14' => 10, '15' => 7, '16' => 10, '17' => 10,
+            '18' => 11, '19' => 6, '20' => 10
+        ];
+        
+        $this->totalScore = $scores[$lesson] ?? 0;
+
+        Log::info("Mounted ThirdSlide for lesson {$lesson} with total score {$this->totalScore}");
     }
 
     public function getLessonQuestionsProperty()
@@ -1467,7 +1482,7 @@ class ThirdSlide extends Component
             $medal = $this->getMedalFromPercentage($percentage);
 
             if ($medal) {
-                Achievement::updateOrCreate(
+                $achievement = Achievement::firstOrCreate(
                     [
                         'user_id' => $user->id,
                         'lesson'  => (int) $this->lesson,
@@ -1475,9 +1490,14 @@ class ThirdSlide extends Component
                         'type'    => 'pagsasanay',
                     ],
                     [
-                        'count' => DB::raw('count + 1'),
+                        'count' => 1, // ✅ Default to 1 on creation
                     ]
                 );
+
+                // If it already existed (wasn't just created), increment
+                if (!$achievement->wasRecentlyCreated) {
+                    $achievement->increment('count');
+                }
 
                 $this->dispatch(
                     'notif',
