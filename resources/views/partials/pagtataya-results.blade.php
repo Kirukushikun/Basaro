@@ -42,25 +42,39 @@
     } elseif($lesson == '20') {
         $totalScore = 10;
     }
+
+    $nextLesson = $lesson + 1;
 @endphp
 
 <div 
     class="flex-1 flex flex-col items-center gap-5"
     x-data="{ 
         showModal: false,
-        totalScore: {{ $totalScore }}
+        totalScore: {{ $totalScore }},
+        get percentage() {
+            return Math.round((this.score / this.totalScore) * 100);
+        },
+        get hasPassed() {
+            return this.percentage >= 70;
+        }
     }"
     x-show="page > questions.length"  
     x-effect="if (page > questions.length) { $wire.completePagtataya() }"
 >
     <img src="{{asset('img/Badge.png')}}" width="200" alt="">
     <h1 class="text-2xl font-bold">CONGRATULATIONS!</h1>
-    <h2 class="score !text-[#F4C300]" x-text="Math.round((score / totalScore) * 100) + '%'"></h2>
+    <h2 class="score !text-[#F4C300]" x-text="percentage + '%'"></h2>
     <p class="w-96 text-lg text-center">
         Nakakuha ka ng <span class="font-bold" x-text="score"></span>
         sa <span class="font-bold" x-text="totalScore"></span> na tanong!
     </p>
-    <p class="w-96 text-lg text-center">Mahusay! Natapos mo ang araling ito nang may buong sigasig at pagsisikap. Ipagpatuloy lamang ang iyong pagkatuto!</p>
+    <p class="w-96 text-lg text-center" x-show="hasPassed">
+        Mahusay! Natapos mo ang araling ito nang may buong sigasig at pagsisikap. Ipagpatuloy lamang ang iyong pagkatuto!
+    </p>
+    <p class="w-96 text-lg text-center text-red-400" x-show="!hasPassed">
+        Kailangan ng 70% o mas mataas upang magpatuloy sa susunod na sesyon. Subukan muli!
+    </p>
+    
     <div class="flex gap-4 mt-4">
         <button
             @click="replay"
@@ -75,11 +89,12 @@
             Lumabas
         </button>
 
-        <!-- Primary -->
+        <!-- Primary - Only show if passed -->
         <button
+            x-show="hasPassed"
             @click="showModal = true"
             class="px-4 py-2 bg-[#F4C300] !text-black rounded-md font-bold hover:opacity-90 transition">
-            Magpatuloy sa Pagtataya
+            Magpatuloy sa Sesyon {{$nextLesson}}
         </button>
     </div>
 
@@ -107,7 +122,7 @@
                 <h2 class="text-xl font-semibold -mb-2">Pagtataya</h2>
 
                 <p>
-                    Handa ka na bang magsimula sa Pagtataya?
+                    Handa ka na bang magsimula sa susunod na sesyon?
                 </p>
 
                 <div class="flex justify-end gap-3">
@@ -119,7 +134,7 @@
                     </button>
 
                     <button 
-                        onclick="window.location.href='/lesson-view?lesson={{ $lesson }}&slide=fourth-slide'"
+                        onclick="window.location.href='/lesson-view?lesson={{ $nextLesson }}&slide=first-slide'"
                         @click="showModal = false"
                         class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold"
                     >
