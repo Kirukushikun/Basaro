@@ -17,6 +17,23 @@
         questions: window.pagsasanay3Questions,
         soundEnabled: false,
         currentPanutoAudio: null,
+        functionWordMap: {
+            'si': ['si', 'see', 'c', 'sea'],
+            'ang': ['ang', 'ung', 'ong'],
+            'kay': ['kay', 'kaye', 'kai'],
+            'ay': ['ay', 'i', 'eye', 'aye'],
+            'mga': ['mga', 'manga'],
+            'ng': ['ng', 'n g', 'nang'],
+            'mo': ['mo', 'mow'],
+            'mas': ['mas', 'mass', 'mas'],
+            'at': ['at', 'at'],
+            'na': ['na', 'nah'],
+            'may': ['may', 'maye', 'mai'],
+            'sila': ['sila', 'cila', 'seela'],
+            'ni': ['ni', 'nee', 'knee'],
+            'kina': ['kina', 'keena'],
+            'sina': ['sina', 'seena', 'cina']
+        },
 
         get isPanuto() {
             return this.current && this.current.type === 'panuto';
@@ -67,11 +84,27 @@
             
             if (this.current.type === 'comprehension') {
                 return this.normalizeText(this.userInput) === this.normalizeText(this.current.answer);
-            } else {
-                // For read_phrase and read_sentence
-                const expected = this.current.parirala || this.current.pangungusap || this.current.kataga;
-                return this.normalizeText(this.transcription) === this.normalizeText(expected);
             }
+            
+            // For read_kataga - use function word mapping
+            if (this.current.type === 'read_kataga') {
+                const expected = this.current.kataga.toLowerCase();
+                const normalized = this.normalizeText(this.transcription);
+                
+                // Check if word has variations in the map
+                if (this.functionWordMap[expected]) {
+                    return this.functionWordMap[expected].some(variant => 
+                        normalized === variant || normalized.includes(variant)
+                    );
+                }
+                
+                // Default exact match
+                return normalized === expected;
+            }
+            
+            // For read_phrase and read_sentence - exact match for now
+            const expected = this.current.parirala || this.current.pangungusap;
+            return this.normalizeText(this.transcription) === this.normalizeText(expected);
         },
 
         normalizeText(text) {
@@ -305,18 +338,24 @@
                         class="w-full max-w-lg">
                         <div x-show="isCorrect"
                             class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
-                            ✅ Tama!
+                            <i class="fa-solid fa-check"></i> Tama!
                             <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
                                 Narinig: "<span x-text="transcription"></span>"
                             </div>
                         </div>
                         <div x-show="!isCorrect"
                             class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
-                            ❌ Mali
-                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
-                                <div>Narinig: "<span x-text="transcription"></span>"</div>
+                            <i class="fa-solid fa-x"></i> Mali
+                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2 flex gap-2 justify-center">
+                                <div>Narinig: "<span x-text="transcription"></span>"</div> -
                                 <div>Dapat: "<span x-text="current.kataga"></span>"</div>
                             </div>
+                            
+                            <button 
+                                @click="reset()" 
+                                class="mt-3 px-4 py-2 text-xs bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 transition">
+                                <i class="fa-solid fa-rotate-right"></i> Subukan Ulit
+                            </button>
                         </div>
                     </div>
 
@@ -378,19 +417,25 @@
                         x-transition
                         class="w-full max-w-lg">
                         <div x-show="isCorrect"
-                            class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
-                            ✅ Tama!
-                            <div class="text-sm mt-2">
+                            class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            <i class="fa-solid fa-check"></i> Tama!
+                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
                                 Narinig: "<span x-text="transcription"></span>"
                             </div>
                         </div>
                         <div x-show="!isCorrect"
-                            class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
-                            ❌ Mali
-                            <div class="text-sm mt-2">
-                                <div>Narinig: "<span x-text="transcription"></span>"</div>
+                            class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            <i class="fa-solid fa-x"></i> Mali
+                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2 flex gap-2 justify-center">
+                                <div>Narinig: "<span x-text="transcription"></span>"</div> -
                                 <div>Dapat: "<span x-text="current.parirala"></span>"</div>
                             </div>
+                            
+                            <button 
+                                @click="reset()" 
+                                class="mt-3 px-4 py-2 text-xs bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 transition">
+                                <i class="fa-solid fa-rotate-right"></i> Subukan Ulit
+                            </button>
                         </div>
                     </div>
 
@@ -452,19 +497,25 @@
                         x-transition
                         class="w-full max-w-lg">
                         <div x-show="isCorrect"
-                            class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
-                            ✅ Tama!
-                            <div class="text-sm mt-2">
+                            class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            <i class="fa-solid fa-check"></i> Tama!
+                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
                                 Narinig: "<span x-text="transcription"></span>"
                             </div>
                         </div>
                         <div x-show="!isCorrect"
-                            class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
-                            ❌ Mali
-                            <div class="text-sm mt-2">
-                                <div>Narinig: "<span x-text="transcription"></span>"</div>
+                            class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            <i class="fa-solid fa-x"></i> Mali
+                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2 flex gap-2 justify-center">
+                                <div>Narinig: "<span x-text="transcription"></span>"</div> -
                                 <div>Dapat: "<span x-text="current.pangungusap"></span>"</div>
                             </div>
+                            
+                            <button 
+                                @click="reset()" 
+                                class="mt-3 px-4 py-2 text-xs bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 transition">
+                                <i class="fa-solid fa-rotate-right"></i> Subukan Ulit
+                            </button>
                         </div>
                     </div>
 
@@ -528,12 +579,21 @@
                         x-transition
                         class="w-full max-w-lg">
                         <div x-show="isCorrect"
-                            class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
-                            ✅ Tama!
+                            class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            <i class="fa-solid fa-check"></i> Tama!
                         </div>
                         <div x-show="!isCorrect"
-                            class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
-                            ❌ Mali. Ang tamang sagot ay: "<span x-text="current.answer"></span>"
+                            class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            <i class="fa-solid fa-x"></i> Mali
+                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
+                                Ang tamang sagot ay: "<span x-text="current.answer"></span>"
+                            </div>
+                            
+                            <button 
+                                @click="reset()" 
+                                class="mt-3 px-4 py-2 text-xs bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 transition">
+                                <i class="fa-solid fa-rotate-right"></i> Subukan Ulit
+                            </button>
                         </div>
                     </div>
 

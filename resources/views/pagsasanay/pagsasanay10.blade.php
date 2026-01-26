@@ -303,8 +303,8 @@
 
                     <!-- Image -->
                     <img :src="current.image" 
-                         :alt="current.full_word" 
-                         class="w-48 h-48 object-contain rounded-lg border-4 border-[#F4C300]">
+                        :alt="current.full_word" 
+                        class="w-48 h-48 object-contain rounded-lg border-4 border-[#F4C300]">
 
                     <!-- Incomplete Word with Input -->
                     <div class="text-center">
@@ -328,17 +328,25 @@
                         </div>
                     </div>
 
-                    <!-- Feedback -->
-                    <div x-show="confirmed"
-                         x-transition
-                         class="px-6 py-3 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold"
-                         :class="isCorrect ? 'bg-green-500' : 'bg-red-500'">
-                        <span x-show="isCorrect">
-                            ✅ Tama!
-                        </span>
-                        <span x-show="!isCorrect">
-                            ❌ Mali. Ang tamang sagot ay "<b x-text="current.answer"></b>"
-                        </span>
+                    <!-- Feedback: Ang tamang sagot ay + Retry Button -->
+                    <div x-show="confirmed" x-transition class="w-full max-w-lg">
+                        <div x-show="isCorrect"
+                            class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            <i class="fa-solid fa-check"></i> Tama!
+                        </div>
+                        <div x-show="!isCorrect"
+                            class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            <i class="fa-solid fa-x"></i> Mali
+                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
+                                Ang tamang sagot ay: "<span x-text="current.answer"></span>"
+                            </div>
+                            
+                            <button 
+                                @click="reset()" 
+                                class="mt-3 px-4 py-2 text-xs bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 transition">
+                                <i class="fa-solid fa-rotate-right"></i> Subukan Ulit
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Confirm Button -->
@@ -358,24 +366,28 @@
                     <!-- Full Word -->
                     <h1 class="!text-6xl sm:!text-7xl md:!text-8xl lg:!text-8xl !font-bold !text-[#F4C300] mt-10" x-text="current.full_word"></h1>
                     
-                    <!-- Feedback -->
-                    <div x-show="confirmed" 
-                         x-transition
-                         class="w-full max-w-lg">
+                    <!-- Feedback: Narinig vs Dapat + Retry Button -->
+                    <div x-show="confirmed" x-transition class="w-full max-w-lg">
                         <div x-show="isCorrect"
-                             class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
-                            ✅ Tama!
+                            class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            <i class="fa-solid fa-check"></i> Tama!
                             <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
                                 Narinig: "<span x-text="transcription"></span>"
                             </div>
                         </div>
                         <div x-show="!isCorrect"
-                             class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
-                            ❌ Mali
-                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
-                                <div>Narinig: "<span x-text="transcription"></span>"</div>
+                            class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            <i class="fa-solid fa-x"></i> Mali
+                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2 flex gap-2 justify-center">
+                                <div>Narinig: "<span x-text="transcription"></span>"</div> -
                                 <div>Dapat: "<span x-text="current.full_word"></span>"</div>
                             </div>
+                            
+                            <button 
+                                @click="reset()" 
+                                class="mt-3 px-4 py-2 text-xs bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 transition">
+                                <i class="fa-solid fa-rotate-right"></i> Subukan Ulit
+                            </button>
                         </div>
                     </div>
 
@@ -400,10 +412,10 @@
                             }">
 
                             <i class="fa-solid fa-microphone text-white text-xl"
-                               :class="{ 'fa-spinner fa-spin': processing }"></i>
+                            :class="{ 'fa-spinner fa-spin': processing }"></i>
 
                             <div x-show="recording"
-                                 class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
+                                class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
                             </div>
                         </button>
 

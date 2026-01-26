@@ -18,21 +18,26 @@
     soundEnabled: false,
     currentPanutoAudio: null,
 
+    // Add phonetic map for vowel sounds
+    phoneticMap: {
+        'a': ['a', 'ah'],
+        'e': ['e', 'eh'],
+        'i': ['i', 'ee'],
+        'o': ['o', 'oh'],
+        'u': ['u', 'oo']
+    },
+
     get isPanuto() {
         return this.current && this.current.type === 'panuto';
     },
 
     get showSoundOverlay() {
-        // Only show if sound not enabled AND it's the first panuto
         return !this.soundEnabled && this.isPanuto;
     },
 
     enableSound() {
         this.soundEnabled = true;
-        // Play the panuto audio if it exists
         if (this.current && this.current.audio) {
-            if (!this.current || !this.current.audio) return;
-            
             const audioFiles = Array.isArray(this.current.audio) 
                 ? this.current.audio 
                 : [this.current.audio];
@@ -60,27 +65,45 @@
         return this.page <= this.questions.length ? this.questions[this.page - 1] : null
     },
 
-    confirm() {
-        this.confirmed = true
-        this.showFeedback = true
-        
-        // Score for vowel selection
-        if (this.current.type === 'fill_blank_audio') {
-            if (this.selected === this.current.answer) {
-                this.score++
-            }
-        }
-        
-        // Score for pronunciation
-        if (this.current.type === 'pronounce_word') {
-            if (this.normalizeText(this.transcription) === this.normalizeText(this.current.full_word)) {
-                this.score++
-            }
-        }
+    normalizeText(text) {
+        return text.toLowerCase().trim().replace(/[.,!?]/g, '').replace(/\s+/g, '');
     },
 
-    normalizeText(text) {
-        return text.toLowerCase().trim().replace(/[.,!?]/g, '');
+    isPhoneticMatch(transcription, expectedVowel) {
+        const normalized = this.normalizeText(transcription);
+        const acceptableAnswers = this.phoneticMap[expectedVowel.toLowerCase()] || [];
+        return acceptableAnswers.some(answer => normalized === answer || normalized.includes(answer));
+    },
+
+    get isCorrect() {
+        if (!this.confirmed) return false;
+        
+        // For image_group_audio - check if they said the vowel sound
+        if (this.current.type === 'image_group_audio') {
+            return this.isPhoneticMatch(this.transcription, this.current.answer);
+        }
+        
+        // For fill_blank_audio - check if selected letter matches
+        if (this.current.type === 'fill_blank_audio') {
+            return this.selected === this.current.answer;
+        }
+        
+        // For pronounce_word - check if they said the full word
+        if (this.current.type === 'pronounce_word') {
+            return this.normalizeText(this.transcription) === this.normalizeText(this.current.full_word);
+        }
+        
+        return false;
+    },
+
+    confirm() {
+        this.confirmed = true;
+        this.showFeedback = true;
+        
+        // Award points if correct
+        if (this.isCorrect) {
+            this.score++;
+        }
     },
 
     async startRecording() {
@@ -144,7 +167,6 @@
             const base64Audio = reader.result.split(',')[1];
             
             console.log('📤 Sending to API...');
-            console.log('🎯 Expected answer:', this.current.full_word);
             
             try {
                 const response = await fetch('/api/speech-to-text', {
@@ -184,37 +206,61 @@
         // Stop panuto audio if playing
         if (this.currentPanutoAudio) {
             this.currentPanutoAudio.pause();
-            this.currentPanutoAudio.currentTime = 0; // Reset to beginning
+            this.currentPanutoAudio.currentTime = 0;
             this.currentPanutoAudio = null;
         }
 
-        // Auto-play next panuto audio if applicable
+        this.page++;
+        this.reset();
+        
+        // Auto-play next panuto audio ONLY if it's a panuto type
         this.$nextTick(() => {
             if (this.soundEnabled && this.isPanuto && this.current && this.current.audio) {
-                this.currentPanutoAudio = new Audio(this.current.audio);
-                this.currentPanutoAudio.play();
+                const audioFiles = Array.isArray(this.current.audio) 
+                    ? this.current.audio 
+                    : [this.current.audio];
+                
+                let currentIndex = 0;
+                
+                const playNext = () => {
+                    if (currentIndex < audioFiles.length) {
+                        this.currentPanutoAudio = new Audio(audioFiles[currentIndex]);
+                        this.currentPanutoAudio.onended = () => {
+                            currentIndex++;
+                            playNext();
+                        };
+                        this.currentPanutoAudio.play();
+                    } else {
+                        this.currentPanutoAudio = null;
+                    }
+                };
+                
+                playNext();
             }
         });
-
-        this.page++
-        this.reset()
     },
 
     reset() {
-        this.selected = null
-        this.confirmed = false
-        this.showFeedback = false
-        this.recording = false
-        this.processing = false
-        this.transcription = ''
-        this.audioChunks = []
+        this.selected = null;
+        this.confirmed = false;
+        this.showFeedback = false;
+        this.recording = false;
+        this.processing = false;
+        this.transcription = '';
+        this.audioChunks = [];
     },
 
     replay() {
-        this.page = 1
-        this.score = 0
-        this.soundEnabled = false; // Reset sound for replay
-        this.reset()
+        if (this.currentPanutoAudio) {
+            this.currentPanutoAudio.pause();
+            this.currentPanutoAudio.currentTime = 0;
+            this.currentPanutoAudio = null;
+        }
+        
+        this.page = 1;
+        this.score = 0;
+        this.soundEnabled = false;
+        this.reset();
     }
 }">
 
@@ -264,19 +310,37 @@
                         </template>
                     </div>
 
-                    <!-- Success Feedback -->
-                    <div x-show="confirmed"
-                        x-transition
-                        class="px-4 py-2 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold">
-                        <i class="fa-solid fa-check"></i> Tama!
+                    <!-- Feedback -->
+                    <div x-show="confirmed" x-transition class="w-full max-w-lg">
+                        <div x-show="isCorrect"
+                            class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            <i class="fa-solid fa-check"></i> Tama!
+                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
+                                Narinig: "<span x-text="transcription"></span>"
+                            </div>
+                        </div>
+                        <div x-show="!isCorrect"
+                            class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            <i class="fa-solid fa-x"></i> Mali
+                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2 flex gap-2 justify-center">
+                                <div>Narinig: "<span x-text="transcription"></span>"</div> -
+                                <div>Dapat: "<span x-text="current.answer"></span>"</div>
+                            </div>
+                            
+                            <button 
+                                @click="reset()" 
+                                class="mt-3 px-4 py-2 text-xs bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 transition">
+                                <i class="fa-solid fa-rotate-right"></i> Subukan Ulit
+                            </button>
+                        </div>
                     </div>
 
-                    <p class="w-96 !text-base sm:!text-lg md:!text-lg lg:!text-xl text-center font-semibold">
+                    <p class="w-96 !text-base sm:!text-lg md:!text-lg lg:!text-xl text-center font-semibold" x-show="!confirmed">
                         Tukuyin ang patinig ng mga sumusunod na larawan. Subukang bigkasin ito nang tama at dahan-dahan
                     </p>
 
                     <!-- Microphone Button -->
-                    <div class="flex flex-col items-center gap-4">
+                    <div x-show="!confirmed" class="flex flex-col items-center gap-4">
                         <button
                             @mousedown="startRecording()"
                             @mouseup="stopRecording()"
@@ -290,10 +354,10 @@
                             }">
 
                             <i class="fa-solid fa-microphone text-white text-xl"
-                               :class="{ 'fa-spinner fa-spin': processing }"></i>
+                            :class="{ 'fa-spinner fa-spin': processing }"></i>
 
                             <div x-show="recording"
-                                 class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
+                                class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
                             </div>
                         </button>
                         
@@ -362,26 +426,30 @@
                 <div class="flex flex-col items-center gap-6">
                     <img :src="current.image" class="w-48 rounded-lg border-4 border-gray-300">
                     <p class="text-6xl font-bold !text-[#F4C300]" x-text="current.full_word"></p>
-                    <p class="!text-base sm:!text-lg md:!text-lg lg:!text-xl text-center font-semibold">Bigkasin ang buong salita nang malinaw</p>
+                    <p class="!text-base sm:!text-lg md:!text-lg lg:!text-xl text-center font-semibold" x-show="!confirmed">Bigkasin ang buong salita nang malinaw</p>
 
                     <!-- Feedback -->
-                    <div x-show="confirmed" 
-                         x-transition
-                         class="w-full max-w-lg">
-                        <div x-show="normalizeText(transcription) === normalizeText(current.full_word)"
-                             class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
-                            ✅ Tama!
+                    <div x-show="confirmed" x-transition class="w-full max-w-lg">
+                        <div x-show="isCorrect"
+                            class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            <i class="fa-solid fa-check"></i> Tama!
                             <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
                                 Narinig: "<span x-text="transcription"></span>"
                             </div>
                         </div>
-                        <div x-show="normalizeText(transcription) !== normalizeText(current.full_word)"
-                             class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
-                            ❌ Mali
-                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
-                                <div>Narinig: "<span x-text="transcription"></span>"</div>
+                        <div x-show="!isCorrect"
+                            class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            <i class="fa-solid fa-x"></i> Mali
+                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2 flex gap-2 justify-center">
+                                <div>Narinig: "<span x-text="transcription"></span>"</div> -
                                 <div>Dapat: "<span x-text="current.full_word"></span>"</div>
                             </div>
+                            
+                            <button 
+                                @click="reset()" 
+                                class="mt-3 px-4 py-2 text-xs bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 transition">
+                                <i class="fa-solid fa-rotate-right"></i> Subukan Ulit
+                            </button>
                         </div>
                     </div>
 
@@ -400,10 +468,10 @@
                             }">
 
                             <i class="fa-solid fa-microphone text-white text-lg"
-                               :class="{ 'fa-spinner fa-spin': processing }"></i>
+                            :class="{ 'fa-spinner fa-spin': processing }"></i>
 
                             <div x-show="recording"
-                                 class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
+                                class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
                             </div>
                         </button>
 

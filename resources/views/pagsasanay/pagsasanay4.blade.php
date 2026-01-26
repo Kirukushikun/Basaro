@@ -276,26 +276,28 @@
                     </div>
 
                     <!-- Formed Word (shown after confirmation) -->
-                    <p x-show="confirmed" x-transition class="!text-2xl sm:!text-3xl md:!text-4xl lg:!text-5xl font-extrabold !text-[#F4C300]" x-text="word"></p>
+                    <p x-show="confirmed && isCorrect" x-transition class="!text-2xl sm:!text-3xl md:!text-4xl lg:!text-5xl font-extrabold !text-[#F4C300]" x-text="word"></p>
 
                     <!-- Feedback -->
-                    <div x-show="confirmed" 
+                    <div x-show="confirmed"
                         x-transition
                         class="w-full max-w-lg">
                         <div x-show="isCorrect"
                             class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
-                            ✅ Tama!
-                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
-                                Narinig: "<span x-text="transcription"></span>"
-                            </div>
+                            <i class="fa-solid fa-check"></i> Tama!
                         </div>
                         <div x-show="!isCorrect"
-                            class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
-                            ❌ Mali
+                            class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center ">
+                            <i class="fa-solid fa-x"></i> Mali
                             <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
-                                <div>Narinig: "<span x-text="transcription"></span>"</div>
-                                <div>Dapat: "<span x-text="current.answer"></span>"</div>
+                                Ang tamang sagot ay: "<span x-text="current.answer"></span>"
                             </div>
+                            
+                            <button 
+                                @click="reset()" 
+                                class="mt-3 px-4 py-2 text-xs bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 transition">
+                                <i class="fa-solid fa-rotate-right"></i> Subukan Ulit
+                            </button>
                         </div>
                     </div>
 

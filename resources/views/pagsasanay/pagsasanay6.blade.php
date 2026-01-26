@@ -331,26 +331,23 @@
                     </div>
 
                     <!-- Formed Word -->
-                    <p x-show="confirmed" x-transition class="!text-2xl sm:!text-3xl md:!text-4xl lg:!text-5xl font-extrabold !text-[#F4C300]" x-text="word"></p>
+                    <p x-show="confirmed && isCorrect" x-transition class="!text-2xl sm:!text-3xl md:!text-4xl lg:!text-5xl font-extrabold !text-[#F4C300]" x-text="word"></p>
 
-                    <!-- Feedback -->
-                    <div x-show="confirmed" 
-                         x-transition
-                         class="w-full max-w-lg">
+                    <!-- Feedback: JUST RETRY BUTTON -->
+                    <div x-show="confirmed" x-transition class="w-full max-w-lg">
                         <div x-show="isCorrect"
-                             class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
-                            ✅ Tama!
-                            <div class="text-sm mt-2">
-                                Narinig: "<span x-text="transcription"></span>"
-                            </div>
+                            class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            <i class="fa-solid fa-check"></i> Tama!
                         </div>
                         <div x-show="!isCorrect"
-                             class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
-                            ❌ Mali
-                            <div class="text-sm mt-2">
-                                <div>Narinig: "<span x-text="transcription"></span>"</div>
-                                <div>Dapat: "<span x-text="current.answer"></span>"</div>
-                            </div>
+                            class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            <i class="fa-solid fa-x"></i> Mali
+                            
+                            <button 
+                                @click="reset()" 
+                                class="mt-3 px-4 py-2 text-xs bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 transition">
+                                <i class="fa-solid fa-rotate-right"></i> Subukan Ulit
+                            </button>
                         </div>
                     </div>
 
@@ -374,10 +371,10 @@
                             }">
 
                             <i class="fa-solid fa-microphone text-white text-xl"
-                               :class="{ 'fa-spinner fa-spin': processing }"></i>
+                            :class="{ 'fa-spinner fa-spin': processing }"></i>
 
                             <div x-show="recording"
-                                 class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
+                                class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
                             </div>
                         </button>
 
@@ -394,7 +391,6 @@
                             </p>
                         </div>
                     </div>
-
                 </div>
             </template>
 
@@ -406,24 +402,28 @@
                     <h1 class="!text-4xl sm:!text-5xl md:!text-6xl lg:!text-7xl font-bold mt-10 !text-[#F4C300]"
                         x-text="current.parirala"></h1>
                         
-                    <!-- Feedback -->
-                    <div x-show="confirmed" 
-                         x-transition
-                         class="w-full max-w-lg">
+                    <!-- Feedback: NARINIG VS DAPAT -->
+                    <div x-show="confirmed" x-transition class="w-full max-w-lg">
                         <div x-show="isCorrect"
-                             class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
-                            ✅ Tama!
-                            <div class="text-sm mt-2">
+                            class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            <i class="fa-solid fa-check"></i> Tama!
+                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
                                 Narinig: "<span x-text="transcription"></span>"
                             </div>
                         </div>
                         <div x-show="!isCorrect"
-                             class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
-                            ❌ Mali
-                            <div class="text-sm mt-2">
-                                <div>Narinig: "<span x-text="transcription"></span>"</div>
+                            class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            <i class="fa-solid fa-x"></i> Mali
+                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2 flex gap-2 justify-center">
+                                <div>Narinig: "<span x-text="transcription"></span>"</div> -
                                 <div>Dapat: "<span x-text="current.parirala"></span>"</div>
                             </div>
+                            
+                            <button 
+                                @click="reset()" 
+                                class="mt-3 px-4 py-2 text-xs bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 transition">
+                                <i class="fa-solid fa-rotate-right"></i> Subukan Ulit
+                            </button>
                         </div>
                     </div>
 
@@ -448,10 +448,10 @@
                             }">
 
                             <i class="fa-solid fa-microphone text-white text-xl"
-                               :class="{ 'fa-spinner fa-spin': processing }"></i>
+                            :class="{ 'fa-spinner fa-spin': processing }"></i>
 
                             <div x-show="recording"
-                                 class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
+                                class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
                             </div>
                         </button>
 
@@ -468,7 +468,6 @@
                             </p>
                         </div>
                     </div>
-
                 </div>
             </template>
 
@@ -480,24 +479,28 @@
                     <h1 class="text-5xl font-bold mt-10 !text-[#F4C300] text-center px-4"
                         x-text="current.pangungusap"></h1>
                         
-                    <!-- Feedback -->
-                    <div x-show="confirmed" 
-                         x-transition
-                         class="w-full max-w-lg">
+                    <!-- Feedback: NARINIG VS DAPAT -->
+                    <div x-show="confirmed" x-transition class="w-full max-w-lg">
                         <div x-show="isCorrect"
-                             class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
-                            ✅ Tama!
-                            <div class="text-sm mt-2">
+                            class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            <i class="fa-solid fa-check"></i> Tama!
+                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
                                 Narinig: "<span x-text="transcription"></span>"
                             </div>
                         </div>
                         <div x-show="!isCorrect"
-                             class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
-                            ❌ Mali
-                            <div class="text-sm mt-2">
-                                <div>Narinig: "<span x-text="transcription"></span>"</div>
+                            class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            <i class="fa-solid fa-x"></i> Mali
+                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2 flex gap-2 justify-center">
+                                <div>Narinig: "<span x-text="transcription"></span>"</div> -
                                 <div>Dapat: "<span x-text="current.pangungusap"></span>"</div>
                             </div>
+                            
+                            <button 
+                                @click="reset()" 
+                                class="mt-3 px-4 py-2 text-xs bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 transition">
+                                <i class="fa-solid fa-rotate-right"></i> Subukan Ulit
+                            </button>
                         </div>
                     </div>
 
@@ -522,10 +525,10 @@
                             }">
 
                             <i class="fa-solid fa-microphone text-white text-xl"
-                               :class="{ 'fa-spinner fa-spin': processing }"></i>
+                            :class="{ 'fa-spinner fa-spin': processing }"></i>
 
                             <div x-show="recording"
-                                 class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
+                                class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
                             </div>
                         </button>
 
@@ -542,7 +545,6 @@
                             </p>
                         </div>
                     </div>
-
                 </div>
             </template>
 

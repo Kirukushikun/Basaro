@@ -13,13 +13,25 @@
     mediaRecorder: null,
     audioChunks: [],
     questions: @js($questions),
-    // For MC questions
     selected: null,
     showFeedback: false,
-    // Sound enable overlay - only shows once
     soundEnabled: false,
     currentPanutoAudio: null,
     currentQuestionAudio: null,
+
+    // ADD THIS HERE 👇
+    phoneticMap: {
+        'A': ['a', 'ah'],
+        'E': ['e', 'eh'],
+        'I': ['i', 'ee'],
+        'O': ['o', 'oh'],
+        'U': ['u', 'oo'],
+        'B': ['b', 'buh'],
+        'K': ['k', 'kah'],
+        'M': ['m', 'muh'],
+        'S': ['s', 'suh'],
+        'T': ['t', 'tuh']
+    },
 
     get current() {
         return this.page <= this.questions.length
@@ -44,14 +56,13 @@
         return !this.soundEnabled && this.isPanuto;
     },
 
+    // REPLACE your isCorrect getter with this 👇
     get isCorrect() {
         if (!this.confirmed) return false;
         
         if (this.isAlphabetType) {
             if (!this.transcription) return false;
-            const userSaid = this.normalizeText(this.transcription);
-            const correctAnswer = this.normalizeText(this.current.answer);
-            return userSaid === correctAnswer;
+            return this.isPhoneticMatch(this.transcription, this.current.alpabeto);
         }
         
         if (this.isMcAudioType) {
@@ -61,8 +72,16 @@
         return false;
     },
 
+    // REPLACE your normalizeText function with this 👇
     normalizeText(text) {
-        return text.toLowerCase().trim().replace(/[.,!?]/g, '');
+        return text.toLowerCase().trim().replace(/[.,!?]/g, '').replace(/\s+/g, '');
+    },
+
+    // ADD this new function 👇
+    isPhoneticMatch(transcription, letter) {
+        const normalized = this.normalizeText(transcription);
+        const acceptableAnswers = this.phoneticMap[letter.toUpperCase()] || [];
+        return acceptableAnswers.some(answer => normalized === answer || normalized.includes(answer));
     },
 
     enableSound() {
@@ -318,13 +337,21 @@
                                 Narinig: "<span x-text="transcription"></span>"
                             </div>
                         </div>
+                        <!-- Inside the ALPHABET TYPE feedback div, after the "Mali" message -->
                         <div x-show="!isCorrect"
-                             class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
                             <i class="fa-solid fa-x"></i> Mali
-                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
-                                <div>Narinig: "<span x-text="transcription"></span>"</div>
+                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2 flex gap-2 justify-center">
+                                <div>Narinig: "<span x-text="transcription"></span>"</div> -
                                 <div>Dapat: "<span x-text="current.answer"></span>"</div>
                             </div>
+                            
+                            <!-- ADD THIS LEGO PIECE 👇 -->
+                            <button 
+                                @click="reset()" 
+                                class="mt-3 px-4 py-2 text-xs bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 transition">
+                                <i class="fa-solid fa-rotate-right"></i> Subukan Ulit
+                            </button>
                         </div>
                     </div>
 
@@ -426,8 +453,16 @@
                         class="mt-4 px-4 py-2 rounded-lg text-lg font-semibold"
                         :class="isCorrect ? 'bg-green-500 text-white' : 'bg-red-500 text-white'">
                         <span x-show="isCorrect"><i class="fa-solid fa-check"></i> Tama!</span>
-                        <span x-show="!isCorrect">
-                            <i class="fa-solid fa-xmark"></i> Mali. Ang tamang sagot ay <b x-text="current.answer"></b>
+                        <span x-show="!isCorrect" class="flex flex-col items-center">
+                            <div class="">
+                                <i class="fa-solid fa-xmark"></i> Mali. Ang tamang sagot ay <b x-text="current.answer"></b>
+                            </div>
+                            
+                            <button 
+                                @click="reset()" 
+                                class="mt-3 px-4 py-2 text-xs bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 transition">
+                                <i class="fa-solid fa-rotate-right"></i> Subukan Ulit
+                            </button>
                         </span>
                     </div>
 
