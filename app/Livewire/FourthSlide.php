@@ -6,6 +6,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use App\Models\Achievement;
 
 use App\Models\UserTrack;
 
@@ -43,7 +44,8 @@ class FourthSlide extends Component
                 'answer' => 'g'
             ],
             [
-                'alpabeto' => 'NG', 'answer' => 'ng'],
+                'alpabeto' => 'NG', 'answer' => 'ng'
+            ],
             [
                 'alpabeto' => 'P',
                 'answer' => 'p'
@@ -667,40 +669,72 @@ class FourthSlide extends Component
     public function completePagtataya()
     {
         $user = Auth::user();
-        
-        if ($user) {
-            // Only update if this is forward progress
-            if ($user->current_progress < 100) {
-                $user->update([
-                    'current_progress' => 100, // Completed discussion slide
-                ]);
-            }
 
-            // Update or create user track record
-            $userTrack = UserTrack::updateOrCreate(
-                [
-                    'user_id' => $user->id,
-                    'lesson_id' => $this->lesson, // Make sure you have this property
-                ],
-                [
-                    'status' => 'completed',
-                    'score' => $this->score,
-                    'attempts' => DB::raw('attempts + 1'), // Increment attempts
-                    'completed_at' => now(), // If you added this field
-                ]
-            );
+        if (! $user) {
+            return;
+        }
 
-            Log::info('Pagtataya completed', [
-                'user_id' => $user->id,
-                'lesson_id' => $this->lesson,
-                'score' => $this->score,
-                'attempts' => $userTrack->attempts,
+        // ============================
+        // 📈 PROGRESS
+        // ============================
+        if ($user->current_progress < 100) {
+            $user->update([
+                'current_progress' => 100,
             ]);
         }
+
+        // ============================
+        // 🧠 USER TRACK (ATTEMPTS)
+        // ============================
+        $userTrack = UserTrack::updateOrCreate(
+            [
+                'user_id'   => $user->id,
+                'lesson_id' => (int) $this->lesson,
+            ],
+            [
+                'status'       => 'completed',
+                'score'        => $this->score,
+                'attempts'     => DB::raw('attempts + 1'),
+                'completed_at' => now(),
+            ]
+        );
+
+        // ============================
+        // 🏅 ACHIEVEMENTS
+        // ============================
+        if ($this->totalScore > 0) {
+            $percentage = round(($this->score / $this->totalScore) * 100);
+
+            $medal = $this->getMedalFromPercentage($percentage);
+
+            if ($medal) {
+                Achievement::updateOrCreate(
+                    [
+                        'user_id' => $user->id,
+                        'lesson'  => (int) $this->lesson,
+                        'medal'   => $medal,
+                        'type'    => 'pagtataya',
+                    ],
+                    [
+                        'count' => DB::raw('count + 1'),
+                    ]
+                );
+            }
+        }
+
     }
     
     public function render()
     {
         return view('livewire.fourth-slide');
+    }
+
+    protected function getMedalFromPercentage(int $percentage): ?string
+    {
+        if ($percentage >= 90) return 'gold';
+        if ($percentage >= 75) return 'silver';
+        if ($percentage >= 60) return 'bronze';
+
+        return null;
     }
 }

@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Teacher;
 use App\Models\Lesson;
 use App\Models\UserTrack;
+use App\Models\Achievement;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -103,30 +104,31 @@ class DatabaseSeeder extends Seeder
         ];
 
         $lessonScores = [
-            'Ang Alpabetong Filipino' => 20,
-            'Ang Mga Patinig' => 25,
-            'Pantulong na Kataga' => 15,
-            'Pagsasama-sama ng mga tunog (M, S, A)' => 7,
-            'Pagbuo ng mga Parirala at Pangungusap' => 18,
+            'Ang Alpabetong Filipino' => 10,                         // Lesson 1
+            'Ang Mga Patinig' => 9,                                  // Lesson 2
+            'Pantulong na Kataga' => 10,                             // Lesson 3
+            'Pagsasama-sama ng mga tunog (M, S, A)' => 15,           // Lesson 4
+            'Pagbuo ng mga Parirala at Pangungusap' => 19,           // Lesson 5
 
-            'M, S, A, I, O at B' => 17,
-            'E, U, T, K, L, Y at N' => 13,
-            'Pag-unawa sa Binasang Talata' => 4,
-            'Pagbasa ng mga Pantig' => 14,
-            'Pagbasa ng mga Pangunahing Salita' => 10,
+            'M, S, A, I, O at B' => 12,                               // Lesson 6
+            'E, U, T, K, L, Y at N' => 10,                            // Lesson 7
+            'Pag-unawa sa Binasang Talata' => 4,                     // Lesson 8
+            'Pagbasa ng mga Pantig' => 11,                           // Lesson 9
+            'Pagbasa ng mga Pangunahing Salita' => 10,               // Lesson 10
 
-            'Pagpapalawak ng mga Bokabularyo' => 15,
-            'Diptonggo' => 18,
-            'Kambal Katinig' => 10,
-            'Panlapi' => 10,
-            'Pag-unawa sa Binasang Karunungang-bayan' => 7,
+            'Pagpapalawak ng mga Bokabularyo' => 20,                 // Lesson 11
+            'Diptonggo' => 15,                                       // Lesson 12
+            'Kambal Katinig' => 10,                                  // Lesson 13
+            'Panlapi' => 20,                                         // Lesson 14
+            'Pag-unawa sa Binasang Karunungang-bayan' => 17,         // Lesson 15
 
-            'Pag-unawa sa Binasang Tula' => 10,
-            'Pag-unawa sa Binasang Maikling Kuwento' => 10,
-            'Pag-unawa sa Binasang Balita' => 11,
-            'Pag-unawa sa Binasang Editoryal' => 6,
-            'Pag-unawa sa Binasang Artikulong Pang-agham at Teknolohiya' => 10,
+            'Pag-unawa sa Binasang Tula' => 5,                       // Lesson 16
+            'Pag-unawa sa Binasang Maikling Kuwento' => 8,           // Lesson 17
+            'Pag-unawa sa Binasang Balita' => 8,                     // Lesson 18
+            'Pag-unawa sa Binasang Editoryal' => 10,                 // Lesson 19
+            'Pag-unawa sa Binasang Artikulong Pang-agham at Teknolohiya' => 10, // Lesson 20
         ];
+
 
         foreach ($lessonTitles as $index => $lesson) {
             Lesson::create([
@@ -154,6 +156,36 @@ class DatabaseSeeder extends Seeder
         //     // Seed lesson progress for this user
         //     $this->seedLessonProgress($user->id, $currentLesson);
         // }
+
+
+        // $userId = 1; // Test user
+
+        // // Define some sample achievements for testing
+        // $sampleData = [
+        //     ['lesson' => 1, 'medal' => 'gold', 'count' => 2],
+        //     ['lesson' => 1, 'medal' => 'silver', 'count' => 1],
+        //     ['lesson' => 2, 'medal' => 'bronze', 'count' => 3],
+        //     ['lesson' => 3, 'medal' => 'gold', 'count' => 1],
+        //     ['lesson' => 5, 'medal' => 'silver', 'count' => 2],
+        //     ['lesson' => 5, 'medal' => 'bronze', 'count' => 1],
+        //     ['lesson' => 8, 'medal' => 'gold', 'count' => 1],
+        // ];
+
+        // foreach ($sampleData as $data) {
+        //     Achievement::updateOrCreate(
+        //         [
+        //             'user_id' => $userId,
+        //             'lesson' => $data['lesson'],
+        //             'medal' => $data['medal'],
+        //             'type' => rand(0, 1) ? 'pagsasanay' : 'pagtataya',
+        //         ],
+        //         [
+        //             'count' => $data['count'],
+        //         ]
+        //     );
+        // }
+
+        // $this->command->info('Sample achievements created for user ID 1.');
     }
 
     public function seedLessonProgress($userId, $currentLesson)

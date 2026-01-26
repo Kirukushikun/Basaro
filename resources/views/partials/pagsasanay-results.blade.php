@@ -43,11 +43,16 @@
 <div 
     class="flex-1 flex flex-col items-center gap-5"
     x-data="{ 
-        showModal: false,
+        completed: false,
         totalScore: {{ $totalScore }}
     }"
-    x-show="page > questions.length"  
-    x-effect="if (page > questions.length) { $wire.completePagsasanay() }"
+    x-effect="
+        if (page > questions.length && !completed) {
+            completed = true;
+            $wire.completePagsasanay();
+        }
+    "
+    x-show="page > questions.length" 
 >
     <img src="{{asset('img/Badge.png')}}" width="200" alt="">
     <h1 class="text-2xl font-bold">CONGRATULATIONS!</h1>

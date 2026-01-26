@@ -272,9 +272,9 @@
                 <div class="flex-1 flex flex-col justify-between">
                     <p>"{{$message->content ?? 'No message yet.'}}"</p>
 
-                    <div class="flex justify-between">
+                    <div class="flex justify-end">
                         <p class="font-bold">- Gng. Beng</p>
-                        <p class="!text-gray-400 ">3 Days ago</p>
+                        <!-- <p class="!text-gray-400 ">3 Days ago</p> -->
                     </div>
                 </div>
             </div>

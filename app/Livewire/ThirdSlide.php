@@ -4,6 +4,8 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Models\Achievement;
 
 class ThirdSlide extends Component
 {
@@ -1447,14 +1449,44 @@ class ThirdSlide extends Component
     public function completePagsasanay()
     {
         $user = Auth::user();
-        
-        if ($user) {
-            // Only update if this is forward progress
-            if ($user->current_progress < 75) {
-                $user->update([
-                    'current_progress' => 75, // Completed discussion slide
-                ]);
+
+        if (! $user) {
+            return;
+        }
+
+        // ✅ Progress logic (unchanged)
+        if ($user->current_progress < 75) {
+            $user->update([
+                'current_progress' => 75,
+            ]);
+        }
+
+        if ($this->totalScore > 0) {
+            $percentage = round(($this->score / $this->totalScore) * 100);
+
+            $medal = $this->getMedalFromPercentage($percentage);
+
+            if ($medal) {
+                Achievement::updateOrCreate(
+                    [
+                        'user_id' => $user->id,
+                        'lesson'  => (int) $this->lesson,
+                        'medal'   => $medal,
+                        'type'    => 'pagsasanay',
+                    ],
+                    [
+                        'count' => DB::raw('count + 1'),
+                    ]
+                );
+
+                $this->dispatch(
+                    'notif',
+                    type: $medal,
+                    header: 'Nakakuha ka ng Parangal!',
+                    message: "Nakakuha ka ng {$medal} ribbon sa sesyon na ito! Ipagpatuloy mo lamang ang iyong pagkatuto!"
+                );
             }
+            
         }
     }
 
@@ -1471,5 +1503,14 @@ class ThirdSlide extends Component
     public function render()
     {
         return view('livewire.third-slide');
+    }
+
+    protected function getMedalFromPercentage(int $percentage): ?string
+    {
+        if ($percentage >= 90) return 'gold';
+        if ($percentage >= 75) return 'silver';
+        if ($percentage >= 60) return 'bronze';
+
+        return null;
     }
 }
