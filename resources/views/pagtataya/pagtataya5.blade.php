@@ -307,17 +307,16 @@
                         class="w-full max-w-lg">
                         <div x-show="isCorrect"
                             class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
-                            ✅ Tama!
+                            <i class="fa-solid fa-check"></i> Tama!
                             <div class="text-sm mt-2">
                                 Narinig: "<span x-text="transcription"></span>"
                             </div>
                         </div>
                         <div x-show="!isCorrect"
                             class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
-                            ❌ Mali
+                            <i class="fa-solid fa-xmark"></i> Mali
                             <div class="text-sm mt-2">
                                 <div>Narinig: "<span x-text="transcription"></span>"</div>
-                                <div>Dapat: "<span x-text="current.parirala"></span>"</div>
                             </div>
                         </div>
                     </div>
@@ -381,17 +380,16 @@
                         class="w-full max-w-lg">
                         <div x-show="isCorrect"
                             class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
-                            ✅ Tama!
+                            <i class="fa-solid fa-check"></i> Tama!
                             <div class="text-sm mt-2">
                                 Narinig: "<span x-text="transcription"></span>"
                             </div>
                         </div>
                         <div x-show="!isCorrect"
                             class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
-                            ❌ Mali
+                            <i class="fa-solid fa-xmark"></i> Mali
                             <div class="text-sm mt-2">
                                 <div>Narinig: "<span x-text="transcription"></span>"</div>
-                                <div>Dapat: "<span x-text="current.pangungusap"></span>"</div>
                             </div>
                         </div>
                     </div>
@@ -457,11 +455,11 @@
                         class="w-full max-w-lg">
                         <div x-show="isCorrect"
                             class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
-                            ✅ Tama!
+                            <i class="fa-solid fa-check"></i> Tama!
                         </div>
                         <div x-show="!isCorrect"
                             class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md text-lg font-semibold text-center">
-                            ❌ Mali. Ang tamang sagot ay: "<span x-text="current.answer"></span>"
+                            <i class="fa-solid fa-xmark"></i> Mali.
                         </div>
                     </div>
 

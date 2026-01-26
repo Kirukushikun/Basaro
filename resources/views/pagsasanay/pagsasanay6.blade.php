@@ -340,8 +340,8 @@
                             <i class="fa-solid fa-check"></i> Tama!
                         </div>
                         <div x-show="!isCorrect"
-                            class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
-                            <i class="fa-solid fa-x"></i> Mali
+                            class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center flex flex-col items-center">
+                            <div><i class="fa-solid fa-x"></i> Mali</div>
                             
                             <button 
                                 @click="reset()" 
@@ -412,11 +412,10 @@
                             </div>
                         </div>
                         <div x-show="!isCorrect"
-                            class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
-                            <i class="fa-solid fa-x"></i> Mali
+                            class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center flex flex-col items-center">
+                            <div><i class="fa-solid fa-x"></i> Mali</div> 
                             <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2 flex gap-2 justify-center">
-                                <div>Narinig: "<span x-text="transcription"></span>"</div> -
-                                <div>Dapat: "<span x-text="current.parirala"></span>"</div>
+                                <div>Narinig: "<span x-text="transcription"></span>"</div>
                             </div>
                             
                             <button 
@@ -489,11 +488,10 @@
                             </div>
                         </div>
                         <div x-show="!isCorrect"
-                            class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
-                            <i class="fa-solid fa-x"></i> Mali
+                            class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center flex flex-col items-center">
+                            <div><i class="fa-solid fa-x"></i> Mali</div> 
                             <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2 flex gap-2 justify-center">
-                                <div>Narinig: "<span x-text="transcription"></span>"</div> -
-                                <div>Dapat: "<span x-text="current.pangungusap"></span>"</div>
+                                <div>Narinig: "<span x-text="transcription"></span>"</div>
                             </div>
                             
                             <button 
@@ -554,7 +552,7 @@
 
                     <!-- Question -->
                     <div class="mt-10 max-w-2xl px-4">
-                        <h2 class="text-5xl font-bold !text-[#F4C300] mb-6 text-center"
+                        <h2 class="text-5xl font-bold !text-[#F4C300] text-center"
                             x-text="current.tanong"></h2>
                     </div>
                         
@@ -562,13 +560,20 @@
                     <div x-show="confirmed"
                         x-transition>
                         <div x-show="isCorrect"
-                            class="px-4 py-2 bg-green-500 text-white rounded-lg shadow-md text-lg font-semibold">
-                            ✅ Tama!
+                            class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            <i class="fa-solid fa-check"></i> Tama!
                         </div>
-                        <div x-show="!isCorrect"
-                            class="px-4 py-2 bg-red-500 text-white rounded-lg shadow-md text-lg font-semibold">
-                            ❌ Mali. Ang tamang sagot ay: "<span x-text="current.answer"></span>"
-                        </div>
+                        <span x-show="!isCorrect" class="flex flex-col items-center px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            <div class="">
+                                <i class="fa-solid fa-xmark"></i> Mali. Ang tamang sagot ay <b x-text="current.answer"></b>
+                            </div>
+                            
+                            <button 
+                                @click="reset()" 
+                                class="mt-3 px-4 py-2 text-xs bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 transition">
+                                <i class="fa-solid fa-rotate-right"></i> Subukan Ulit
+                            </button>
+                        </span>
                     </div>
 
                     <!-- Instruction -->

@@ -145,7 +145,7 @@
                     <i class="fa-solid fa-check"></i> Tama!
                 </span>
                 <span x-show="userInput.toLowerCase().trim() !== current.answer.toLowerCase().trim()">
-                    <i class="fa-solid fa-x"></i> Mali. Ang tamang sagot ay: <b x-text="current.answer"></b>
+                    <i class="fa-solid fa-x"></i> Mali.
                 </span>
             </div>
             

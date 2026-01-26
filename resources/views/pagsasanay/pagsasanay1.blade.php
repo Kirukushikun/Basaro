@@ -452,7 +452,10 @@
                         x-transition
                         class="mt-4 px-4 py-2 rounded-lg text-lg font-semibold"
                         :class="isCorrect ? 'bg-green-500 text-white' : 'bg-red-500 text-white'">
-                        <span x-show="isCorrect"><i class="fa-solid fa-check"></i> Tama!</span>
+                        <div x-show="isCorrect"
+                            class="px-6 py-4 bg-green-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
+                            <i class="fa-solid fa-check"></i> Tama!
+                        </div>
                         <span x-show="!isCorrect" class="flex flex-col items-center">
                             <div class="">
                                 <i class="fa-solid fa-xmark"></i> Mali. Ang tamang sagot ay <b x-text="current.answer"></b>

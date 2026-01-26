@@ -1,6 +1,6 @@
 <script>
     document.addEventListener('alpine:init', () => {
-        Alpine.data('pagsasanay1Data', (questions) => ({
+        Alpine.data('pagtataya1Data', (questions) => ({
             page: 1,
             confirmed: false,
             recording: false,
@@ -10,9 +10,31 @@
             mediaRecorder: null,
             audioChunks: [],
             questions: questions,
-            // Sound enable overlay - only shows once
             soundEnabled: false,
             currentPanutoAudio: null,
+
+            // Phonetic mapping for letter sounds
+            phoneticMap: {
+                'A': ['a', 'ah'],
+                'E': ['e', 'eh'],
+                'I': ['i', 'ee'],
+                'O': ['o', 'oh'],
+                'U': ['u', 'oo'],
+                'B': ['b', 'buh'],
+                'K': ['k', 'kah'],
+                'M': ['m', 'muh'],
+                'S': ['s', 'suh'],
+                'T': ['t', 'tuh'],
+                'L': ['l', 'luh'],
+                'Y': ['y', 'yuh'],
+                'N': ['n', 'nuh'],
+                'G': ['g', 'guh'],
+                'NG': ['ng', 'nang'],  // FIXED: Accept both "ng" and "nang"
+                'P': ['p', 'puh'],
+                'R': ['r', 'ruh'],
+                'D': ['d', 'duh'],
+                'H': ['h', 'huh']
+            },
 
             get current() {
                 return this.page <= this.questions.length
@@ -25,30 +47,32 @@
             },
 
             get showSoundOverlay() {
-                // Only show if sound not enabled AND it's the first panuto
                 return !this.soundEnabled && this.isPanuto;
             },
 
             enableSound() {
                 this.soundEnabled = true;
-                // Play the panuto audio if it exists
                 if (this.current && this.current.audio) {
                     this.currentPanutoAudio = new Audio(this.current.audio);
                     this.currentPanutoAudio.play();
                 }
             },
 
+            normalizeText(text) {
+                return text.toLowerCase().trim().replace(/[.,!?]/g, '').replace(/\s+/g, '');
+            },
+
+            isPhoneticMatch(transcription, letter) {
+                const normalized = this.normalizeText(transcription);
+                const acceptableAnswers = this.phoneticMap[letter.toUpperCase()] || [];
+                return acceptableAnswers.some(answer => normalized === answer || normalized.includes(answer));
+            },
+
             get isCorrect() {
                 if (!this.confirmed || !this.transcription) return false;
                 
-                const userSaid = this.normalizeText(this.transcription);
-                const correctAnswer = this.normalizeText(this.current.answer);
-                
-                return userSaid === correctAnswer;
-            },
-
-            normalizeText(text) {
-                return text.toLowerCase().trim().replace(/[.,!?]/g, '');
+                // Use phonetic matching
+                return this.isPhoneticMatch(this.transcription, this.current.alpabeto);
             },
 
             async startRecording() {
@@ -84,7 +108,7 @@
                     
                     console.log('🎤 Recording started...');
                 } catch (error) {
-                    console.error('<i class="fa-solid fa-x"></i> Error accessing microphone:', error);
+                    console.error('❌ Error accessing microphone:', error);
                     alert('Hindi ma-access ang microphone. Please allow microphone access.');
                 }
             },
@@ -136,13 +160,13 @@
                             console.log('🗣️ You said:', this.transcription);
                             this.checkAnswer();
                         } else {
-                            console.error('<i class="fa-solid fa-x"></i> API Error:', data.error);
+                            console.error('❌ API Error:', data.error);
                             alert('May error sa pag-process ng audio: ' + data.error);
                             this.processing = false;
                         }
                     } catch (error) {
-                        console.error('<i class="fa-solid fa-x"></i> Fetch Error:', error);
-                        alert('May error sa pag-send ng audio. Check console for details.');
+                        console.error('❌ Fetch Error:', error);
+                        alert('May error sa pag-send ng audio.');
                         this.processing = false;
                     }
                 };
@@ -154,9 +178,9 @@
                 
                 if (this.isCorrect) {
                     this.score++;
-                    console.log('<i class="fa-solid fa-check"></i> Correct! Score:', this.score);
+                    console.log('✅ Correct! Score:', this.score);
                 } else {
-                    console.log('<i class="fa-solid fa-x"></i> Wrong answer');
+                    console.log('❌ Wrong answer');
                     console.log('Expected:', this.current.answer);
                     console.log('Got:', this.transcription);
                 }
@@ -166,19 +190,21 @@
                 // Stop panuto audio if playing
                 if (this.currentPanutoAudio) {
                     this.currentPanutoAudio.pause();
-                    this.currentPanutoAudio.currentTime = 0; // Reset to beginning
+                    this.currentPanutoAudio.currentTime = 0;
                     this.currentPanutoAudio = null;
                 }
-                // Auto-play next panuto audio if applicable
-                this.$nextTick(() => {
-                    if (this.soundEnabled && this.isPanuto && this.current && this.current.audio) {
-                        this.currentPanutoAudio = new Audio(this.current.audio);
-                        this.currentPanutoAudio.play();
-                    }
-                });
+                
                 if (this.confirmed || this.isPanuto) {
                     this.page++;
                     this.reset();
+                    
+                    // Auto-play next panuto audio if applicable
+                    this.$nextTick(() => {
+                        if (this.soundEnabled && this.isPanuto && this.current && this.current.audio) {
+                            this.currentPanutoAudio = new Audio(this.current.audio);
+                            this.currentPanutoAudio.play();
+                        }
+                    });
                 }
             },
 
@@ -191,18 +217,25 @@
             },
 
             replay() {
+                // Stop any playing audio
+                if (this.currentPanutoAudio) {
+                    this.currentPanutoAudio.pause();
+                    this.currentPanutoAudio.currentTime = 0;
+                    this.currentPanutoAudio = null;
+                }
+                
                 this.page = 1;
                 this.score = 0;
-                this.soundEnabled = false; // Reset sound for replay
+                this.soundEnabled = false;
                 this.reset();
             }
         }))
     });
 </script>
 
-<!-- Pagsasanay 1 -->
+<!-- Pagtataya 1 (No Retry Buttons) -->
 <div class="relative flex flex-col items-center lg:min-w-96 p-6"
-     x-data='pagsasanay1Data(@json($questions))'>
+     x-data='pagtataya1Data(@json($questions))'>
 
     <template x-if="showSoundOverlay">
         <div class="absolute inset-0 bg-black/60 flex items-center justify-center z-50">
@@ -235,13 +268,14 @@
                 </div>
             </template> 
 
+            <!-- ALPHABET TYPE (No Retry Button - Final Test) -->
             <template x-if="!isPanuto">
                 <div class="flex flex-col items-center gap-10 w-full lg:min-w-96">
                     <!-- Alphabet Display -->
                     <h1 class="alphabet mt-10 !text-[#F4C300]"
                         x-text="current.alpabeto"></h1>
 
-                    <!-- Feedback -->
+                    <!-- Feedback (NO RETRY BUTTON) -->
                     <div x-show="confirmed" 
                         x-transition
                         class="w-full max-w-lg">
@@ -255,9 +289,8 @@
                         <div x-show="!isCorrect"
                             class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
                             <i class="fa-solid fa-x"></i> Mali
-                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2">
+                            <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2 flex gap-2 justify-center">
                                 <div>Narinig: "<span x-text="transcription"></span>"</div>
-                                <div>Dapat: "<span x-text="current.answer"></span>"</div>
                             </div>
                         </div>
                     </div>
@@ -285,7 +318,6 @@
                             <i class="fa-solid fa-microphone text-white text-xl"
                             :class="{ 'fa-spinner fa-spin': processing }"></i>
 
-                            <!-- Recording indicator -->
                             <div x-show="recording"
                                 class="absolute inset-0 rounded-full bg-red-500 opacity-30 animate-ping">
                             </div>
@@ -294,7 +326,7 @@
                         <!-- Status text -->
                         <div class="text-center">
                             <p x-show="recording" class="text-red-500 font-semibold animate-pulse">
-                                🔴 Nagrerekord... (Hawakan ang button)
+                                🔴 Nagrerekord...
                             </p>
                             <p x-show="processing" class="text-blue-500 font-semibold">
                                 ⏳ Pinoproseso ang iyong boses...

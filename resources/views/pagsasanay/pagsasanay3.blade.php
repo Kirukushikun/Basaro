@@ -427,8 +427,7 @@
                             class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
                             <i class="fa-solid fa-x"></i> Mali
                             <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2 flex gap-2 justify-center">
-                                <div>Narinig: "<span x-text="transcription"></span>"</div> -
-                                <div>Dapat: "<span x-text="current.parirala"></span>"</div>
+                                <div>Narinig: "<span x-text="transcription"></span>"</div>
                             </div>
                             
                             <button 
@@ -507,8 +506,7 @@
                             class="px-6 py-4 bg-red-500 text-white rounded-lg shadow-md !text-base sm:!text-lg md:!text-lg lg:!text-xl font-semibold text-center">
                             <i class="fa-solid fa-x"></i> Mali
                             <div class="!text-xs sm:!text-sm md:!text-sm lg:!text-base mt-2 flex gap-2 justify-center">
-                                <div>Narinig: "<span x-text="transcription"></span>"</div> -
-                                <div>Dapat: "<span x-text="current.pangungusap"></span>"</div>
+                                <div>Narinig: "<span x-text="transcription"></span>"</div>
                             </div>
                             
                             <button 

@@ -303,7 +303,7 @@
 
                     <!-- Instruction -->
                     <p x-show="!confirmed" class="w-96 !text-base sm:!text-lg md:!text-lg lg:!text-xl text-center">
-                        Pagdugtungin ang mga pantig upang makabuo ng salita. Pagkatapos ay subukan mo itong basahin.
+                        Pagdugtungin lamang ang mga pantig upang makabuo ng salita. Pagkatapos ay subukan mo itong basahin.
                     </p>
 
                     <!-- Microphone Button -->

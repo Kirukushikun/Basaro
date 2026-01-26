@@ -162,13 +162,6 @@
         </div>
     </div>
 
-    {{-- ===== PAGE 11 ===== --}}
-    <!-- <div x-show="page === 11" class="w-full flex-1 flex flex-col gap-6 px-2">
-        <p class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl font-semibold !text-gray-200">
-            Halikana't magsanay, Tayo na muling mag-basaro! Magbasa at maglaro. Sa bawat tamang sagot ay makakakuha ka ng 1 ribbon. Pagdugtungin ang mga pantig upang makabuo ng salita. Pagkatapos ay subukan mo itong basahin. 
-        </p>
-    </div> -->
-
     {{-- Navigation Buttons --}}
     @include('partials.lesson-navigation')
 </div>

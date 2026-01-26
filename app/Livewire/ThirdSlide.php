@@ -416,7 +416,7 @@ class ThirdSlide extends Component
             [
                 'type' => 'panuto',
                 'audio' => 'audio/lesson4/L4P12.m4a',
-                'header' => 'Pagdugtungin ang mga pantig upang makabuo ng salita. Pagkatapos ay subukan mo itong basahin.',
+                'header' => 'Pagdugtungin mo lamang ang mga pantig upang makabuo ng salita. Pagkatapos ay subukan mo itong basahin.',
                 'body' => '',
             ],
             [

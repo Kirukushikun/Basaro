@@ -240,53 +240,53 @@
         </div>
     </template>
 
-<!-- FINAL RESULTS PAGE -->
-<template x-if="showResults">
-    <div class="flex-1 flex flex-col items-center gap-5"
-         x-data="{
-             get percentage() {
-                 return Math.round((score / 10) * 100);
-             },
-             get hasPassed() {
-                 return this.percentage >= 70;
-             }
-         }">
-        <img src="{{asset('img/Badge.png')}}" width="200" alt="">
-        <h1 class="text-2xl font-bold">CONGRATULATIONS!</h1>
-        <h2 class="score !text-[#F4C300]" x-text="percentage + '%'"></h2>
-        <p class="w-96 text-lg text-center">
-            Nakakuha ka ng <span class="font-bold" x-text="score"></span>
-            sa <span class="font-bold" x-text="10"></span> na tanong!
-        </p>
-        <p class="w-96 text-lg text-center" x-show="hasPassed">
-            Binabati kita! Natapos mo ang huling pagtataya at nakumpleto ang buong kurso nang may kahusayan. Ipagpatuloy ang iyong pagkatuto!
-        </p>
-        <p class="w-96 text-lg text-center text-red-400" x-show="!hasPassed">
-            Kailangan ng 70% o mas mataas upang makumpleto ang kurso. Subukan muli!
-        </p>
-        
-        <div class="flex gap-4 mt-4">
-            <button
-                @click="reset"
-                class="px-4 py-2 border-2 border-[#F4C300] text-[#F4C300] rounded-md font-bold hover:bg-[#F4C300] hover:text-black transition">
-                Ulitin
-            </button>
-
-            <button
-                x-show="hasPassed"
-                onclick="window.location.href='/'"
-                class="px-4 py-2 bg-[#F4C300] !text-black rounded-md font-bold hover:opacity-90 transition">
-                Tapos Na
-            </button>
+    <!-- FINAL RESULTS PAGE -->
+    <template x-if="showResults">
+        <div class="flex-1 flex flex-col items-center gap-5"
+            x-data="{
+                get percentage() {
+                    return Math.round((score / 10) * 100);
+                },
+                get hasPassed() {
+                    return this.percentage >= 70;
+                }
+            }">
+            <img src="{{asset('img/Badge.png')}}" width="200" alt="">
+            <h1 class="text-2xl font-bold">CONGRATULATIONS!</h1>
+            <h2 class="score !text-[#F4C300]" x-text="percentage + '%'"></h2>
+            <p class="w-96 text-lg text-center">
+                Nakakuha ka ng <span class="font-bold" x-text="score"></span>
+                sa <span class="font-bold" x-text="10"></span> na tanong!
+            </p>
+            <p class="w-96 text-lg text-center" x-show="hasPassed">
+                Binabati kita! Natapos mo ang huling pagtataya at nakumpleto ang buong kurso nang may kahusayan. Ipagpatuloy ang iyong pagkatuto!
+            </p>
+            <p class="w-96 text-lg text-center text-red-400" x-show="!hasPassed">
+                Kailangan ng 70% o mas mataas upang makumpleto ang kurso. Subukan muli!
+            </p>
             
-            <button
-                x-show="!hasPassed"
-                onclick="window.location.href='/'"
-                class="px-4 py-2 bg-gray-600 text-white rounded-md font-bold hover:bg-gray-700 transition">
-                Lumabas
-            </button>
+            <div class="flex gap-4 mt-4">
+                <button
+                    @click="reset"
+                    class="px-4 py-2 border-2 border-[#F4C300] text-[#F4C300] rounded-md font-bold hover:bg-[#F4C300] hover:text-black transition">
+                    Ulitin
+                </button>
+
+                <button
+                    x-show="hasPassed"
+                    onclick="window.location.href='/'"
+                    class="px-4 py-2 bg-[#F4C300] !text-black rounded-md font-bold hover:opacity-90 transition">
+                    Tapos Na
+                </button>
+                
+                <button
+                    x-show="!hasPassed"
+                    onclick="window.location.href='/'"
+                    class="px-4 py-2 bg-gray-600 text-white rounded-md font-bold hover:bg-gray-700 transition">
+                    Lumabas
+                </button>
+            </div>
         </div>
-    </div>
-</template>
+    </template>
 
 </div>
