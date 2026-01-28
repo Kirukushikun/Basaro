@@ -20,8 +20,8 @@ class ThirdSlide extends Component
             [
                 'type' => 'panuto',
                 'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Ano ang tunog ng sumusunod na letra?',
-                'body' => 'Pindutin mo ang microphone button para sa pagbigkas mo ng tunog ng letra.',
+                'header' => 'A. Tukuyin kung anong letra ang nasa itaas?',
+                'body' => 'Pindutin mo lang ang microphone button para sa iyong pagbigkas.',
             ],
 
             [

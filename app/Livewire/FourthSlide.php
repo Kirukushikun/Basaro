@@ -18,8 +18,8 @@ class FourthSlide extends Component
         1 => [
             [
                 'type' => 'panuto',
-                'audio' => 'audio/lesson1/L1P6.m4a',
-                'header' => 'Kilalanin mo ang bawat letra, pagkatapos ay pindutin mo ang microphone button sa pagbigkas ng tunog ng mga ito',
+                'audio' => 'audio/lesson1/L1P5.m4a',
+                'header' => 'Kilalanin mo ang bawat letra, bigkasin mo ang mga ito.',
                 'body' => '',
             ],
 
