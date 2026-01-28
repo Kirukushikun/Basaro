@@ -2,7 +2,7 @@
     x-data="{ showModal: false }"
 >
     <button
-        @click="page == 1 ? window.location.href = '/lesson-view?lesson={{$lesson}}&slide=first-slide' : page--"
+        @click="page == 1 ? window.location.href = '/lesson-view?lesson={{ encrypt($lesson) }}&slide=first-slide' : page--"
         class="px-4 py-2 border-2 border border-gray-500 text-white rounded-md font-bold !text-sm sm:!text-base"
     >
         <i class="fa-solid fa-arrow-left !text-white"></i> Balik

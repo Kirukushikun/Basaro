@@ -108,7 +108,7 @@
 
                 <button
                     x-show="(!isFirstLesson) || page === maxPage"
-                    @click="window.location.href = '/lesson-view?lesson={{ $lesson }}&slide=second-slide'"
+                    @click="window.location.href = '/lesson-view?lesson={{ encrypt($lesson) }}&slide=second-slide'"
                     class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold"
                 >
                     Magpatuloy <i class="fa-solid fa-arrow-right !text-black"></i>

@@ -51,7 +51,7 @@
                     <button
                         class="w-full sm:w-fit px-3 md:px-4 py-2 bg-[#F4C300] !text-black rounded-md font-bold text-sm md:text-base"
                         
-                        onclick="window.location.href='/lesson-view?lesson={{ $lesson->id }}&slide=first-slide'"
+                        onclick="window.location.href='/lesson-view?lesson={{ encrypt($lesson->id) }}&slide=first-slide'"
                     >
                         Start Lesson
                     </button>   

@@ -89,7 +89,7 @@
                     </button>
 
                     <button 
-                        onclick="window.location.href='/lesson-view?lesson={{ $nextLesson }}&slide=first-slide'"
+                        onclick="window.location.href='/lesson-view?lesson={{ encrypt($nextLesson) }}&slide=first-slide'"
                         @click="showModal = false"
                         class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold"
                     >

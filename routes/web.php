@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SpeechController;
 
+
 Route::middleware('guest')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -48,7 +49,7 @@ Route::middleware('auth.custom')->group(function () {
     });
 
     Route::get('/lesson-view', function (Request $request) {
-        $lesson = $request->lesson;
+        $lesson = decrypt($request->lesson);
         $slide = $request->slide;
         return view('student.lesson-view', compact('lesson', 'slide'));
     });

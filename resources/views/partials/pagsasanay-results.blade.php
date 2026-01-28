@@ -74,7 +74,7 @@
                     </button>
 
                     <button 
-                        onclick="window.location.href='/lesson-view?lesson={{ $lesson }}&slide=fourth-slide'"
+                        onclick="window.location.href='/lesson-view?lesson={{ encrypt($lesson) }}&slide=fourth-slide'"
                         @click="showModal = false"
                         class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold"
                     >

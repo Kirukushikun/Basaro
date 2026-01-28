@@ -2,7 +2,7 @@
     x-data="{ showModal: false }"
 >
     <button
-        @click="page == 1 ? window.location.href = '/lesson-view?lesson={{$lesson}}&slide=second-slide' : page--"
+        @click="page == 1 ? window.location.href = '/lesson-view?lesson={{ encrypt($lesson) }}&slide=second-slide' : page--"
         class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold"
     >
         <i class="fa-solid fa-arrow-left !text-black"></i> Balik
@@ -64,7 +64,7 @@
                     </button>
 
                     <button 
-                        onclick="window.location.href='/lesson-view?lesson={{ $lesson }}&slide=third-slide'"
+                        onclick="window.location.href='/lesson-view?lesson={{ encrypt($lesson) }}&slide=third-slide'"
                         @click="showModal = false"
                         class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold"
                     >
