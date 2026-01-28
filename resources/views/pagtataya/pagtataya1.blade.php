@@ -340,7 +340,7 @@
 
                     <!-- Instruction -->
                     <p class="w-96 !text-base sm:!text-lg md:!text-lg lg:!text-xl text-center" x-show="!confirmed">
-                        Ano ang tunog ng letrang nasa itaas?
+                        Ano ang letrang nasa itaas?
                         Subukang bigkasin ito nang tama at dahan-dahan.
                     </p>
 
