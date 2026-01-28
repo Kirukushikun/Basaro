@@ -20,7 +20,7 @@ class ThirdSlide extends Component
             [
                 'type' => 'panuto',
                 'audio' => 'audio/lesson1/L1P3.m4a',
-                'header' => 'A. Tukuyin kung anong letra ang nasa itaas?',
+                'header' => 'A. Tukuyin kung anong letra ang nasa itaas',
                 'body' => 'Pindutin mo lang ang microphone button para sa iyong pagbigkas.',
             ],
 
