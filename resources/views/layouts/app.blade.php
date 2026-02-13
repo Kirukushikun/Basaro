@@ -95,7 +95,7 @@
             <img class="logo" src="{{asset('img/logo-light.png')}}" alt="">
             <div class="nav-links" id="nav-links">
                 <a href="/dashboard" class="!text-base lg:!text-lg {{ request()->is('dashboard*') ? 'active' : '' }}">Dashboard</a>
-                <a href="/lessons" class="!text-base lg:!text-lg {{ request()->is('lessons*') || request()->is('lesson-view*') ? 'active' : '' }}">Lessons</a>
+                <a href="/lessons" class="!text-base lg:!text-lg {{ request()->is('lessons*') || request()->is('lesson-view*') || request()->is('tests*') ? 'active' : '' }}">Lessons</a>
                 <a href="/achievements" class="!text-base lg:!text-lg {{ request()->is('achievements*') ? 'active' : '' }}">Achievements</a>
                 <a href="/profile" class="!text-base lg:!text-lg {{ request()->is('profile*') ? 'active' : '' }}">Profile</a>
             </div>
@@ -134,7 +134,7 @@
                     <a href="/dashboard" class="!text-base sm:!text-lg py-3 px-4 rounded-lg transition-colors {{ request()->is('dashboard*') ? 'bg-[#F4C300] text-black font-bold' : 'text-white hover:bg-gray-700' }}">
                         <i class="fa-solid fa-house mr-3"></i>Dashboard
                     </a>
-                    <a href="/lessons" class="!text-base sm:!text-lg py-3 px-4 rounded-lg transition-colors {{ request()->is('lessons*') || request()->is('lesson-view*') ? 'bg-[#F4C300] text-black font-bold' : 'text-white hover:bg-gray-700' }}">
+                    <a href="/lessons" class="!text-base sm:!text-lg py-3 px-4 rounded-lg transition-colors {{ request()->is('lessons*') || request()->is('lesson-view*') || request()->is('tests*') ? 'bg-[#F4C300] text-black font-bold' : 'text-white hover:bg-gray-700' }}">
                         <i class="fa-solid fa-book mr-3"></i>Lessons
                     </a>
                     <a href="/achievements" class="!text-base sm:!text-lg py-3 px-4 rounded-lg transition-colors {{ request()->is('achievements*') ? 'bg-[#F4C300] text-black font-bold' : 'text-white hover:bg-gray-700' }}">

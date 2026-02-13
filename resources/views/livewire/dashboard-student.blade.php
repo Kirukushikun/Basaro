@@ -1,246 +1,232 @@
 <main class="flex-1 overflow-hidden mb-10" x-data="{ showModal: false, modalTemplate: '' }">
     <div class="lessons flex flex-col gap-7 overflow-y-auto h-full !pr-5 lg:pr-0">
-        <div class="card flex flex-col gap-6">
-            <div class="header">
-                <p class="text-lg !text-gray-400">Current Lesson:</p>
-                <h1 class="text-2xl font-bold">Lesson {{$lesson->order}}: {{$lesson->title}}</h1>
-                @php
-                    // Color progression based on level
-                    $levelColors = [
-                        1 => 'border-green-500 bg-green-900 text-green-100',
-                        2 => 'border-emerald-500 bg-emerald-900 text-emerald-100',
-                        3 => 'border-teal-500 bg-teal-900 text-teal-100',
-                        4 => 'border-cyan-500 bg-cyan-900 text-cyan-100',
-                        5 => 'border-sky-500 bg-sky-900 text-sky-100',
-                        6 => 'border-blue-500 bg-blue-900 text-blue-100',
-                        7 => 'border-indigo-500 bg-indigo-900 text-indigo-100',
-                        8 => 'border-violet-500 bg-violet-900 text-violet-100',
-                        9 => 'border-purple-500 bg-purple-900 text-purple-100',
-                        10 => 'border-fuchsia-500 bg-fuchsia-900 text-fuchsia-100',
-                        11 => 'border-pink-500 bg-pink-900 text-pink-100',
-                        12 => 'border-rose-500 bg-rose-900 text-rose-100',
-                        13 => 'border-red-500 bg-red-900 text-red-100',
-                        14 => 'border-orange-500 bg-orange-900 text-orange-100',
-                        15 => 'border-amber-500 bg-amber-900 text-amber-100',
-                    ];
-                    
-                    // Difficulty labels based on level ranges
-                    $difficulty = match(true) {
-                        $lesson->order <= 4 => 'Beginner',
-                        $lesson->order <= 7 => 'Intermediate',
-                        $lesson->order <= 10 => 'Advanced',
-                        $lesson->order <= 13 => 'Expert',
-                        default => 'Master'
-                    };
-                    
-                    $colorClass = $levelColors[$lesson->order] ?? 'border-yellow-500 bg-yellow-900 text-yellow-100';
-                @endphp
 
-                <h2 class="text-sm w-fit mt-2 px-2 py-1 border-2 rounded-md {{ $colorClass }}">
-                    Level {{$lesson->order}} - {{$difficulty}}
-                </h2>
-            </div>
-
-            <div class="description">
-                {{$lesson->description}}
-            </div>
-
-            <div class="footer flex flex-col gap-4">
-                <div class="flex justify-between">
-                    <p class="!text-gray-400">Your progress:</p>
-                    <p class="!text-gray-400">{{Auth::user()->current_progress}}%</p>
+        {{-- TOP CARD: conditionally swaps --}}
+        @if (!$hasPretest)
+            {{-- No pretest yet --}}
+            <div class="card flex flex-col gap-6">
+                <div class="header">
+                    <p class="text-lg !text-gray-400">Getting Started:</p>
+                    <h1 class="text-2xl font-bold">Kumuha ng Pretest</h1>
+                    <h2 class="text-sm w-fit mt-2 px-2 py-1 border-2 rounded-md border-[#F4C300] bg-yellow-900 text-yellow-100">
+                        Hakbang 1 - Suriin ang Iyong Antas
+                    </h2>
                 </div>
 
-                <div class="bg-gray-600 h-2 rounded-md">
-                    <div class="bg-[#F4C300] h-full rounded-md" style="width: {{Auth::user()->current_progress}}%"></div>
+                <div class="description">
+                    Bago magsimula sa mga aralin, kailangan munang malaman ang iyong kasalukuyang antas sa pamamagitan ng pretest. Ito ay makakatulong upang masukat ang iyong pag-unlad sa pagtatapos ng kurso.
                 </div>
 
-                @php
-                    $user = Auth::user();
-                    $isCurrentLesson = $user->current_lesson == $lesson->order;
-                    $progress = $user->current_progress;
-                @endphp
+                <div class="footer flex flex-col gap-4">
 
-                @if ($isCurrentLesson && $progress == 25)
-                    <button class="w-fit !text-black px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson={{encrypt($lesson->order)}}&slide=second-slide'">
-                        Magpatuloy sa Talakayan
-                    </button>
-                @elseif ($isCurrentLesson && $progress == 50)
-                    <button class="w-fit !text-black px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson={{encrypt($lesson->order)}}&slide=third-slide'">
-                        Magpatuloy sa Pagsasanay
-                    </button>
-                @elseif ($isCurrentLesson && $progress == 75)
-                    <button class="w-fit !text-black px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson={{encrypt($lesson->order)}}&slide=fourth-slide'">
-                        Magpatuloy sa Pagtataya
-                    </button>
-                @elseif ($isCurrentLesson && $progress == 100)
-                    {{-- Current lesson is completed, move to next --}}
-                    @if ($lesson->order < 20)
-                        <button class="w-fit !text-black px-4 py-2 bg-green-500 text-white rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson={{encrypt($lesson->order + 1)}}&slide=first-slide'">
-                            <i class="fa-solid !text-black fa-check"></i> Susunod na Aralin
+                    <a href="/tests?type=pretest" class="w-fit !text-black px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold">
+                        <i class="fa-solid !text-black fa-clipboard-list"></i> Simulan ang Pretest
+                    </a>
+                </div>
+            </div>
+
+        @elseif ($allLessonsComplete && !$hasPosttest)
+            {{-- All lessons done, posttest pending --}}
+            <div class="card flex flex-col gap-6">
+                <div class="header">
+                    <p class="text-lg !text-gray-400">Final Step:</p>
+                    <h1 class="text-2xl font-bold">Kumuha ng Posttest</h1>
+                    <h2 class="text-sm w-fit mt-2 px-2 py-1 border-2 rounded-md border-green-500 bg-green-900 text-green-100">
+                        Huling Hakbang - Sukatin ang Iyong Pag-unlad
+                    </h2>
+                </div>
+
+                <div class="description">
+                    Natapos mo na ang lahat ng 20 aralin! Ngayon, kumuha ng posttest upang makita kung gaano kalaki ang iyong natutunang kaalaman mula nang simulan mo ang kursong ito.
+                </div>
+
+                <div class="footer flex flex-col gap-4">
+                    <div class="flex justify-between">
+                        <p class="!text-gray-400">Your progress:</p>
+                        <p class="!text-gray-400">100%</p>
+                    </div>
+                    <div class="bg-gray-600 h-2 rounded-md">
+                        <div class="bg-[#F4C300] h-full rounded-md" style="width: 100%"></div>
+                    </div>
+                    <a href="/tests?type=posttest" class="w-fit !text-black px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold">
+                        <i class="fa-solid !text-black fa-flag-checkered"></i> Simulan ang Posttest
+                    </a>
+                </div>
+            </div>
+
+        @elseif ($allLessonsComplete && $hasPosttest)
+            {{-- Fully complete --}}
+            <div class="card flex flex-col gap-6">
+                <div class="header">
+                    <p class="text-lg !text-gray-400">Status:</p>
+                    <h1 class="text-2xl font-bold">Kursong Natapos na! 🎉</h1>
+                    <h2 class="text-sm w-fit mt-2 px-2 py-1 border-2 rounded-md border-green-500 bg-green-900 text-green-100">
+                        Kumpleto - Lahat ng Aralin at Pagsusulit
+                    </h2>
+                </div>
+
+                <div class="description">
+                    Binabati kita! Matagumpay mong natapos ang lahat ng 20 aralin, ang pretest, at ang posttest. Ipinagmamalaki ka namin sa iyong kahusayan at dedikasyon.
+                </div>
+
+                <div class="footer flex flex-col gap-4">
+                    <div class="flex justify-between">
+                        <p class="!text-gray-400">Your progress:</p>
+                        <p class="!text-gray-400">100%</p>
+                    </div>
+                    <div class="bg-gray-600 h-2 rounded-md">
+                        <div class="bg-[#F4C300] h-full rounded-md" style="width: 100%"></div>
+                    </div>
+                    <span class="w-fit px-4 py-2 bg-green-500 text-white rounded-md font-bold">
+                        <i class="fa-solid fa-trophy"></i> Ipinagmamalaki ka namin!
+                    </span>
+                </div>
+            </div>
+
+        @else
+            {{-- Normal lesson card --}}
+            <div class="card flex flex-col gap-6">
+                <div class="header">
+                    <p class="text-lg !text-gray-400">Current Lesson:</p>
+                    <h1 class="text-2xl font-bold">Lesson {{$lesson->order}}: {{$lesson->title}}</h1>
+                    @php
+                        $levelColors = [
+                            1 => 'border-green-500 bg-green-900 text-green-100',
+                            2 => 'border-emerald-500 bg-emerald-900 text-emerald-100',
+                            3 => 'border-teal-500 bg-teal-900 text-teal-100',
+                            4 => 'border-cyan-500 bg-cyan-900 text-cyan-100',
+                            5 => 'border-sky-500 bg-sky-900 text-sky-100',
+                            6 => 'border-blue-500 bg-blue-900 text-blue-100',
+                            7 => 'border-indigo-500 bg-indigo-900 text-indigo-100',
+                            8 => 'border-violet-500 bg-violet-900 text-violet-100',
+                            9 => 'border-purple-500 bg-purple-900 text-purple-100',
+                            10 => 'border-fuchsia-500 bg-fuchsia-900 text-fuchsia-100',
+                            11 => 'border-pink-500 bg-pink-900 text-pink-100',
+                            12 => 'border-rose-500 bg-rose-900 text-rose-100',
+                            13 => 'border-red-500 bg-red-900 text-red-100',
+                            14 => 'border-orange-500 bg-orange-900 text-orange-100',
+                            15 => 'border-amber-500 bg-amber-900 text-amber-100',
+                        ];
+                        $difficulty = match(true) {
+                            $lesson->order <= 4  => 'Beginner',
+                            $lesson->order <= 7  => 'Intermediate',
+                            $lesson->order <= 10 => 'Advanced',
+                            $lesson->order <= 13 => 'Expert',
+                            default              => 'Master'
+                        };
+                        $colorClass = $levelColors[$lesson->order] ?? 'border-yellow-500 bg-yellow-900 text-yellow-100';
+                    @endphp
+                    <h2 class="text-sm w-fit mt-2 px-2 py-1 border-2 rounded-md {{ $colorClass }}">
+                        Level {{$lesson->order}} - {{$difficulty}}
+                    </h2>
+                </div>
+
+                <div class="description">
+                    {{$lesson->description}}
+                </div>
+
+                <div class="footer flex flex-col gap-4">
+                    <div class="flex justify-between">
+                        <p class="!text-gray-400">Your progress:</p>
+                        <p class="!text-gray-400">{{Auth::user()->current_progress}}%</p>
+                    </div>
+                    <div class="bg-gray-600 h-2 rounded-md">
+                        <div class="bg-[#F4C300] h-full rounded-md" style="width: {{Auth::user()->current_progress}}%"></div>
+                    </div>
+
+                    @php
+                        $user = Auth::user();
+                        $isCurrentLesson = $user->current_lesson == $lesson->order;
+                        $progress = $user->current_progress;
+                    @endphp
+
+                    @if ($isCurrentLesson && $progress == 25)
+                        <button class="w-fit !text-black px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson={{encrypt($lesson->order)}}&slide=second-slide'">
+                            Magpatuloy sa Talakayan
+                        </button>
+                    @elseif ($isCurrentLesson && $progress == 50)
+                        <button class="w-fit !text-black px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson={{encrypt($lesson->order)}}&slide=third-slide'">
+                            Magpatuloy sa Pagsasanay
+                        </button>
+                    @elseif ($isCurrentLesson && $progress == 75)
+                        <button class="w-fit !text-black px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson={{encrypt($lesson->order)}}&slide=fourth-slide'">
+                            Magpatuloy sa Pagtataya
+                        </button>
+                    @elseif ($isCurrentLesson && $progress == 100)
+                        @if ($lesson->order < 20)
+                            <button class="w-fit !text-black px-4 py-2 bg-green-500 text-white rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson={{encrypt($lesson->order + 1)}}&slide=first-slide'">
+                                <i class="fa-solid !text-black fa-check"></i> Susunod na Aralin
+                            </button>
+                        @else
+                            <span class="w-fit px-4 py-2 bg-green-500 text-white rounded-md font-bold">
+                                <i class="fa-solid !text-black fa-champagne-glasses"></i> Natapos na ang lahat ng Aralin!
+                            </span>
+                        @endif
+                    @elseif ($user->current_lesson > $lesson->order)
+                        <button class="w-fit !text-black px-4 py-2 bg-blue-500 text-white rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson={{encrypt($lesson->order)}}&slide=first-slide'">
+                            <i class="fa-solid !text-black fa-repeat"></i> Balikan ang Aralin
+                        </button>
+                    @elseif ($user->current_lesson < $lesson->order)
+                        <button class="w-fit px-4 py-2 bg-gray-400 text-gray-700 rounded-md font-bold cursor-not-allowed" disabled>
+                            <i class="fa-solid !text-black fa-lock"></i> Nakalock pa
                         </button>
                     @else
-                        <span class="w-fit px-4 py-2 bg-green-500 text-white rounded-md font-bold">
-                            <i class="fa-solid !text-black fa-champagne-glasses"></i> Natapos na ang lahat ng Aralin!
-                        </span>
+                        <button class="w-fit !text-black px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson={{encrypt($lesson->order)}}&slide=first-slide'">
+                            Magsimula
+                        </button>
                     @endif
-                @elseif ($user->current_lesson > $lesson->order)
-                    {{-- This lesson was already completed (user is on a later lesson) --}}
-                    <button class="w-fit !text-black px-4 py-2 bg-blue-500 text-white rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson={{encrypt($lesson->order)}}&slide=first-slide'">
-                        <i class="fa-solid !text-black fa-repeat"></i> Balikan ang Aralin
-                    </button>
-                @elseif ($user->current_lesson < $lesson->order)
-                    {{-- This lesson is locked (user hasn't reached it yet) --}}
-                    <button class="w-fit px-4 py-2 bg-gray-400 text-gray-700 rounded-md font-bold cursor-not-allowed" disabled>
-                        <i class="fa-solid !text-black fa-lock"></i> Nakalock pa
-                    </button>
-                @else
-                    {{-- Start fresh lesson (progress == 0 or just starting) --}}
-                    <button class="w-fit !text-black px-4 py-2 bg-[#F4C300] text-gray-900 rounded-md font-bold" onclick="window.location.href='/lesson-view?lesson={{encrypt($lesson->order)}}&slide=first-slide'">
-                        Magsimula
-                    </button>
-                @endif
+                </div>
             </div>
-        </div>
+        @endif
+
+        {{-- BOTTOM 3-COLUMN GRID: always visible --}}
         <div class="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-7">
             <div class="card">
-            @php 
-                $lessonGoals = [
-                    1 => [
-                        "Makilala ang bawat letra sa Alpabetong Filipino",
-                        "Mabigkas ang wastong tunog ng mga letra",
-                        "Makasunod sa mga simpleng tagubilin patungkol sa pagbasa at pagbigkas",
-                        "Mabigyang-halaga ang patuloy na pagsasanay bilang bahagi ng pagkatuto sa pagbasa",
-                    ],
-
-                    2 => [
-                        "Makilala ang limang patinig ng Filipino",
-                        "Mabigkas nang malinaw ang tunog ng bawat patinig",
-                        "Maipakita ang pag-unawa sa pagkakaiba ng mga tunog-patinig",
-                        "Mailapat ang kaalaman sa patinig sa mga simpleng gawain sa pagbasa",
-                    ],
-
-                    3 => [
-                        "Makilala ang mga pantulong na kataga",
-                        "Mabasa ang mga pantulong na kataga",
-                        "Maunawaan ang kahulugan ng mga pantulong na kataga",
-                    ],
-
-                    4 => [
-                        "Makabuo ng mga pantig gamit ang tunog ng M, S, at A",
-                        "Mabigkas nang tama ang mga tunog na M, S, at A",
-                        "Makabasa ng mga pantig at salita gamit ang M, S, at A",
-                    ],
-
-                    5 => [
-                        "Malaman ang parirala at pangungusap",
-                        "Mabasa ang mga parirala at pangungusap",
-                    ],
-
-                    6 => [
-                        "Makilala ang mga letrang M, S, A, I, O at B",
-                        "Mabigkas ang tamang tunog ng bawat letra",
-                        "Mabasa ang mga salitang mabuo mula sa M, S, A, I, O at B",
-                    ],
-
-                    7 => [
-                        "Makilala ang mga letrang E, U, T, K, L, Y at N",
-                        "Mabigkas ang wastong tunog ng bawat isa",
-                        "Mabasa ang mga salitang nabuo mula sa mga tunog ng E, U, T, K, L, Y at N",
-                    ],
-
-                    8 => [
-                        "Malaman ang kahulugan ng talata",
-                        "Mabasa ang talata",
-                        "Maipakita ang pag-unawa sa pamamagitan ng pagsagot sa mga tanong",
-                    ],
-
-                    9 => [
-                        "Makilala ang mga pantig sa isang salita",
-                        "Maihati ang salita ayon sa tamang pagpapantig",
-                        "Mabigkas ang mga pantig nang malinaw at wasto",
-                        "Magamit ang kaalaman sa pantig sa pagbasa ng mga salita",
-                    ],
-
-                    10 => [
-                        "Makilala ang mga pangunahing salitang karaniwang ginagamit",
-                        "Mabigkas nang tama ang mga salitang ito",
-                    ],
-
-                    11 => [
-                        "Matukoy ang kasing kahulugan at kasalungat ng mga salita",
-                        "Mabasa ang mga magkakasing kahulugan at magkakasalungat na salita",
-                    ],
-
-                    12 => [
-                        "Makilala ang mga diptonggo sa salita",
-                        "Mabigkas nang tama ang mga salitang may diptonggo",
-                        "Mabasa ang mga salita na may diptonggo",
-                    ],
-
-                    13 => [
-                        "Makilala ang mga kambal katinig sa mga salita",
-                        "Mabigkas ang mga salitang may kambal katinig nang wasto",
-                        "Matukoy ang kambal katinig sa binasang salita",
-                    ],
-
-                    14 => [
-                        "Makilala ang iba't ibang uri ng panlapi",
-                        "Mabasa ang mga salitang may panlapi",
-                    ],
-
-                    15 => [
-                        "Maunawaan ang binasang karunungang-bayan",
-                        "Maipakita ang pagpapahalaga sa kulturang Pilipino",
-                    ],
-
-                    16 => [
-                        "Nakakabasa ng mga tula.",
-                        "Nauunawaan ang mga binasang tula.",
-                    ],
-
-                    17 => [
-                        "Makabasa ng mga maikling kwento",
-                        "Maunawaan ang mga binasang maikling kuwento",
-                    ],
-
-                    18 => [
-                        "Makabasa ng mga balita",
-                        "Maunawaan ang mga binasang balita",
-                        "Mahimay ang mahahalagang detalye sa mga binasang balita",
-                    ],
-
-                    19 => [
-                        "Matukoy ang kahulugan ng editoryal",
-                        "Makabasa ng artikulong editoryal",
-                        "Maunawaan ang mga binasang artikulo",
-                    ],
-
-                    20 => [
-                        "Matukoy ang kahulugan ng artikulong pang-agham at teknolohiya",
-                        "Makabasa nang may pang-unawa sa mga artikulong pang-agham at teknolohiya",
-                        "Mahimay ang mga mahahalagang detalye sa mga binasang artikulo",
-                    ],
-                ];
-            @endphp
-
+                @php 
+                    $lessonGoals = [
+                        1  => ["Makilala ang bawat letra sa Alpabetong Filipino","Mabigkas ang wastong tunog ng mga letra","Makasunod sa mga simpleng tagubilin patungkol sa pagbasa at pagbigkas","Mabigyang-halaga ang patuloy na pagsasanay bilang bahagi ng pagkatuto sa pagbasa"],
+                        2  => ["Makilala ang limang patinig ng Filipino","Mabigkas nang malinaw ang tunog ng bawat patinig","Maipakita ang pag-unawa sa pagkakaiba ng mga tunog-patinig","Mailapat ang kaalaman sa patinig sa mga simpleng gawain sa pagbasa"],
+                        3  => ["Makilala ang mga pantulong na kataga","Mabasa ang mga pantulong na kataga","Maunawaan ang kahulugan ng mga pantulong na kataga"],
+                        4  => ["Makabuo ng mga pantig gamit ang tunog ng M, S, at A","Mabigkas nang tama ang mga tunog na M, S, at A","Makabasa ng mga pantig at salita gamit ang M, S, at A"],
+                        5  => ["Malaman ang parirala at pangungusap","Mabasa ang mga parirala at pangungusap"],
+                        6  => ["Makilala ang mga letrang M, S, A, I, O at B","Mabigkas ang tamang tunog ng bawat letra","Mabasa ang mga salitang mabuo mula sa M, S, A, I, O at B"],
+                        7  => ["Makilala ang mga letrang E, U, T, K, L, Y at N","Mabigkas ang wastong tunog ng bawat isa","Mabasa ang mga salitang nabuo mula sa mga tunog ng E, U, T, K, L, Y at N"],
+                        8  => ["Malaman ang kahulugan ng talata","Mabasa ang talata","Maipakita ang pag-unawa sa pamamagitan ng pagsagot sa mga tanong"],
+                        9  => ["Makilala ang mga pantig sa isang salita","Maihati ang salita ayon sa tamang pagpapantig","Mabigkas ang mga pantig nang malinaw at wasto","Magamit ang kaalaman sa pantig sa pagbasa ng mga salita"],
+                        10 => ["Makilala ang mga pangunahing salitang karaniwang ginagamit","Mabigkas nang tama ang mga salitang ito"],
+                        11 => ["Matukoy ang kasing kahulugan at kasalungat ng mga salita","Mabasa ang mga magkakasing kahulugan at magkakasalungat na salita"],
+                        12 => ["Makilala ang mga diptonggo sa salita","Mabigkas nang tama ang mga salitang may diptonggo","Mabasa ang mga salita na may diptonggo"],
+                        13 => ["Makilala ang mga kambal katinig sa mga salita","Mabigkas ang mga salitang may kambal katinig nang wasto","Matukoy ang kambal katinig sa binasang salita"],
+                        14 => ["Makilala ang iba't ibang uri ng panlapi","Mabasa ang mga salitang may panlapi"],
+                        15 => ["Maunawaan ang binasang karunungang-bayan","Maipakita ang pagpapahalaga sa kulturang Pilipino"],
+                        16 => ["Nakakabasa ng mga tula.","Nauunawaan ang mga binasang tula."],
+                        17 => ["Makabasa ng mga maikling kwento","Maunawaan ang mga binasang maikling kuwento"],
+                        18 => ["Makabasa ng mga balita","Maunawaan ang mga binasang balita","Mahimay ang mahahalagang detalye sa mga binasang balita"],
+                        19 => ["Matukoy ang kahulugan ng editoryal","Makabasa ng artikulong editoryal","Maunawaan ang mga binasang artikulo"],
+                        20 => ["Matukoy ang kahulugan ng artikulong pang-agham at teknolohiya","Makabasa nang may pang-unawa sa mga artikulong pang-agham at teknolohiya","Mahimay ang mga mahahalagang detalye sa mga binasang artikulo"],
+                    ];
+                @endphp
                 <h1 class="text-xl font-bold mb-5"><i class="fa-solid fa-bullseye"></i> Today's Target</h1>
-                
                 <div class="flex flex-col gap-2">
-                    @foreach ($lessonGoals[$lesson->order] as $goal)
+                    @if ($lesson)
+                        @foreach ($lessonGoals[$lesson->order] as $goal)
+                            <div class="relative pl-7">
+                                <i class="absolute left-0 top-[4px] fa-solid fa-circle-check !text-gray-400"></i>
+                                <p>{{$goal}}</p>
+                            </div>
+                        @endforeach
+                    @else
                         <div class="relative pl-7">
                             <i class="absolute left-0 top-[4px] fa-solid fa-circle-check !text-gray-400"></i>
-                            <p>{{$goal}}</p>
+                            <p>Kumpletuhin muna ang pretest upang magsimula.</p>
                         </div>
-                    @endforeach
+                    @endif
                 </div>
             </div>
 
             <div class="card">
                 <h1 class="flex items-center justify-between text-xl font-bold mb-5">
-                    <span>
-                        <i class="fa-solid fa-note-sticky"></i> Notes
-                    </span>
+                    <span><i class="fa-solid fa-note-sticky"></i> Notes</span>
                     <i 
                         class="fa-solid fa-plus cursor-pointer !text-[#F4C300] hover:scale-125"
                         @click="showModal = true; modalTemplate = 'create-note'"
@@ -271,14 +257,13 @@
                 <h1 class="text-xl font-bold mb-5"><i class="fa-solid fa-quote-left"></i> Teacher's Message</h1>
                 <div class="flex-1 flex flex-col justify-between">
                     <p>"{{$message->content ?? 'No message yet.'}}"</p>
-
                     <div class="flex justify-end">
                         <p class="font-bold">- Gng. Beng</p>
-                        <!-- <p class="!text-gray-400 ">3 Days ago</p> -->
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 
     <!-- MODAL -->

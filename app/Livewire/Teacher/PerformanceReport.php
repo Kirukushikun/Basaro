@@ -34,23 +34,27 @@ class PerformanceReport extends Component
         ])->find($studentId);
 
         if ($this->selectedStudent) {
-            // Organize progress data
+            $pretest  = \App\Models\UserTest::getFirstAttempt($this->selectedStudent->id, 'pretest');
+            $posttest = \App\Models\UserTest::getFirstAttempt($this->selectedStudent->id, 'posttest');
+
             $this->studentProgress = [
-                'completed' => $this->selectedStudent->trackings->where('status', 'completed')->count(),
-                'in_progress' => $this->selectedStudent->trackings->where('status', 'in_progress')->count(),
+                'completed'     => $this->selectedStudent->trackings->where('status', 'completed')->count(),
+                'in_progress'   => $this->selectedStudent->trackings->where('status', 'in_progress')->count(),
                 'total_lessons' => Lesson::count(),
                 'average_score' => $this->calculateAverageScore($this->selectedStudent),
-                'lessons' => $this->selectedStudent->trackings->map(function($track) {
+                'pretest'       => $pretest  ? ['score' => $pretest->score,  'attempt' => $pretest->attempt]  : null,
+                'posttest'      => $posttest ? ['score' => $posttest->score, 'attempt' => $posttest->attempt] : null,
+                'lessons'       => $this->selectedStudent->trackings->map(function($track) {
                     return [
-                        'lesson_id' => $track->lesson_id,
+                        'lesson_id'    => $track->lesson_id,
                         'lesson_title' => $track->lesson->title ?? 'Lesson ' . $track->lesson_id,
-                        'status' => $track->status,
-                        'score' => $track->score,
-                        'total_score' => $track->lesson->total_scores ?? 0,
-                        'percentage' => $track->lesson && $track->lesson->total_scores > 0
+                        'status'       => $track->status,
+                        'score'        => $track->score,
+                        'total_score'  => $track->lesson->total_scores ?? 0,
+                        'percentage'   => $track->lesson && $track->lesson->total_scores > 0
                             ? round(($track->score / $track->lesson->total_scores) * 100, 1)
                             : 0,
-                        'attempts' => $track->attempts,
+                        'attempts'     => $track->attempts,
                         'completed_at' => $track->status === 'completed' ? $track->updated_at->format('M d, Y') : null,
                     ];
                 })

@@ -83,16 +83,30 @@ class DashboardStudent extends Component
     public function render()
     {
         try {
-            $lesson = Lesson::findOrFail(Auth::user()->current_lesson);
+            $user = Auth::user();
+            $hasPretest = \App\Models\UserTest::hasFirstAttempt($user->id, 'pretest');
+            $hasPosttest = \App\Models\UserTest::hasFirstAttempt($user->id, 'posttest');
+            $allLessonsComplete = $user->current_lesson > 20 || 
+                                ($user->current_lesson == 20 && $user->current_progress == 100);
+
+            $lesson = null;
+            if ($hasPretest) {
+                $lesson = \App\Models\Lesson::find($user->current_lesson);
+            }
+
             $this->message = DB::table('note')->first() ?? null;
 
         } catch (\Exception $e) {
-            // use reload notification here since render is part of a full reload
             $this->reloadNotif('failed', 'Error', 'Could not load the lesson.');
+            $hasPretest = false;
+            $hasPosttest = false;
+            $allLessonsComplete = false;
             $lesson = null;
         }
 
-        return view('livewire.dashboard-student', compact('lesson'));
+        return view('livewire.dashboard-student', compact(
+            'lesson', 'hasPretest', 'hasPosttest', 'allLessonsComplete'
+        ));
     }
 
     public function deleteNote()

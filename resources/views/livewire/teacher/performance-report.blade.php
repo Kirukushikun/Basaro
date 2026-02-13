@@ -131,7 +131,7 @@
             </div>
 
             <!-- Stats Overview -->
-            <div class="grid grid-cols-4 gap-4 mb-6">
+            <div class="grid grid-cols-4 gap-4 mb-4">
                 <div class="bg-gray-800 p-4 rounded-lg">
                     <div class="text-2xl font-bold text-[#F4C300]">{{ $studentProgress['completed'] ?? 0 }}</div>
                     <div class="text-xs text-gray-400">Completed</div>
@@ -147,6 +147,32 @@
                 <div class="bg-gray-800 p-4 rounded-lg">
                     <div class="text-2xl font-bold text-purple-400">{{ $studentProgress['total_lessons'] ?? 0 }}</div>
                     <div class="text-xs text-gray-400">Total Lessons</div>
+                </div>
+            </div>
+
+            <!-- Pre/Post Test Row -->
+            <div class="grid grid-cols-2 gap-4 mb-6">
+                <div class="bg-gray-800 p-4 rounded-lg flex items-center justify-between">
+                    <div>
+                        <div class="text-xs text-gray-400 mb-1">Pretest Score</div>
+                        @if($studentProgress['pretest'] ?? null)
+                            <div class="text-xl font-bold text-[#F4C300]">{{ $studentProgress['pretest']['score'] }}</div>
+                        @else
+                            <div class="text-xl font-bold text-gray-500">Not taken</div>
+                        @endif
+                    </div>
+                    <i class="fa-solid fa-clipboard-list text-2xl text-gray-600"></i>
+                </div>
+                <div class="bg-gray-800 p-4 rounded-lg flex items-center justify-between">
+                    <div>
+                        <div class="text-xs text-gray-400 mb-1">Posttest Score</div>
+                        @if($studentProgress['posttest'] ?? null)
+                            <div class="text-xl font-bold text-green-400">{{ $studentProgress['posttest']['score'] }}</div>
+                        @else
+                            <div class="text-xl font-bold text-gray-500">Not taken</div>
+                        @endif
+                    </div>
+                    <i class="fa-solid fa-flag-checkered text-2xl text-gray-600"></i>
                 </div>
             </div>
 

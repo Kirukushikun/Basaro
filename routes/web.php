@@ -54,6 +54,11 @@ Route::middleware('auth.custom')->group(function () {
         return view('student.lesson-view', compact('lesson', 'slide'));
     });
 
+    Route::get('/tests', function (Request $request) {
+        $type = $request->type;
+        return view('student.tests', compact('type'));
+    });
+
     Route::get('/achievements', function () {
         return view('student.achievements');
     });
