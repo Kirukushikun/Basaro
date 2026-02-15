@@ -9,7 +9,242 @@
         <link rel="icon" href="{{asset('img/icon.ico')}}" type="image/x-icon" />
         <link rel="stylesheet" href="{{asset('css/teacher.css')}}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    </head>
+    
+        <style>
+          /* ============================================
+          TEACHER MODULE - RESPONSIVE FIXES
+          Paste this at the end of your teacher.css
+          ============================================ */
+
+          /* Mobile First - Base styles for small screens */
+          @media (max-width: 768px) {
+          /* Navigation fixes */
+          nav .logo {
+               padding: 0 1rem;
+          }
+          
+          nav .logo img {
+               width: 100px !important;
+          }
+
+          /* Main content padding */
+          main {
+               padding: 1rem !important;
+          }
+
+          /* Header responsiveness */
+          header {
+               flex-direction: column !important;
+               align-items: flex-start !important;
+               gap: 1rem;
+          }
+
+          header > div:first-child {
+               width: 100%;
+          }
+
+          header > div:last-child {
+               width: 100%;
+               text-align: left;
+          }
+
+          /* Dashboard - Summary Cards */
+          .grid.grid-cols-4 {
+               grid-template-columns: repeat(1, 1fr) !important;
+          }
+
+          /* Dashboard - Main Cards Layout */
+          .main-cards {
+               display: flex !important;
+               flex-direction: column !important;
+               gap: 1.5rem;
+          }
+
+          /* Performance Distribution Chart */
+          .graph > div {
+               padding: 20px !important;
+               padding-bottom: 50px !important;
+          }
+
+          /* Grade Level Overview */
+          .asset-statuses {
+               grid-template-columns: 1fr !important;
+               gap: 1rem !important;
+          }
+
+          /* Top Performers - Stack vertically on mobile */
+          .right-cards > .card:first-child > div.flex.justify-center {
+               flex-direction: column !important;
+               height: auto !important;
+               gap: 1rem;
+          }
+
+          .right-cards > .card:first-child > div.flex.justify-center > div {
+               width: 100% !important;
+          }
+
+          .right-cards > .card:first-child > div.flex.justify-center > div > div {
+               height: 8rem !important;
+          }
+
+          /* Alert and Message Section */
+          .alert-action {
+               flex-direction: column !important;
+          }
+
+          /* Table responsiveness */
+          .table-header {
+               flex-direction: column !important;
+               gap: 1rem;
+               align-items: flex-start !important;
+          }
+
+          .table-header .flex.items-center.gap-3 {
+               width: 100%;
+               flex-direction: column;
+               align-items: stretch !important;
+          }
+
+          .table-header .flex.items-center.gap-3 > * {
+               width: 100%;
+          }
+
+          .table-header button {
+               width: 100%;
+               justify-content: center;
+          }
+
+          /* Make tables scrollable horizontally */
+          .table-container {
+               overflow-x: auto;
+               -webkit-overflow-scrolling: touch;
+          }
+
+          .table-container table {
+               min-width: 800px;
+          }
+
+          /* Modal adjustments */
+          div[x-show="showModal"] > div {
+               width: calc(100% - 2rem) !important;
+               max-width: 26rem;
+               margin: 1rem;
+          }
+
+          /* Settings page */
+          .flex.flex-col.gap-2.w-\\[50\\%\\] {
+               width: 100% !important;
+          }
+
+          /* Performance Report Modal */
+          div.w-\\[50rem\\] {
+               width: calc(100% - 2rem) !important;
+               max-width: 50rem;
+               margin: 1rem;
+               max-height: 90vh;
+          }
+
+          /* Modal stats grid */
+          .grid.grid-cols-4 {
+               grid-template-columns: repeat(2, 1fr) !important;
+          }
+
+          /* Pre/Post test grid */
+          .grid.grid-cols-2 {
+               grid-template-columns: 1fr !important;
+          }
+          }
+
+          /* Tablet - Medium screens */
+          @media (min-width: 769px) and (max-width: 1024px) {
+          /* Dashboard cards - 2 columns on tablet */
+          .grid.grid-cols-4 {
+               grid-template-columns: repeat(2, 1fr) !important;
+          }
+
+          /* Table adjustments */
+          .table-container {
+               overflow-x: auto;
+          }
+
+          .table-container table {
+               min-width: 900px;
+          }
+
+          /* Settings inputs */
+          .flex.flex-col.gap-2.w-\\[50\\%\\] {
+               width: 75% !important;
+          }
+          }
+
+          /* Additional utility fixes */
+          @media (max-width: 640px) {
+          /* Smaller text on very small screens */
+          .text-xl {
+               font-size: 1.125rem !important;
+          }
+
+          .text-lg {
+               font-size: 1rem !important;
+          }
+
+          /* Card padding reduction */
+          .card {
+               padding: 1rem !important;
+          }
+
+          /* Notification positioning */
+          .absolute.top-10.right-10 {
+               top: 1rem !important;
+               right: 1rem !important;
+               left: 1rem;
+               width: auto !important;
+          }
+
+          /* Button text sizes */
+          button.text-xs {
+               font-size: 0.75rem;
+               padding-left: 1rem;
+               padding-right: 1rem;
+          }
+          }
+
+          /* Landscape phone optimization */
+          @media (max-width: 896px) and (orientation: landscape) {
+          main {
+               padding: 0.5rem !important;
+          }
+
+          .card {
+               padding: 1rem !important;
+          }
+
+          /* Reduce modal heights for landscape */
+          div[x-show="showModal"] > div {
+               max-height: 85vh;
+               overflow-y: auto;
+          }
+          }
+
+          /* Print styles */
+          @media print {
+          nav,
+          .table-header button,
+          td i.fa-solid {
+               display: none !important;
+          }
+
+          .table-container {
+               overflow: visible !important;
+          }
+
+          .table-container table {
+               min-width: auto !important;
+          }
+          }
+        </style>
+    
+     </head>
 
     <body>
           <div 

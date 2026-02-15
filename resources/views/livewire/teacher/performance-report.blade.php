@@ -1,3 +1,5 @@
+<!-- Perforamance Report -->
+
 <div
     class="card content flex-1 flex flex-col"
     x-data="{ showModal: false }"
