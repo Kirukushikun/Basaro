@@ -13,7 +13,7 @@
                     <p class="text-sm md:text-base text-yellow-100/80">Subukin ang iyong kasalukuyang antas ng pagbasa bago simulan ang mga aralin. Ang resulta ay makakatulong upang masubaybayan ang iyong pag-unlad.</p>
                 </div>
                 <button
-                    class="w-full sm:w-fit px-5 py-2 bg-yellow-400 !text-black rounded-md font-bold text-sm md:text-base opacity-60 cursor-not-allowed whitespace-nowrap"
+                    class="w-full sm:w-fit px-5 py-2 bg-yellow-400 !text-black rounded-md font-bold text-sm md:text-base hover:bg-yellow-300 transition-colors whitespace-nowrap"
                     onclick="window.location.href='/tests?type=pretest'"
                 >
                     Simulan ang Pretest
@@ -23,7 +23,30 @@
 
         {{-- 20 LESSONS --}}
         @foreach($lessons as $lesson)
+            @php
+                $track = $userTracks[$lesson->id] ?? null;
+
+                // Check if pretest is completed
+                $hasPretestRecord = \App\Models\UserTest::hasFirstAttempt(Auth::id(), 'pretest');
+
+                // Lesson is unlocked if:
+                // - First lesson (order 1) AND pretest completed
+                // - OR user has a track for this lesson
+                // - OR lesson order is <= current unlocked order
+                $isUnlocked = ($lesson->order === 1 && $hasPretestRecord)
+                    || $track
+                    || $lesson->order <= $currentUnlockedOrder;
+            @endphp
+
             <div class="card relative flex flex-col justify-between">
+
+                {{-- LOCK OVERLAY --}}
+                @if(!$isUnlocked)
+                    <div class="absolute inset-0 rounded-2xl bg-black/50 flex items-center justify-center z-10">
+                        <i class="fa-solid fa-lock text-white text-4xl md:text-5xl"></i>
+                    </div>
+                @endif
+
                 <div>
                     <div class="flex items-start justify-between mb-3 md:mb-4 gap-2">
                         <h1 class="text-lg md:text-xl font-bold">{{ $lesson->title }}</h1>
@@ -57,24 +80,63 @@
                 </div>
 
                 <div class="flex flex-col-reverse sm:flex-row items-start sm:items-center justify-between gap-3">
-                    @php
-                        $user = Auth::user();
-                        $isCurrentLesson = $user->current_lesson == $lesson->id;
-                        $progress = $user->current_progress;
-                    @endphp
+                    @if($track && $track->status === 'completed')
+                        {{-- Retry button for completed lessons --}}
+                        <button
+                            class="w-full sm:w-fit px-3 md:px-4 py-2 bg-[#F4C300] !text-black rounded-md font-bold text-sm md:text-base {{ !$isUnlocked ? 'opacity-50 cursor-not-allowed' : 'hover:bg-yellow-300 transition-colors' }}"
+                            @if(!$isUnlocked) disabled @endif
+                            onclick="window.location.href='/lesson-view?lesson={{ encrypt($lesson->id) }}&slide=first-slide'"
+                        >
+                            Retry Lesson
+                        </button>
+                    @else
+                        {{-- Start button for new/in-progress lessons --}}
+                        <button
+                            class="w-full sm:w-fit px-3 md:px-4 py-2 bg-[#F4C300] !text-black rounded-md font-bold text-sm md:text-base {{ !$isUnlocked ? 'opacity-50 cursor-not-allowed' : 'hover:bg-yellow-300 transition-colors' }}"
+                            @if(!$isUnlocked) disabled @endif
+                            onclick="window.location.href='/lesson-view?lesson={{ encrypt($lesson->id) }}&slide=first-slide'"
+                        >
+                            Start Lesson
+                        </button>
+                    @endif
 
-                    <button
-                        class="w-full sm:w-fit px-3 md:px-4 py-2 bg-[#F4C300] !text-black rounded-md font-bold text-sm md:text-base"
-                        onclick="window.location.href='/lesson-view?lesson={{ encrypt($lesson->id) }}&slide=first-slide'"
-                    >
-                        Start Lesson
-                    </button>
+                    {{-- Score display --}}
+                    @if($track && $track->status === 'completed')
+                        @php
+                            $passingScore = $lesson->total_scores * 0.70;
+                            $isPassing = $track->score > $passingScore;
+                        @endphp
+                        <p class="text-sm md:text-base {{ $isPassing ? 'text-green-400' : 'text-red-400' }}">
+                            {{ $track->score }} / {{ $lesson->total_scores }}
+                        </p>
+                    @elseif(!$isUnlocked)
+                        <p class="text-sm md:text-base text-white/40">
+                            <i class="fa-solid fa-lock mr-1"></i> Locked
+                        </p>
+                    @else
+                        <p class="text-sm md:text-base text-white/60">
+                            Not started
+                        </p>
+                    @endif
                 </div>
             </div>
         @endforeach
 
         {{-- POSTTEST CARD --}}
+        @php
+            // Check if all 20 lessons are completed with passing scores
+            $allLessonsCompleted = $currentUnlockedOrder > 20;
+        @endphp
+
         <div class="card relative flex flex-col justify-between col-span-1 sm:col-span-2 lg:col-span-3 border-2 border-blue-400 bg-gradient-to-r from-blue-950 to-blue-900">
+            
+            {{-- LOCK OVERLAY for posttest --}}
+            @if(!$allLessonsCompleted)
+                <div class="absolute inset-0 rounded-2xl bg-black/50 flex items-center justify-center z-10">
+                    <i class="fa-solid fa-lock text-white text-4xl md:text-5xl"></i>
+                </div>
+            @endif
+
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                     <div class="flex items-center gap-3 mb-2">
@@ -85,7 +147,8 @@
                     <p class="text-sm md:text-base text-blue-100/80">Pagkatapos makumpleto ang lahat ng aralin, subukin ang iyong pag-unlad sa pamamagitan ng posttest. Makikita mo kung gaano ka na kahusay nagbasa!</p>
                 </div>
                 <button
-                    class="w-full sm:w-fit px-5 py-2 bg-blue-400 !text-black rounded-md font-bold text-sm md:text-base opacity-60 cursor-not-allowed whitespace-nowrap"
+                    class="w-full sm:w-fit px-5 py-2 bg-blue-400 !text-black rounded-md font-bold text-sm md:text-base whitespace-nowrap {{ !$allLessonsCompleted ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-300 transition-colors' }}"
+                    @if(!$allLessonsCompleted) disabled @endif
                     onclick="window.location.href='/tests?type=posttest'"
                 >
                     Simulan ang Posttest

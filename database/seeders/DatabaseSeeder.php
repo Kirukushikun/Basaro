@@ -51,6 +51,26 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password123'),
         ]);
 
+        // =====================================================
+        // School-based student accounts for pilot testing
+        // =====================================================
+        $schools = [
+            'CRHS'  => 15,  // 15 students
+            'MNHS'  => 7,   // 7 students
+            'SIIS'  => 22,  // 22 students
+            'OCNHS' => 46,  // 46 students
+        ];
+
+        foreach ($schools as $school => $count) {
+            for ($i = 1; $i <= $count; $i++) {
+                User::create([
+                    'name'     => "{$school}{$i}@gmail.com",
+                    'email'    => "{$school}{$i}@gmail.com",
+                    'password' => Hash::make('basaro2026'),
+                ]);
+            }
+        }
+
         $lessonTitles = [
             'Ang Alpabetong Filipino',
             'Ang Mga Patinig',

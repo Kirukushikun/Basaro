@@ -130,7 +130,7 @@
                 </div>
 
                 <!-- Menu Links -->
-                <div class="flex flex-col p-4 space-y-4">
+                <div class="flex flex-col p-4 space-y-4" x-data="{ refsOpen: false }">
                     <a href="/dashboard" class="!text-base sm:!text-lg py-3 px-4 rounded-lg transition-colors {{ request()->is('dashboard*') ? 'bg-[#F4C300] text-black font-bold' : 'text-white hover:bg-gray-700' }}">
                         <i class="fa-solid fa-house mr-3"></i>Dashboard
                     </a>
@@ -143,6 +143,39 @@
                     <a href="/profile" class="!text-base sm:!text-lg py-3 px-4 rounded-lg transition-colors {{ request()->is('profile*') ? 'bg-[#F4C300] text-black font-bold' : 'text-white hover:bg-gray-700' }}">
                         <i class="fa-solid fa-user mr-3"></i>Profile
                     </a>
+
+                    <!-- References Collapsible -->
+                    <div>
+                        <button 
+                            @click="refsOpen = !refsOpen"
+                            class="w-full !text-base sm:!text-lg py-3 px-4 rounded-lg transition-colors flex items-center justify-between {{ request()->is('references*') ? 'bg-[#F4C300] text-black font-bold' : 'text-white hover:bg-gray-700' }}"
+                        >
+                            <span>
+                                <i class="fa-solid fa-book mr-3"></i>References
+                            </span>
+                            <i class="fa-solid fa-chevron-down transition-transform duration-300" :class="refsOpen ? 'rotate-180' : ''"></i>
+                        </button>
+
+                        <!-- Submenu -->
+                        <div 
+                            x-show="refsOpen"
+                            x-transition:enter="transition ease-out duration-200"
+                            x-transition:enter-start="opacity-0 -translate-y-2"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            x-transition:leave="transition ease-in duration-150"
+                            x-transition:leave-start="opacity-100 translate-y-0"
+                            x-transition:leave-end="opacity-0 -translate-y-2"
+                            class="mt-1 ml-4 flex flex-col space-y-1"
+                            style="display: none;"
+                        >
+                            <a href="/references/abakada" class="!text-sm sm:!text-base py-2 px-4 rounded-lg transition-colors">
+                                <i class="fa-solid fa-file mr-3"></i>Abakada
+                            </a>
+                            <a href="/references/marungko" class="!text-sm sm:!text-base py-2 px-4 rounded-lg transition-colors">
+                                <i class="fa-solid fa-file mr-3"></i>Marungko
+                            </a>
+                        </div>
+                    </div>
                     
                     <!-- Logout -->
                     <div class="pt-4 mt-auto border-t border-gray-700">

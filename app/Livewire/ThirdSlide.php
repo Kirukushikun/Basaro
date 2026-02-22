@@ -1147,7 +1147,7 @@ class ThirdSlide extends Component
                 'type' => 'riddle',
                 'text' => 'Isang prinsesa, Nakaupo sa tasa.',
                 'question' => 'Ano ito?',
-                'answer' => 'tsa',
+                'answer' => 'kasoy',
             ],
         ],
 

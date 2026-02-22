@@ -66,6 +66,13 @@ Route::middleware('auth.custom')->group(function () {
     Route::get('/profile', function () {
         return view('student.profile');
     });
+
+    Route::get('/references/{type}', function ($type) {
+        if (!in_array($type, ['abakada', 'marungko'])) {
+            abort(404);
+        }
+        return view('student.references', ['type' => $type]);
+    });
 });
 
 Route::middleware('auth:teacher')->group(function () {

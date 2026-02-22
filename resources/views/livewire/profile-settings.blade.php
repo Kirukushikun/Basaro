@@ -51,7 +51,7 @@
     </div>
 
     <!-- Update Password Card -->
-    <div class="card flex flex-col gap-5">
+    <div class="card flex flex-col gap-5 mb-5">
         <div class="">
             <h1 class="text-xl font-bold">Update Password</h1>
             <p class="text-[#ADADAD]">Ensure your account is using a long, unique password to stay secure</p>
@@ -108,6 +108,38 @@
         >
             UPDATE PASSWORD
         </button>
+    </div>
+
+    <!-- Reading References Card -->
+    <div class="card flex flex-col gap-5">
+        <div class="">
+            <h1 class="text-xl font-bold">Reading References</h1>
+            <p class="text-[#ADADAD]">Explore foundational reading methods used in Filipino education</p>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Marungko Card -->
+            <a href="/references/marungko" class="group flex items-center gap-4 p-4 rounded-lg border border-white/10 bg-white/5 hover:border-[#F4C300]/50 hover:bg-white/10 transition-all">
+                <div class="w-12 h-12 rounded-lg bg-[#F4C300] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-graduation-cap text-black text-xl"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-white group-hover:text-[#F4C300] transition-colors">Pamamaraang Marungko</h3>
+                    <p class="text-xs text-white/60">Phono-syllabic reading method</p>
+                </div>
+            </a>
+
+            <!-- Abakada Card -->
+            <a href="/references/abakada" class="group flex items-center gap-4 p-4 rounded-lg border border-white/10 bg-white/5 hover:border-[#F4C300]/50 hover:bg-white/10 transition-all">
+                <div class="w-12 h-12 rounded-lg bg-[#F4C300] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-book-open text-black text-xl"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-white group-hover:text-[#F4C300] transition-colors">Aklat ng Abakada</h3>
+                    <p class="text-xs text-white/60">Traditional Filipino alphabet</p>
+                </div>
+            </a>
+        </div>
     </div>
 
     <form action="{{ route('logout') }}" method="POST">
