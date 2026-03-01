@@ -139,10 +139,26 @@
                     </div>
                </header>
 
-               <br>
-
                @yield('content')
           </main>
+
+<nav class="bottom-nav">
+    <a href="/teacher/dashboard" class="{{ request()->is('teacher/dashboard*') ? 'active' : '' }}">
+        <span><i class="fa-solid fa-house-chimney"></i></span>
+    </a>
+    <a href="/teacher/studentmanagement" class="{{ request()->is('teacher/studentmanagement*') ? 'active' : '' }}">
+        <span><i class="fa-solid fa-graduation-cap"></i></span>
+    </a>
+    <a href="/teacher/teachermanagement" class="{{ request()->is('teacher/teachermanagement*') ? 'active' : '' }}">
+        <span><i class="fa-solid fa-user-tie"></i></span>
+    </a>
+    <a href="/teacher/performancereport" class="{{ request()->is('teacher/performancereport*') ? 'active' : '' }}">
+        <span><i class="fa-solid fa-star"></i></span>
+    </a>
+    <a href="/teacher/settings" class="{{ request()->is('teacher/settings*') ? 'active' : '' }}">
+        <span><i class="fa-solid fa-gear"></i></span>
+    </a>
+</nav>
 
           <script src="{{ asset('js/teacher.js') }}" defer></script>
           @livewireScripts

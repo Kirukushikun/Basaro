@@ -72,6 +72,14 @@
                 @endforelse
             </tbody>
         </table>
+
+        <div class="flex justify-between items-center pt-3 mt-auto text-sm text-gray-400 border-t border-gray-600">
+            <span>Showing {{ $students->firstItem() }}–{{ $students->lastItem() }} of {{ $students->total() }}</span>
+            <div class="flex gap-2">
+                {{-- {{ $students->links() }} → swap this in when ready --}}
+                <span class="opacity-40 italic">Pagination coming soon</span>
+            </div>
+        </div>
     </div>
 
     <!-- Backdrop -->

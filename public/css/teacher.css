@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito:wght@200..1000&display=swap');
+
 /* ========== Global Theme Variables ========== */
 :root {
     --primary-color: #F4C300;
@@ -6,8 +7,9 @@
     --light-text-color: #ADADAD;
     --body-color: #242529;
     --card-color: #31343A;
+    --bottom-nav-height: 68px;
 
-     /* Table Colors */
+    /* Table Colors */
     --table-bg: var(--color-gray-50);
     --table-header-bg: var(--color-gray-100);
     --table-cell-bg: #31343A;
@@ -24,7 +26,6 @@
 * {
     box-sizing: border-box;
     font-family: "Nunito";
-    /* color: #2d3748; */
     transition: 0.3s ease;
 }
 
@@ -33,22 +34,18 @@ body {
     gap: 50px;
     padding: 40px 30px;
     height: 100vh;
+    overflow: hidden; /* lock page-level scroll — table scrolls internally */
     background-color: #242529;
     color: white;
 }
 
-@media (max-width: 1023px) {
-    body {
-        height: auto;
-    }
-}
-
-/* SIDEBAR */
-nav {
+/* ========== SIDEBAR (desktop) ========== */
+body > nav:not(.bottom-nav) {
     width: 280px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    flex-shrink: 0;
 }
 
 .logo {
@@ -110,7 +107,6 @@ nav {
 }
 
 .sidebar a:hover {
-    /* background-color: #20c997; */
     transform: scale(1.1);
 }
 
@@ -146,15 +142,94 @@ nav.collapsed .logo button {
     left: 20px;
 }
 
+/* ========== BOTTOM NAV (mobile only) ========== */
+.bottom-nav {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    body > nav:not(.bottom-nav) {
+        display: none;
+    }
+
+    body {
+        gap: 0;
+        padding: 16px 16px calc(var(--bottom-nav-height) + 16px) 16px;
+        flex-direction: column;
+        height: auto;       /* let page scroll on mobile */
+        overflow: visible;  /* restore natural scroll on mobile */
+    }
+
+    .bottom-nav {
+        display: flex;
+        flex-direction: row;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: var(--bottom-nav-height);
+        background-color: var(--card-color);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+        z-index: 200;
+        align-items: stretch;
+        overflow: hidden;
+    }
+
+    .bottom-nav a {
+        flex: 1 1 0;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        padding: 8px 0;
+        border-radius: 0;
+        transition: 0.2s ease;
+    }
+
+    .bottom-nav a p {
+        display: none;
+    }
+
+    .bottom-nav a span {
+        padding: 9px 11px;
+        border-radius: 12px;
+        background-color: transparent;
+        transition: background-color 0.2s ease;
+    }
+
+    .bottom-nav a span i {
+        font-size: 1.1rem;
+        color: var(--light-text-color);
+        transition: color 0.2s ease;
+    }
+
+    .bottom-nav a.active span {
+        background-color: var(--primary-color);
+    }
+
+    .bottom-nav a.active span i {
+        color: white;
+    }
+
+    .bottom-nav a:hover span {
+        background-color: rgba(244, 195, 0, 0.15);
+    }
+
+    .bottom-nav a:hover span i {
+        color: var(--primary-color);
+    }
+}
+
+/* ========== Cards ========== */
 .card {
     padding: 25px;
     border-radius: 20px;
     background-color: #31343A;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
 }
-/* .card:hover {
-    box-shadow: 0 0 10px rgba(151, 165, 161, 0.3);
-} */
 
 .main-cards {
     display: grid;
@@ -163,26 +238,33 @@ nav.collapsed .logo button {
     height: 100%;
 }
 
-
 /* ========== Table Container ========== */
 .table-container {
-    /* overflow-x: auto;
-    overflow-y: auto; */
     border-radius: 10px 10px 0 0;
     position: relative;
+
+    /*
+     * These three lines are the whole fix:
+     * flex:1       → grow to fill remaining card height
+     * min-height:0 → allow shrinking below content size (flex gotcha)
+     * overflow-y   → scroll inside the box, not the page
+     */
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: auto; /* horizontal scroll on narrow screens */
 }
 
-/* Scrollbar Styling */
 .table-container::-webkit-scrollbar {
-    height: 15px;
-    width: 15px;
+    height: 8px;
+    width: 8px;
 }
 .table-container::-webkit-scrollbar-track {
-    background: var(--scrollbar-track);
+    background: var(--card-color);
     border-radius: 5px;
 }
 .table-container::-webkit-scrollbar-thumb {
-    background: var(--scrollbar-thumb);
+    background: var(--light-text-color);
     border-radius: 5px;
     cursor: pointer;
 }
@@ -190,11 +272,18 @@ nav.collapsed .logo button {
 /* ========== Table Styles ========== */
 .table-container table {
     width: 100%;
+    height: 100%; /* stretch table to fill container when there are few rows */
     border-collapse: collapse;
     text-align: left;
 }
 
-/* Table Header */
+/* Sticky header needs background since it floats over scrolling rows */
+.table-container table thead {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
 .table-container table th {
     text-align: start;
     padding: 15px 0;
@@ -202,30 +291,10 @@ nav.collapsed .logo button {
     font-weight: 800;
     color: var(--table-header-text-color);
     white-space: nowrap;
-    position: sticky;
-    top: 0;
-    z-index: 2;
+    background-color: var(--table-cell-bg);
     border-bottom: solid 2px #ADADAD;
 }
 
-/* Sticky Columns */
-/* thead th:first-child,
-tbody td:first-child {
-     position: sticky;
-     left: 0;
-     z-index: 3;
-     background: var(--table-cell-bg);
-}
-
-thead th:last-child,
-tbody td:last-child {
-     position: sticky;
-     right: 0;
-     z-index: 3;
-     background: var(--table-cell-bg);
-} */
-
-/* Table Body */
 .table-container table td {
     white-space: nowrap;
     padding: 15px 0;
@@ -237,7 +306,6 @@ tbody td:last-child {
     font-size: 14px;
 }
 
-/* Hover Effect */
 .table-container table tr:hover td {
     background: var(--table-hover-bg);
 }
@@ -268,19 +336,18 @@ tbody td:last-child {
     transform: scale(1.1);
 }
 
-
 /* ========== Input Styles ========== */
-.input-group{
+.input-group {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
-.input-group label{
+.input-group label {
     position: relative;
     font-size: 15px;
     font-weight: 600;
 }
-.input-group label span{
+.input-group label span {
     left: 5px;
     bottom: -16px;
     background: white;
@@ -289,7 +356,7 @@ tbody td:last-child {
     position: absolute;
     color: var(--color-red-400);
 }
-.input-group input, .input-group select{
+.input-group input, .input-group select {
     background-color: #f8f9fa;
     border: solid 1px #c2c4c7;
     border-radius: 5px;
@@ -297,7 +364,7 @@ tbody td:last-child {
     outline: none;
 }
 
-.input-group textarea{
+.input-group textarea {
     background-color: #f8f9fa;
     border: solid 1px #c2c4c7;
     border-radius: 5px;
@@ -307,11 +374,11 @@ tbody td:last-child {
     height: 130px;
 }
 
-button{
-     cursor: pointer;
+button {
+    cursor: pointer;
 }
 
-/* Scrollbar Styling */
+/* ========== Scrollbar Styling ========== */
 .scrolling::-webkit-scrollbar {
     height: 15px;
     width: 15px;

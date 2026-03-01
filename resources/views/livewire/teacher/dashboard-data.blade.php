@@ -39,8 +39,6 @@
           </div>
      </div>
 
-     <br />
-
      <!-- Main Cards -->
      <div class="main-cards h-full grid-cols-1 lg:grid-cols-[calc(35%-10px)_calc(65%-10px)]">
           <!-- Left Card -->

@@ -200,7 +200,7 @@ class StudentManagement extends Component
                 });
             })
             ->latest()
-            ->get();
+            ->paginate(15);
 
         $teachers = Teacher::where('is_disabled', false)->get();
 
