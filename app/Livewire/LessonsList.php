@@ -33,8 +33,8 @@ class LessonsList extends Component
                 return false;
             }
             
-            // Calculate if score is passing (>70%)
-            $passingScore = $lesson->total_scores * 0.70;
+            // Calculate if score is passing (>60%)
+            $passingScore = $lesson->total_scores * 0.60;
             return $track->score > $passingScore;
         });
 

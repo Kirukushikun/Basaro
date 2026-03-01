@@ -1,4 +1,4 @@
-t<script>
+<script>
     window.pagsasanay1Questions = @json($questions);
 </script>
 
