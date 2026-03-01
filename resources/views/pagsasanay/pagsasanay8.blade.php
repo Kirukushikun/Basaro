@@ -15,7 +15,7 @@
 
     get regularQuestions() {
         return questions.filter(q => q.type !== 'panuto');
-    }
+    },
 
     get isPanuto() {
         return this.current && this.current.type === 'panuto';
