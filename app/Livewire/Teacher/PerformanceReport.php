@@ -12,11 +12,18 @@ class PerformanceReport extends Component
     use WithPagination;
 
     public $search = '';
-    public $perPage = 10;
+    public $perPage = 8;
     
     // For student detail modal
     public $selectedStudent = null;
     public $studentProgress = [];
+
+    protected $paginationTheme = 'tailwind';
+
+    public function goToPage($page)
+    {
+       $this->setPage($page);
+    }
 
     // Real-time search
     public function updatedSearch()

@@ -2,7 +2,7 @@
     class="card content flex-1 flex flex-col"
     x-data="{ showModal: false }"
 >
-    <div class="table-header flex justify-between items-center">
+    <div class="table-header flex justify-between items-center mb-4">
         <h1 class="text-lg font-bold">Performance Report</h1>
         <div class="flex items-center gap-3">
             <div class="border border-2 border-gray-500 px-3 py-1 rounded-md">
@@ -18,6 +18,7 @@
         </div>
     </div>
 
+    {{-- Table scrolls independently; pagination stays pinned below it --}}
     <div class="table-container">
         <table>
             <thead>
@@ -94,8 +95,10 @@
         </table>
     </div>
 
-    <!-- Pagination -->
-
+    {{-- Pagination is OUTSIDE .table-container so it stays pinned at the card bottom --}}
+    <div class="pt-3 border-t border-gray-600 flex-shrink-0">
+        <x-pagination :paginator="$students" />
+    </div>
 
     <!-- Backdrop -->
     <div x-show="showModal" x-transition.opacity class="fixed inset-0 bg-black/30 z-40" @click="showModal = false; $wire.closeModal()"></div>

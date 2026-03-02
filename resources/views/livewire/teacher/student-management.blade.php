@@ -2,7 +2,7 @@
     class="card content flex-1 flex flex-col"
     x-data="{ showModal: false, modalTemplate: '' }"
 >
-    <div class="table-header flex justify-between items-center">
+    <div class="table-header flex justify-between items-center mb-4">
         <h1 class="text-lg font-bold">Student List</h1>
         <div class="flex items-center gap-3">
             <div class="border border-2 border-gray-500 px-3 py-1 rounded-md">
@@ -19,6 +19,7 @@
         </div>
     </div>
 
+    {{-- Table scrolls independently; pagination stays pinned below it --}}
     <div class="table-container">
         <table>
             <thead>
@@ -72,14 +73,11 @@
                 @endforelse
             </tbody>
         </table>
+    </div>
 
-        <div class="flex justify-between items-center pt-3 mt-auto text-sm text-gray-400 border-t border-gray-600">
-            <span>Showing {{ $students->firstItem() }}–{{ $students->lastItem() }} of {{ $students->total() }}</span>
-            <div class="flex gap-2">
-                {{-- {{ $students->links() }} → swap this in when ready --}}
-                <span class="opacity-40 italic">Pagination coming soon</span>
-            </div>
-        </div>
+    {{-- Pagination is OUTSIDE .table-container so it stays pinned at the card bottom --}}
+    <div class="pt-3 border-t border-gray-600 flex-shrink-0">
+        <x-pagination :paginator="$students" />
     </div>
 
     <!-- Backdrop -->

@@ -7,9 +7,13 @@ use App\Models\User;
 use App\Models\Teacher;
 use Exception;
 use Illuminate\Support\Facades\Hash;
+use Livewire\WithPagination;
 
 class StudentManagement extends Component
 {
+
+    use WithPagination;
+
     public $target;
     public $fullname, $username, $password, $grade_level, $assigned_teacher;
     public $search = '';
@@ -27,6 +31,13 @@ class StudentManagement extends Component
         'grade_level' => 'required|string|max:50',
         'assigned_teacher' => 'nullable|string|max:255',
     ];
+
+    protected $paginationTheme = 'tailwind';
+
+    public function goToPage($page)
+    {
+       $this->setPage($page);
+    }
 
     // Real-time search
     public function updatedSearch()
@@ -200,7 +211,7 @@ class StudentManagement extends Component
                 });
             })
             ->latest()
-            ->paginate(15);
+            ->paginate(8);
 
         $teachers = Teacher::where('is_disabled', false)->get();
 

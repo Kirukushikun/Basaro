@@ -7,9 +7,12 @@ use App\Models\Teacher;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Livewire\WithPagination;
 
 class TeacherManagement extends Component
 {
+    use WithPagination;
+
     public $target;
     public $fullname, $username, $password, $role;
     public $search = '';
@@ -26,6 +29,13 @@ class TeacherManagement extends Component
         'password' => 'required|string|min:6',
         'role' => 'required|in:teacher,admin',
     ];
+
+    protected $paginationTheme = 'tailwind';
+
+    public function goToPage($page)
+    {
+       $this->setPage($page);
+    }
 
     // Real-time search
     public function updatedSearch()
@@ -226,7 +236,7 @@ class TeacherManagement extends Component
                 });
             })
             ->latest()
-            ->get();
+            ->paginate(8);
 
         return view('livewire.teacher.teacher-management', [
             'teachers' => $teachers,

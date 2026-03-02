@@ -110,8 +110,9 @@
                </aside>
           </nav>
 
-          <!-- Subject to tailwind -->
-          <main class="size-full flex flex-col">
+          {{-- min-w-0 prevents flex child from overflowing its parent (the key fix for width tracking vw) --}}
+          {{-- overflow-hidden completes the flex chain so .table-container can scroll internally --}}
+          <main class="min-w-0 overflow-hidden size-full flex flex-col">
                <header class="flex justify-between">
                     <div>
                          <div class="text-sm text-gray-400">Pages / <span>Header</span></div>
@@ -142,23 +143,23 @@
                @yield('content')
           </main>
 
-<nav class="bottom-nav">
-    <a href="/teacher/dashboard" class="{{ request()->is('teacher/dashboard*') ? 'active' : '' }}">
-        <span><i class="fa-solid fa-house-chimney"></i></span>
-    </a>
-    <a href="/teacher/studentmanagement" class="{{ request()->is('teacher/studentmanagement*') ? 'active' : '' }}">
-        <span><i class="fa-solid fa-graduation-cap"></i></span>
-    </a>
-    <a href="/teacher/teachermanagement" class="{{ request()->is('teacher/teachermanagement*') ? 'active' : '' }}">
-        <span><i class="fa-solid fa-user-tie"></i></span>
-    </a>
-    <a href="/teacher/performancereport" class="{{ request()->is('teacher/performancereport*') ? 'active' : '' }}">
-        <span><i class="fa-solid fa-star"></i></span>
-    </a>
-    <a href="/teacher/settings" class="{{ request()->is('teacher/settings*') ? 'active' : '' }}">
-        <span><i class="fa-solid fa-gear"></i></span>
-    </a>
-</nav>
+               <nav class="bottom-nav">
+                    <a href="/teacher/dashboard" class="{{ request()->is('teacher/dashboard*') ? 'active' : '' }}">
+                         <span><i class="fa-solid fa-house-chimney"></i></span>
+                    </a>
+                    <a href="/teacher/studentmanagement" class="{{ request()->is('teacher/studentmanagement*') ? 'active' : '' }}">
+                         <span><i class="fa-solid fa-graduation-cap"></i></span>
+                    </a>
+                    <a href="/teacher/teachermanagement" class="{{ request()->is('teacher/teachermanagement*') ? 'active' : '' }}">
+                         <span><i class="fa-solid fa-user-tie"></i></span>
+                    </a>
+                    <a href="/teacher/performancereport" class="{{ request()->is('teacher/performancereport*') ? 'active' : '' }}">
+                         <span><i class="fa-solid fa-star"></i></span>
+                    </a>
+                    <a href="/teacher/settings" class="{{ request()->is('teacher/settings*') ? 'active' : '' }}">
+                         <span><i class="fa-solid fa-gear"></i></span>
+                    </a>
+               </nav>
 
           <script src="{{ asset('js/teacher.js') }}" defer></script>
           @livewireScripts
