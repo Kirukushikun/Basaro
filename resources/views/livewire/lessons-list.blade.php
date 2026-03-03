@@ -103,7 +103,7 @@
                     {{-- Score display --}}
                     @if($track && $track->status === 'completed')
                         @php
-                            $passingScore = $lesson->total_scores * 0.70;
+                            $passingScore = $lesson->total_scores * 0.60;
                             $isPassing = $track->score > $passingScore;
                         @endphp
                         <p class="text-sm md:text-base {{ $isPassing ? 'text-green-400' : 'text-red-400' }}">
