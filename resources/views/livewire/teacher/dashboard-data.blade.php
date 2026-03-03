@@ -42,7 +42,7 @@
      <br>
 
      <!-- Main Cards -->
-     <div class="main-cards flex-1 min-h-0 grid-cols-1 lg:grid-cols-[calc(35%-10px)_calc(65%-10px)] pr-10">
+     <div class="main-cards flex-1 min-h-0 grid-cols-1 lg:grid-cols-[calc(35%-10px)_calc(65%-10px)]">
           <!-- Left Card -->
           <div class="card flex flex-col gap-5 min-h-0 overflow-y-auto">
                <h1 class="text-xl font-bold mb-2">Performance Distribution</h1>
