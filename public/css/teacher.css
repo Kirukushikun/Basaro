@@ -112,7 +112,7 @@ body > nav:not(.bottom-nav) {
 }
 
 /* COLLAPSED STATE */
-nav.collapsed {
+body > nav:not(.bottom-nav).collapsed {   /* ← match specificity */
     width: 80px;
 }
 
@@ -131,15 +131,21 @@ nav.collapsed .sidebar a i {
 nav.collapsed .sidebar a span + * {
     display: none;
 }
+
 nav.collapsed .logo {
     display: flex;
     justify-content: center;
 }
+
+nav.collapsed .logo .img-logo {
+    display: none;
+}
+
 nav.collapsed .logo p {
     display: none;
 }
 
-nav.collapsed .logo button {
+nav.collapsed .logo button {   /* ← this was missing */
     left: 20px;
 }
 
