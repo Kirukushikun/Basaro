@@ -1,4 +1,4 @@
-<div class="content flex-1 flex flex-col">
+<div class="flex-1 overflow-y-auto scrolling pr-5">
      <!-- Summary Cards -->
      <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4 text-white">
           <div class="px-6 py-5 rounded-xl bg-[#31343A] shadow-sm flex justify-between items-center hover:-translate-y-2 hover:shadow-lg transition-all duration-200">
@@ -42,9 +42,9 @@
      <br>
 
      <!-- Main Cards -->
-     <div class="main-cards h-full grid-cols-1 lg:grid-cols-[calc(35%-10px)_calc(65%-10px)]">
+     <div class="main-cards flex-1 min-h-0 grid-cols-1 lg:grid-cols-[calc(35%-10px)_calc(65%-10px)] pr-10">
           <!-- Left Card -->
-          <div class="card flex flex-col gap-5">
+          <div class="card flex flex-col gap-5 min-h-0 overflow-y-auto">
                <h1 class="text-xl font-bold mb-2">Performance Distribution</h1>
                <div class="graph">
                     <div class="flex items-end bg-[#222427] rounded-xl p-[40px] pb-[65px] font-sans h-80 w-full">
@@ -125,7 +125,7 @@
           </div>
 
           <!-- Right Cards -->
-          <div class="right-cards flex flex-col gap-7">
+          <div class="right-cards flex flex-col gap-7 min-h-0">
                <div class="card flex flex-col">
                     <h1 class="text-xl font-bold mb-5">Top Performing Students</h1>
 
@@ -165,7 +165,7 @@
                     @endif
                </div>
 
-               <div class="alert-action flex-1 flex flex-col md:flex-row gap-7">
+               <div class="alert-action flex-1 flex flex-col md:flex-row gap-7 min-h-0 overflow-hidden">
                     <div class="card flex-1">
                          <h1 class="text-xl font-bold mb-5">Alerts</h1>
                          <div class="pl-5 flex flex-col gap-5">
@@ -192,62 +192,62 @@
                          </div>
                     </div>
                     
-<div class="card !bg-[#F4C300] flex-1 flex flex-col gap-3">
-     <div class="flex justify-between items-center">
-          <h1 class="text-xl text-black font-bold">Message of the day</h1>
-          
-          @if(!$isEditing)
-               <button 
-                    wire:click="editMessage"
-                    class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition text-sm font-medium"
-               >
-                    Edit
-               </button>
-          @endif
-     </div>
+                    <div class="card !bg-[#F4C300] flex-1 flex flex-col gap-3">
+                         <div class="flex justify-between items-center">
+                              <h1 class="text-xl text-black font-bold">Message of the day</h1>
+                              
+                              @if(!$isEditing)
+                                   <button 
+                                        wire:click="editMessage"
+                                        class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition text-sm font-medium"
+                                   >
+                                        Edit
+                                   </button>
+                              @endif
+                         </div>
 
-     @if(session()->has('message'))
-          <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded text-sm">
-               {{ session('message') }}
-          </div>
-     @endif
+                         @if(session()->has('message'))
+                              <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded text-sm">
+                                   {{ session('message') }}
+                              </div>
+                         @endif
 
-     <!-- Sticky note textarea with lines -->
-     <textarea 
-          wire:model="messageOfTheDay"
-          @if(!$isEditing) readonly @endif
-          class="w-full flex-1 bg-transparent border-none rounded-sm text-gray-800 resize-none focus:outline-none focus:ring-0 {{ !$isEditing ? 'cursor-default' : '' }}" 
-          placeholder="Write your message here..."
-          style="
-               font-family: 'Indie Flower', 'Comic Sans MS', cursive; 
-               line-height: 2rem;
-               background-image: repeating-linear-gradient(
-                    transparent,
-                    transparent 1.9rem,
-                    rgba(0, 0, 0, 0.15) 1.9rem,
-                    rgba(0, 0, 0, 0.15) 2rem
-               );
-               background-size: 100% 2rem;
-          "
-     ></textarea>
+                         <!-- Sticky note textarea with lines -->
+                         <textarea 
+                              wire:model="messageOfTheDay"
+                              @if(!$isEditing) readonly @endif
+                              class="w-full flex-1 bg-transparent border-none rounded-sm text-gray-800 resize-none focus:outline-none focus:ring-0 {{ !$isEditing ? 'cursor-default' : '' }}" 
+                              placeholder="Write your message here..."
+                              style="
+                                   font-family: 'Indie Flower', 'Comic Sans MS', cursive; 
+                                   line-height: 2rem;
+                                   background-image: repeating-linear-gradient(
+                                        transparent,
+                                        transparent 1.9rem,
+                                        rgba(0, 0, 0, 0.15) 1.9rem,
+                                        rgba(0, 0, 0, 0.15) 2rem
+                                   );
+                                   background-size: 100% 2rem;
+                              "
+                         ></textarea>
 
-     @if($isEditing)
-          <div class="flex gap-2 justify-end">
-               <button 
-                    wire:click="cancelEdit"
-                    class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition text-sm font-medium"
-               >
-                    Cancel
-               </button>
-               <button 
-                    wire:click="saveMessageOfTheDay"
-                    class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition text-sm font-medium"
-               >
-                    Save
-               </button>
-          </div>
-     @endif
-</div>
+                         @if($isEditing)
+                              <div class="flex gap-2 justify-end">
+                                   <button 
+                                        wire:click="cancelEdit"
+                                        class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition text-sm font-medium"
+                                   >
+                                        Cancel
+                                   </button>
+                                   <button 
+                                        wire:click="saveMessageOfTheDay"
+                                        class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition text-sm font-medium"
+                                   >
+                                        Save
+                                   </button>
+                              </div>
+                         @endif
+                    </div>
                </div>
           </div>
      </div>

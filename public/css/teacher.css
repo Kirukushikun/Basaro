@@ -1,32 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito:wght@200..1000&display=swap');
 
-/* ========== Global Theme Variables ========== */
+/* =============================================================
+   GLOBAL THEME VARIABLES
+   ============================================================= */
 :root {
-    --primary-color: #F4C300;
-    --text-color: #FFFFFF;
-    --light-text-color: #ADADAD;
-    --body-color: #242529;
-    --card-color: #31343A;
-    --bottom-nav-height: 68px;
-
-    /* Table Colors */
-    --table-bg: var(--color-gray-50);
-    --table-header-bg: var(--color-gray-100);
-    --table-cell-bg: #31343A;
-    --table-hover-bg: #3e4146;
-    --table-border-color: var(--light-text-color);
-    --table-text-color: var(--text-color);
-    --table-header-text-color: var(--light-text-color);
-
-    /* Scrollbar */
-    --scrollbar-track: var(--color-gray-50);
-    --scrollbar-thumb: var(--color-gray-300);
+    --primary-color:      #F4C300;
+    --text-color:         #FFFFFF;
+    --light-text-color:   #ADADAD;
+    --body-color:         #242529;
+    --card-color:         #31343A;
+    --card-hover-color:   #3e4146;
+    --bottom-nav-height:  68px;
+    --sidebar-width:      280px;
+    --sidebar-collapsed:  80px;
+    --scrollbar-color:    #ADADAD;
+    --scrollbar-track:    #31343A;
 }
 
-* {
-    box-sizing: border-box;
-    font-family: "Nunito";
-    transition: 0.3s ease;
+
+/* Scoped transitions — only on elements that animate, not * */
+a, button, .card, .sidebar a, .table-actions button, .table-actions i {
+    transition: transform 0.2s ease, background-color 0.2s ease,
+                color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
 }
 
 body {
@@ -34,15 +29,17 @@ body {
     gap: 50px;
     padding: 40px 30px;
     height: 100vh;
-    max-height: 100vh;          /* ← added: hard cap so flex children can't exceed viewport */
-    overflow: hidden;           /* lock page-level scroll — table scrolls internally */
-    background-color: #242529;
-    color: white;
+    max-height: 100vh;
+    overflow: hidden;
+    background-color: var(--body-color);
+    color: var(--text-color);
 }
 
-/* ========== SIDEBAR (desktop) ========== */
+/* =============================================================
+   SIDEBAR — DESKTOP
+   ============================================================= */
 body > nav:not(.bottom-nav) {
-    width: 280px;
+    width: var(--sidebar-width);
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -53,7 +50,7 @@ body > nav:not(.bottom-nav) {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: solid 1px #ADADAD;
+    border-bottom: 1px solid var(--light-text-color);
     padding-bottom: 20px;
 }
 
@@ -63,9 +60,7 @@ body > nav:not(.bottom-nav) {
     font-size: 14px;
 }
 
-.sidebar i {
-    background-color: transparent;
-}
+.sidebar i { background-color: transparent; }
 
 .sidebar a {
     display: flex;
@@ -76,102 +71,70 @@ body > nav:not(.bottom-nav) {
     text-decoration: none;
     white-space: nowrap;
 }
+
 .sidebar a p {
-    color: #ADADAD;
+    color: var(--light-text-color);
     font-weight: 600;
 }
+
 .sidebar a span {
     padding: 7px 9px;
     border-radius: 12px;
-    background-color: #31343A;
+    background-color: var(--card-color);
+    flex-shrink: 0;
 }
-.sidebar a span i {
-    color: #F4C300;
-}
+
+.sidebar a span i { color: var(--primary-color); }
 
 .sidebar a.active {
     font-weight: 700;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
     margin-bottom: 5px;
-    color: #2d3748;
-}
-.sidebar a.active p {
-    color: #2d3748;
-    font-weight: 700;
-}
-.sidebar a.active span {
-    background-color: #F4C300;
-}
-.sidebar a.active span i {
-    color: white;
 }
 
-.sidebar a:hover {
-    transform: scale(1.1);
+.sidebar a.active p { color: #2d3748; font-weight: 700; }
+.sidebar a.active span { background-color: var(--primary-color); }
+.sidebar a.active span i { color: white; }
+.sidebar a:hover { transform: scale(1.05); }
+
+/* =============================================================
+   SIDEBAR — COLLAPSED STATE
+   ============================================================= */
+body > nav:not(.bottom-nav).collapsed {
+    width: var(--sidebar-collapsed);
 }
 
-/* COLLAPSED STATE */
-body > nav:not(.bottom-nav).collapsed {   /* ← match specificity */
-    width: 80px;
-}
-
-nav.collapsed .sidebar a p {
-    display: none;
-}
-
-nav.collapsed .sidebar a span {
-    margin: 0;
-}
-
-nav.collapsed .sidebar a i {
-    font-size: 18px;
-}
-
+nav.collapsed .sidebar a p,
 nav.collapsed .sidebar a span + * {
     display: none;
 }
 
-nav.collapsed .logo {
-    display: flex;
-    justify-content: center;
-}
+nav.collapsed .sidebar a { justify-content: center; }
+nav.collapsed .sidebar a span { margin: 0; }
+nav.collapsed .sidebar a i { font-size: 18px; }
+nav.collapsed .logo { justify-content: center; }
+nav.collapsed .logo .img-logo { display: none; }
+nav.collapsed .logo button { position: relative; left: 0; }
 
-nav.collapsed .logo .img-logo {
-    display: none;
-}
-
-nav.collapsed .logo p {
-    display: none;
-}
-
-nav.collapsed .logo button {   /* ← this was missing */
-    left: 20px;
-}
-
-/* ========== BOTTOM NAV (mobile only) ========== */
-.bottom-nav {
-    display: none;
-}
+/* =============================================================
+   BOTTOM NAV — MOBILE ONLY
+   ============================================================= */
+.bottom-nav { display: none; }
 
 @media (max-width: 1024px) {
-    body > nav:not(.bottom-nav) {
-        display: none;
-    }
+    body > nav:not(.bottom-nav) { display: none; }
 
     body {
         gap: 0;
         padding: 16px 16px calc(var(--bottom-nav-height) + 16px) 16px;
         flex-direction: column;
-        height: auto;           /* let page scroll on mobile */
-        max-height: none;       /* ← lift the cap on mobile */
-        overflow: visible;      /* restore natural scroll on mobile */
+        height: auto;
+        max-height: none;
+        overflow: visible;
     }
 
-    /* table gets a fixed cap on mobile so it doesn't grow forever */
-    .table-container {
-        max-height: 60vh;
-    }
+    .table-container { max-height: 60vh; }
 
     .bottom-nav {
         display: flex;
@@ -199,180 +162,129 @@ nav.collapsed .logo button {   /* ← this was missing */
         text-decoration: none;
         padding: 8px 0;
         border-radius: 0;
-        transition: 0.2s ease;
     }
 
-    .bottom-nav a p {
-        display: none;
-    }
+    .bottom-nav a p { display: none; }
 
     .bottom-nav a span {
         padding: 9px 11px;
         border-radius: 12px;
         background-color: transparent;
-        transition: background-color 0.2s ease;
     }
 
     .bottom-nav a span i {
         font-size: 1.1rem;
         color: var(--light-text-color);
-        transition: color 0.2s ease;
     }
 
-    .bottom-nav a.active span {
-        background-color: var(--primary-color);
-    }
-
-    .bottom-nav a.active span i {
-        color: white;
-    }
-
-    .bottom-nav a:hover span {
-        background-color: rgba(244, 195, 0, 0.15);
-    }
-
-    .bottom-nav a:hover span i {
-        color: var(--primary-color);
-    }
+    .bottom-nav a.active span { background-color: var(--primary-color); }
+    .bottom-nav a.active span i { color: white; }
+    .bottom-nav a:hover span { background-color: rgba(244, 195, 0, 0.15); }
+    .bottom-nav a:hover span i { color: var(--primary-color); }
 }
 
-/* ========== Cards ========== */
+/* =============================================================
+   CARDS
+   ============================================================= */
 .card {
     padding: 25px;
     border-radius: 20px;
-    background-color: #31343A;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    background-color: var(--card-color);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 8px;
 }
 
+/* Grid columns are set via Tailwind on the element.
+   This only handles flex-chain height participation. */
 .main-cards {
     display: grid;
-    gap: 30px;
-    grid-template-columns: calc(35% - 10px) calc(65% - 10px);
-    height: 100%;
+    gap: 20px;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
 }
 
-/* ========== Table Container ========== */
+/* =============================================================
+   TABLE CONTAINER
+   Parent .card must be flex flex-col for flex:1 to work.
+   ============================================================= */
 .table-container {
+    width: 100%;
     border-radius: 10px 10px 0 0;
     position: relative;
-    width: 100%;                /* ← added: fills card width, tracks vw naturally via flex chain */
-
-    /*
-     * flex:1       → grow to fill remaining card height
-     * min-height:0 → allow shrinking below content size (flex gotcha)
-     * overflow-y   → scroll inside the box when rows exceed available height
-     * overflow-x   → horizontal scroll on narrow screens
-     */
     flex: 1;
     min-height: 0;
     overflow-y: auto;
     overflow-x: auto;
 }
 
-.table-container::-webkit-scrollbar {
-    height: 8px;
-    width: 8px;
-}
-.table-container::-webkit-scrollbar-track {
-    background: var(--card-color);
-    border-radius: 5px;
-}
-.table-container::-webkit-scrollbar-thumb {
-    background: var(--light-text-color);
-    border-radius: 5px;
-    cursor: pointer;
-}
+.table-container::-webkit-scrollbar { height: 8px; width: 8px; }
+.table-container::-webkit-scrollbar-track { background: var(--scrollbar-track); border-radius: 5px; }
+.table-container::-webkit-scrollbar-thumb { background: var(--scrollbar-color); border-radius: 5px; cursor: pointer; }
 
-/* ========== Table Styles ========== */
-.table-container table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-}
-
-/* Sticky header needs background since it floats over scrolling rows */
-.table-container table thead {
-    position: sticky;
-    top: 0;
-    z-index: 2;
-}
+/* =============================================================
+   TABLE
+   ============================================================= */
+.table-container table { width: 100%; border-collapse: collapse; text-align: left; }
+.table-container table thead { position: sticky; top: 0; z-index: 2; }
 
 .table-container table th {
     text-align: start;
     padding: 15px 16px;
     font-size: 12px;
     font-weight: 800;
-    color: var(--table-header-text-color);
+    color: var(--light-text-color);
     white-space: nowrap;
-    background-color: var(--table-cell-bg);
-    border-bottom: solid 2px #ADADAD;
+    background-color: var(--card-color);
+    border-bottom: 2px solid var(--light-text-color);
 }
 
 .table-container table td {
     white-space: nowrap;
     padding: 15px 16px;
-    border-top: 2px solid var(--table-border-color);
-    color: var(--table-text-color);
-    background: var(--table-cell-bg);
-    border-bottom: solid 2px #ADADAD;
+    color: var(--text-color);
+    background: var(--card-color);
+    border-bottom: 2px solid var(--light-text-color);
     font-weight: 700;
     font-size: 14px;
-    height: 64px;           /* fixed row height — rows won't stretch when table is sparse */
+    height: 64px;
 }
 
-.table-container table tr:hover td {
-    background: var(--table-hover-bg);
-}
+.table-container table tr:hover td { background: var(--card-hover-color); }
 
-/* ========== Extras ========== */
+/* =============================================================
+   TABLE ACTIONS
+   ============================================================= */
 .table-actions {
+    display: flex;
+    align-items: center;
     gap: 10px;
 }
 
-.table-actions button {
-    padding: 7px 10px;
-    border-radius: 7px;
-    cursor: pointer;
-    margin: 0 5px;
-    transition: transform 0.2s;
-}
-.table-actions button:hover {
-    transform: scale(1.1);
-}
+.table-actions button { padding: 7px 10px; border-radius: 7px; cursor: pointer; }
+.table-actions button:hover, .table-actions i:hover { transform: scale(1.1); }
+.table-actions i { font-size: 20px; cursor: pointer; margin: 0 5px; }
 
-.table-actions i {
-    font-size: 20px;
-    cursor: pointer;
-    margin: 0 5px;
-    transition: transform 0.2s;
-}
-.table-actions i:hover {
-    transform: scale(1.1);
-}
+/* =============================================================
+   FORM INPUTS
+   ============================================================= */
+.input-group { display: flex; flex-direction: column; gap: 5px; }
 
-/* ========== Input Styles ========== */
-.input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-.input-group label {
-    position: relative;
-    font-size: 15px;
-    font-weight: 600;
-}
+.input-group label { position: relative; font-size: 15px; font-weight: 600; }
+
 .input-group label span {
+    position: absolute;
     left: 5px;
     bottom: -16px;
     background: white;
     padding: 0 5px;
     font-size: smaller;
-    position: absolute;
-    color: var(--color-red-400);
+    color: #f87171; /* red-400 — avoids broken var(--color-red-400) */
 }
-.input-group input, .input-group select {
+
+.input-group input,
+.input-group select {
     background-color: #f8f9fa;
-    border: solid 1px #c2c4c7;
+    border: 1px solid #c2c4c7;
     border-radius: 5px;
     padding: 5px 10px;
     outline: none;
@@ -380,7 +292,7 @@ nav.collapsed .logo button {   /* ← this was missing */
 
 .input-group textarea {
     background-color: #f8f9fa;
-    border: solid 1px #c2c4c7;
+    border: 1px solid #c2c4c7;
     border-radius: 5px;
     padding: 5px 10px;
     outline: none;
@@ -388,21 +300,11 @@ nav.collapsed .logo button {   /* ← this was missing */
     height: 130px;
 }
 
-button {
-    cursor: pointer;
-}
+button { cursor: pointer; }
 
-/* ========== Scrollbar Styling ========== */
-.scrolling::-webkit-scrollbar {
-    height: 15px;
-    width: 15px;
-}
-.scrolling::-webkit-scrollbar-track {
-    background: var(--card-color);
-    border-radius: 7px;
-}
-.scrolling::-webkit-scrollbar-thumb {
-    background: var(--light-text-color);
-    border-radius: 7px;
-    cursor: pointer;
-}
+/* =============================================================
+   SCROLLBAR UTILITY
+   ============================================================= */
+.scrolling::-webkit-scrollbar { height: 8px; width: 8px; }
+.scrolling::-webkit-scrollbar-track { background: var(--scrollbar-track); border-radius: 7px; }
+.scrolling::-webkit-scrollbar-thumb { background: var(--scrollbar-color); border-radius: 7px; cursor: pointer; }
