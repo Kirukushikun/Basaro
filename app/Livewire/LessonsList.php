@@ -11,15 +11,16 @@ class LessonsList extends Component
 {
     public function render()
     {
+        // LessonsList.php - render()
         $user = Auth::user();
-
-        $lessons = Lesson::orderBy('id')->get();
+        $lessons = Lesson::orderBy('order')->get(); // order by 'order', not 'id'!
 
         $userTracks = UserTrack::where('user_id', $user->id)
             ->get()
             ->keyBy('lesson_id');
 
-        $currentUnlockedOrder = 1; // default first lesson unlocked
+        // Use current_lesson from users table — same as dashboard
+        $currentUnlockedOrder = $user->current_lesson ?? 1;
 
         // Find highest PASSING completed lesson order (score > 70%)
         $passingLessons = $userTracks->filter(function($track) use ($lessons) {
