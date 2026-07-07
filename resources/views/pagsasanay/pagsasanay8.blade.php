@@ -14,7 +14,11 @@
     currentPanutoAudio: null,
 
     get regularQuestions() {
-        return questions.filter(q => q.type !== 'panuto');
+        return this.questions.filter(q => q.type !== 'panuto');
+    },
+
+    get panutoQuestions() {
+        return this.questions.filter(q => q.type === 'panuto');
     },
 
     get isPanuto() {
@@ -22,107 +26,112 @@
     },
 
     get showSoundOverlay() {
-        // Only show if sound not enabled AND it's the first panuto
         return !this.soundEnabled && this.isPanuto;
     },
 
     enableSound() {
         this.soundEnabled = true;
-        // Play the panuto audio if it exists
         if (this.current && this.current.audio) {
             this.currentPanutoAudio = new Audio(this.current.audio);
             this.currentPanutoAudio.play();
         }
     },
 
-get current() {
-    // Filter panuto and regular questions
-    let panutoQuestions = this.questions.filter(q => q.type === 'panuto');
-    let regularQuestions = this.questions.filter(q => q.type !== 'panuto');
-    
-    // Page 1: First panuto
-    if (this.page === 1 && panutoQuestions.length > 0) {
-        return panutoQuestions[0];
-    }
-    
-    // Page 2: Story (isStoryPage will handle this)
-    // Page 3: Second panuto (if exists)
-    if (this.page === 3 && panutoQuestions.length > 1) {
-        return panutoQuestions[1];
-    }
-    
-    // Page 4+: Regular questions
-    let questionIndex = this.page - 4; // Pages 4, 5, 6, 7... for questions
-    return questionIndex >= 0 && questionIndex < regularQuestions.length
-        ? regularQuestions[questionIndex]
-        : null;
-},
-
-get isStoryPage() {
-    return this.page === 2; // Story is always page 2
-},
-
-next() {
-    if (this.isPanuto) {
-        // Move past panuto page
-        this.page++
-        this.reset()
-        
-        // Stop panuto audio if playing
-        if (this.currentPanutoAudio) {
-            this.currentPanutoAudio.pause();
-            this.currentPanutoAudio.currentTime = 0;
-            this.currentPanutoAudio = null;
+    get current() {
+        // Page 1: First panuto
+        if (this.page === 1 && this.panutoQuestions.length > 0) {
+            return this.panutoQuestions[0];
         }
 
-        // Auto-play next panuto audio if applicable
-        this.$nextTick(() => {
-            if (this.soundEnabled && this.isPanuto && this.current && this.current.audio) {
-                this.currentPanutoAudio = new Audio(this.current.audio);
-                this.currentPanutoAudio.play();
-            }
-        });
-    } else if (this.isStoryPage) {
-        // Move from story to second panuto (or first question if no second panuto)
-        this.page++
-        this.confirmed = false
-        
-        // ✅ ADD THIS: Auto-play second panuto audio
-        this.$nextTick(() => {
-            if (this.soundEnabled && this.isPanuto && this.current && this.current.audio) {
-                this.currentPanutoAudio = new Audio(this.current.audio);
-                this.currentPanutoAudio.play();
-            }
-        });
-    } else if (!this.confirmed) {
-        // Confirm answer
-        this.confirmed = true
-        if (this.selected === this.current.answer) {
-            this.score++
+        // Page 2: Story (handled by isStoryPage)
+        if (this.page === 2) {
+            return null;
         }
-    } else {
-        // Move to next question
-        this.page++
-        this.reset()
-    }
-},
 
-    reset() {
-        this.selected = null
-        this.confirmed = false
+        // Page 3: Second panuto (if exists)
+        if (this.page === 3 && this.panutoQuestions.length > 1) {
+            return this.panutoQuestions[1];
+        }
+
+        // Page 4+: Regular questions
+        let questionIndex = this.page - 4;
+        return questionIndex >= 0 && questionIndex < this.regularQuestions.length
+            ? this.regularQuestions[questionIndex]
+            : null;
     },
 
-replay() {
-    this.page = 1 // Reset to first panuto
-    this.score = 0
-    this.soundEnabled = false
-    this.reset()
-}
+    get isStoryPage() {
+        return this.page === 2;
+    },
+
+    get isLastQuestion() {
+        return this.page === (3 + this.regularQuestions.length);
+    },
+
+    next() {
+        if (this.isPanuto) {
+            this.page++;
+            this.reset();
+
+            if (this.currentPanutoAudio) {
+                this.currentPanutoAudio.pause();
+                this.currentPanutoAudio.currentTime = 0;
+                this.currentPanutoAudio = null;
+            }
+
+            this.$nextTick(() => {
+                if (this.soundEnabled && this.isPanuto && this.current && this.current.audio) {
+                    this.currentPanutoAudio = new Audio(this.current.audio);
+                    this.currentPanutoAudio.play();
+                }
+            });
+
+        } else if (this.isStoryPage) {
+            this.page++;
+            this.confirmed = false;
+
+            this.$nextTick(() => {
+                if (this.soundEnabled && this.isPanuto && this.current && this.current.audio) {
+                    this.currentPanutoAudio = new Audio(this.current.audio);
+                    this.currentPanutoAudio.play();
+                }
+            });
+
+        } else if (!this.confirmed) {
+            this.confirmed = true;
+            if (this.selected === this.current.answer) {
+                this.score++;
+            }
+
+        } else {
+            this.page++;
+            this.reset();
+
+            // Check completion after moving past the last question
+            if (!this.completed && this.page > (3 + this.regularQuestions.length)) {
+                this.completed = true;
+                $wire.completePagsasanay();
+            }
+        }
+    },
+
+    reset() {
+        this.selected = null;
+        this.confirmed = false;
+    },
+
+    replay() {
+        this.page = 1;
+        this.score = 0;
+        this.completed = false;
+        this.soundEnabled = false;
+        this.reset();
+    }
     }"
 >
     <!-- SOUND OVERLAY -->
     <template x-if="showSoundOverlay">
-        <div class="absolute inset-0 bg-black/60 flex items-center justify-center z-50 rounded-lg ">
+        <div class="absolute inset-0 bg-black/60 flex items-center justify-center z-50 rounded-lg">
             <button 
                 @click="enableSound()" 
                 class="px-6 py-3 bg-[#F4C300] !text-black font-bold rounded-lg text-lg shadow-lg hover:bg-yellow-500 transition-all"
@@ -132,7 +141,6 @@ replay() {
         </div>
     </template>
 
-    
     <!-- PANUTO TYPE -->
     <template x-if="isPanuto">
         <div class="flex-1 flex flex-col items-center justify-center gap-6 mt-5 w-full px-4">
@@ -148,7 +156,7 @@ replay() {
                 Naiintindihan ko ang panuto
             </button>
         </div>
-    </template> 
+    </template>
 
     <!-- Story Page -->
     <template x-if="isStoryPage">
@@ -167,9 +175,8 @@ replay() {
         </div>
     </template>
 
-
     <!-- Question Pages -->
-    <template x-if="current && !isPanuto">
+    <template x-if="current && !isPanuto && !completed">
         <div class="flex-1 flex flex-col items-center gap-8 mt-10 w-full px-4">
 
             <!-- Question -->
@@ -212,17 +219,18 @@ replay() {
         </div>
     </template>
 
+    <!-- Results Page -->
     <div 
+        x-show="completed"
+        x-transition
         class="flex-1 flex flex-col items-center gap-5"
-        x-show="page > (3 + regularQuestions.length)"  
-        x-effect="if (page > (3 + regularQuestions.length)) { $wire.completePagsasanay() }"
     >
         <img src="{{asset('img/Badge.png')}}" width="200" alt="">
         <h1 class="text-2xl font-bold">CONGRATULATIONS!</h1>
-        <h2 class="score !text-[#F4C300]" x-text="Math.round((score / 4) * 100) + '%'"></h2>
+        <h2 class="score !text-[#F4C300]" x-text="Math.round((score / regularQuestions.length) * 100) + '%'"></h2>
         <p class="w-96 text-lg text-center">
             Nakakuha ka ng <span class="font-bold" x-text="score"></span>
-            sa <span class="font-bold" x-text="4"></span> na tanong!
+            sa <span class="font-bold" x-text="regularQuestions.length"></span> na tanong!
         </p>
         <p class="w-96 text-lg text-center">Mahusay! Natapos mo ang araling ito nang may buong sigasig at pagsisikap. Ipagpatuloy lamang ang iyong pagkatuto!</p>
         <div class="flex gap-4 mt-4">
@@ -232,14 +240,12 @@ replay() {
                 Ulitin
             </button>
 
-            <!-- Exit -->
             <button
                 onclick="window.location.href='/'"
                 class="px-4 py-2 bg-gray-600 text-white rounded-md font-bold hover:bg-gray-700 transition">
                 Lumabas
             </button>
 
-            <!-- Primary -->
             <button
                 @click="showModal = true"
                 class="px-4 py-2 bg-[#F4C300] !text-black rounded-md font-bold hover:opacity-90 transition">
@@ -247,7 +253,7 @@ replay() {
             </button>
         </div>
 
-            <!-- Backdrop -->
+        <!-- Backdrop -->
         <div x-show="showModal" x-transition.opacity class="fixed inset-0 bg-black/30 z-40" @click="showModal = false"></div>
 
         <!-- Modal Container -->
@@ -283,7 +289,7 @@ replay() {
                         </button>
 
                         <button 
-                            onclick="window.location.href='/lesson-view?lesson={{ encrypt($lesson) }}&slide=fourth-slide-panuto'"
+                            onclick="window.location.href='/lesson-view?lesson={{ encrypt($lesson) }}&slide=fourth-slide'"
                             @click="showModal = false"
                             class="px-4 py-2 bg-[#F4C300] rounded-md !text-black font-bold"
                         >
@@ -296,16 +302,15 @@ replay() {
         </div>
     </div>  
 
-    <!-- Navigation Buttons (Modified for Story Page) -->
-    <div x-show="!isPanuto && page <= (3 + questions.filter(q => q.type !== 'panuto').length)" 
+    <!-- Navigation Buttons -->
+    <div x-show="!isPanuto && !completed" 
         class="absolute -bottom-[110px] flex items-center justify-between w-full">
         
         <!-- Page Counter -->
-        <p x-show="page === 1">Panuto 1</p>
-        <p x-show="page === 2">Kwento</p>
-        <p x-show="page === 3 && questions.filter(q => q.type === 'panuto').length > 1">Panuto 2</p>
-        <p x-show="page > 3 && page <= (3 + questions.filter(q => q.type !== 'panuto').length)">
-            <span x-text="page - 3"></span>/<span x-text="questions.filter(q => q.type !== 'panuto').length"></span>
+        <p x-show="isStoryPage">Kwento</p>
+        <p x-show="page === 3 && panutoQuestions.length > 1">Panuto 2</p>
+        <p x-show="page > 3 && page <= (3 + regularQuestions.length)">
+            <span x-text="page - 3"></span>/<span x-text="regularQuestions.length"></span>
         </p>
         
         <div class="flex gap-3">
