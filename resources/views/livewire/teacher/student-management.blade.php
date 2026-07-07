@@ -5,16 +5,15 @@
     <div class="table-header flex justify-between items-center mb-4">
         <h1 class="text-lg font-bold">Student List</h1>
         <div class="flex items-center gap-3">
-            <div class="border border-2 border-gray-500 px-3 py-1 rounded-md">
-                <input 
+            <div class="search-box">
+                <input
                     wire:model.live.debounce.300ms="search"
-                    class="outline-none text-sm bg-transparent" 
-                    type="text" 
+                    type="text"
                     placeholder="Search students..."
                 />
-                <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                <i class="fa-solid fa-magnifying-glass"></i>
             </div>
-            <button class="px-5 py-2 bg-[#F4C300] border border-2 border-[#F4C300] rounded-lg font-bold text-black text-xs" @click="showModal = true; modalTemplate = 'create';">ADD NEW STUDENT</button>
+            <button class="btn-add" @click="showModal = true; modalTemplate = 'create';">ADD NEW STUDENT</button>
             <i class="fa-solid fa-ellipsis-vertical cursor-pointer"></i>
         </div>
     </div>
@@ -35,15 +34,20 @@
             <tbody>
                 @forelse($students as $student)
                 <tr>
-                    <td>#{{ $student->id }} <i class="fa-regular fa-copy cursor-pointer text-gray-400" onclick="navigator.clipboard.writeText('{{ $student->id }}')"></i></td>
+                    <td>
+                        <span class="id-cell">
+                            #{{ $student->id }}
+                            <i class="fa-regular fa-copy copy-icon" onclick="navigator.clipboard.writeText('{{ $student->id }}')" title="Copy ID"></i>
+                        </span>
+                    </td>
                     <td>{{ $student->name }}</td>
                     <td>{{ $student->email }}</td>
-                    <td><span class="text-green-400">•</span> Active</td>
+                    <td><span class="status-pill"><span class="status-dot"></span>Active</span></td>
                     <td>
                         @if($student->last_login_at)
                             {{ $student->last_login_at->format('d/m/Y H:i') }}
                         @else
-                            <span class="text-gray-500">Never</span>
+                            <span class="login-never">Never</span>
                         @endif
                     </td>
                     <td>

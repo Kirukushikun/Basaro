@@ -5,14 +5,13 @@
     <div class="table-header flex justify-between items-center mb-4">
         <h1 class="text-lg font-bold">Performance Report</h1>
         <div class="flex items-center gap-3">
-            <div class="border border-2 border-gray-500 px-3 py-1 rounded-md">
-                <input 
+            <div class="search-box">
+                <input
                     wire:model.live.debounce.300ms="search"
-                    class="outline-none text-sm bg-transparent" 
-                    type="text" 
+                    type="text"
                     placeholder="Search students..."
                 />
-                <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                <i class="fa-solid fa-magnifying-glass"></i>
             </div>
             <i class="fa-solid fa-ellipsis-vertical cursor-pointer"></i>
         </div>
@@ -50,7 +49,12 @@
                     @endphp
 
                     <tr>
-                        <td>#{{ $user->id }} <i class="fa-regular fa-copy cursor-pointer text-gray-400" onclick="navigator.clipboard.writeText('{{ $user->id }}')"></i></td>
+                        <td>
+                            <span class="id-cell">
+                                #{{ $user->id }}
+                                <i class="fa-regular fa-copy copy-icon" onclick="navigator.clipboard.writeText('{{ $user->id }}')" title="Copy ID"></i>
+                            </span>
+                        </td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->grade_level ?? 'N/A' }}</td>
                         <td>

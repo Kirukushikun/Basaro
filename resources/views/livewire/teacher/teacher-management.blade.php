@@ -8,16 +8,15 @@
     <div class="table-header flex justify-between items-center mb-4">
         <h1 class="text-lg font-bold">Teacher List</h1>
         <div class="flex items-center gap-3">
-            <div class="border border-2 border-gray-500 px-3 py-1 rounded-md">
-                <input 
+            <div class="search-box">
+                <input
                     wire:model.live.debounce.300ms="search"
-                    class="outline-none text-sm bg-transparent" 
-                    type="text" 
+                    type="text"
                     placeholder="Search teachers..."
                 />
-                <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                <i class="fa-solid fa-magnifying-glass"></i>
             </div>
-            <button class="px-5 py-2 bg-[#F4C300] border border-2 border-[#F4C300] rounded-lg font-bold text-black text-xs" @click="showModal = true; modalTemplate = 'create'">ADD NEW TEACHER</button>
+            <button class="btn-add" @click="showModal = true; modalTemplate = 'create'">ADD NEW TEACHER</button>
             <i class="fa-solid fa-ellipsis-vertical cursor-pointer"></i>
         </div>
     </div>
@@ -38,7 +37,12 @@
             <tbody>
                 @forelse($teachers as $teacher)
                 <tr>
-                    <td>#{{ $teacher->id }} <i class="fa-regular fa-copy cursor-pointer text-gray-400" onclick="navigator.clipboard.writeText('{{ $teacher->id }}')"></i></td>
+                    <td>
+                        <span class="id-cell">
+                            #{{ $teacher->id }}
+                            <i class="fa-regular fa-copy copy-icon" onclick="navigator.clipboard.writeText('{{ $teacher->id }}')" title="Copy ID"></i>
+                        </span>
+                    </td>
                     <td>
                         {{ $teacher->name }}
                         @if($teacher->id === Auth::id())
@@ -52,8 +56,9 @@
                         </span>
                     </td>
                     <td>
-                        <span class="{{ $teacher->is_disabled ? 'text-red-400' : 'text-green-400' }}">•</span> 
-                        {{ $teacher->is_disabled ? 'Disabled' : 'Active' }}
+                        <span class="status-pill {{ $teacher->is_disabled ? 'is-disabled' : '' }}">
+                            <span class="status-dot"></span>{{ $teacher->is_disabled ? 'Disabled' : 'Active' }}
+                        </span>
                     </td>
                     <td>
                         @if($teacher->id === Auth::id())

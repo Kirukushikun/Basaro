@@ -80,10 +80,14 @@
                </template>
           </div>
 
-          <nav>
+          <button id="sidebar-reveal-btn" class="sidebar-reveal-btn" title="Show sidebar">
+               <i class="fa-solid fa-bars"></i>
+          </button>
+
+          <nav class="app-sidebar">
                <div class="logo">
                     <img class="img-logo" src="{{asset('img/logo-light.png')}}" style="width: 130px;" alt="">
-                    <button id="toggle-btn" class="text-lg hover:scale-125"><i class="fa-solid fa-bars"></i></button>
+                    <button id="toggle-btn" class="text-lg hover:scale-125" title="Hide sidebar"><i class="fa-solid fa-bars"></i></button>
                </div>
 
                <aside class="sidebar">
@@ -113,7 +117,7 @@
           {{-- min-w-0 prevents flex child from overflowing its parent (the key fix for width tracking vw) --}}
           {{-- overflow-hidden completes the flex chain so .table-container can scroll internally --}}
           <main class="min-w-0 overflow-hidden size-full flex flex-col">
-               <header class="flex justify-between">
+               <header class="flex justify-between mb-4">
                     <div>
                          <div class="text-sm text-gray-400">Pages / <span>Header</span></div>
                          <div class="font-bold">

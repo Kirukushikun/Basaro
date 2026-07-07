@@ -1,19 +1,18 @@
-const toggleBtn = document.getElementById("toggle-btn");
-const nav = document.querySelector("nav");
-const logo = document.querySelector(".img-logo");
+const hideBtn = document.getElementById("toggle-btn");
+const revealBtn = document.getElementById("sidebar-reveal-btn");
+const nav = document.querySelector(".app-sidebar");
 
-// Load saved state on page load
-const isCollapsed = localStorage.getItem("nav-collapsed") === "true";
-if (isCollapsed) nav.classList.add("collapsed");
+function setSidebarCollapsed(collapsed) {
+    nav.classList.toggle("collapsed", collapsed);
+    document.body.classList.toggle("sidebar-collapsed", collapsed);
+    localStorage.setItem("nav-collapsed", collapsed);
+}
 
-// Handle toggle click
-toggleBtn.addEventListener("click", () => {
-    nav.classList.toggle("collapsed");
-    logo.classList.toggle("hidden");
+// Restore saved state on page load
+setSidebarCollapsed(localStorage.getItem("nav-collapsed") === "true");
 
-    // Save the state in localStorage
-    localStorage.setItem("nav-collapsed", nav.classList.contains("collapsed"));
-});
+hideBtn.addEventListener("click", () => setSidebarCollapsed(true));
+revealBtn.addEventListener("click", () => setSidebarCollapsed(false));
 
 const tabs = document.querySelectorAll(".tab-btn");
 const contents = document.querySelectorAll(".tab-content");
